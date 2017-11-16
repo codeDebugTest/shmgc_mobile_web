@@ -1,19 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {browserHistory} from 'react-router'
 import {SearchBar, Button} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
+import {routeToSettingPage} from '../../utils/router'
 
 class ItemView extends React.Component{
-    routeToSettingPage() {
-        browserHistory.push({
-            pathname: `/setting`
-        })
-    }
     render () {
         return (
             <div>
-                <TopNavBar title="项目" leftContent="设置" onLeftBtnClick={this.routeToSettingPage}/>
+                <TopNavBar title="项目" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
 
                 <div className="main-section">
                     <SearchBar placeholder="项目名称"/>

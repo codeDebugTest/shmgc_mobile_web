@@ -14,7 +14,7 @@ import ConnectedEntCompareView from './views/ent/entComparePage'
 import ConnectedItemView from './views/item/itemPage'
 import ConnectedItemDetailView from './views/item/itemDetailPage'
 import ConnectedStatisticView from './views/static/statisticPage'
-import ConnectedSettingView from './views/static/settingPage'
+import ConnectedSettingView from './views/setting/settingPage'
 import ConnectedApp from './App'
 import registerServiceWorker from './registerServiceWorker';
 

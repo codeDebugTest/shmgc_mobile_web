@@ -1,20 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {browserHistory} from 'react-router'
 import {WhiteSpace} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import TimeFilterBar from '../../components/timeFilterBar'
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './homeStatic.redux'
+import {routeGoBack} from '../../utils/router'
 
 class HomeStatic extends React.Component {
     constructor(props) {
         super(props);
     }
-
-    routeToHistory = () => {
-        browserHistory.goBack();
-    };
 
     renderStaticOverview = () => {
         if (this.props.storeData.loadingSuccess) {
@@ -28,7 +24,7 @@ class HomeStatic extends React.Component {
     render() {
         return (
             <div>
-                <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={this.routeToHistory}/>
+                <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={routeGoBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <TimeFilterBar/>

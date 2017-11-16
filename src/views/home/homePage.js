@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {browserHistory} from 'react-router'
 import {doLoadingAction} from './homePage.redux'
 import {Grid, Card, Icon, WingBlank, Flex} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import {ChartMargin, setIntervalPosition, setLinePosition, setAxis, getAxisRange} from '../../utils/chartConfig'
 import  './homePage.css'
+import {routeToSettingPage, routeToHomeStatic} from '../../utils/router'
 
 class Home extends React.Component{
     constructor(props) {
@@ -17,20 +17,9 @@ class Home extends React.Component{
 
     cardOnClickHandler = ()=>{
         // todo 路由跳转
-        this.routeToHomeStatic();
+        routeToHomeStatic();
         console.log('card on click')
-    }
-
-    routeToSettingPage = ()=>{
-        browserHistory.push({
-            pathname: `/setting`
-        })
     };
-    routeToHomeStatic =()=> {
-        browserHistory.push({
-            pathname: `/home/static`
-        })
-    }
 
     renderEntChart(entChartData) {
         const axisConfig = {
@@ -90,7 +79,7 @@ class Home extends React.Component{
 
         return (
             <div>
-                <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={this.routeToSettingPage}/>
+                <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
 
                 <div className="main-section">
                     <SectionBar sectionName="项目数据概览" backgroundColor={'#55ace8'}/>

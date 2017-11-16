@@ -1,20 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {browserHistory} from 'react-router'
-import {Button, SegmentedControl} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
+import {routeToSettingPage} from '../../utils/router'
 
 class StatisticView extends React.Component{
-    routeToSettingPage() {
-        browserHistory.push({
-            pathname: `/setting`
-        })
+    constructor(props) {
+        super(props)
     }
 
     render () {
         return (
             <div>
-                <TopNavBar title="统计" leftContent="设置" onLeftBtnClick={this.routeToSettingPage}/>
+                <TopNavBar title="统计" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
 
                 <div className="main-section">
 

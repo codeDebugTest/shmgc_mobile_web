@@ -3,18 +3,14 @@ import {connect} from 'react-redux'
 import {browserHistory} from 'react-router'
 import {Button} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
+import {routeToSettingPage} from '../../utils/router'
 
 class EntView extends React.Component{
-    routeToSettingPage() {
-        browserHistory.push({
-            pathname: `/setting`
-        })
-    }
 
     render () {
         return (
             <div>
-                <TopNavBar title="项目" leftContent="设置" onLeftBtnClick={this.routeToSettingPage}/>
+                <TopNavBar title="项目" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
                 <div className="main-section">
                     <h1>Enterprise page</h1>
                 </div>
