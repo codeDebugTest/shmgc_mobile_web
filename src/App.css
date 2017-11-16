@@ -27,6 +27,11 @@
   to { transform: rotate(360deg); }
 }
 
+.grid-p {
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.5em;
+}
+
 .am-navbar-left {
   padding-left: 10px;
 }

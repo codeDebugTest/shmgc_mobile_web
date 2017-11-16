@@ -1,7 +1,3 @@
-.grid-p {
-    -webkit-margin-before: 0.5em;
-    -webkit-margin-after: 0.5em;
-}
 .am-grid .am-flexbox .am-flexbox-item .am-grid-item-content {
     padding: 5px 0 !important;
     background-color: #55ace8;
