@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Button, WhiteSpace, WingBlank} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
+import BottomTabBar from '../../components/bottomTabBar'
 import EntCard from './entCard'
 import {routeToSettingPage} from '../../utils/router'
 import {doLoadingDataAction} from './entPage.redux'
@@ -93,6 +94,7 @@ class EntView extends React.Component{
                     </WingBlank>
                     { this.renderEntDetail()}
                 </div>
+                <BottomTabBar selectedTab='ent'/>
             </div>
         )
     }

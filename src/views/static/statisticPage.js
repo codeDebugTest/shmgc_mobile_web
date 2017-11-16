@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import TopNavBar from '../../components/topNavBar'
+import BottomTabBar from '../../components/bottomTabBar'
 import {routeToSettingPage} from '../../utils/router'
 
 class StatisticView extends React.Component{
@@ -17,6 +18,7 @@ class StatisticView extends React.Component{
 
                     <h1>统计 page</h1>
                 </div>
+                <BottomTabBar selectedTab='statistic'/>
             </div>
         )
     }

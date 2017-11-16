@@ -6,16 +6,13 @@ import './bottomTabBar.css'
 export default class BottomTabBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedTab: props.selectedTab,
-        }
+
         this.onTabSelected = this.onTabSelected.bind(this);
     }
 
-    onTabSelected(tab) {
+    onTabSelected = (tab) =>{
         browserHistory.replace({pathname: tab});
-        this.setState({selectedTab: tab});
-    }
+    };
     render() {
         return (
         <div className="bottom-tab-bar">
@@ -33,7 +30,7 @@ export default class BottomTabBar extends React.Component {
                         width: '22px',
                         height: '22px',
                         background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}/>}
-                    selected={this.state.selectedTab === 'home'}
+                    selected={this.props.selectedTab === 'home'}
                     onPress={() => {this.onTabSelected('home')}}
                 >
                 </TabBar.Item>
@@ -48,7 +45,7 @@ export default class BottomTabBar extends React.Component {
                         width: '22px',
                         height: '22px',
                         background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}/>}
-                    selected={this.state.selectedTab === 'purchaseItem'}
+                    selected={this.props.selectedTab === 'purchaseItem'}
                     onPress={() => {this.onTabSelected('purchaseItem')}}
                 >
                 </TabBar.Item>
@@ -63,7 +60,7 @@ export default class BottomTabBar extends React.Component {
                         width: '22px',
                         height: '22px',
                         background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}/>}
-                    selected={this.state.selectedTab === 'ent'}
+                    selected={this.props.selectedTab === 'ent'}
                     onPress={() => {this.onTabSelected('ent')}}
                 >
                 </TabBar.Item>
@@ -72,7 +69,7 @@ export default class BottomTabBar extends React.Component {
                     key="statistic"
                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
                     selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-                    selected={this.state.selectedTab === 'statistic'}
+                    selected={this.props.selectedTab === 'statistic'}
                     onPress={() => {this.onTabSelected('statistic')}}
                 >
                 </TabBar.Item>

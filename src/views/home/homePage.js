@@ -4,6 +4,7 @@ import {doLoadingAction} from './homePage.redux'
 import {Grid, Card, Icon, WingBlank, Flex} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
+import BottomTabBar from '../../components/bottomTabBar'
 import {ChartMargin, setIntervalPosition, setLinePosition, setAxis, getAxisRange} from '../../utils/chartConfig'
 import  './homePage.css'
 import {routeToSettingPage, routeToHomeStatic} from '../../utils/router'
@@ -80,7 +81,6 @@ class Home extends React.Component{
         return (
             <div>
                 <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
-
                 <div className="main-section">
                     <SectionBar sectionName="项目数据概览" backgroundColor={'#55ace8'}/>
                     <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false} renderItem={
@@ -106,6 +106,7 @@ class Home extends React.Component{
 
                     {this.renderCateStat()}
                 </div>
+                <BottomTabBar selectedTab='home'/>
             </div>
 
         )

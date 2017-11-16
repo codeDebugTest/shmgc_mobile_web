@@ -12,13 +12,11 @@ class App extends React.Component {
 
     render() {
         const currentPath = browserHistory.getCurrentLocation().pathname;
-        const isFirstLevelPath = currentPath.split('/').length < 3;
         return (
             <div className="App">
 
                 {this.props.children}
 
-                {isFirstLevelPath ? <BottomTabBar selectedTab={this.defaultTab}/> : null}
             </div>
         );
     }
