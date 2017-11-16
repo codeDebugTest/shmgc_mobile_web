@@ -66,12 +66,13 @@ export default class EntCard extends React.Component{
         return <Card.Header title={title} extra={<Icon type="right"/>}/>
     };
     render() {
+        const isNormal =  this.props.currentState === 'normal'
         return (
             <div>
                 <WhiteSpace/>
                 <WingBlank>
                     <div style={{border:'1px solid #3a9ee4'}}>
-                        <Card onClick={()=>this.onClick()} style={{paddingBottom: 0}}>
+                        <Card onClick={isNormal?()=>this.onClick():null} style={{paddingBottom: 0}}>
                             {this.renderCardHeader()}
                             {this.renderCardBody()}
                         </Card>

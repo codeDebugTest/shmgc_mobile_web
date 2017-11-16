@@ -195,6 +195,21 @@ export function fetchEntOverviewData(params) {
                             countStr:  50
                         }
                     ]
+                },{
+                    entId: '132',
+                    entName: '住总住博',
+                    projectStat: [
+                        {
+                            display: '项目总数',
+                            countStr: 50
+                        },{
+                            display: '进行中',
+                            countStr:  2
+                        },{
+                            display: '已结束',
+                            countStr:  48
+                        }
+                    ]
                 }
             ]
         }), 1500);
