@@ -14,57 +14,54 @@ export function fetchHomePageData(params) {
     /* Todo get resource by http request*/
     // return http.get(RestApiUrl.homePageData, params);
     return new Promise((resolve, reject) =>{
-       setTimeout(()=>{
-           resolve({
-               return_code: 0,
-               result: {
-                   projectStat: [
-                       {type: '总数', count: 600}, {type: '进行中', count: 100}, {type: '已结束', count: 500},
-                       {type: '比价', count: 400}, {type: '招标', count: 200}, {type: '协议', count: 0},
-                   ],
-                   totalAmountStr: '2,300,100.00元',
-                   amountOfCate: [
-                       {
-                           cateName: '混凝土',
-                           amountStr: '10,000'
-                       },{
-                           cateName: '钢筋',
-                           amountStr: '11,000'
-                       },{
-                           cateName: '水泥',
-                           amountStr: '12,000'
-                       },{
-                           cateName: '其他',
-                           amountStr: '30,000'
-                       }
-                   ],
-                   groupByEnt:[
-                       {
-                           entName: '城建物资',
-                           purchaseAmount: '14000',					//采购金额
-                           piCount: 	'123'				//项目数
-                       },{
-                           entName: '公路桥梁',
-                           purchaseAmount: '11800',					//采购金额
-                           piCount: 	'100'				//项目数
-                       },{
-                           entName: '隧道路桥',
-                           purchaseAmount: '12500',					//采购金额
-                           piCount: 	'110'				//项目数
-                       },{
-                           entName: '水务建设',
-                           purchaseAmount: '13000',					//采购金额
-                           piCount: 	'150'				//项目数
-                       },{
-                           entName: '住总住博',
-                           purchaseAmount: '12000',					//采购金额
-                           piCount: 	'115'				//项目数
-                       }
-                   ],
-               }
-           })
-       },
-       );
+       setTimeout(()=> resolve({
+           return_code: 0,
+           result: {
+               projectStat: [
+                   {type: '总数', count: 600}, {type: '进行中', count: 100}, {type: '已结束', count: 500},
+                   {type: '比价', count: 400}, {type: '招标', count: 200}, {type: '协议', count: 0},
+               ],
+               totalAmountStr: '2,300,100.00元',
+               amountOfCate: [
+                   {
+                       cateName: '混凝土',
+                       amountStr: '10,000'
+                   },{
+                       cateName: '钢筋',
+                       amountStr: '11,000'
+                   },{
+                       cateName: '水泥',
+                       amountStr: '12,000'
+                   },{
+                       cateName: '其他',
+                       amountStr: '30,000'
+                   }
+               ],
+               groupByEnt:[
+                   {
+                       entName: '城建物资',
+                       purchaseAmount: '14000',					//采购金额
+                       piCount: 	'123'				//项目数
+                   },{
+                       entName: '公路桥梁',
+                       purchaseAmount: '11800',					//采购金额
+                       piCount: 	'100'				//项目数
+                   },{
+                       entName: '隧道路桥',
+                       purchaseAmount: '12500',					//采购金额
+                       piCount: 	'110'				//项目数
+                   },{
+                       entName: '水务建设',
+                       purchaseAmount: '13000',					//采购金额
+                       piCount: 	'150'				//项目数
+                   },{
+                       entName: '住总住博',
+                       purchaseAmount: '12000',					//采购金额
+                       piCount: 	'115'				//项目数
+                   }
+               ],
+           }
+       }), 1000);
     });
 }
 
@@ -129,5 +126,77 @@ export function fetchStaticOverviewData(params) {
                 }
             });
         }, 1500);
+    })
+}
+
+export function fetchEntOverviewData(params) {
+    // return http.post(RestApiUrl.entList, params);
+    return new Promise((resolve, reject) => {
+        setTimeout(()=> resolve({
+            return_code: 0,
+            result: [
+                {
+                    entId: '121',
+                    entName: '城建物资',
+                    projectStat: [
+                        {
+                            display: '项目总数',
+							countStr: 110
+                        },{
+                            display: '进行中',
+							countStr:  20
+                        },{
+                            display: '已结束',
+							countStr:  90
+                        }
+                    ]
+                },{
+                    entId: '100',
+                    entName: '隧道工程',
+                    projectStat: [
+                        {
+                            display: '项目总数',
+                            countStr: 110
+                        },{
+                            display: '进行中',
+                            countStr:  10
+                        },{
+                            display: '已结束',
+                            countStr:  110
+                        }
+                    ]
+                },{
+                    entId: '111',
+                    entName: '公路桥梁',
+                    projectStat: [
+                        {
+                            display: '项目总数',
+                            countStr: 80
+                        },{
+                            display: '进行中',
+                            countStr:  10
+                        },{
+                            display: '已结束',
+                            countStr:  70
+                        }
+                    ]
+                },{
+                    entId: '131',
+                    entName: '水务建设',
+                    projectStat: [
+                        {
+                            display: '项目总数',
+                            countStr: 60
+                        },{
+                            display: '进行中',
+                            countStr:  10
+                        },{
+                            display: '已结束',
+                            countStr:  50
+                        }
+                    ]
+                }
+            ]
+        }), 1500);
     })
 }

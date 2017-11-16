@@ -1,0 +1,4 @@
+/*去除checkbox 右侧list-line padding*/
+.no-list-line.am-list-item .am-list-line {
+    padding-right: 0;
+}
