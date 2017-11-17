@@ -1,0 +1,12 @@
+.ent-tag.am-tag {
+    padding: 0 20px;
+    height: 27px;
+    line-height: 27px;
+    color: #fff;
+    background-color: #108ee9;
+}
+.ent-tag.am-tag .am-tag-close {
+    left: inherit;
+    right: -8px;
+    color: red;
+}

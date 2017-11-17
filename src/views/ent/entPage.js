@@ -10,18 +10,6 @@ import {doLoadingDataAction} from './entPage.redux'
 import './entPage.css'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
-const btnStyle = {
-    display: 'inline',
-    float: 'right',
-    height: '25px',
-    lineHeight: '25px',
-    borderRadius: 0,
-};
-const title = {
-    display: 'inline',
-    lineHeight: '26px'
-};
-
 class EntView extends React.Component{
     constructor(props) {
         super(props);
@@ -98,15 +86,15 @@ class EntView extends React.Component{
     renderCompareBtn =() => {
         const length = this.state.selectedEnts.length;
         const commonStyle = {flexGrow:1, lineHeight: '40px'};
-        const cancelStyle = {backgroundColor: '#fff'};
         const confirmStyle = { backgroundColor: '#108ee9', color: '#fff'};
-        const disabledStyle ={opacity: 0.4};
 
-        const disabledBtn = <a style={{...commonStyle, ...confirmStyle, ...disabledStyle}}>对比（{length}）</a>;
+        const disabledBtn = <a style={{...commonStyle, ...confirmStyle, opacity: 0.4}}>对比（{length}）</a>;
         const activeBtn = <a style={{...commonStyle, ...confirmStyle}} onClick={this.onCompareBtnClick}>对比（{length}）</a>;
-        const cancelBtn = <a style={{...commonStyle, ...cancelStyle}} onClick={this.onCancelBtnClick}>取消</a>
+        const cancelBtn = <a style={{...commonStyle, backgroundColor: '#fff'}} onClick={this.onCancelBtnClick}>取消</a>;
+
+        const btnBoxStyle = {display:'flex', flexDirection: 'row', height: '40px'};
         return (
-            <div style={{display:'flex', flexDirection: 'row', height: '40px'}} className="bottom-tab-bar">
+            <div style={btnBoxStyle} className="bottom-tab-bar">
                 {cancelBtn}
                 {length > 1 ? activeBtn : disabledBtn}
             </div>
@@ -118,6 +106,9 @@ class EntView extends React.Component{
 
     render () {
         const isSelectState = this.state.currentState !== 'normal';
+        const titleStyle = {display: 'inline', lineHeight: '26px'};
+        const imgStyle = {width:'50px', height: '50px'};
+        const setCompareBtnStyle = {display: 'inline', float: 'right', height: '25px', lineHeight: '25px', borderRadius: 0};
         return (
             <div>
                 <TopNavBar title="企业" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
@@ -125,20 +116,22 @@ class EntView extends React.Component{
                     <GridBox column="4" data={this.btnItemList}
                       renderItem={item=>(
                           <div style={{paddingTop: '10px'}}>
-                              <img src={item.icon} style={{width:'50px', height: '50px'}}/>
+                              <img src={item.icon} style={imgStyle}/>
                               <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
                           </div>
                       )}
                       onClick={this.onGridClick}
                     />
+
                     <WhiteSpace/>
                     <WingBlank>
                         <div>
-                            <p style={title}>企业列表</p>
-                            <Button type="primary" size="small" style={btnStyle} disabled={isSelectState}
+                            <p style={titleStyle}>企业列表</p>
+                            <Button type="primary" size="small" style={setCompareBtnStyle} disabled={isSelectState}
                                     onClick={this.onSetSelectStateBtnClick}>对比</Button>
                         </div>
                     </WingBlank>
+
                     { this.renderEntDetail()}
                 </div>
 
