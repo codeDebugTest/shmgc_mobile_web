@@ -2,7 +2,7 @@ import React from 'react'
 import SegmentedTabs from './segmentedTabs'
 import DropDownPanel from './dropDownPanel'
 
-export default class TimeFilterBar extends React.Component {
+export default class  TimeFilterBar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -36,7 +36,7 @@ export default class TimeFilterBar extends React.Component {
     };
     renderCutoffMenu = ()=> {
         if (this.state.showCutoffMenu) {
-            return <DropDownPanel onCancel={this.hideCutoffMenu} onOk={this.hideCutoffMenu} top="41px">
+            return <DropDownPanel onCancel={this.hideCutoffMenu} onOk={this.hideCutoffMenu} top={this.props.marginTop}>
                 截止时间选择
             </DropDownPanel>
         }
@@ -44,7 +44,7 @@ export default class TimeFilterBar extends React.Component {
     }
     renderQuarterlyMenu = ()=> {
         if (this.state.showQuarterlyMenu) {
-            return <DropDownPanel onCancel={this.hideQuarterlyMenu} onOk={this.hideQuarterlyMenu} top="41px">
+            return <DropDownPanel onCancel={this.hideQuarterlyMenu} onOk={this.hideQuarterlyMenu} top={this.props.marginTop}>
                 季度选择
             </DropDownPanel>
         }
@@ -52,7 +52,7 @@ export default class TimeFilterBar extends React.Component {
     }
     renderLocationMenu = ()=> {
         if (this.state.showLocationMenu) {
-            return <DropDownPanel onCancel={this.hideLocationMenu} onOk={this.hideLocationMenu} top="41px">
+            return <DropDownPanel onCancel={this.hideLocationMenu} onOk={this.hideLocationMenu} top={this.props.marginTop}>
                 地区选择
             </DropDownPanel>
         }

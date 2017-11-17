@@ -37,7 +37,7 @@ class Home extends React.Component{
     }
 
     renderCateStat() {
-        const cateData = this.props.home && this.props.home.amountOfCate;
+        const cateData = this.props.storeData && this.props.storeData.amountOfCate;
         if (cateData && cateData.length > 0) {
             return (
                 <Flex>
@@ -69,14 +69,14 @@ class Home extends React.Component{
     }
 
     componentDidUpdate() {
-        const entChartData = this.props.home && this.props.home.groupByEnt;
+        const entChartData = this.props.storeData && this.props.storeData.groupByEnt;
         if (entChartData && entChartData.length > 0) {
             this.renderEntChart(entChartData)
         }
     }
 
     render () {
-        const homeData = this.props.home;
+        const homeData = this.props.storeData;
 
         return (
             <div>
@@ -115,7 +115,7 @@ class Home extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-        home: state.homePage
+        storeData: state.homePage
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

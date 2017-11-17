@@ -84,7 +84,7 @@ class EntView extends React.Component{
     };
 
     renderEntDetail = ()=> {
-        const entList = this.props.entStore.entList;
+        const entList = this.props.storeData.entList;
         if (entList && entList.length) {
             return (
                 entList.map((ent, key) => {
@@ -150,7 +150,7 @@ class EntView extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-        entStore: state.entPage
+        storeData: state.entPage
     }
 };
 const mapDispatchToProps = (dispatch) => {

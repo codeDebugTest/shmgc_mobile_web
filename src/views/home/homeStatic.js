@@ -27,7 +27,7 @@ class HomeStatic extends React.Component {
                 <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={routeGoBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <TimeFilterBar/>
+                    <TimeFilterBar marginTop="41px"/>
                     <p>截止上月数据统计概览</p>
 
                     {this.renderStaticOverview()}

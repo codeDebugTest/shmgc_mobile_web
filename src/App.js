@@ -7,7 +7,7 @@ import BottomTabBar from './components/bottomTabBar'
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.defaultTab = 'home';
+        this.defaultTab = 'storeData';
     }
 
     render() {

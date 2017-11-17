@@ -30,8 +30,8 @@ export default class BottomTabBar extends React.Component {
                         width: '22px',
                         height: '22px',
                         background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}/>}
-                    selected={this.props.selectedTab === 'home'}
-                    onPress={() => {this.onTabSelected('home')}}
+                    selected={this.props.selectedTab === 'storeData'}
+                    onPress={() => {this.onTabSelected('storeData')}}
                 >
                 </TabBar.Item>
                 <TabBar.Item
