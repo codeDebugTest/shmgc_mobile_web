@@ -77,7 +77,7 @@ class Home extends React.Component{
 
     render () {
         const homeData = this.props.storeData;
-
+        const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#d00d0d'};
         return (
             <div>
                 <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
@@ -86,8 +86,8 @@ class Home extends React.Component{
                     <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false} renderItem={
                         dataItem => (
                             <div>
-                                <p className="grid-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.count}</p>
-                                <p className="grid-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.type}</p>
+                                <p className="small-margin-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.count}</p>
+                                <p className="small-margin-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.type}</p>
                             </div>
                         )
                     }/>
@@ -95,7 +95,7 @@ class Home extends React.Component{
                     <Card onClick={this.cardOnClickHandler}>
                         <Card.Header title={(<div style={{fontSize:'16px'}}>企业概览数据</div>)} extra={(<Icon type="right"/>)}/>
                         <Card.Body>
-                            <div style={{textAlign: 'center', fontSize:'26px', color: '#d00d0d'}}>￥{homeData.totalAmountStr}</div>
+                            <div style={amountStyle}>￥{homeData.totalAmountStr}</div>
                         </Card.Body>
                         <Card.Footer content="采购总金额"/>
                     </Card>

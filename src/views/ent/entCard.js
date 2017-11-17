@@ -36,8 +36,8 @@ export default class EntCard extends React.Component{
         return (
             projectStatic.map((staticItem, key) => {
                 return <div style={{flexGrow: 2}} key={key}>
-                    <p className="grid-p" style={{fontSize: '14px'}}>{staticItem.display}</p>
-                    <p className="grid-p" style={{fontSize: '14px'}}>{staticItem.countStr}</p>
+                    <p className="half-margin-p" style={{fontSize: '14px'}}>{staticItem.display}</p>
+                    <p className="half-margin-p" style={{fontSize: '14px'}}>{staticItem.countStr}</p>
                 </div>
             })
         )

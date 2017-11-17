@@ -97,14 +97,14 @@ class EntView extends React.Component{
 
     renderCompareBtn =() => {
         const length = this.state.selectedEnts.length;
-        const disabledBtn = <a style={{flexGrow:1, backgroundColor: '#108ee9', lineHeight: '40px', color: '#fff', opacity: 0.4}}
-                            >对比（{length}）</a>;
-        const activeBtn = <a onClick={this.onCompareBtnClick} aria-disabled={length < 1}
-                             style={{flexGrow:1, backgroundColor: '#108ee9', lineHeight: '40px', color: '#fff'}}
-                            >对比（{length}）</a>;
-        const cancelBtn = <a onClick={this.onCancelBtnClick}
-                             style={{flexGrow:1, backgroundColor: '#fff', lineHeight: '40px'}}
-                            >取消</a>
+        const commonStyle = {flexGrow:1, lineHeight: '40px'};
+        const cancelStyle = {backgroundColor: '#fff'};
+        const confirmStyle = { backgroundColor: '#108ee9', color: '#fff'};
+        const disabledStyle ={opacity: 0.4};
+
+        const disabledBtn = <a style={{...commonStyle, ...confirmStyle, ...disabledStyle}}>对比（{length}）</a>;
+        const activeBtn = <a style={{...commonStyle, ...confirmStyle}} onClick={this.onCompareBtnClick}>对比（{length}）</a>;
+        const cancelBtn = <a style={{...commonStyle, ...cancelStyle}} onClick={this.onCancelBtnClick}>取消</a>
         return (
             <div style={{display:'flex', flexDirection: 'row', height: '40px'}} className="bottom-tab-bar">
                 {cancelBtn}
@@ -126,7 +126,7 @@ class EntView extends React.Component{
                       renderItem={item=>(
                           <div style={{paddingTop: '10px'}}>
                               <img src={item.icon} style={{width:'50px', height: '50px'}}/>
-                              <p style={{fontSize:'13px'}} className="grid-p">{item.name}</p>
+                              <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
                           </div>
                       )}
                       onClick={this.onGridClick}

@@ -46,7 +46,7 @@ class StatisticView extends React.Component{
                          renderItem={item=>(
                              <div style={{paddingTop: '10px'}}>
                                  <img src={item.icon} style={{width:'50px', height: '50px'}}/>
-                                 <p style={{fontSize:'13px'}} className="grid-p">{item.name}</p>
+                                 <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
                              </div>
                          )}
                          onClick={this.onGridClick}
@@ -56,7 +56,7 @@ class StatisticView extends React.Component{
                     <TimeFilterBar marginTop="222px"/>
                     <WhiteSpace/>
 
-                    <p className="grid-p">截止十月数据统计总览</p>
+                    <p className="half-margin-p">截止十月数据统计总览</p>
 
                     {this.renderStaticOverview()}
                 </div>
