@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {WhiteSpace, WingBlank, Tag} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
+import TimeFilterBar from '../../components/timeFilterBar'
+import CateEntFilterBar from '../../components/cateEntFilterBar'
 import './entComparePage.css'
 import {routeGoBack} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
@@ -73,17 +75,20 @@ class EntCompareView extends Component{
     renderEntPanel = () => {
         const entList = this.props.storeData && this.props.storeData.entList;
         if (entList && entList.length) {
-            const lineStyle = {display: 'flex', flexWrap: 'wrap'};
+            const lineStyle = {display: 'flex', flexWrap: 'wrap', padding: '10px 0'};
             return (
-                <div style={lineStyle}>
-                    {
-                        entList.map((entName) => {
-                            return <div key={entName} style={{width: '50%', paddingBottom: '15px'}}>
-                                <Tag className="ent-tag" closable
-                                     onClose={() => this.onEntCanceled(entName)}>{entName}</Tag>
-                            </div>
-                        })
-                    }
+                <div style={{paddingTop: '10px'}}>
+                    <p className="half-margin-p">已选择企业</p>
+                    <div style={lineStyle}>
+                        {
+                            entList.map((entName) => {
+                                return <div key={entName} style={{width: '50%', paddingBottom: '15px'}}>
+                                    <Tag className="ent-tag" closable
+                                         onClose={() => this.onEntCanceled(entName)}>{entName}</Tag>
+                                </div>
+                            })
+                        }
+                    </div>
                 </div>
             )
         }
@@ -96,12 +101,16 @@ class EntCompareView extends Component{
         return (
             <div>
                 <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={routeGoBack}/>
+                <div className="main-section-no-bottom">
+                    <WhiteSpace/>
+                    <CateEntFilterBar marginTop="41px"/>
+                    <WhiteSpace/>
+                    <TimeFilterBar marginTop="82px"/>
 
-                <p className="half-margin-p">已选择企业</p>
-                <WhiteSpace/>
-                {this.renderEntPanel()}
+                    {this.renderEntPanel()}
 
-                {this.renderTable()}
+                    {this.renderTable()}
+                </div>
             </div>
         )
     }
