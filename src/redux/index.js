@@ -6,6 +6,7 @@ import {homeStaticReducer} from '../views/home/homeStatic.redux'
 import {itemPageReducer} from '../views/item/itemPageRedux'
 import {itemDetailPageReducer} from '../views/item/itemDetailPage.redux'
 import {statisticReducer} from '../views/static/statisticPage.redux'
+import {entStatisticReducer} from '../views/static/entStaticPage.redux'
 import {appRouterReducer} from '../AppRedux'
 
 const appReducer = combineReducers({
@@ -16,7 +17,8 @@ const appReducer = combineReducers({
     homeStatic: homeStaticReducer,
     itemPage: itemPageReducer,
     itemDetailPage: itemDetailPageReducer,
-    statistic: statisticReducer
+    statistic: statisticReducer,
+    entStatic: entStatisticReducer
 });
 
 export default appReducer;

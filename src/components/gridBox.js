@@ -4,7 +4,7 @@ import  './gridBox.css'
 
 export default class GridBox extends React.Component{
     constructor(props) {
-        super(props)
+        super(props);
         this.column = this.props.cloumn || 4;
     }
 
@@ -31,7 +31,7 @@ export default class GridBox extends React.Component{
             <div className="grid-box" key={lineKey}>
                 {
                     data.map((item, key) => {
-                        return <GridBoxItem item={item} key={key} renderItem={this.props.renderItem} onClick={this.props.onClick}/>
+                        return <GridBoxItem item={item} key={key} renderItem={this.props.renderItem} onClick={this.props.onItemClick}/>
                     })
                 }
             </div>
@@ -51,9 +51,14 @@ export default class GridBox extends React.Component{
     }
 
     render() {
+        const gridLines = this.sliceArray();
         return (
             <div>
-                {this.renderGrid()}
+                {
+                    gridLines.map((line, key) => {
+                        return this.renderGridLine(line, key)
+                    })
+                }
             </div>
         )
     }

@@ -6,8 +6,9 @@ import BottomTabBar from '../../components/bottomTabBar'
 import GridBox from '../../components/gridBox'
 import TimeFilterBar from '../../components/timeFilterBar'
 import StaticView from '../../components/staticView'
-import {routeToSettingPage} from '../../utils/router'
+import {routeToSettingPage, routeToEntStatic} from '../../utils/router'
 import {doLoadingDataAction} from './statisticPage.redux'
+import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -24,7 +25,15 @@ class StatisticView extends React.Component{
             {name: '钢材', icon: placeholderImg},
             {name: '其他', icon: ''},
         ];
+        this.onGridClick = this.onGridClick.bind(this);
     }
+
+    onGridClick = (item, index) =>{
+        this.props.initEntStatic(item);
+        routeToEntStatic();
+        console.log(item.name);
+        console.log(item.icon);
+    };
 
     renderStaticOverview = () => {
         if (this.props.storeData.loadingSuccess) {
@@ -49,7 +58,7 @@ class StatisticView extends React.Component{
                                  <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
                              </div>
                          )}
-                         onClick={this.onGridClick}
+                         onItemClick={this.onGridClick}
                     />
 
                     <WhiteSpace/>
@@ -75,6 +84,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadData: (params) => {
             dispatch(doLoadingDataAction(params));
+        },
+        initEntStatic: (ent) => {
+            dispatch({type: INIT_ENT_STATIC_PAGE, ent: ent})
         }
     }
 }

@@ -11,6 +11,12 @@ export function routeToHomeStatic() {
     })
 }
 
+export function routeToEntStatic() {
+    browserHistory.push({
+        pathname: `/statistic/ent`
+    })
+}
+
 export function routeToEntCompare() {
     browserHistory.push({
         pathname: '/ent/compare'

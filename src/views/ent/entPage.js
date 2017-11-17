@@ -120,7 +120,7 @@ class EntView extends React.Component{
                               <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
                           </div>
                       )}
-                      onClick={this.onGridClick}
+                      onItemClick={this.onGridClick}
                     />
 
                     <WhiteSpace/>

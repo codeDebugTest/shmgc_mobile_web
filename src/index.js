@@ -14,6 +14,7 @@ import ConnectedEntCompareView from './views/ent/entComparePage'
 import ConnectedItemView from './views/item/itemPage'
 import ConnectedItemDetailView from './views/item/itemDetailPage'
 import ConnectedStatisticView from './views/static/statisticPage'
+import ConnectedEntStaticView from './views/static/entStatisticPage'
 import ConnectedSettingView from './views/setting/settingPage'
 import ConnectedApp from './App'
 import registerServiceWorker from './registerServiceWorker';
@@ -32,6 +33,7 @@ ReactDOM.render(
                 <Route exact path="purchaseItem" component={ConnectedItemView}/>
                 <Route exact path="purchaseItem/detail" component={ConnectedItemDetailView}/>
                 <Route path="statistic" component={ConnectedStatisticView}/>
+                <Route path="statistic/ent" component={ConnectedEntStaticView}/>
                 <Route path="setting" component={ConnectedSettingView}/>
                 <Route path="*" component={ConnectedNotFoundView}/>
             </Route>
