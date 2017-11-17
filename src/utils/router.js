@@ -16,6 +16,11 @@ export function routeToEntStatic() {
         pathname: `/statistic/ent`
     })
 }
+export function routeToCateStatic() {
+    browserHistory.push({
+        pathname: `/statistic/cate`
+    })
+}
 
 export function routeToEntCompare() {
     browserHistory.push({

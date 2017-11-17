@@ -6,31 +6,39 @@ import BottomTabBar from '../../components/bottomTabBar'
 import GridBox from '../../components/gridBox'
 import TimeFilterBar from '../../components/timeFilterBar'
 import StaticView from '../../components/staticView'
-import {routeToSettingPage, routeToEntStatic} from '../../utils/router'
+import {routeToSettingPage, routeToEntStatic, routeToCateStatic} from '../../utils/router'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
+import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
     constructor(props) {
         super(props);
         this.btnItemList =[
-            {name: '城建物资', icon: placeholderImg},
-            {name: '公路桥梁', icon: placeholderImg},
-            {name: '住总住博', icon: placeholderImg},
-            {name: '上海砼', icon: placeholderImg},
+            {name: '城建物资', icon: placeholderImg, type: 'ent'},
+            {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
+            {name: '住总住博', icon: placeholderImg, type: 'ent'},
+            {name: '上海砼', icon: placeholderImg, type: 'ent'},
 
-            {name: '混凝土', icon: placeholderImg},
-            {name: '水泥', icon: placeholderImg},
-            {name: '钢材', icon: placeholderImg},
-            {name: '其他', icon: ''},
+            {name: '混凝土', icon: placeholderImg, type: 'cate'},
+            {name: '水泥', icon: placeholderImg, type: 'cate'},
+            {name: '钢材', icon: placeholderImg, type: 'cate'},
+            {name: '其他', icon: '', type: 'all'},
         ];
         this.onGridClick = this.onGridClick.bind(this);
     }
 
     onGridClick = (item, index) =>{
-        this.props.initEntStatic(item);
-        routeToEntStatic();
+        if(item.type === 'ent') {
+            this.props.initEntStatic(item);
+            routeToEntStatic();
+        } else if (item.type === 'cate') {
+            this.props.initCateStatic(item);
+            routeToCateStatic();
+        } else {
+
+        }
         console.log(item.name);
         console.log(item.icon);
     };
@@ -87,6 +95,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         initEntStatic: (ent) => {
             dispatch({type: INIT_ENT_STATIC_PAGE, ent: ent})
+        },
+        initCateStatic: (cate) => {
+            dispatch({type: INIT_CATE_STATIC_PAGE, cate: cate})
         }
     }
 }
