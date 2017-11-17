@@ -215,3 +215,22 @@ export function fetchEntOverviewData(params) {
         }), 1500);
     })
 }
+
+export function fetchEntCompareData(params) {
+    // return http.post(RestApiUrl.entCompareData, params);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve({
+            return_code: 0,
+            result: {
+                loadingSuccess: true,
+                entList: ['城建物资', '隧道工程', '水务建设', '公路桥梁'],
+                totalAmountStrList: ['3,000万', '3,000万','2,988万', '2,989万'],
+                quantityStrList: ['--', '--', '--','--'],
+                averagePriceStrList: ['--', '--', '--','--'],
+                totalPiCountStrList: ['100', '100', '99', '103'],
+                runningPiCountStrList: ['1', '1', '2', '0'],
+                finishedPiCountStrList: ['99', '99', '98', '103']
+            }
+        }), 1000);
+    })
+}

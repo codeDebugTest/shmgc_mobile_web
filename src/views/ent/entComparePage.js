@@ -1,31 +1,31 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {WhiteSpace, WingBlank} from 'antd-mobile'
+import {WhiteSpace, WingBlank, Tag} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
-import {Tag} from 'antd-mobile'
 import './entComparePage.css'
 import {routeGoBack} from '../../utils/router'
+import {doLoadingDataAction} from './entComparePage.redux'
 
 class EntCompareView extends Component{
     constructor(props) {
         super(props);
-        this.tableData = this.props.storeData;
         this.state = {
             updateSign: true
         };
     }
 
     removeCompareEnt =(arrayIndex) => {
-        this.tableData.entList.splice(arrayIndex, 1);
-        this.tableData.totalAmountStrList.splice(arrayIndex, 1);
-        this.tableData.quantityStrList.splice(arrayIndex, 1);
-        this.tableData.averagePriceStrList.splice(arrayIndex, 1);
-        this.tableData.totalPiCountStrList.splice(arrayIndex, 1);
-        this.tableData.runningPiCountStrList.splice(arrayIndex, 1);
-        this.tableData.finishedPiCountStrList.splice(arrayIndex, 1);
+        const tableData = this.props.storeData;
+        tableData.entList.splice(arrayIndex, 1);
+        tableData.totalAmountStrList.splice(arrayIndex, 1);
+        tableData.quantityStrList.splice(arrayIndex, 1);
+        tableData.averagePriceStrList.splice(arrayIndex, 1);
+        tableData.totalPiCountStrList.splice(arrayIndex, 1);
+        tableData.runningPiCountStrList.splice(arrayIndex, 1);
+        tableData.finishedPiCountStrList.splice(arrayIndex, 1);
     };
     onEntCanceled = (entName) => {
-        const index = this.tableData.entList.indexOf(entName);
+        const index = this.props.storeData.entList.indexOf(entName);
         if (index !== -1) {
             this.removeCompareEnt(index);
             this.setState({updateSign: !this.state.updateSign});
@@ -55,35 +55,42 @@ class EntCompareView extends Component{
             </div>
     };
     renderTable = () => {
-        if (this.tableData && this.tableData.loadingSuccess) {
+        const tableData = this.props.storeData;
+        if (tableData && tableData.loadingSuccess) {
             return <WingBlank>
-                {this.renderTableLine([''].concat(this.tableData.entList))}
-                {this.renderTableLine(['采购金额'].concat(this.tableData.totalAmountStrList))}
-                {this.renderTableLine(['采购数量'].concat(this.tableData.quantityStrList))}
-                {this.renderTableLine(['平均单价'].concat(this.tableData.averagePriceStrList))}
-                {this.renderTableLine(['项目总数'].concat(this.tableData.totalPiCountStrList))}
-                {this.renderTableLine(['进行中'].concat(this.tableData.runningPiCountStrList))}
-                {this.renderTableLine(['已结束'].concat(this.tableData.finishedPiCountStrList))}
+                {this.renderTableLine([''].concat(tableData.entList))}
+                {this.renderTableLine(['采购金额'].concat(tableData.totalAmountStrList))}
+                {this.renderTableLine(['采购数量'].concat(tableData.quantityStrList))}
+                {this.renderTableLine(['平均单价'].concat(tableData.averagePriceStrList))}
+                {this.renderTableLine(['项目总数'].concat(tableData.totalPiCountStrList))}
+                {this.renderTableLine(['进行中'].concat(tableData.runningPiCountStrList))}
+                {this.renderTableLine(['已结束'].concat(tableData.finishedPiCountStrList))}
             </WingBlank>
         }
         return null;
     };
 
     renderEntPanel = () => {
-        const lineStyle = {display: 'flex', flexWrap: 'wrap'};
-        const entList = this.tableData.entList;
-        return (
-            <div style={lineStyle}>
-                {
-                    entList.map((entName) => {
-                        return <div key={entName} style={{width: '50%', paddingBottom: '15px'}}>
-                            <Tag className="ent-tag" closable
-                                 onClose={()=> this.onEntCanceled(entName)}>{entName}</Tag>
+        const entList = this.props.storeData && this.props.storeData.entList;
+        if (entList && entList.length) {
+            const lineStyle = {display: 'flex', flexWrap: 'wrap'};
+            return (
+                <div style={lineStyle}>
+                    {
+                        entList.map((entName) => {
+                            return <div key={entName} style={{width: '50%', paddingBottom: '15px'}}>
+                                <Tag className="ent-tag" closable
+                                     onClose={() => this.onEntCanceled(entName)}>{entName}</Tag>
                             </div>
-                    })
-                }
-            </div>
-        )
+                        })
+                    }
+                </div>
+            )
+        }
+    };
+
+    componentWillMount() {
+        this.props.loadData();
     }
     render () {
         return (
@@ -102,21 +109,15 @@ class EntCompareView extends Component{
 
 const mapStateToProps = (state) =>{
     return {
-        // storeData: state.entComparePage
-        storeData: {
-            loadingSuccess: true,
-            entList: ['城建物资','水务建设', '公路桥梁'],
-            totalAmountStrList: ['3,000万', '2,988万', '2,989万'],
-            quantityStrList: ['--','--','--'],
-            averagePriceStrList: ['--','--','--'],
-            totalPiCountStrList: ['100', '99', '103'],
-            runningPiCountStrList: ['1', '2', '0'],
-            finishedPiCountStrList: ['99', '98', '103']
-        }
+        storeData: state.entComparePage
     }
 };
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        loadData: (params) => {
+            dispatch(doLoadingDataAction(params))
+        }
+    }
 };
 
 const ConnectedEntCompareView = connect(mapStateToProps, mapDispatchToProps)(EntCompareView);
