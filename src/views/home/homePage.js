@@ -6,16 +6,22 @@ import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
 import {ChartMargin, setIntervalPosition, setLinePosition, setAxis, getAxisRange} from '../../utils/chartConfig'
+import {routeToSettingPage, routeToHomeStatic, routeToHomeItem} from '../../utils/router'
+import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
 import  './homePage.css'
-import {routeToSettingPage, routeToHomeStatic} from '../../utils/router'
 
 class Home extends React.Component{
     constructor(props) {
         super(props);
-        this.cardOnClickHandler = this.cardOnClickHandler.bind(this)
+        this.cardOnClickHandler = this.cardOnClickHandler.bind(this);
+        this.onGridItemClick = this.onGridItemClick.bind(this);
         this.entChart = null;
     }
 
+    onGridItemClick = (gridItem) => {
+        this.props.initHomeItemPage(gridItem.type);
+        routeToHomeItem();
+    };
     cardOnClickHandler = ()=>{
         // todo 路由跳转
         routeToHomeStatic();
@@ -83,14 +89,17 @@ class Home extends React.Component{
                 <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
                 <div className="main-section">
                     <SectionBar sectionName="项目数据概览" backgroundColor={'#55ace8'}/>
-                    <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false} renderItem={
-                        dataItem => (
-                            <div>
-                                <p className="small-margin-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.count}</p>
-                                <p className="small-margin-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.type}</p>
-                            </div>
-                        )
-                    }/>
+                    <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false}
+                          renderItem={
+                            dataItem => (
+                                <div>
+                                    <p className="small-margin-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.count}</p>
+                                    <p className="small-margin-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.type}</p>
+                                </div>
+                            )
+                          }
+                          onClick ={this.onGridItemClick}
+                    />
 
                     <Card onClick={this.cardOnClickHandler}>
                         <Card.Header title={(<div style={{fontSize:'16px'}}>企业概览数据</div>)} extra={(<Icon type="right"/>)}/>
@@ -122,6 +131,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         loadData: (params) => {
             dispatch(doLoadingAction(params))
+        },
+        initHomeItemPage: (params) => {
+            dispatch({type: INIT_HOME_ITEM_PAGE, itemTypeName: params})
         }
     }
 };

@@ -10,6 +10,11 @@ export function routeToHomeStatic() {
         pathname: `/home/static`
     })
 }
+export function routeToHomeItem() {
+    browserHistory.push({
+        pathname: `/home/item`
+    })
+}
 
 export function routeToEntStatic() {
     browserHistory.push({

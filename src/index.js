@@ -8,6 +8,7 @@ import appReducer from './redux/index'
 import './index.css';
 import ConnectedNotFoundView from './views/notFoundPage'
 import ConnectedHomeView from './views/home/homePage'
+import ConnectedHomeItemView from './views/home/homeItem'
 import ConnectedHomeStaticView from './views/home/homeStatic'
 import ConnectedEntView from './views/ent/entPage'
 import ConnectedEntCompareView from './views/ent/entComparePage'
@@ -29,6 +30,7 @@ ReactDOM.render(
                 <IndexRoute component={ConnectedHomeView}/>
                 <Route exact path="/home" component={ConnectedHomeView}/>
                 <Route exact path='/home/static' component={ConnectedHomeStaticView}/>
+                <Route exact path='/home/item' component={ConnectedHomeItemView}/>
                 <Route exact path="ent" component={ConnectedEntView}/>
                 <Route exact path="ent/compare" component={ConnectedEntCompareView}/>
                 <Route exact path="purchaseItem" component={ConnectedItemView}/>

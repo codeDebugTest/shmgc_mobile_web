@@ -2,6 +2,7 @@ import {combineReducers} from 'redux'
 import {entComparePageReducer} from '../views/ent/entComparePage.redux'
 import {entPageReducer} from '../views/ent/entPage.redux'
 import {homePageReducer} from '../views/home/homePage.redux'
+import {homeItemReducer} from '../views/home/homeItem.redux'
 import {homeStaticReducer} from '../views/home/homeStatic.redux'
 import {itemPageReducer} from '../views/item/itemPageRedux'
 import {itemDetailPageReducer} from '../views/item/itemDetailPage.redux'
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
     entComparePage: entComparePageReducer,
     homePage: homePageReducer,
     homeStatic: homeStaticReducer,
+    homeItem: homeItemReducer,
     itemPage: itemPageReducer,
     itemDetailPage: itemDetailPageReducer,
     statistic: statisticReducer,

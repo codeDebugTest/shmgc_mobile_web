@@ -65,6 +65,15 @@ export function fetchHomePageData(params) {
     });
 }
 
+export function fetchPurchaseItems(params) {
+    return new Promise((resolve, reject) => {
+        setTimeout(()=> resolve({
+            return_code: 0,
+            result: []
+        }), 1000);
+    })
+}
+
 export function fetchStaticOverviewData(params) {
     // return http.post(RestApiUrl.statistic, params);
     return new Promise((resolve, reject) => {
