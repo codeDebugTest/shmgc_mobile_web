@@ -12,6 +12,7 @@ export const ROUTE_PATH = {
     STATIC_ENT: '/statistic/ent',
     STATIC_CATE: '/statistic/cate',
     STATIC_CHJWZ_CONCRETE: '/statistic/chjwz-concrete',
+    STATIC_ENT_CATE_FILTER: '/static/ent_cate_filter',
 
     ENT: '/ent',
     ENT_COMPARE: '/ent/compare',
@@ -38,6 +39,7 @@ export const ChangeRoute = function () {
         goStaticEntPage: () => _move(ROUTE_PATH.STATIC_ENT),
         goStaticCatePage: () => _move(ROUTE_PATH.STATIC_CATE),
         goStaticChjwzConcretePage: () => _move(ROUTE_PATH.STATIC_CHJWZ_CONCRETE),
+        goStaticEntCateFilterPage: ()=> _move(ROUTE_PATH.STATIC_ENT_CATE_FILTER),
         goEntPage: () => _move(ROUTE_PATH.ENT),
         goEntComparePage: () => _move(ROUTE_PATH.ENT_COMPARE),
         goPurchaseItemPage: () => _move(ROUTE_PATH.PURCHASE_ITEM),

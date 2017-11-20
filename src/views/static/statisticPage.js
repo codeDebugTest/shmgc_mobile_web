@@ -41,7 +41,7 @@ class StatisticView extends React.Component{
             this.props.initChjwzConcreteStatic({name: '上海城建物资混凝土'});
             ChangeRoute.goStaticChjwzConcretePage();
         } else {
-
+            ChangeRoute.goStaticEntCateFilterPage();
         }
         console.log(item.name);
     };

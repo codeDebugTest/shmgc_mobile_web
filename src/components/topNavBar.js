@@ -2,7 +2,7 @@ import React from 'react';
 import {Menu, NavBar} from 'antd-mobile'
 import './topNavBar.css'
 
-export default class TopNaveBar extends React.Component {
+export default class TopNavBar extends React.Component {
     constructor(props) {
         super(props);
     }

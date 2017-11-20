@@ -18,6 +18,7 @@ import ConnectedStatisticView from './views/static/statisticPage'
 import ConnectedEntStaticView from './views/static/entStatisticPage'
 import ConnectedCateStaticView from './views/static/cateStaticPage'
 import ConnectedChJWZConcreteView from './views/static/chjwzConcreteStatic'
+import ConnectedEntCateFilterView from './views/static/entCatefilter'
 import ConnectedSettingView from './views/setting/settingPage'
 import ConnectedApp from './App'
 import {ROUTE_PATH} from './utils/router'
@@ -41,6 +42,7 @@ ReactDOM.render(
                 <Route path={ROUTE_PATH.STATIC_ENT} component={ConnectedEntStaticView}/>
                 <Route path={ROUTE_PATH.STATIC_CATE} component={ConnectedCateStaticView}/>
                 <Route path={ROUTE_PATH.STATIC_CHJWZ_CONCRETE} component={ConnectedChJWZConcreteView}/>
+                <Route path={ROUTE_PATH.STATIC_ENT_CATE_FILTER} component={ConnectedEntCateFilterView}/>
                 <Route path={ROUTE_PATH.SETTING} component={ConnectedSettingView}/>
                 <Route path="*" component={ConnectedNotFoundView}/>
             </Route>
