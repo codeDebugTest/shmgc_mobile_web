@@ -1,18 +1,13 @@
 import React from 'react'
-import {browserHistory} from 'react-router'
 import { TabBar } from 'antd-mobile';
+import {ChangeRoute} from '../utils/router'
 import './bottomTabBar.css'
 
 export default class BottomTabBar extends React.Component {
     constructor(props) {
         super(props);
-
-        this.onTabSelected = this.onTabSelected.bind(this);
     }
 
-    onTabSelected = (tab) =>{
-        browserHistory.replace({pathname: tab});
-    };
     render() {
         return (
         <div className="bottom-tab-bar">
@@ -31,7 +26,7 @@ export default class BottomTabBar extends React.Component {
                         height: '22px',
                         background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}/>}
                     selected={this.props.selectedTab === 'home'}
-                    onPress={() => {this.onTabSelected('home')}}
+                    onPress={ChangeRoute.goHomePage}
                 >
                 </TabBar.Item>
                 <TabBar.Item
@@ -46,7 +41,7 @@ export default class BottomTabBar extends React.Component {
                         height: '22px',
                         background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}/>}
                     selected={this.props.selectedTab === 'purchaseItem'}
-                    onPress={() => {this.onTabSelected('purchaseItem')}}
+                    onPress={ChangeRoute.goPurchaseItemPage}
                 >
                 </TabBar.Item>
                 <TabBar.Item
@@ -61,7 +56,7 @@ export default class BottomTabBar extends React.Component {
                         height: '22px',
                         background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}/>}
                     selected={this.props.selectedTab === 'ent'}
-                    onPress={() => {this.onTabSelected('ent')}}
+                    onPress={ChangeRoute.goEntPage}
                 >
                 </TabBar.Item>
                 <TabBar.Item
@@ -70,7 +65,7 @@ export default class BottomTabBar extends React.Component {
                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
                     selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
                     selected={this.props.selectedTab === 'statistic'}
-                    onPress={() => {this.onTabSelected('statistic')}}
+                    onPress={ChangeRoute.goStaticPage}
                 >
                 </TabBar.Item>
             </TabBar>

@@ -5,7 +5,7 @@ import TopNavBar from '../../components/topNavBar'
 import TimeFilterBar from '../../components/timeFilterBar'
 import CateEntFilterBar from '../../components/cateEntFilterBar'
 import './entComparePage.css'
-import {routeGoBack} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
 
 class EntCompareView extends Component{
@@ -100,7 +100,7 @@ class EntCompareView extends Component{
     render () {
         return (
             <div>
-                <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={routeGoBack}/>
+                <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntFilterBar marginTop="41px"/>

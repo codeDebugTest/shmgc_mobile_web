@@ -5,7 +5,7 @@ import TimeFilterBar from '../../components/timeFilterBar'
 import CateEntFilterBar from '../../components/cateEntFilterBar'
 import TopNaveBar from "../../components/topNavBar";
 import {doLoadingDataAction} from './entStaticPage.redux'
-import {routeGoBack} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 
 
 class CateStaticPage extends React.Component {
@@ -17,7 +17,7 @@ class CateStaticPage extends React.Component {
     render() {
         return (
             <div>
-                <TopNaveBar title={this.cate && this.cate.name} leftContent="返回" onLeftBtnClick={routeGoBack}/>
+                <TopNaveBar title={this.cate && this.cate.name} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntFilterBar marginTop="41px"/>

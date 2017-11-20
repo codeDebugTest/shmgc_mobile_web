@@ -4,7 +4,7 @@ import {WhiteSpace, WingBlank} from 'antd-mobile'
 import TimeFilterBar from '../../components/timeFilterBar'
 import TopNaveBar from "../../components/topNavBar";
 import {doLoadingDataAction} from './chjwzConcreteStatic.redux'
-import {routeGoBack} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 
 
 class ChJWZConcreteStaticPage extends React.Component {
@@ -16,7 +16,7 @@ class ChJWZConcreteStaticPage extends React.Component {
     render() {
         return (
             <div>
-                <TopNaveBar title={this.item && this.item.name} leftContent="返回" onLeftBtnClick={routeGoBack}/>
+                <TopNaveBar title={this.item && this.item.name} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <TimeFilterBar marginTop="41px"/>

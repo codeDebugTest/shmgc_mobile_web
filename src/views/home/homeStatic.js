@@ -5,7 +5,7 @@ import TopNavBar from '../../components/topNavBar'
 import TimeFilterBar from '../../components/timeFilterBar'
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './homeStatic.redux'
-import {routeGoBack} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 
 class HomeStatic extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class HomeStatic extends React.Component {
     render() {
         return (
             <div>
-                <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={routeGoBack}/>
+                <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <TimeFilterBar marginTop="41px"/>

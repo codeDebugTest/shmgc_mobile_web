@@ -5,7 +5,7 @@ import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
 import EntCard from './entCard'
-import {routeToSettingPage, routeToEntCompare} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entPage.redux'
 import './entPage.css'
 
@@ -49,7 +49,7 @@ class EntView extends React.Component{
         if (length > 4) {
             Modal.alert('', '最多仅能选择4家企业进行对比！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
         } else {
-            routeToEntCompare();
+            ChangeRoute.goEntComparePage();
         }
     }
 
@@ -111,7 +111,7 @@ class EntView extends React.Component{
         const setCompareBtnStyle = {display: 'inline', float: 'right', height: '25px', lineHeight: '25px', borderRadius: 0};
         return (
             <div>
-                <TopNavBar title="企业" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
+                <TopNavBar title="企业" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
                 <div className="main-section">
                     <GridBox column="4" data={this.btnItemList}
                       renderItem={item=>(

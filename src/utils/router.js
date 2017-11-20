@@ -1,43 +1,48 @@
 import {browserHistory} from 'react-router'
 
-export function routeToSettingPage() {
-    browserHistory.push({
-        pathname: `/setting`
-    })
-}
-export function routeToHomeStatic() {
-    browserHistory.push({
-        pathname: `/home/static`
-    })
-}
-export function routeToHomeItem() {
-    browserHistory.push({
-        pathname: `/home/item`
-    })
-}
+export const ROUTE_PATH = {
+    ROOT: '/',
 
-export function routeToEntStatic() {
-    browserHistory.push({
-        pathname: `/statistic/ent`
-    })
-}
-export function routeToCateStatic() {
-    browserHistory.push({
-        pathname: `/statistic/cate`
-    })
-}
-export function routeToChjwzConcreteStatic() {
-    browserHistory.push({
-        pathname: `statistic/chjwz-concrete`
-    })
-}
+    SETTING: '/setting',
+    HOME: '/home',
+    HOME_STATIC: '/home/static',
+    HOME_ITEM: '/home/item',
 
-export function routeToEntCompare() {
-    browserHistory.push({
-        pathname: '/ent/compare'
-    })
-}
-export function routeGoBack() {
-    browserHistory.goBack();
+    STATIC: '/statistic',
+    STATIC_ENT: '/statistic/ent',
+    STATIC_CATE: '/statistic/cate',
+    STATIC_CHJWZ_CONCRETE: '/statistic/chjwz-concrete',
+
+    ENT: '/ent',
+    ENT_COMPARE: '/ent/compare',
+
+    PURCHASE_ITEM: '/purchase-item',
+    PURCHASE_ITEM_DETAIL: '/purchase-item/detail'
 };
+
+export const ChangeRoute = function () {
+    const _move = (pathname) => {
+        browserHistory.push({
+            pathname: pathname
+        })
+    }
+    const _back = () => {
+        browserHistory.goBack();
+    }
+    return {
+        goSettingPage: () => _move(ROUTE_PATH.SETTING),
+        goHomePage: () => _move(ROUTE_PATH.HOME),
+        goHomeStaticPage: () => _move(ROUTE_PATH.HOME_STATIC),
+        goHomeItemPage: () => _move(ROUTE_PATH.HOME_ITEM),
+        goStaticPage: () => _move(ROUTE_PATH.STATIC),
+        goStaticEntPage: () => _move(ROUTE_PATH.STATIC_ENT),
+        goStaticCatePage: () => _move(ROUTE_PATH.STATIC_CATE),
+        goStaticChjwzConcretePage: () => _move(ROUTE_PATH.STATIC_CHJWZ_CONCRETE),
+        goEntPage: () => _move(ROUTE_PATH.ENT),
+        goEntComparePage: () => _move(ROUTE_PATH.ENT_COMPARE),
+        goPurchaseItemPage: () => _move(ROUTE_PATH.PURCHASE_ITEM),
+        goPurchaseItemDetailPage: () => _move(ROUTE_PATH.PURCHASE_ITEM_DETAIL),
+        goBack: () => _back(),
+    }
+}();
 

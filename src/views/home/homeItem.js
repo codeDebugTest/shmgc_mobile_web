@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import TopNaveBar from "../../components/topNavBar"
 import {WhiteSpace} from 'antd-mobile'
 import {doLoadingDataAction} from './homeItem.redux'
-import {routeGoBack} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 
 
 class HomeItemPage extends React.Component {
@@ -15,7 +15,7 @@ class HomeItemPage extends React.Component {
     render() {
         return (
             <div>
-                <TopNaveBar title={this.props.storeData.itemTypeName} leftContent="返回" onLeftBtnClick={routeGoBack}/>
+                <TopNaveBar title={this.props.storeData.itemTypeName} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                 </div>

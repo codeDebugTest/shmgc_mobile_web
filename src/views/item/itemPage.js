@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {SearchBar, Button} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
-import {routeToSettingPage} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 
 class ItemView extends React.Component{
     render () {
         return (
             <div>
-                <TopNavBar title="项目" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
+                <TopNavBar title="项目" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className="main-section">
                     <SearchBar placeholder="项目名称"/>

@@ -6,7 +6,7 @@ import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
 import {ChartMargin, setIntervalPosition, setLinePosition, setAxis, getAxisRange} from '../../utils/chartConfig'
-import {routeToSettingPage, routeToHomeStatic, routeToHomeItem} from '../../utils/router'
+import {ChangeRoute} from '../../utils/router'
 import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
 import  './homePage.css'
 
@@ -20,11 +20,11 @@ class Home extends React.Component{
 
     onGridItemClick = (gridItem) => {
         this.props.initHomeItemPage(gridItem.type);
-        routeToHomeItem();
+        ChangeRoute.goHomeItemPage();
     };
     cardOnClickHandler = ()=>{
         // todo 路由跳转
-        routeToHomeStatic();
+        ChangeRoute.goHomeStaticPage();
         console.log('card on click')
     };
 
@@ -86,7 +86,7 @@ class Home extends React.Component{
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#d00d0d'};
         return (
             <div>
-                <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
+                <TopNavBar title="上海城建物资股份有限公司" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
                 <div className="main-section">
                     <SectionBar sectionName="项目数据概览" backgroundColor={'#55ace8'}/>
                     <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false}

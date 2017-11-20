@@ -20,6 +20,7 @@ import ConnectedCateStaticView from './views/static/cateStaticPage'
 import ConnectedChJWZConcreteView from './views/static/chjwzConcreteStatic'
 import ConnectedSettingView from './views/setting/settingPage'
 import ConnectedApp from './App'
+import {ROUTE_PATH} from './utils/router'
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(appReducer, applyMiddleware(thunk));
@@ -27,20 +28,20 @@ const store = createStore(appReducer, applyMiddleware(thunk));
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={ConnectedApp}>
+            <Route path={ROUTE_PATH.ROOT} component={ConnectedApp}>
                 <IndexRoute component={ConnectedHomeView}/>
-                <Route exact path="/home" component={ConnectedHomeView}/>
-                <Route exact path='/home/static' component={ConnectedHomeStaticView}/>
-                <Route exact path='/home/item' component={ConnectedHomeItemView}/>
-                <Route exact path="ent" component={ConnectedEntView}/>
-                <Route exact path="ent/compare" component={ConnectedEntCompareView}/>
-                <Route exact path="purchaseItem" component={ConnectedItemView}/>
-                <Route exact path="purchaseItem/detail" component={ConnectedItemDetailView}/>
-                <Route path="statistic" component={ConnectedStatisticView}/>
-                <Route path="statistic/ent" component={ConnectedEntStaticView}/>
-                <Route path="statistic/cate" component={ConnectedCateStaticView}/>
-                <Route path="statistic/chjwz-concrete" component={ConnectedChJWZConcreteView}/>
-                <Route path="setting" component={ConnectedSettingView}/>
+                <Route exact path={ROUTE_PATH.HOME} component={ConnectedHomeView}/>
+                <Route exact path={ROUTE_PATH.HOME_STATIC} component={ConnectedHomeStaticView}/>
+                <Route exact path={ROUTE_PATH.HOME_ITEM} component={ConnectedHomeItemView}/>
+                <Route exact path={ROUTE_PATH.ENT} component={ConnectedEntView}/>
+                <Route exact path={ROUTE_PATH.ENT_COMPARE} component={ConnectedEntCompareView}/>
+                <Route exact path={ROUTE_PATH.PURCHASE_ITEM} component={ConnectedItemView}/>
+                <Route exact path={ROUTE_PATH.PURCHASE_ITEM_DETAIL} component={ConnectedItemDetailView}/>
+                <Route path={ROUTE_PATH.STATIC} component={ConnectedStatisticView}/>
+                <Route path={ROUTE_PATH.STATIC_ENT} component={ConnectedEntStaticView}/>
+                <Route path={ROUTE_PATH.STATIC_CATE} component={ConnectedCateStaticView}/>
+                <Route path={ROUTE_PATH.STATIC_CHJWZ_CONCRETE} component={ConnectedChJWZConcreteView}/>
+                <Route path={ROUTE_PATH.SETTING} component={ConnectedSettingView}/>
                 <Route path="*" component={ConnectedNotFoundView}/>
             </Route>
         </Router>

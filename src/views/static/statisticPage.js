@@ -6,11 +6,11 @@ import BottomTabBar from '../../components/bottomTabBar'
 import GridBox from '../../components/gridBox'
 import TimeFilterBar from '../../components/timeFilterBar'
 import StaticView from '../../components/staticView'
-import {routeToSettingPage, routeToEntStatic, routeToCateStatic, routeToChjwzConcreteStatic} from '../../utils/router'
-import {doLoadingDataAction} from './statisticPage.redux'
 import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
+import {doLoadingDataAction} from './statisticPage.redux'
+import {ChangeRoute} from '../../utils/router'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -33,13 +33,13 @@ class StatisticView extends React.Component{
     onGridClick = (item, index) =>{
         if(item.type === 'ent') {
             this.props.initEntStatic(item);
-            routeToEntStatic();
+            ChangeRoute.goStaticEntPage();
         } else if (item.type === 'cate') {
             this.props.initCateStatic(item);
-            routeToCateStatic();
+            ChangeRoute.goStaticCatePage();
         } else if (item.type === 'ent_cate'){
             this.props.initChjwzConcreteStatic({name: '上海城建物资混凝土'});
-            routeToChjwzConcreteStatic();
+            ChangeRoute.goStaticChjwzConcretePage();
         } else {
 
         }
@@ -59,7 +59,7 @@ class StatisticView extends React.Component{
     render () {
         return (
             <div>
-                <TopNavBar title="统计" leftContent="设置" onLeftBtnClick={routeToSettingPage}/>
+                <TopNavBar title="统计" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className="main-section">
                     <GridBox column="4" data={this.btnItemList}
