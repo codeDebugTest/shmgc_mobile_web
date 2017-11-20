@@ -34,7 +34,7 @@ export function homeItemReducer(state={}, action) {
         case FETCH_HOME_PURCHASE_ITEMS_SUCCESS:
             return Object.assign({}, state, {loading: false, loadingSuccess:true, purchaseItems: action.response});
         case FETCH_HOME_PURCHASE_ITEMS_FAILED:
-            return Object.assign({}, state, {loading: false, error: action.error});
+            return Object.assign({}, state, {loading: false, purchaseItems: [], error: action.error});
         default:
             return state
     }

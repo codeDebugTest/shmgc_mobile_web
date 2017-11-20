@@ -69,7 +69,89 @@ export function fetchPurchaseItems(params) {
     return new Promise((resolve, reject) => {
         setTimeout(()=> resolve({
             return_code: 0,
-            result: []
+            result: [
+                {
+                    piId: '111',
+                    piTitle: '上海轨道交通18号线',
+                    piType: '比价',
+                    pitStatus: '进行中',
+                    cutoffTimeStr: '17.12.11',
+                    entId: '11111',
+                    entName: '城建物资',
+                    piProdDesc: '混凝土',
+                    city: '上海'
+                },{
+                    piId: '121',
+                    piTitle: '南汇小学',
+                    piType: '比价',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.11',
+                    entId: '11111',
+                    entName: '城建物资',
+                    piProdDesc: '水泥',
+                    city: '上海'
+                },{
+                    piId: '122',
+                    piTitle: '南昌临空经济区',
+                    piType: '招标',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.01',
+                    entId: '11111',
+                    entName: '水务建设',
+                    piProdDesc: '钢筋',
+                    city: '上海'
+                },{
+                    piId: '129',
+                    piTitle: '南昌临空经济区',
+                    piType: '招标',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.01',
+                    entId: '11111',
+                    entName: '水务建设',
+                    piProdDesc: '钢筋',
+                    city: '上海'
+                },{
+                    piId: '128',
+                    piTitle: '南昌临空经济区',
+                    piType: '招标',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.01',
+                    entId: '11111',
+                    entName: '水务建设',
+                    piProdDesc: '钢筋',
+                    city: '上海'
+                },{
+                    piId: '127',
+                    piTitle: '南昌临空经济区',
+                    piType: '招标',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.01',
+                    entId: '11111',
+                    entName: '水务建设',
+                    piProdDesc: '钢筋',
+                    city: '上海'
+                },{
+                    piId: '126',
+                    piTitle: '南昌临空经济区',
+                    piType: '招标',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.01',
+                    entId: '11111',
+                    entName: '水务建设',
+                    piProdDesc: '钢筋',
+                    city: '上海'
+                },{
+                    piId: '125',
+                    piTitle: '南昌临空经济区',
+                    piType: '招标',
+                    pitStatus: '已结束',
+                    cutoffTimeStr: '17.11.01',
+                    entId: '11111',
+                    entName: '水务建设',
+                    piProdDesc: '钢筋',
+                    city: '上海'
+                }
+            ]
         }), 1000);
     })
 }

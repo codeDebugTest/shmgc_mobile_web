@@ -1,0 +1,44 @@
+.item-card {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    padding:10px 8px;
+    border-radius: 6px;
+    background-color: #fff;
+}
+.item-card .body {
+    width: 74%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 15px;
+}
+.item-card .body .content {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.item-card .body .content .title {
+    display: inline;
+    text-align: left;
+}
+.item-card .body .content .status {
+    margin-left: 20px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: #fff
+}
+.item-card .body .basic {
+    display: flex;
+    justify-content: space-between;
+    color: #ddd;
+    font-size: 12px;
+}
+
+.item-card .hand-sign {
+    width: 9%;
+    flex-grow: 1;
+    align-self: center;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Menu, NavBar} from 'antd-mobile'
+import {NavBar} from 'antd-mobile'
 import './topNavBar.css'
 
 export default class TopNavBar extends React.Component {
@@ -14,7 +14,8 @@ export default class TopNavBar extends React.Component {
                         leftContent={this.props.leftContent}
                         onLeftClick={this.props.onLeftBtnClick}
                         rightContent={this.props.rightContent}
-                        className="top-nav-bar">
+                        className="top-nav-bar"
+                        style={this.props.style}>
                     {this.props.title}
                 </NavBar>
         )

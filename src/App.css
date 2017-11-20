@@ -35,6 +35,10 @@
   -webkit-margin-before: 0.2em;
   -webkit-margin-after: 0.2em;
 }
+.no-margin-p {
+  -webkit-margin-before: 0.2em;
+  -webkit-margin-after: 0;
+}
 
 .am-navbar-left {
   padding-left: 10px;
