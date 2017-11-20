@@ -38,18 +38,6 @@ export default class GridBox extends React.Component{
         )
     };
 
-    renderGrid () {
-        const gridLines = this.sliceArray();
-        if (gridLines.length > 0) {
-            return (
-                gridLines.map((line, key) => {
-                    return this.renderGridLine(line, key)
-                })
-            )
-        }
-        return null;
-    }
-
     render() {
         const gridLines = this.sliceArray();
         return (
