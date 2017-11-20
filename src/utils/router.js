@@ -26,6 +26,11 @@ export function routeToCateStatic() {
         pathname: `/statistic/cate`
     })
 }
+export function routeToChjwzConcreteStatic() {
+    browserHistory.push({
+        pathname: `statistic/chjwz-concrete`
+    })
+}
 
 export function routeToEntCompare() {
     browserHistory.push({

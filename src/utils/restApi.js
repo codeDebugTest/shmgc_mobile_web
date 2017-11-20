@@ -138,6 +138,15 @@ export function fetchStaticOverviewData(params) {
     })
 }
 
+export function fetchSupplierStaticData() {
+    return new Promise((resolve, reject)=> {
+        setTimeout(()=> resolve({
+            return_code: 0,
+            result: []
+        }), 1000);
+    })
+}
+
 export function fetchEntOverviewData(params) {
     // return http.post(RestApiUrl.entList, params);
     return new Promise((resolve, reject) => {

@@ -6,10 +6,11 @@ import BottomTabBar from '../../components/bottomTabBar'
 import GridBox from '../../components/gridBox'
 import TimeFilterBar from '../../components/timeFilterBar'
 import StaticView from '../../components/staticView'
-import {routeToSettingPage, routeToEntStatic, routeToCateStatic} from '../../utils/router'
+import {routeToSettingPage, routeToEntStatic, routeToCateStatic, routeToChjwzConcreteStatic} from '../../utils/router'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
+import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -19,12 +20,12 @@ class StatisticView extends React.Component{
             {name: '城建物资', icon: placeholderImg, type: 'ent'},
             {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
             {name: '住总住博', icon: placeholderImg, type: 'ent'},
-            {name: '上海砼', icon: placeholderImg, type: 'ent'},
+            {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
 
             {name: '混凝土', icon: placeholderImg, type: 'cate'},
             {name: '水泥', icon: placeholderImg, type: 'cate'},
             {name: '钢材', icon: placeholderImg, type: 'cate'},
-            {name: '其他', icon: '', type: 'all'},
+            {name: '全部', icon: '', type: 'all'},
         ];
         this.onGridClick = this.onGridClick.bind(this);
     }
@@ -36,11 +37,13 @@ class StatisticView extends React.Component{
         } else if (item.type === 'cate') {
             this.props.initCateStatic(item);
             routeToCateStatic();
+        } else if (item.type === 'ent_cate'){
+            this.props.initChjwzConcreteStatic({name: '上海城建物资混凝土'});
+            routeToChjwzConcreteStatic();
         } else {
 
         }
         console.log(item.name);
-        console.log(item.icon);
     };
 
     renderStaticOverview = () => {
@@ -98,6 +101,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         initCateStatic: (cate) => {
             dispatch({type: INIT_CATE_STATIC_PAGE, cate: cate})
+        },
+        initChjwzConcreteStatic: (item) => {
+            dispatch({type: INIT_CHJWZ_CONCRETE_STATIC_PAGE, item: item})
         }
     }
 }

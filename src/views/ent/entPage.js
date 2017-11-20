@@ -25,7 +25,7 @@ class EntView extends React.Component{
             {name: '水务建设', icon: placeholderImg},
             {name: '隧道物资', icon: placeholderImg},
             {name: '城建物资', icon: placeholderImg},
-            {name: '其他', icon: ''},
+            {name: '全部', icon: ''},
         ];
         this.onGridClick = this.onGridClick.bind(this);
         this.onEntCardClick = this.onEntCardClick.bind(this);
