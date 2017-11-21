@@ -23,11 +23,21 @@
     width: 50%;
     height: 100%;
     font-size: 18px;
-    line-height: 45px;
+    line-height: 41px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
 }
 .drop-down-panel .panel .bottom > a.primary {
     color: #fff;
-    background-color: #108ee9;
+    background-color: #ffa200;
+    border-top: 1px solid #ffa200;
+}
+.drop-down-panel .panel .am-list-item.am-list-item-middle {
+    background-color: inherit;
+}
+
+.drop-down-panel .panel .am-list-item.am-list-item-middle .am-list-content {
+    font-size: 15px;
 }
 .panel-mask {
     height: 100%;
