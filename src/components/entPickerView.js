@@ -1,13 +1,14 @@
 import React from 'react'
-import {Flex, Tag} from 'antd-mobile'
-import DropDownView from './dropDownView'
+import {Tag, Flex} from 'antd-mobile'
+import DropDownView from "./dropDownView";
 
-export default class LocationPickerView extends React.Component {
+
+export default class EntPickerView extends React.Component {
     constructor(props){
         super(props)
         this.state ={
             showView: true,
-            pickedLocation: this.props.value
+            pickedEnt: this.props.value
         }
     }
 
@@ -32,16 +33,16 @@ export default class LocationPickerView extends React.Component {
     renderView =() => {
         if(this.state.showView) {
             const tagStyle ={margin: '5px'};
-            const pickedLocation = this.state.pickedEnt;
+            const pickedEnt = this.state.pickedEnt;
             return (
                 <DropDownView onCancel={this.onViewCanceled} onOk={this.onViewConfirmed} top={this.props.marginTop}>
                     <Flex wrap="wrap">
-                        {this.props.data.map((location) => {
+                        {this.props.data.map((ent) => {
                             return (
-                                <Tag key={location.id} style={tagStyle}
-                                     selected={location.id === (pickedLocation && pickedLocation.id)}
-                                     onChange={(selected) => this.onPickedChanged(selected, location)}
-                                >{location.value}</Tag>
+                                <Tag key={ent.id} style={tagStyle}
+                                     selected={ent.entId === (pickedEnt && pickedEnt.entId)}
+                                     onChange={(selected) => this.onPickedChanged(selected, ent)}
+                                >{ent.entName}</Tag>
                             )
                         })}
                     </Flex>
