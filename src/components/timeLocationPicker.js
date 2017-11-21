@@ -2,6 +2,8 @@ import React from 'react'
 import {Picker, List, Modal, Flex, Tag} from 'antd-mobile'
 import SegmentedTabs from './segmentedTabs'
 import DropDownView from './dropDownView'
+import QuarterPickerView from './quarterPickerView'
+import OtherTimePickerView from './otherTimePickerView'
 
 const otherTime =[
     [{label: '2017', value: '2017'}],
@@ -30,14 +32,14 @@ export default class  TimeLocationPicker extends React.Component {
         };
 
         this.onCutoffMenuConfirm = this.onCutoffMenuConfirm.bind(this);
-        this.onQuarterlyMenuConfirm = this.onQuarterlyMenuConfirm.bind(this);
+        this.onQuarterViewConfirm = this.onQuarterViewConfirm.bind(this);
         this.onLocationMenuConfirm = this.onLocationMenuConfirm.bind(this);
-        this.onOtherTimeMenuConfirm = this.onOtherTimeMenuConfirm.bind(this);
+        this.onOtherTimeViewConfirm = this.onOtherTimeViewConfirm.bind(this);
     }
     showMenu = (menuName) => {
         const newState = {
             showCutoffMenu: false,
-            showQuarterlyMenu: false,
+            showQuarterView: false,
             showLocationMenu: false,
             showOtherTimeMenu: false
         };
@@ -53,22 +55,18 @@ export default class  TimeLocationPicker extends React.Component {
     onCutoffMenuConfirm = () => {
         this.hideMenu('showCutoffMenu')
     }
-    onQuarterlyMenuConfirm =() => {
-        this.hideMenu('showQuarterlyMenu')
+    onQuarterViewConfirm =(value) => {
+        this.setState({quarter: value});
     }
     onLocationMenuConfirm = () => {
         this.hideMenu('showLocationMenu')
     };
 
-    onOtherTimeMenuConfirm = () => {
-        this.hideMenu('showOtherTimeMenu');
-
-        const startTime = this.state.startTimeArray.join('-');
-        const endTime = this.state.endTimeArray.join('-');
-        if (endTime <= startTime) {
+    onOtherTimeViewConfirm = (value) => {
+        if (value.endTime <= value.startTime) {
             Modal.alert('', '结束时间必须大于起始时间！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
         } else {
-            this.props.onSelectedOtherTime(startTime, endTime);
+            this.setState({otherTime: value})
         }
     }
 
@@ -81,24 +79,13 @@ export default class  TimeLocationPicker extends React.Component {
         return null;
     };
 
-    onQuarterSelectedChange = (selected, value) => {
-        if(selected) {
-            this.setState({quarter: value})
-        } else {
-            this.setState({quarter: null})
-        }
-    }
-    renderQuarterlyMenu = ()=> {
-        if (this.state.showQuarterlyMenu) {
-            const tagStyle ={margin: '5px'};
-            return <DropDownView onCancel={()=> this.hideMenu('showQuarterlyMenu')} onOk={this.onQuarterlyMenuConfirm} top={this.props.marginTop}>
-                <Flex wrap="wrap">
-                    <Tag style={tagStyle} selected={this.state.quarter === 'one'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'one')}>第一季度</Tag>
-                    <Tag style={tagStyle} selected={this.state.quarter === 'two'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'two')}>第二季度</Tag>
-                    <Tag style={tagStyle} selected={this.state.quarter === 'three'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'three')}>第三季度</Tag>
-                    <Tag style={tagStyle} selected={this.state.quarter === 'four'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'four')}>第四季度</Tag>
-                </Flex>
-            </DropDownView>
+    renderQuarterView = ()=> {
+        if (this.state.showQuarterView) {
+            return <QuarterPickerView marginTop={this.props.marginTop}
+                                      value={this.state.quarter}
+                                      onViewCanceled={()=>this.setState({showQuarterView: false})}
+                                      onViewConfirmed={this.onQuarterViewConfirm}
+            />
         }
         return null;
     }
@@ -111,23 +98,14 @@ export default class  TimeLocationPicker extends React.Component {
         return null;
     };
 
-    renderOtherTimeMenu = () => {
-        if (this.state.showOtherTimeMenu) {
-            return <DropDownView onCancel={()=> this.hideMenu('showOtherTimeMenu')} onOk={this.onOtherTimeMenuConfirm} top={this.props.marginTop}>
-                <Picker data={otherTime} title="选择时间" cascade={false} extra="请选择"
-                        value={this.state.startTimeArray} format={values => values.join('-')}
-                        onChange={v=>this.setState({startTimeArray: v})} onOk={v=>this.setState({startTimeArray: v})}
-                >
-                    <List.Item arrow="horizontal">起始时间</List.Item>
-                </Picker>
-
-                <Picker data={otherTime} title="选择时间" cascade={false} extra="请选择"
-                        value={this.state.endTimeArray} format={values => values.join('-')}
-                        onChange={v=>this.setState({endTimeArray: v})} onOk={v=>this.setState({endTimeArray: v})}
-                >
-                    <List.Item arrow="horizontal">结束时间</List.Item>
-                </Picker>
-            </DropDownView>
+    renderOtherTimeView = () => {
+        if (this.state.showOtherTimeView) {
+            return <OtherTimePickerView marginTop={this.props.marginTop}
+                                        sourceTime={otherTime}
+                                        value={this.state.otherTime}
+                                        onViewCanceled={()=>this.setState({showOtherTimeView: false})}
+                                        onViewConfirmed={this.onOtherTimeViewConfirm}
+                />
         }
         return null
     }
@@ -137,14 +115,14 @@ export default class  TimeLocationPicker extends React.Component {
             <div>
                 <SegmentedTabs>
                     <div onClick={()=>this.showMenu('showCutoffMenu')} className={this.state.showCutoffMenu ? 'active':''}>截止十月</div>
-                    <div onClick={()=>this.showMenu('showQuarterlyMenu')} className={this.state.showQuarterlyMenu ? 'active':''}>季度</div>
-                    <div onClick={()=> this.showMenu('showOtherTimeMenu')} className={this.state.showOtherTimeMenu ? 'active':''}>其他时间</div>
+                    <div onClick={()=>this.showMenu('showQuarterView')} className={this.state.showQuarterView ? 'active':''}>季度</div>
+                    <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.state.showOtherTimeView ? 'active':''}>其他时间</div>
                     <div onClick={()=>this.showMenu('showLocationMenu')} className={this.state.showLocationMenu ? 'active':''}>上海</div>
                 </SegmentedTabs>
 
                 {this.renderCutoffMenu()}
-                {this.renderQuarterlyMenu()}
-                {this.renderOtherTimeMenu()}
+                {this.renderQuarterView()}
+                {this.renderOtherTimeView()}
                 {this.renderLocationMenu()}
             </div>
         )
