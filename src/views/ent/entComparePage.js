@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {WhiteSpace, WingBlank, Tag} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
-import TimeFilterBar from '../../components/timeFilterBar'
-import CateEntFilterBar from '../../components/cateEntFilterBar'
+import TimeLocationPicker from '../../components/timeLocationPicker'
+import CateEntPicker from '../../components/cateEntPicker'
 import './entComparePage.css'
 import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
@@ -103,9 +103,9 @@ class EntCompareView extends Component{
                 <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <CateEntFilterBar marginTop="41px"/>
+                    <CateEntPicker marginTop="41px"/>
                     <WhiteSpace/>
-                    <TimeFilterBar marginTop="82px"/>
+                    <TimeLocationPicker marginTop="82px"/>
 
                     {this.renderEntPanel()}
 

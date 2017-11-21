@@ -1,8 +1,8 @@
 import React from 'react'
 import SegmentedTabs from './segmentedTabs'
-import DropDownPanel from './dropDownPanel'
+import DropDownView from './dropDownView'
 
-export default class CateEntFilterBar extends React.Component {
+export default class CateEntPicker extends React.Component {
     constructor(props) {
         super(props)
         this.state ={
@@ -33,9 +33,9 @@ export default class CateEntFilterBar extends React.Component {
 
     renderEntMenu = () => {
         if (this.state.showEntMenu) {
-            return <DropDownPanel onCancel={this.hideEntMenu} onOk={this.hideEntMenu} top={this.props.marginTop}>
+            return <DropDownView onCancel={this.hideEntMenu} onOk={this.hideEntMenu} top={this.props.marginTop}>
                 企业选择
-            </DropDownPanel>
+            </DropDownView>
         }
         return null;
     };

@@ -4,7 +4,7 @@ import {WhiteSpace} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
 import GridBox from '../../components/gridBox'
-import TimeFilterBar from '../../components/timeFilterBar'
+import TimeLocationPicker from '../../components/timeLocationPicker'
 import StaticView from '../../components/staticView'
 import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
@@ -73,7 +73,7 @@ class StatisticView extends React.Component{
                     />
 
                     <WhiteSpace/>
-                    <TimeFilterBar marginTop="222px"/>
+                    <TimeLocationPicker marginTop="222px"/>
                     <WhiteSpace/>
 
                     <p className="half-margin-p">截止十月数据统计总览</p>

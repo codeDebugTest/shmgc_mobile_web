@@ -1,8 +1,8 @@
 import React from 'react'
-import  './dropDownPanel.css'
+import  './dropDownView.css'
 
 
-export default class DropDownPanel extends React.Component {
+export default class DropDownView extends React.Component {
     constructor(props) {
         super(props);
     }

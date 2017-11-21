@@ -1,7 +1,7 @@
 import React from 'react'
-import {Picker, List, Modal} from 'antd-mobile'
+import {Picker, List, Modal, Flex, Tag} from 'antd-mobile'
 import SegmentedTabs from './segmentedTabs'
-import DropDownPanel from './dropDownPanel'
+import DropDownView from './dropDownView'
 
 const otherTime =[
     [{label: '2017', value: '2017'}],
@@ -20,12 +20,13 @@ const otherTime =[
         {label: '12月', value:'12'},
     ]
 ]
-export default class  TimeFilterBar extends React.Component {
+export default class  TimeLocationPicker extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             startTimeArray: [],
-            endTimeArray: []
+            endTimeArray: [],
+            quarter: null
         };
 
         this.onCutoffMenuConfirm = this.onCutoffMenuConfirm.bind(this);
@@ -73,32 +74,46 @@ export default class  TimeFilterBar extends React.Component {
 
     renderCutoffMenu = ()=> {
         if (this.state.showCutoffMenu) {
-            return <DropDownPanel onCancel={()=> this.hideMenu('showCutoffMenu')} onOk={this.onCutoffMenuConfirm} top={this.props.marginTop}>
+            return <DropDownView onCancel={()=> this.hideMenu('showCutoffMenu')} onOk={this.onCutoffMenuConfirm} top={this.props.marginTop}>
                 截止时间选择
-            </DropDownPanel>
+            </DropDownView>
         }
         return null;
+    };
+
+    onQuarterSelectedChange = (selected, value) => {
+        if(selected) {
+            this.setState({quarter: value})
+        } else {
+            this.setState({quarter: null})
+        }
     }
     renderQuarterlyMenu = ()=> {
         if (this.state.showQuarterlyMenu) {
-            return <DropDownPanel onCancel={()=> this.hideMenu('showQuarterlyMenu')} onOk={this.onQuarterlyMenuConfirm} top={this.props.marginTop}>
-                季度选择
-            </DropDownPanel>
+            const tagStyle ={margin: '5px'};
+            return <DropDownView onCancel={()=> this.hideMenu('showQuarterlyMenu')} onOk={this.onQuarterlyMenuConfirm} top={this.props.marginTop}>
+                <Flex wrap="wrap">
+                    <Tag style={tagStyle} selected={this.state.quarter === 'one'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'one')}>第一季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 'two'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'two')}>第二季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 'three'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'three')}>第三季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 'four'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'four')}>第四季度</Tag>
+                </Flex>
+            </DropDownView>
         }
         return null;
     }
     renderLocationMenu = ()=> {
         if (this.state.showLocationMenu) {
-            return <DropDownPanel onCancel={()=> this.hideMenu('showLocationMenu')} onOk={this.onLocationMenuConfirm} top={this.props.marginTop}>
+            return <DropDownView onCancel={()=> this.hideMenu('showLocationMenu')} onOk={this.onLocationMenuConfirm} top={this.props.marginTop}>
                 地区选择
-            </DropDownPanel>
+            </DropDownView>
         }
         return null;
     };
 
     renderOtherTimeMenu = () => {
         if (this.state.showOtherTimeMenu) {
-            return <DropDownPanel onCancel={()=> this.hideMenu('showOtherTimeMenu')} onOk={this.onOtherTimeMenuConfirm} top={this.props.marginTop}>
+            return <DropDownView onCancel={()=> this.hideMenu('showOtherTimeMenu')} onOk={this.onOtherTimeMenuConfirm} top={this.props.marginTop}>
                 <Picker data={otherTime} title="选择时间" cascade={false} extra="请选择"
                         value={this.state.startTimeArray} format={values => values.join('-')}
                         onChange={v=>this.setState({startTimeArray: v})} onOk={v=>this.setState({startTimeArray: v})}
@@ -112,7 +127,7 @@ export default class  TimeFilterBar extends React.Component {
                 >
                     <List.Item arrow="horizontal">结束时间</List.Item>
                 </Picker>
-            </DropDownPanel>
+            </DropDownView>
         }
         return null
     }
