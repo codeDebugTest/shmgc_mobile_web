@@ -32,6 +32,12 @@
     background-color: #ffa200;
     border-top: 1px solid #ffa200;
 }
+
+.drop-down-panel .panel .am-tag.am-tag-active {
+    background-color: #108ee9;
+    color: #fff;
+}
+
 .drop-down-panel .panel .am-list-item.am-list-item-middle {
     background-color: inherit;
 }

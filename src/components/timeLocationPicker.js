@@ -1,9 +1,10 @@
 import React from 'react'
-import {Picker, List, Modal, Flex, Tag} from 'antd-mobile'
+import {Modal} from 'antd-mobile'
 import SegmentedTabs from './segmentedTabs'
 import DropDownView from './dropDownView'
 import QuarterPickerView from './quarterPickerView'
 import OtherTimePickerView from './otherTimePickerView'
+import LocationPickerView from './locationPickerView'
 
 const otherTime =[
     [{label: '2017', value: '2017'}],
@@ -22,26 +23,58 @@ const otherTime =[
         {label: '12月', value:'12'},
     ]
 ]
+const locations =[
+    {
+        id: '10',
+        value: '上海',
+        type: '1'
+    },{
+        id: '11',
+        value: '南京',
+        type: '1'
+    },{
+        id: '12',
+        value: '苏州',
+        type: '1'
+    },{
+        id: '13',
+        value: '杭州',
+        type: '1'
+    },{
+        id: '14',
+        value: '济南',
+        type: '1'
+    },{
+        id: '15',
+        value: '武汉',
+        type: '1'
+    },{
+        id: '16',
+        value: '厦门',
+        type: '1'
+    }
+]
 export default class  TimeLocationPicker extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             startTimeArray: [],
             endTimeArray: [],
-            quarter: null
+            quarter: null,
+            location: null
         };
 
         this.onCutoffMenuConfirm = this.onCutoffMenuConfirm.bind(this);
         this.onQuarterViewConfirm = this.onQuarterViewConfirm.bind(this);
-        this.onLocationMenuConfirm = this.onLocationMenuConfirm.bind(this);
+        this.onLocationViewConfirm = this.onLocationViewConfirm.bind(this);
         this.onOtherTimeViewConfirm = this.onOtherTimeViewConfirm.bind(this);
     }
     showMenu = (menuName) => {
         const newState = {
             showCutoffMenu: false,
             showQuarterView: false,
-            showLocationMenu: false,
-            showOtherTimeMenu: false
+            showLocationView: false,
+            showOtherTimeView: false
         };
         newState[menuName] = true;
         this.setState(newState);
@@ -58,8 +91,8 @@ export default class  TimeLocationPicker extends React.Component {
     onQuarterViewConfirm =(value) => {
         this.setState({quarter: value});
     }
-    onLocationMenuConfirm = () => {
-        this.hideMenu('showLocationMenu')
+    onLocationViewConfirm = (value) => {
+        this.setState({location: value});
     };
 
     onOtherTimeViewConfirm = (value) => {
@@ -89,11 +122,13 @@ export default class  TimeLocationPicker extends React.Component {
         }
         return null;
     }
-    renderLocationMenu = ()=> {
-        if (this.state.showLocationMenu) {
-            return <DropDownView onCancel={()=> this.hideMenu('showLocationMenu')} onOk={this.onLocationMenuConfirm} top={this.props.marginTop}>
-                地区选择
-            </DropDownView>
+    renderLocationView = ()=> {
+        if (this.state.showLocationView) {
+            return <LocationPickerView marginTop={this.props.marginTop}
+                                       data={locations}
+                                       value={this.state.location}
+                                       onViewCanceled={()=>this.setState({showLocationView: false})}
+                                       onViewConfirmed={this.onLocationViewConfirm}/>
         }
         return null;
     };
@@ -111,19 +146,21 @@ export default class  TimeLocationPicker extends React.Component {
     }
 
     render() {
+        const locationValue = this.state.location && this.state.location.value;
         return (
             <div>
                 <SegmentedTabs>
                     <div onClick={()=>this.showMenu('showCutoffMenu')} className={this.state.showCutoffMenu ? 'active':''}>截止十月</div>
                     <div onClick={()=>this.showMenu('showQuarterView')} className={this.state.showQuarterView ? 'active':''}>季度</div>
                     <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.state.showOtherTimeView ? 'active':''}>其他时间</div>
-                    <div onClick={()=>this.showMenu('showLocationMenu')} className={this.state.showLocationMenu ? 'active':''}>上海</div>
+                    <div onClick={()=>this.showMenu('showLocationView')}
+                         className={this.state.showLocationView ? 'active':''}>{locationValue || '全国'}</div>
                 </SegmentedTabs>
 
                 {this.renderCutoffMenu()}
                 {this.renderQuarterView()}
                 {this.renderOtherTimeView()}
-                {this.renderLocationMenu()}
+                {this.renderLocationView()}
             </div>
         )
     }
