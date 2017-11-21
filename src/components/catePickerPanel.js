@@ -2,7 +2,7 @@ import React from 'react'
 import {Flex} from 'antd-mobile'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
-export default class CateSelectPanel extends React.Component{
+export default class CatePickerPanel extends React.Component{
     constructor(props) {
         super(props);
     }

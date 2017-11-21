@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Card, WhiteSpace} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
-import CateSelectPanel from '../../components/cateSelectPanel'
+import CatePickerPanel from '../../components/catePickerPanel'
 import {ChangeRoute} from '../../utils/router'
 import './entCateFilter.css'
 
@@ -209,7 +209,7 @@ class EntCateFilter extends React.Component {
                         <Card.Body style={cardStyle}>
                             {
                                 categories.map((category) => {
-                                    return <CateSelectPanel key={category.statCateId} onClick={this.onCateItemClick} cate={category}/>
+                                    return <CatePickerPanel key={category.statCateId} onClick={this.onCateItemClick} cate={category}/>
                                 })
                             }
                         </Card.Body>

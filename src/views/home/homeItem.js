@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import TopNavBar from "../../components/topNavBar"
-import ItemCard from '../../components/itemCard'
+import PurchaseItemCard from '../../components/purchaseItemCard'
 import {WhiteSpace} from 'antd-mobile'
 import {doLoadingDataAction} from './homeItem.redux'
 import {ChangeRoute} from '../../utils/router'
@@ -16,7 +16,7 @@ class HomeItemPage extends React.Component {
         if (purchaseItems) {
             return (
                 purchaseItems.map((purchaseItem) => {
-                    return  <ItemCard key={purchaseItem.piId} item={purchaseItem}/>
+                    return  <PurchaseItemCard key={purchaseItem.piId} item={purchaseItem}/>
                 })
             )
         }

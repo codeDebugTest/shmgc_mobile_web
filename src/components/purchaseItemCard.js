@@ -1,6 +1,6 @@
 import React from 'react'
-import {Flex, Icon} from 'antd-mobile'
-import './itemCard.css'
+import {Icon} from 'antd-mobile'
+import './purchaseItemCard.css'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 const runningStatus = {
@@ -11,14 +11,14 @@ const finishedStatus = {
     border: '2px solid #ddd',
     color: '#ddd'
 }
-const compareItem = {
+const compareItemColor = {
     color: 'blue'
 }
-const tenderItem ={
+const tenderItemColor ={
     color: '#debb04'
 }
 
-export default class ItemCard extends React.Component {
+export default class PurchaseItemCard extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -30,11 +30,11 @@ export default class ItemCard extends React.Component {
             return finishedStatus;
         }
     };
-    getTitleStyle = (piType) => {
+    getTitleColor = (piType) => {
         if( piType === '比价') {
-            return compareItem
+            return compareItemColor
         } else if(piType === '招标') {
-            return tenderItem
+            return tenderItemColor
         }
     };
 
@@ -49,11 +49,11 @@ export default class ItemCard extends React.Component {
             <div className="item-card">
                 <div style={{width: '17%'}}>
                     <img src={placeholderImg} style={itemIconStyle}/>
-                    <p style={{fontSize:'12px'}} className="no-margin-p">比价</p>
+                    <p style={{fontSize:'12px', ...this.getTitleColor(item.piType)}} className="no-margin-p">{item.piType}</p>
                 </div>
                 <div className="body">
                     <div className="content">
-                        <label className="title" style={this.getTitleStyle(item.piType)}>{this.getPiTitle(item.piTitle)}......</label>
+                        <label className="title" style={this.getTitleColor(item.piType)}>{this.getPiTitle(item.piTitle)}......</label>
                         <button className="status" style={this.getStatusStyle(item.pitStatus)}>{item.pitStatus}</button>
                     </div>
 
