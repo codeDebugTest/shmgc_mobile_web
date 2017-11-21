@@ -1,7 +1,7 @@
 import React from 'react'
 import SegmentedTabs from './segmentedTabs'
-import DropDownView from './dropDownView'
 import EntPickerView from './entPickerView'
+import CatePickerView from "./catePickerView";
 
 const entList = [
     {
@@ -36,7 +36,7 @@ export default class CateEntPicker extends React.Component {
     }
     showMenu = (menuName) => {
         const newState = {
-            showCateMenu: false,
+            showCateView: false,
             showEntView: false,
         };
         newState[menuName] = true;
@@ -47,10 +47,9 @@ export default class CateEntPicker extends React.Component {
     onEntViewConfirmed = (ent)=> {
         this.picker.ent = ent;
     }
-
-    renderCateMenu =() => {
-
-    };
+    onCateViewConfirmed = (cate)=> {
+        this.picker.cate = cate;
+    }
 
     renderEntView = () => {
         if (this.state.showEntView) {
@@ -62,16 +61,26 @@ export default class CateEntPicker extends React.Component {
         }
         return null;
     };
+    renderCateView = () => {
+        if (this.state.showCateView) {
+            return <CatePickerView marginTop={this.props.marginTop}
+                                   value ={this.picker.cate}
+                                   onViewCanceled={()=> this.setState({showCateView: false})}
+                                   onViewConfirmed={this.onCateViewConfirmed}
+            />
+        }
+        return null
+    }
 
     render() {
         return (
             <div>
-                <SegmentedTabs>
-                    <div onClick={()=>this.showMenu('showCateMenu')}>材料</div>
+                <SegmentedTabs style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
+                    <div onClick={()=>this.showMenu('showCateView')}>材料</div>
                     <div onClick={()=>this.showMenu('showEntView')}>公司</div>
                 </SegmentedTabs>
 
-                {this.renderCateMenu()}
+                {this.renderCateView()}
                 {this.renderEntView()}
             </div>
         )
