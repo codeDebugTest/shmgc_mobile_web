@@ -25,11 +25,11 @@ const httpRequestFactory = (url, method, params, header) => {
 
     if (method === 'get' || method === 'delete') {
         url += '?' + getQueryString(params);
-        options.header = header || {'Accept': 'application/json'};
+        options.headers = header || {'accept': 'application/json'};
     } else { // 'POST', 'PUT'
-        options.header = header || {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        options.headers = header || {
+            'accept': 'application/json',
+            'content-Type': 'application/json'
         };
         options.body = JSON.stringify(params);
     }

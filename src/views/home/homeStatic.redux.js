@@ -8,7 +8,7 @@ export function doLoadingDataAction(params) {
         dispatch({type: FETCH_HOME_STATIC_DATA});
         return fetchStaticOverviewData(params).then(
             response => {
-                if(response.return_code === 0) {
+                if(response.return_code == 0) {
                     dispatch({
                         type: FETCH_HOME_STATIC_DATA_SUCCESS,
                         response: response.result

@@ -64,7 +64,8 @@ class Home extends React.Component{
     }
 
     componentWillMount() {
-        this.props.loadData();
+        //todo get loginName from login store
+        this.props.loadData({loginName: 'admin', password: '123'});
     }
 
     componentDidMount() {
@@ -127,7 +128,7 @@ const mapStateToProps = (state) =>{
         storeData: state.homePage
     }
 };
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         loadData: (params) => {
             dispatch(doLoadingAction(params))
@@ -137,6 +138,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 };
-
 const ConnectedHomeView = connect(mapStateToProps, mapDispatchToProps)(Home);
 export default ConnectedHomeView;

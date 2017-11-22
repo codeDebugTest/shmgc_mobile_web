@@ -3,6 +3,8 @@ import {browserHistory} from 'react-router'
 export const ROUTE_PATH = {
     ROOT: '/',
 
+    LOGIN: '/login',
+
     SETTING: '/setting',
     HOME: '/home',
     HOME_STATIC: '/home/static',
@@ -31,6 +33,7 @@ export const ChangeRoute = function () {
         browserHistory.goBack();
     }
     return {
+        goLoginPage: () => _move(ROUTE_PATH.LOGIN),
         goSettingPage: () => _move(ROUTE_PATH.SETTING),
         goHomePage: () => _move(ROUTE_PATH.HOME),
         goHomeStaticPage: () => _move(ROUTE_PATH.HOME_STATIC),

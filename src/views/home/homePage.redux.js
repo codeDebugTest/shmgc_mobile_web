@@ -10,10 +10,10 @@ export function doLoadingAction(params) {
 
         return fetchHomePageData(params).then(
             response => {
-                if(response.return_code === 0) {
+                if(response.return_code == 0) {
                     dispatch({
                         type: FETCH_HOME_PAGE_DATA_SUCCESS,
-                        response: response.result
+                        response: response.result && response.result[0]
                     });
                 } else {
                     dispatch({type: FETCH_HOME_PAGE_DATA_FAILED});

@@ -10,7 +10,7 @@ export function doLoadingDataAction(params) {
         dispatch({type: FETCH_HOME_PURCHASE_ITEMS});
         return fetchPurchaseItems(params).then(
             response => {
-                if(response.return_code === 0) {
+                if(response.return_code == 0) {
                     dispatch({
                         type: FETCH_HOME_PURCHASE_ITEMS_SUCCESS,
                         response: response.result

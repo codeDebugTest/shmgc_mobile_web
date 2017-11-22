@@ -1,19 +1,21 @@
 import http from './httpRequest';
-import {SERVER_HOST} from './config'
+import {SERVER_HOST, NAME_SPACE} from './config'
 
-const RestApiUrl = {
-    userLogin: SERVER_HOST + '/user/login',
-    homePageData: SERVER_HOST + '/homePageData',
-    purchaseItems: SERVER_HOST + '/purchaseItems',
-    statistic: SERVER_HOST + '/statistic',
-    entList: SERVER_HOST + '/entList',
-    entCompareData: SERVER_HOST + '/entCompareData',
-}
+const RequestType = {
+    userLogin: 'USER_LOGIN',
+    homeOverView: 'HOME_OVERVIEW',
+    purchaseItems: 'PURCHASE_ITEM_LIST',
+    statistic: 'STATIC_OVERVIEW',
+    entList: 'ENT_LIST_OVERVIEW',
+    entCompare: 'ENT_COMPARISION',
+};
+
+const restUrl = SERVER_HOST + NAME_SPACE;
 
 export function fetchHomePageData(params) {
     /* Todo get resource by http request*/
-    // return http.get(RestApiUrl.homePageData, params);
-    return new Promise((resolve, reject) =>{
+    return http.post(restUrl, {requestType: RequestType.homeOverView, ...params});
+/*    return new Promise((resolve, reject) =>{
        setTimeout(()=> resolve({
            return_code: 0,
            result: {
@@ -62,7 +64,7 @@ export function fetchHomePageData(params) {
                ],
            }
        }), 1000);
-    });
+    });*/
 }
 
 export function fetchPurchaseItems(params) {
