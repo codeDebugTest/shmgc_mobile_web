@@ -168,8 +168,8 @@ export function fetchPurchaseItems(params) {
 }
 
 export function fetchStaticOverviewData(params) {
-    // return http.post(RestApiUrl.statistic, params);
-    return new Promise((resolve, reject) => {
+    return http.post(restUrl, {requestType: RequestType.statistic, ...params});
+    /*return new Promise((resolve, reject) => {
         setTimeout(()=>{
             resolve({
                 return_code: 0,
@@ -228,7 +228,7 @@ export function fetchStaticOverviewData(params) {
                 }
             });
         }, 1500);
-    })
+    })*/
 }
 
 export function fetchSupplierStaticData() {

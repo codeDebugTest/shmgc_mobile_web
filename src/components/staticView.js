@@ -1,6 +1,6 @@
 import React from 'react'
 import {WingBlank, WhiteSpace, Flex} from 'antd-mobile'
-import {ChartMargin, getAxisRange, setIntervalPosition, setLinePosition, setAxis} from '../utils/chartConfig'
+import {ChartMargin, getAxisRange, setIntervalPosition, setLinePosition, setAxis, getTooltipCfg} from '../utils/chartConfig'
 
 const chartIdList = [
     {id: 'entCountChart', comment: '企业项目数采购金额'},
@@ -32,7 +32,7 @@ export default class StaticView extends React.Component {
         }
     };
 
-    renderChart(chartId, chartData, axisConfig, nameX, nameLeftY, nameRightY) {
+    renderChart(chartId, chartData, axisConfig, nameX, nameLeftY, nameRightY, titleLeft, titleRight) {
         const firstItem =chartData[0];
         if ( firstItem[nameLeftY] && firstItem[nameRightY]) {
             const chart = this[chartId];
@@ -52,13 +52,13 @@ export default class StaticView extends React.Component {
                 purchaseAmount: getAxisRange(11000, 15000),
                 piCount: getAxisRange(90, 160)
             };
-            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, axisConfig, 'entName', 'purchaseAmount', 'piCount');
+            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, null, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
 
             const axisConfig1 = {
                 purchaseQuantity: getAxisRange(11000, 15000),
                 averagePrice: getAxisRange(90, 160)
             };
-            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData, axisConfig1, 'entName', 'purchaseQuantity', 'averagePrice');
+            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData, null, 'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
         }else {
             chartVisible.entAverageChart = false;
             chartVisible.entCountChart = false;
@@ -70,13 +70,13 @@ export default class StaticView extends React.Component {
                 purchaseAmount: getAxisRange(110000, 135000),
                 piCount: getAxisRange(90, 160)
             };
-            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, axisConfig, 'cateName', 'purchaseAmount', 'piCount');
+            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, null, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
 
             const axisConfig1 = {
                 purchaseQuantity: getAxisRange(50, 150),
                 averagePrice: getAxisRange(0, 5)
             };
-            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, axisConfig1, 'cateName', 'purchaseQuantity', 'averagePrice');
+            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, null, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
         } else {
             chartVisible.cateCountChart = false;
             chartVisible.cateAverageChart = false;
@@ -88,7 +88,7 @@ export default class StaticView extends React.Component {
                 purchaseAmount: getAxisRange(11000, 15000),
                 piCount: getAxisRange(90, 160)
             };
-            chartVisible.timeChart = this.renderChart('timeChart', chartData, axisConfig, 'month', 'purchaseAmount', 'piCount');
+            chartVisible.timeChart = this.renderChart('timeChart', chartData, null, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量');
         } else {
             chartVisible.timeChart = false;
         }
@@ -114,17 +114,20 @@ export default class StaticView extends React.Component {
     render() {
         const overview = this.props.staticData && this.props.staticData.overview;
         const chartVisible = this.state.chartVisible;
+        const flexLayout = {display: 'flex'};
+        const pBigStyle = {fontSize:'12px', textAlign: 'left', width: '60%'};
+        const pSmallStyle = {fontSize:'12px', textAlign: 'left', width: '40%'};
         return (
             <div>
                 <WingBlank>
-                    <Flex>
-                        <Flex.Item><p style={{fontSize:'12px'}}>采购金额：{this.formattedValue(overview && overview.purchaseAmountStr)}</p></Flex.Item>
-                        <Flex.Item><p style={{fontSize:'12px'}}>项目总数：{this.formattedValue(overview && overview.piCountStr)}</p></Flex.Item>
-                    </Flex>
-                    <Flex>
-                        <Flex.Item><p style={{fontSize:'12px'}}>采购数量：{this.formattedValue(overview && overview.purchaseQuantityStr)}</p></Flex.Item>
-                        <Flex.Item><p style={{fontSize:'12px'}}>采购均价：{this.formattedValue(overview && overview.averagePriceStr)}</p></Flex.Item>
-                    </Flex>
+                    <div style={flexLayout}>
+                        <p style={pBigStyle}>采购金额：{this.formattedValue(overview && overview.purchaseAmountStr)}</p>
+                        <p style={pSmallStyle}>项目总数：{this.formattedValue(overview && overview.piCountStr)}</p>
+                    </div>
+                    <div style={flexLayout}>
+                        <p style={pBigStyle}>采购数量：{this.formattedValue(overview && overview.purchaseQuantityStr)}</p>
+                        <p style={pSmallStyle}>采购均价：{this.formattedValue(overview && overview.averagePriceStr)}</p>
+                    </div>
                 </WingBlank>
 
                 {

@@ -54,7 +54,10 @@ class StatisticView extends React.Component{
     }
 
     componentWillMount() {
-        this.props.loadData();
+        this.props.loadData({
+            loginName: 'admin',
+            password: '123',
+        });
     }
     render () {
         return (
