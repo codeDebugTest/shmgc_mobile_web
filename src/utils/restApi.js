@@ -13,15 +13,14 @@ const RequestType = {
 const restUrl = SERVER_HOST + NAME_SPACE;
 
 export function fetchHomePageData(params) {
-    /* Todo get resource by http request*/
     return http.post(restUrl, {requestType: RequestType.homeOverView, ...params});
-/*    return new Promise((resolve, reject) =>{
+    /*return new Promise((resolve, reject) =>{
        setTimeout(()=> resolve({
            return_code: 0,
-           result: {
+           result: [{
                projectStat: [
-                   {type: '总数', count: 600}, {type: '进行中', count: 100}, {type: '已结束', count: 500},
-                   {type: '比价', count: 400}, {type: '招标', count: 200}, {type: '协议', count: 0},
+                   {display: '总数', countStr: 600}, {display: '进行中', countStr: 100}, {display: '已结束', countStr: 500},
+                   {display: '比价', countStr: 400}, {display: '招标', countStr: 200}, {display: '协议', countStr: 0},
                ],
                totalAmountStr: '2,300,100.00元',
                amountOfCate: [
@@ -62,7 +61,17 @@ export function fetchHomePageData(params) {
                        piCount: 	'115'				//项目数
                    }
                ],
-           }
+               axisRange: {
+                   purchaseAmount: {
+                       min: 11000,
+                       max: 15000
+                   },
+                   piCount: {
+                       min: 90,
+                       max: 160
+                   }
+               }
+           }]
        }), 1000);
     });*/
 }

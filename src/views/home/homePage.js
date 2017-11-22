@@ -28,11 +28,12 @@ class Home extends React.Component{
         console.log('card on click')
     };
 
-    renderEntChart(entChartData) {
+    renderEntChart(entChartData, axisRange) {
         const axisConfig = {
-            purchaseAmount: getAxisRange(11000, 15000),
-            piCount: getAxisRange(90, 160)
+            purchaseAmount: {type: 'linear', ...axisRange.purchaseAmount},
+            piCount: {type: 'linear', ...axisRange.piCount}
         };
+
         this.entChart.source(entChartData, axisConfig);
 
         setIntervalPosition(this.entChart, 'entName', 'purchaseAmount');             // x轴，左Y轴
@@ -51,8 +52,8 @@ class Home extends React.Component{
                     cateData.map((item, key) => {
                         return (
                             <div className="category-div" key={key}>
-                                <p>{item.cateName}</p>
-                                <p>{item.amountStr}</p>
+                                <p style={{fontSize: '14px'}}>{item.cateName}</p>
+                                <p style={{fontSize: '14px'}}>{item.amountStr}</p>
                             </div>
                         )
                     })
@@ -78,7 +79,7 @@ class Home extends React.Component{
     componentDidUpdate() {
         const entChartData = this.props.storeData && this.props.storeData.groupByEnt;
         if (entChartData && entChartData.length > 0) {
-            this.renderEntChart(entChartData)
+            this.renderEntChart(entChartData, this.props.storeData.axisRange)
         }
     }
 
@@ -94,8 +95,8 @@ class Home extends React.Component{
                           renderItem={
                             dataItem => (
                                 <div>
-                                    <p className="small-margin-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.count}</p>
-                                    <p className="small-margin-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.type}</p>
+                                    <p className="small-margin-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.countStr}</p>
+                                    <p className="small-margin-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.display}</p>
                                 </div>
                             )
                           }
