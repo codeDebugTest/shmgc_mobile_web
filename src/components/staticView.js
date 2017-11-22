@@ -1,6 +1,7 @@
 import React from 'react'
-import {WingBlank, WhiteSpace, Flex} from 'antd-mobile'
-import {ChartMargin, getAxisRange, setIntervalPosition, setLinePosition, setAxis, getTooltipCfg} from '../utils/chartConfig'
+import {WingBlank} from 'antd-mobile'
+import G2 from '@antv/g2'
+import {G2Config, chartContainerCfg, ChartMargin, getAxisRange, setIntervalPosition, setLinePosition, setAxis} from '../utils/chartConfig'
 
 const chartIdList = [
     {id: 'entCountChart', comment: '企业项目数采购金额'},
@@ -32,15 +33,22 @@ export default class StaticView extends React.Component {
         }
     };
 
-    renderChart(chartId, chartData, axisConfig, nameX, nameLeftY, nameRightY, titleLeft, titleRight) {
+    renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight) {
         const firstItem =chartData[0];
-        if ( firstItem[nameLeftY] && firstItem[nameRightY]) {
-            const chart = this[chartId];
-            chart.source(chartData, axisConfig);
-            setIntervalPosition(chart, nameX, nameLeftY);
-            setLinePosition(chart, nameX, nameRightY);
-            setAxis(chart, nameX, nameLeftY, nameRightY);
-            chart.render();
+        if ( firstItem[fieldLeftY] && firstItem[filedRightY]) {
+            const formatter = (val) => {
+                return (val/100000000).toFixed(1) + '亿元'
+            };
+            const chartCfg = new G2Config(this[chartId], chartData);
+            chartCfg.setChartScale(fieldLeftY, aliasLeft);
+            chartCfg.setChartScale(filedRightY, aliasRight);
+            chartCfg.setChartAxis(fieldX);
+            chartCfg.setChartAxis(fieldLeftY, aliasLeft, formatter, true);
+            chartCfg.setChartAxis(filedRightY, aliasRight);
+            chartCfg.setChartInterval(fieldX, fieldLeftY);
+            chartCfg.setChartLine(fieldX, filedRightY);
+            chartCfg.setChartTooltip();
+            this[chartId].render();
             return true;
         }
         return false
@@ -48,17 +56,8 @@ export default class StaticView extends React.Component {
 
     rendEntChart(chartData, chartVisible) {
         if (chartData && chartData.length > 0) {
-            const axisConfig = {
-                purchaseAmount: getAxisRange(11000, 15000),
-                piCount: getAxisRange(90, 160)
-            };
-            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, null, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
-
-            const axisConfig1 = {
-                purchaseQuantity: getAxisRange(11000, 15000),
-                averagePrice: getAxisRange(90, 160)
-            };
-            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData, null, 'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
+            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
+            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData,'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
         }else {
             chartVisible.entAverageChart = false;
             chartVisible.entCountChart = false;
@@ -66,17 +65,8 @@ export default class StaticView extends React.Component {
     }
     rendCateChart(chartData, chartVisible) {
         if (chartData && chartData.length > 0) {
-            const axisConfig = {
-                purchaseAmount: getAxisRange(110000, 135000),
-                piCount: getAxisRange(90, 160)
-            };
-            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, null, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
-
-            const axisConfig1 = {
-                purchaseQuantity: getAxisRange(50, 150),
-                averagePrice: getAxisRange(0, 5)
-            };
-            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, null, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
+            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
+            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
         } else {
             chartVisible.cateCountChart = false;
             chartVisible.cateAverageChart = false;
@@ -84,11 +74,7 @@ export default class StaticView extends React.Component {
     }
     rendTimeChart(chartData, chartVisible) {
         if (chartData && chartData.length > 0) {
-            const axisConfig = {
-                purchaseAmount: getAxisRange(11000, 15000),
-                piCount: getAxisRange(90, 160)
-            };
-            chartVisible.timeChart = this.renderChart('timeChart', chartData, null, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量');
+            chartVisible.timeChart = this.renderChart('timeChart', chartData, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量');
         } else {
             chartVisible.timeChart = false;
         }
@@ -96,9 +82,9 @@ export default class StaticView extends React.Component {
 
     componentDidMount() {
         chartIdList.map((chart) => {
-            this[chart.id] = window.CreateG2Mobile({
-                id: chart.id,
-                margin: ChartMargin
+            this[chart.id] =  new G2.Chart({
+                container: chart.id,
+                ...chartContainerCfg,
             })
         });
         const staticData = this.props.staticData;
@@ -136,7 +122,7 @@ export default class StaticView extends React.Component {
                             chartVisible[chart.id] ?
                                 <WingBlank size="sm" key={key}>
                                     <p style={{fontSize:'12px',marginBottom:0}}>{chart.comment}</p>
-                                    <canvas id={chart.id} className="canvas-chart"/>
+                                    <div id={chart.id}></div>
                                 </WingBlank>
                                 : null
                         )

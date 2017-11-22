@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import G2 from '@antv/g2'
 import {doLoadingAction} from './homePage.redux'
 import {Grid, Card, Icon, WingBlank, Flex} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
-import {ChartMargin, setIntervalPosition, setLinePosition, setAxis, getAxisRange} from '../../utils/chartConfig'
+import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
 import {ChangeRoute} from '../../utils/router'
 import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
 import  './homePage.css'
@@ -28,18 +29,19 @@ class Home extends React.Component{
         console.log('card on click')
     };
 
-    renderEntChart(entChartData, axisRange) {
-        const axisConfig = {
-            purchaseAmount: {type: 'linear', ...axisRange.purchaseAmount},
-            piCount: {type: 'linear', ...axisRange.piCount}
+    renderEntChart(entChartData) {
+        const formatter = (val) => {
+            return (val/100000000).toFixed(1) + '亿元'
         };
-
-        this.entChart.source(entChartData, axisConfig);
-
-        setIntervalPosition(this.entChart, 'entName', 'purchaseAmount');             // x轴，左Y轴
-        setLinePosition(this.entChart, 'entName', 'piCount');                       // x轴，右Y轴
-        setAxis(this.entChart, 'entName', 'purchaseAmount', 'piCount');     // x轴，左Y轴，右Y轴
-
+        const chartCfg = new G2Config(this.entChart, entChartData);
+        chartCfg.setChartScale('purchaseAmount', '采购金额');
+        chartCfg.setChartScale( 'piCount', '项目数');
+        chartCfg.setChartAxis('entName');
+        chartCfg.setChartAxis('purchaseAmount', '采购金额', formatter, true);
+        chartCfg.setChartAxis('piCount', '项目数');
+        chartCfg.setChartInterval('entName', 'purchaseAmount');
+        chartCfg.setChartLine('entName', 'piCount');
+        chartCfg.setChartTooltip();
         this.entChart.render();
     }
 
@@ -70,10 +72,10 @@ class Home extends React.Component{
     }
 
     componentDidMount() {
-        this.entChart = new window.CreateG2Mobile({
-            id: 'entChart',
-            margin: ChartMargin
-        });
+        this.entChart = new G2.Chart({
+            container: 'entChart',
+            ...chartContainerCfg,
+        })
     }
 
     componentDidUpdate() {
@@ -112,7 +114,8 @@ class Home extends React.Component{
                     </Card>
 
                     <WingBlank size="sm">
-                        <canvas id="entChart" className="canvas-chart"/>
+                        {/*<canvas id="entChart" className="canvas-chart"/>*/}
+                        <div id="entChart"></div>
                     </WingBlank>
 
                     {this.renderCateStat()}
