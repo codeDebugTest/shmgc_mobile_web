@@ -7,6 +7,7 @@ import BottomTabBar from '../../components/bottomTabBar'
 import EntCard from './entCard'
 import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entPage.redux'
+import {INIT_ENT_COMPARE_PAGE} from './entComparePage.redux'
 import './entPage.css'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
@@ -49,6 +50,7 @@ class EntView extends React.Component{
         if (length > 4) {
             Modal.alert('', '最多仅能选择4家企业进行对比！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
         } else {
+            this.props.initEntComparePage(this.state.selectedEnts);
             ChangeRoute.goEntComparePage();
         }
     }
@@ -66,7 +68,6 @@ class EntView extends React.Component{
                 this.state.selectedEnts.splice(index, 1);
             }
             this.setState({selectedEnts: temp.concat(this.state.selectedEnts)})
-
         }
         console.log('entId: ' + entId + '; checked: ' + cardChecked);
     };
@@ -101,7 +102,10 @@ class EntView extends React.Component{
         )
     }
     componentWillMount() {
-        this.props.loadData();
+        this.props.loadData({
+            loginName: 'admin',
+            password: '123'
+        });
     }
 
     render () {
@@ -150,6 +154,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadData: (params) => {
             dispatch(doLoadingDataAction(params));
+        },
+        initEntComparePage: (params) => {
+            dispatch({type: INIT_ENT_COMPARE_PAGE, compareList: params})
         }
     }
 }

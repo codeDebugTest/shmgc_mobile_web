@@ -241,8 +241,8 @@ export function fetchSupplierStaticData() {
 }
 
 export function fetchEntOverviewData(params) {
-    // return http.post(RestApiUrl.entList, params);
-    return new Promise((resolve, reject) => {
+    return http.post(restUrl, {requestType: RequestType.entList, ...params});
+/*    return new Promise((resolve, reject) => {
         setTimeout(()=> resolve({
             return_code: 0,
             result: [
@@ -324,12 +324,12 @@ export function fetchEntOverviewData(params) {
                 }
             ]
         }), 1500);
-    })
+    })*/
 }
 
 export function fetchEntCompareData(params) {
-    // return http.post(RestApiUrl.entCompareData, params);
-    return new Promise((resolve, reject) => {
+    return http.post(restUrl, {requestType: RequestType.entCompare, ...params});
+/*    return new Promise((resolve, reject) => {
         setTimeout(() => resolve({
             return_code: 0,
             result: {
@@ -343,5 +343,5 @@ export function fetchEntCompareData(params) {
                 finishedPiCountStrList: ['99', '99', '98', '103']
             }
         }), 1000);
-    })
+    })*/
 }

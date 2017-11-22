@@ -35,23 +35,24 @@ class EntCompareView extends Component{
     }
 
     calculateWith =(length) => {
-        return (100/length).toFixed(2) + '%';
+        return (82/(length -1)).toFixed(2) + '%';
     };
     renderTableLine = (data) => {
         const width = this.calculateWith(data.length);
-        const containerStyle = {display: 'flex', flexDirection: 'row', height: '35px', borderBottom: '1px solid #3a9ee4',paddingRight: '6px'};
+        const containerStyle = {display: 'flex', flexDirection: 'row', height: '40px', borderBottom: '1px solid #3a9ee4',paddingRight: '2px'};
         return <div style={containerStyle}>
                 {
                     data.map((item, key) => {
                         const style = {
                             flexGrow: 0,
                             flexShrink: (key ? 0 : 1),      //空间补足，标题缩小，其他
-                            width: width,
-                            paddingLeft: (key ? null : '6px'),
+                            width: (key ? width : '18%'),
+                            paddingLeft: (key ? null : '2px'),
                             textAlign: (key ? 'right' : 'left'),
                             fontSize: '12px',
+                            lineHeight: '40px'
                         }
-                        return <p style={style} key={key}>{item}</p>
+                        return <p style={style} key={key} className="no-margin-p">{item}</p>
                     })
                 }
             </div>
@@ -82,10 +83,12 @@ class EntCompareView extends Component{
                     <div style={lineStyle}>
                         {
                             entList.map((entName) => {
-                                return <div key={entName} style={{width: '50%', paddingBottom: '15px'}}>
-                                    <Tag className="ent-tag" closable
-                                         onClose={() => this.onEntCanceled(entName)}>{entName}</Tag>
-                                </div>
+                                if (entName !== '' && entName !== '--') {
+                                    return <div key={entName} style={{width: '50%', paddingBottom: '15px'}}>
+                                        <Tag className="ent-tag" closable
+                                             onClose={() => this.onEntCanceled(entName)}>{entName}</Tag>
+                                    </div>
+                                }
                             })
                         }
                     </div>
@@ -95,7 +98,17 @@ class EntCompareView extends Component{
     };
 
     componentWillMount() {
-        this.props.loadData();
+        this.props.loadData({
+            loginName: 'admin',
+            password: '123',
+            filterCondition:{
+                cateId: "1",
+                location: "22",
+                pbBeginDate: "2017-05",
+                pbEndDate: "2017-06"
+            },
+            selectedEntList: this.props.storeData.entCompareList
+        });
     }
     render () {
         return (

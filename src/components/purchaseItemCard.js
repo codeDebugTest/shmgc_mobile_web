@@ -49,7 +49,7 @@ export default class PurchaseItemCard extends React.Component {
             <div className="item-card">
                 <div style={{width: '17%'}}>
                     <img src={placeholderImg} style={itemIconStyle}/>
-                    <p style={{fontSize:'12px', ...this.getTitleColor(item.piType)}} className="no-margin-p">{item.piType}</p>
+                    <p style={{fontSize:'12px', marginTop:'5px', ...this.getTitleColor(item.piType)}} className="no-margin-p">{item.piType}</p>
                 </div>
                 <div className="body">
                     <div className="content">
