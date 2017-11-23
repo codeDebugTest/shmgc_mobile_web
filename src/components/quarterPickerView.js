@@ -36,10 +36,10 @@ export default class QuarterPickerView extends React.Component {
             const tagStyle ={margin: '5px'};
             return (<DropDownView onCancel={this.onViewCanceled} onOk={this.onViewConfirmed} top={this.props.marginTop}>
                 <Flex wrap="wrap">
-                    <Tag style={tagStyle} selected={this.state.quarter === 'one'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'one')}>第一季度</Tag>
-                    <Tag style={tagStyle} selected={this.state.quarter === 'two'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'two')}>第二季度</Tag>
-                    <Tag style={tagStyle} selected={this.state.quarter === 'three'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'three')}>第三季度</Tag>
-                    <Tag style={tagStyle} selected={this.state.quarter === 'four'} onChange={(selected)=>this.onQuarterSelectedChange(selected, 'four')}>第四季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 1} onChange={(selected)=>this.onQuarterSelectedChange(selected, 1)}>第一季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 2} onChange={(selected)=>this.onQuarterSelectedChange(selected, 2)}>第二季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 3} onChange={(selected)=>this.onQuarterSelectedChange(selected, 3)}>第三季度</Tag>
+                    <Tag style={tagStyle} selected={this.state.quarter === 4} onChange={(selected)=>this.onQuarterSelectedChange(selected, 4)}>第四季度</Tag>
                 </Flex>
             </DropDownView>)
         } else {

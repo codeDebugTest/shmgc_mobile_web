@@ -8,15 +8,15 @@ import CutoffTimePickerView from './cutoffTimePickerView'
 
 const cutoffTimes =[
     [
-        {label: '一月', value:'01'},
-        {label: '二月', value:'02'},
-        {label: '三月', value:'03'},
-        {label: '四月', value:'04'},
-        {label: '五月', value:'05'},
-        {label: '六月', value:'06'},
-        {label: '七月', value:'07'},
-        {label: '八月', value:'08'},
-        {label: '九月', value:'09'},
+        {label: '一月', value:'1'},
+        {label: '二月', value:'2'},
+        {label: '三月', value:'3'},
+        {label: '四月', value:'4'},
+        {label: '五月', value:'5'},
+        {label: '六月', value:'6'},
+        {label: '七月', value:'7'},
+        {label: '八月', value:'8'},
+        {label: '九月', value:'9'},
         {label: '十月', value:'10'},
         {label: '十一月', value:'11'},
         {label: '十二月', value:'12'},
@@ -25,15 +25,15 @@ const cutoffTimes =[
 const otherTime =[
     [{label: '2017', value: '2017'}],
     [
-        {label: '1月', value:'01'},
-        {label: '2月', value:'02'},
-        {label: '3月', value:'03'},
-        {label: '4月', value:'04'},
-        {label: '5月', value:'05'},
-        {label: '6月', value:'06'},
-        {label: '7月', value:'07'},
-        {label: '8月', value:'08'},
-        {label: '9月', value:'09'},
+        {label: '1月', value:'1'},
+        {label: '2月', value:'2'},
+        {label: '3月', value:'3'},
+        {label: '4月', value:'4'},
+        {label: '5月', value:'5'},
+        {label: '6月', value:'6'},
+        {label: '7月', value:'7'},
+        {label: '8月', value:'8'},
+        {label: '9月', value:'9'},
         {label: '10月', value:'10'},
         {label: '11月', value:'11'},
         {label: '12月', value:'12'},
@@ -44,17 +44,24 @@ export default class  TimeLocationPicker extends React.Component {
     constructor(props) {
         super(props);
         this.state ={};
-        this.picker = {
-            cutoffTime: '10',
-            otherTime: null,
-            quarter: null,
-            location: null
-        };
+        this.picker = this.initPicker();
 
         this.onCutoffViewConfirm = this.onCutoffViewConfirm.bind(this);
         this.onQuarterViewConfirm = this.onQuarterViewConfirm.bind(this);
         this.onLocationViewConfirm = this.onLocationViewConfirm.bind(this);
         this.onOtherTimeViewConfirm = this.onOtherTimeViewConfirm.bind(this);
+    }
+    initPicker = () => {
+        if(this.props.pickerCondition) {
+            return {...this.props.pickerCondition};
+        } else {
+            return {
+                cutoffTime: '10',
+                otherTime: null,
+                quarter: null,
+                location: null,
+            };
+        }
     }
     showMenu = (menuName) => {
         const newState = {
@@ -72,9 +79,12 @@ export default class  TimeLocationPicker extends React.Component {
     }
     onQuarterViewConfirm =(value) => {
         this.picker.quarter = value;
+        this.props.confirmCallback(this.picker);
     }
+
     onLocationViewConfirm = (value) => {
         this.picker.location = value;
+        this.props.confirmCallback(this.picker);
     };
 
     onOtherTimeViewConfirm = (value) => {

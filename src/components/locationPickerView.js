@@ -13,9 +13,9 @@ export default class LocationPickerView extends React.Component {
 
     onPickedChanged = (selected, value) => {
         if(selected) {
-            this.setState({pickedEnt: value})
+            this.setState({pickedLocation: value})
         } else {
-            this.setState({pickedEnt: null})
+            this.setState({pickedLocation: null})
         }
     };
 
@@ -26,13 +26,13 @@ export default class LocationPickerView extends React.Component {
 
     onViewConfirmed = () => {
         this.onViewCanceled();
-        this.props.onViewConfirmed(this.state.pickedEnt);
+        this.props.onViewConfirmed(this.state.pickedLocation);
     };
 
     renderView =() => {
         if(this.state.showView) {
             const tagStyle ={margin: '5px'};
-            const pickedLocation = this.state.pickedEnt;
+            const pickedLocation = this.state.pickedLocation;
             return (
                 <DropDownView onCancel={this.onViewCanceled} onOk={this.onViewConfirmed} top={this.props.marginTop}>
                     <Flex wrap="wrap">

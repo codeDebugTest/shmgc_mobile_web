@@ -20,6 +20,13 @@ class StatisticView extends React.Component{
         this.btnItemList = this.getBtnItemList();
         this.filterLocations = getFilterLoactions(this.props.commonData);
         this.onGridClick = this.onGridClick.bind(this);
+        this.loadStaticData = this.loadStaticData.bind(this);
+        this.pickerCondition = {
+            cutoffTime: '10',
+            otherTime: null,
+            quarter: null,
+            location: null,
+        };
     }
 
     getBtnItemList = () => {
@@ -60,9 +67,21 @@ class StatisticView extends React.Component{
         return null;
     }
 
+    loadStaticData = (pickerCondition) => {
+        this.pickerCondition = {...pickerCondition};
+        this.props.loadData({
+            loginName: 'zhougang',
+            password: '123456',
+            filterCondition: {
+                location: this.pickerCondition.location && this.pickerCondition.location.id
+            }
+        });
+    }
+
     componentWillMount() {
         this.props.loadData({loginName: 'zhougang', password: '123456'});
     }
+
     render () {
         return (
             <div>
@@ -80,7 +99,7 @@ class StatisticView extends React.Component{
                     />
 
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="222px" locations={this.filterLocations}/>
+                    <TimeLocationPicker marginTop="222px" locations={this.filterLocations} confirmCallback={this.loadStaticData} pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
 
                     <p className="half-margin-p">截止十月数据统计总览</p>

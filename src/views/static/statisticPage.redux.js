@@ -27,11 +27,11 @@ export function doLoadingDataAction(params) {
 export function statisticReducer(state={}, action) {
     switch (action.type) {
         case FETCH_STATIC_OVERVIEW_DATA:
-            return Object.assign({}, state, {loading: true});
+            return Object.assign({}, state, {loading: true,  loadingSuccess:false});
         case FETCH_STATIC_OVERVIEW_DATA_SUCCESS:
             return Object.assign({}, state, {loading: false, loadingSuccess:true, ...action.response});
         case FETCH_STATIC_OVERVIEW_DATA_FAILED:
-            return Object.assign({}, state, {loading: false, error: action.error});
+            return Object.assign({}, state, {loading: false, loadingSuccess:false, error: action.error});
         default:
             return state
     }
