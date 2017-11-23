@@ -11,25 +11,40 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
+import {getThreeEntForBtn, getLocationByLength, getThreeCateForBtn} from '../../utils/fiterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
     constructor(props) {
         super(props);
-        this.btnItemList =[
-            {name: '城建物资', icon: placeholderImg, type: 'ent'},
-            {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
-            {name: '住总住博', icon: placeholderImg, type: 'ent'},
-            {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
-
-            {name: '混凝土', icon: placeholderImg, type: 'cate'},
-            {name: '水泥', icon: placeholderImg, type: 'cate'},
-            {name: '钢材', icon: placeholderImg, type: 'cate'},
-            {name: '全部', icon: '', type: 'all'},
-        ];
+        this.btnItemList = this.getBtnItemList();
         this.onGridClick = this.onGridClick.bind(this);
     }
 
+    getBtnItemList = () => {
+        const commonData = this.props.commonData;
+        if (commonData && commonData.subEnts && commonData.statCategories) {
+            const ents = getThreeEntForBtn(commonData.subEnts);
+            ents.push({name: '上海砼', icon: placeholderImg, type: 'ent_cate'});
+            const cates = getThreeCateForBtn(commonData.statCategories);
+            cates.push({name: '全部', icon: placeholderImg, type: 'all'});
+
+            return ents.concat(cates);
+        } else {
+            //for test
+            return [
+                {name: '城建物资', icon: placeholderImg, type: 'ent'},
+                {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
+                {name: '住总住博', icon: placeholderImg, type: 'ent'},
+                {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
+
+                {name: '混凝土', icon: placeholderImg, type: 'cate'},
+                {name: '水泥', icon: placeholderImg, type: 'cate'},
+                {name: '钢材', icon: placeholderImg, type: 'cate'},
+                {name: '全部', icon: '', type: 'all'},
+            ];
+        }
+    }
     onGridClick = (item, index) =>{
         if(item.type === 'ent') {
             this.props.initEntStatic(item);
@@ -88,7 +103,8 @@ class StatisticView extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-        storeData: state.statistic
+        storeData: state.statistic,
+        commonData: state.login
     }
 };
 const mapDispatchToProps = (dispatch) => {
