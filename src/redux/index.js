@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import {entComparePageReducer} from '../views/ent/entComparePage.redux'
+import {loginReducer} from '../views/login.redux'
 import {entPageReducer} from '../views/ent/entPage.redux'
 import {homePageReducer} from '../views/home/homePage.redux'
 import {homeItemReducer} from '../views/home/homeItem.redux'
@@ -14,6 +15,7 @@ import {appRouterReducer} from '../AppRedux'
 
 const appReducer = combineReducers({
     appRouter: appRouterReducer,
+    login: loginReducer,
     entPage: entPageReducer,
     entComparePage: entComparePageReducer,
     homePage: homePageReducer,

@@ -17,7 +17,7 @@ export function doLoadingDataAction(params) {
                 } else {
                     dispatch({
                         type: FETCH_ENT_OVERVIEW_DATA_FAILED,
-                        error:''
+                        error: response.return_message
                     });
                 }
             }, ()=> {

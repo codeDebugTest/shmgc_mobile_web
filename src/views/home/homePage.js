@@ -9,6 +9,7 @@ import BottomTabBar from '../../components/bottomTabBar'
 import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
 import {ChangeRoute} from '../../utils/router'
 import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
+import {doLoginAction} from '../login.redux'
 import  './homePage.css'
 
 class Home extends React.Component{
@@ -68,7 +69,8 @@ class Home extends React.Component{
 
     componentWillMount() {
         //todo get loginName from login store
-        this.props.loadData({loginName: 'admin', password: '123'});
+        this.props.userLogin({loginName: 'zhougang', password: '123456'});
+        this.props.loadData({loginName: 'zhougang', password: '123456'});
     }
 
     componentDidMount() {
@@ -139,6 +141,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         initHomeItemPage: (params) => {
             dispatch({type: INIT_HOME_ITEM_PAGE, itemTypeName: params})
+        },
+        userLogin: (params) => {
+            dispatch(doLoginAction(params));
         }
     }
 };

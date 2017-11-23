@@ -16,7 +16,7 @@ export function doLoadingDataAction(params) {
                         response: response.result
                     })
                 } else {
-                    dispatch({type: FETCH_HOME_PURCHASE_ITEMS_FAILED, error: ''});
+                    dispatch({type: FETCH_HOME_PURCHASE_ITEMS_FAILED, error: response.return_message});
                 }
             }, ()=> {
                 dispatch({type: FETCH_HOME_PURCHASE_ITEMS_FAILED, error: ''});

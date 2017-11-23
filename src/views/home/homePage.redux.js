@@ -16,7 +16,7 @@ export function doLoadingAction(params) {
                         response: response.result && response.result[0]
                     });
                 } else {
-                    dispatch({type: FETCH_HOME_PAGE_DATA_FAILED});
+                    dispatch({type: FETCH_HOME_PAGE_DATA_FAILED, error: response.return_message});
                 }
             }, () => {
                 dispatch({type: FETCH_HOME_PAGE_DATA_FAILED});

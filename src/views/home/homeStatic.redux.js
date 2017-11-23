@@ -14,7 +14,7 @@ export function doLoadingDataAction(params) {
                         response: response.result && response.result[0]
                     })
                 } else {
-                    dispatch({type: FETCH_HOME_STATIC_DATA_FAILED, error: ''});
+                    dispatch({type: FETCH_HOME_STATIC_DATA_FAILED, error: response.return_message});
                 }
             }, ()=> {
                 dispatch({type: FETCH_HOME_STATIC_DATA_FAILED, error: ''});

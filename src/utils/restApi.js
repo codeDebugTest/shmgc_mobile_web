@@ -12,6 +12,10 @@ const RequestType = {
 
 const restUrl = SERVER_HOST + NAME_SPACE;
 
+export function loginRequest(params) {
+    return http.post(restUrl, {requestType: RequestType.userLogin, ...params});
+}
+
 export function fetchHomePageData(params) {
     return http.post(restUrl, {requestType: RequestType.homeOverView, ...params});
     /*return new Promise((resolve, reject) =>{

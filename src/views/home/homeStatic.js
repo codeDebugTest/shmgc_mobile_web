@@ -19,10 +19,7 @@ class HomeStatic extends React.Component {
         return null;
     }
     componentWillMount() {
-        this.props.loadPageData({
-            loginName: 'admin',
-            password: '123',
-        });
+        this.props.loadPageData({loginName: 'zhougang', password: '123456'});
     }
     render() {
         return (
