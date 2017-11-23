@@ -7,13 +7,20 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './entStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getFilterCondition} from '../../utils/fiterConditionConfig'
 
 class EntStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.ent = this.props.storeData.ent;
         this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.pickerCondition = {
+            cutoffTime: '10',
+            otherTime: null,
+            quarter: null,
+            location: null,
+            timeByAttr: 'cutoffTime'
+        };
     }
 
     renderStaticOverview = () => {
@@ -22,6 +29,17 @@ class EntStaticPage extends React.Component {
         }
         return null;
     }
+
+    loadStaticData = (pickerCondition) => {
+        this.pickerCondition = {...pickerCondition};
+        this.props.loadData({
+            loginName: 'zhougang',
+            password: '123456',
+            filterCondition: {
+                entId: this.ent.entId,
+                ...getFilterCondition(this.pickerCondition)}
+        });
+    };
 
     componentWillMount() {
         this.props.loadData({
@@ -41,7 +59,10 @@ class EntStaticPage extends React.Component {
                     <WhiteSpace/>
 
                     <CateEntPicker marginTop="41px"/>
-                    <TimeLocationPicker marginTop="75px" locations={this.filterLocations}/>
+                    <TimeLocationPicker marginTop="75px"
+                                        locations={this.filterLocations}
+                                        confirmCallback={this.loadStaticData}
+                                        pickerCondition={this.pickerCondition}/>
 
                     <WhiteSpace/>
 

@@ -7,13 +7,20 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getFilterCondition} from '../../utils/fiterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.cate = this.props.storeData.cate;
         this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.pickerCondition = {
+            cutoffTime: '10',
+            otherTime: null,
+            quarter: null,
+            location: null,
+            timeByAttr: 'cutoffTime'
+        };
     }
 
     renderStaticOverview = () => {
@@ -22,6 +29,17 @@ class CateStaticPage extends React.Component {
         }
         return null;
     }
+
+    loadStaticData = (pickerCondition) => {
+        this.pickerCondition = {...pickerCondition};
+        this.props.loadData({
+            loginName: 'zhougang',
+            password: '123456',
+            filterCondition: {
+                cateId: this.cate.cateId,
+                ...getFilterCondition(this.pickerCondition)}
+        });
+    };
 
     componentWillMount() {
         this.props.loadData({
@@ -39,7 +57,10 @@ class CateStaticPage extends React.Component {
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"/>
-                    <TimeLocationPicker marginTop="77px" locations={this.filterLocations}/>
+                    <TimeLocationPicker marginTop="77px"
+                                        locations={this.filterLocations}
+                                        confirmCallback={this.loadStaticData}
+                                        pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
                     {this.renderStaticOverview()}
                 </div>
