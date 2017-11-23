@@ -7,10 +7,7 @@ export default class CateEntPicker extends React.Component {
     constructor(props) {
         super(props)
         this.state ={};
-        this.picker = {
-            ent: null,
-            cate: null
-        }
+        this.picker = this.props.cateEntCondition;
         this.showMenu = this.showMenu.bind(this)
     }
     showMenu = (menuName) => {
@@ -25,10 +22,12 @@ export default class CateEntPicker extends React.Component {
 
     onEntViewConfirmed = (ent)=> {
         this.picker.ent = ent;
+        this.setState({update: !this.state.update});
         this.props.confirmCallback(this.picker);
     }
     onCateViewConfirmed = (cate)=> {
         this.picker.cate = cate;
+        this.setState({update: !this.state.update});
         this.props.confirmCallback(this.picker);
     }
 
@@ -54,12 +53,20 @@ export default class CateEntPicker extends React.Component {
         return null
     }
 
+    getPickedCate = ()=> {
+        if (this.picker.cate) {
+            return this.picker.cate[0].split('-')[1] + '-' + this.picker.cate[1].split('-')[1];
+        }
+        return null
+    }
+
     render() {
+        const entName = this.picker.ent && this.picker.ent.shortName;
         return (
             <div>
                 <SegmentedTabs style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
-                    <div onClick={()=>this.showMenu('showCateView')}>材料</div>
-                    <div onClick={()=>this.showMenu('showEntView')}>公司</div>
+                    <div onClick={()=>this.showMenu('showCateView')}>{this.getPickedCate() || '材料'}</div>
+                    <div onClick={()=>this.showMenu('showEntView')}>{entName || '公司'}</div>
                 </SegmentedTabs>
 
                 {this.renderCateView()}
