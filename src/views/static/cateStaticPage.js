@@ -4,7 +4,8 @@ import {WhiteSpace} from 'antd-mobile'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import CateEntPicker from '../../components/cateEntPicker'
 import TopNavBar from "../../components/topNavBar";
-import {doLoadingDataAction} from './entStaticPage.redux'
+import StaticView from '../../components/staticView'
+import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
 import { getFilterLoactions} from '../../utils/fiterConditionConfig'
 
@@ -12,9 +13,25 @@ class CateStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.cate = this.props.storeData.cate;
-        this.filterLocations = getFilterLoactions();
+        this.filterLocations = getFilterLoactions(this.props.commonData);
     }
 
+    renderStaticOverview = () => {
+        if (this.props.storeData.loadingSuccess) {
+            return <StaticView staticData={this.props.storeData}/>
+        }
+        return null;
+    }
+
+    componentWillMount() {
+        this.props.loadData({
+            loginName: 'zhougang',
+            password: '123456',
+            filterCondition: {
+                cateId: this.cate.cateId,
+            }
+        })
+    }
     render() {
         return (
             <div>
@@ -23,7 +40,8 @@ class CateStaticPage extends React.Component {
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"/>
                     <TimeLocationPicker marginTop="77px" locations={this.filterLocations}/>
-
+                    <WhiteSpace/>
+                    {this.renderStaticOverview()}
                 </div>
             </div>
         )
@@ -31,7 +49,8 @@ class CateStaticPage extends React.Component {
 }
 const mapStateToProps = (state) =>{
     return {
-        storeData: state.cateStatic
+        storeData: state.cateStatic,
+        commonData: state.login
     }
 };
 const mapDispatchToProps = (dispatch) => {

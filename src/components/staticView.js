@@ -10,6 +10,7 @@ const chartIdList = [
     {id: 'cateAverageChart', comment: '材料采购数量，采购均价'},
     {id: 'timeChart',   comment: '时间项目数，采购金额'},
 ];
+
 export default class StaticView extends React.Component {
     constructor(props) {
         super(props);
@@ -33,12 +34,16 @@ export default class StaticView extends React.Component {
         }
     };
 
-    renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight) {
+    formatterFactory = (unit) => {
+        return (val) => {
+            return (val/unit.value).toFixed(1) + unit.name;
+        }
+    }
+
+    renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight, unit) {
         const firstItem =chartData[0];
-        if ( firstItem[fieldLeftY] && firstItem[filedRightY]) {
-            const formatter = (val) => {
-                return (val/100000000).toFixed(1) + '亿元'
-            };
+        if ( firstItem[fieldLeftY] >= 0 && firstItem[filedRightY] >= 0) {
+            const formatter = this.formatterFactory(unit || {value: 100000000, name: '亿元'});
             const chartCfg = new G2Config(this[chartId], chartData);
             chartCfg.setChartScale(fieldLeftY, aliasLeft);
             chartCfg.setChartScale(filedRightY, aliasRight);
@@ -55,25 +60,25 @@ export default class StaticView extends React.Component {
     }
 
     rendEntChart(chartData, chartVisible) {
-        if (chartData && chartData.length > 0) {
+        if (chartData && chartData.length > 1) {
             chartVisible.entCountChart = this.renderChart('entCountChart', chartData, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
-            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData,'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
+            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData,'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价', {value: 10000, name: '万'});
         }else {
             chartVisible.entAverageChart = false;
             chartVisible.entCountChart = false;
         }
     }
     rendCateChart(chartData, chartVisible) {
-        if (chartData && chartData.length > 0) {
+        if (chartData && chartData.length > 1) {
             chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
-            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价');
+            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价',{value: 10000, name: '万'});
         } else {
             chartVisible.cateCountChart = false;
             chartVisible.cateAverageChart = false;
         }
     }
     rendTimeChart(chartData, chartVisible) {
-        if (chartData && chartData.length > 0) {
+        if (chartData && chartData.length > 1) {
             chartVisible.timeChart = this.renderChart('timeChart', chartData, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量');
         } else {
             chartVisible.timeChart = false;
