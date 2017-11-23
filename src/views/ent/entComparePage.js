@@ -136,6 +136,7 @@ class EntCompareView extends Component{
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
+                                   hideEntTab={true}
                                    categories={this.props.commonData.filterCategories}
                                    ents={this.props.commonData.subEnts}
                                    cateEntCondition ={this.cateEntCondition}
