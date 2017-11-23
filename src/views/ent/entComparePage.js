@@ -101,14 +101,8 @@ class EntCompareView extends Component{
 
     componentWillMount() {
         this.props.loadData({
-            loginName: 'admin',
-            password: '123',
-            filterCondition:{
-                cateId: "1",
-                location: "22",
-                pbBeginDate: "2017-05",
-                pbEndDate: "2017-06"
-            },
+            loginName: 'zhougang',
+            password: '123456',
             selectedEntList: this.props.storeData.entCompareList
         });
     }
