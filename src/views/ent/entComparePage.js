@@ -112,7 +112,7 @@ class EntCompareView extends Component{
                 <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <CateEntPicker marginTop="41px"/>
+                    <CateEntPicker marginTop="41px" categories={this.props.commonData.filterCategories}/>
                     <TimeLocationPicker marginTop="75px" locations={this.filterLocations}/>
 
                     {this.renderEntPanel()}
@@ -125,7 +125,8 @@ class EntCompareView extends Component{
 
 const mapStateToProps = (state) =>{
     return {
-        storeData: state.entComparePage
+        storeData: state.entComparePage,
+        commonData: state.login
     }
 };
 const mapDispatchToProps = (dispatch) => {

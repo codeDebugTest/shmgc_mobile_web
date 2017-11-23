@@ -46,7 +46,7 @@ class EntStaticPage extends React.Component {
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
 
-                    <CateEntPicker marginTop="41px"/>
+                    <CateEntPicker marginTop="41px" categories={this.props.commonData.filterCategories}/>
                     <TimeLocationPicker marginTop="75px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
