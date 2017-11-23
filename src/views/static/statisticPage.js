@@ -26,6 +26,7 @@ class StatisticView extends React.Component{
             otherTime: null,
             quarter: null,
             location: null,
+            timeByAttr: 'cutoffTime'
         };
     }
 
@@ -67,16 +68,44 @@ class StatisticView extends React.Component{
         return null;
     }
 
+    getFilterCondition = () => {
+        const condition = {location: this.pickerCondition.location && this.pickerCondition.location.id};
+        if (this.pickerCondition.timeByAttr === 'quarter') {
+            const quarter = this.pickerCondition.quarter;
+            if (quarter) {
+                condition.pbBeginDate = '2017-' + ((quarter -1) * 3 + 1);
+                condition.pbEndDate = '2017-' + ((quarter -1) * 3 + 3);
+                return condition;
+            }
+        } else if(this.pickerCondition.timeByAttr === 'otherTime') {
+            const otherTime = this.pickerCondition.otherTime;
+            if (otherTime) {
+                condition.pbBeginDate = otherTime.startTime;
+                condition.pbEndDate = otherTime.endTime;
+                return condition;
+            }
+        } else if (this.pickerCondition.timeByAttr === 'cutoffTime') {
+            const cutoffTime = this.pickerCondition.cutoffTime;
+            if (cutoffTime) {
+                condition.pbBeginDate = '2017-1';
+                condition.pbEndDate = '2017-' + cutoffTime;
+                return condition;
+            }
+        }
+
+
+        condition.pbBeginDate = null;
+        condition.pbEndDate = null;
+        return condition;
+    }
     loadStaticData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            filterCondition: {
-                location: this.pickerCondition.location && this.pickerCondition.location.id
-            }
+            filterCondition: this.getFilterCondition()
         });
-    }
+    };
 
     componentWillMount() {
         this.props.loadData({loginName: 'zhougang', password: '123456'});

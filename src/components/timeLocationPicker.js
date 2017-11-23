@@ -60,6 +60,7 @@ export default class  TimeLocationPicker extends React.Component {
                 otherTime: null,
                 quarter: null,
                 location: null,
+                timeByAttr: 'cutoffTime'
             };
         }
     }
@@ -76,9 +77,12 @@ export default class  TimeLocationPicker extends React.Component {
 
     onCutoffViewConfirm = (value) => {
         this.picker.cutoffTime = value;
+        this.picker.timeByAttr = 'cutoffTime';
+        this.props.confirmCallback(this.picker);
     }
     onQuarterViewConfirm =(value) => {
         this.picker.quarter = value;
+        this.picker.timeByAttr = 'quarter';
         this.props.confirmCallback(this.picker);
     }
 
@@ -92,6 +96,8 @@ export default class  TimeLocationPicker extends React.Component {
             Modal.alert('', '结束时间必须大于起始时间！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
         } else {
             this.picker.otherTime =value;
+            this.picker.timeByAttr = 'otherTime';
+            this.props.confirmCallback(this.picker);
         }
     }
 
