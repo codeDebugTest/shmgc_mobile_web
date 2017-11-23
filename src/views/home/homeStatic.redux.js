@@ -11,7 +11,7 @@ export function doLoadingDataAction(params) {
                 if(response.return_code == 0) {
                     dispatch({
                         type: FETCH_HOME_STATIC_DATA_SUCCESS,
-                        response: response.result
+                        response: response.result && response.result[0]
                     })
                 } else {
                     dispatch({type: FETCH_HOME_STATIC_DATA_FAILED, error: ''});
