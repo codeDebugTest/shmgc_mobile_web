@@ -21,8 +21,7 @@ class CateStaticPage extends React.Component {
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"/>
-                    <WhiteSpace/>
-                    <TimeLocationPicker marginTop="82px"/>
+                    <TimeLocationPicker marginTop="77px"/>
 
                 </div>
             </div>
