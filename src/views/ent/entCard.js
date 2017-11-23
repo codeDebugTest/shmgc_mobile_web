@@ -6,12 +6,14 @@ export default class EntCard extends React.Component{
     constructor(props) {
         super(props)
         this.ent = this.props.ent;
-        this.onClick = this.onClick.bind(this);
     }
 
-    onClick =(checkBoxChecked) => {
-        this.props.onEntCardClick(this.ent.entId, checkBoxChecked);
+    onCheckBoxClick =(checkBoxChecked) => {
+        this.props.onSelectStateClick(this.ent.entId, checkBoxChecked);
     };
+    onCardClick = ()=> {
+        this.props.onNormalStateClick(this.props.ent);
+    }
 
     getEntProjectStatic = () => {
         if (!this.ent.projectStat || this.ent.projectStat.length === 0) {
@@ -48,7 +50,7 @@ export default class EntCard extends React.Component{
         if (currentSate === 'select') {
             return <div style={{flexGrow: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
                 <CheckboxItem key={entId} style={{paddingLeft: 0}} className="no-list-line"
-                              onChange={e => {e.stopPropagation(); this.onClick(e.target.checked)} }/>
+                              onChange={e => {e.stopPropagation(); this.onCheckBoxClick(e.target.checked)} }/>
             </div>
         }
         return null;
@@ -72,7 +74,7 @@ export default class EntCard extends React.Component{
                 <WhiteSpace/>
                 <WingBlank>
                     <div style={{border:'1px solid #3a9ee4'}}>
-                        <Card onClick={isNormal?()=>this.onClick():null} style={{paddingBottom: 0}}>
+                        <Card onClick={isNormal?()=>this.onCardClick():null} style={{paddingBottom: 0}}>
                             {this.renderCardHeader()}
                             {this.renderCardBody()}
                         </Card>

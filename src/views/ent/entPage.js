@@ -67,7 +67,10 @@ class EntView extends React.Component{
         if (entList && entList.length) {
             return (
                 entList.map((ent, key) => {
-                  return <EntCard ent={ent} key={key} onEntCardClick={this.onEntCardClick} currentState={this.state.currentState}/>
+                  return <EntCard ent={ent} key={key}
+                                  onSelectStateClick={this.onEntCardClick}
+                                  onNormalStateClick={this.onGridClick}
+                                  currentState={this.state.currentState}/>
                 })
             )
         }
