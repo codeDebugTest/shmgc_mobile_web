@@ -6,7 +6,7 @@ import TimeLocationPicker from '../../components/timeLocationPicker'
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './homeStatic.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getRequestTimeLocationCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
 
 class HomeStatic extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class HomeStatic extends React.Component {
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            filterCondition: getFilterCondition(this.pickerCondition)
+            filterCondition: getRequestTimeLocationCondition(this.pickerCondition)
         });
     };
 

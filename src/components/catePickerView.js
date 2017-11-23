@@ -14,6 +14,7 @@ export default class  CatePickerView extends React.Component {
 
     onSelectChanged = (cate) => {
         this.selectedCate = cate;
+        console.log(cate);
     }
     onViewCanceled = () => {
         this.setState({showView: false});

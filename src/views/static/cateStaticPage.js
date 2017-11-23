@@ -7,13 +7,17 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getRequestTimeLocationCondition, getDefaultTimeLocationCondition, getRequestCateEntCondition} from '../../utils/fiterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.cate = this.props.storeData.cate;
         this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.cateEntCondition ={};
+        this.timeLocationCondition = getDefaultTimeLocationCondition();
+        this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
+        this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }
 
     renderStaticOverview = () => {
@@ -23,20 +27,35 @@ class CateStaticPage extends React.Component {
         return null;
     }
 
-    loadStaticData = (pickerCondition) => {
-        this.pickerCondition = {...pickerCondition};
+    loadStaticData = () => {
+        const filterCondition = {
+            ...getRequestTimeLocationCondition(this.timeLocationCondition),
+            ...getRequestCateEntCondition(this.cateEntCondition)
+        };
+        if (filterCondition.cateId) {
+            const cateArray = this.cateEntCondition.cate;
+            this.cate.name = cateArray[0].split('-')[1] + '-' + cateArray[1].split('-')[1];
+        } else {
+            filterCondition.cateId = this.cate.cateId;
+        }
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            filterCondition: {
-                cateId: this.cate.cateId,
-                ...getFilterCondition(this.pickerCondition)
-            }
+            filterCondition: { ...filterCondition}
         });
     };
 
+    onCateEntPickedCallback =(condition) => {
+        this.cateEntCondition = condition;
+        this.loadStaticData();
+    };
+    onTimeLocationPickedCallback = (condition) => {
+        this.timeLocationCondition = condition;
+        this.loadStaticData();
+    };
+
     componentWillMount() {
-        this.loadStaticData(getDefaultTimeLocationCondition())
+        this.loadStaticData();
     }
     render() {
         return (
@@ -46,12 +65,14 @@ class CateStaticPage extends React.Component {
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
                                    categories={this.props.commonData.filterCategories}
-                                   ents={this.props.commonData.subEnts}/>
+                                   ents={this.props.commonData.subEnts}
+                                   cateEntCondition ={this.cateEntCondition}
+                                   confirmCallback={this.onCateEntPickedCallback}/>
 
                     <TimeLocationPicker marginTop="77px"
                                         locations={this.filterLocations}
-                                        confirmCallback={this.loadStaticData}
-                                        pickerCondition={this.pickerCondition}/>
+                                        confirmCallback={this.onTimeLocationPickedCallback}
+                                        pickerCondition={this.timeLocationCondition}/>
                     <WhiteSpace/>
                     {this.renderStaticOverview()}
                 </div>

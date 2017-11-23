@@ -230,9 +230,9 @@ const testCategories = [
 ];
 
 const copyCateChildren = (children, parentId) => {
-    const result = [{label: '全部', value: parentId}];
+    const result = [{label: '全部', value: parentId + '- '}];
     children.map((cate) => {
-        result.push({label: cate.name, value: cate.statCateId});
+        result.push({label: cate.name, value: cate.statCateId + '-' + cate.name});
     })
     return result;
 };
@@ -242,9 +242,9 @@ export function getFilterCategories (source) {
         const result = [];
         source.statCategories.map((cate) => {
             if (cate.children && cate.children.length > 0) {
-                result.push({label: cate.name, value: cate.statCateId, children: copyCateChildren(cate.children, cate.statCateId)})
+                result.push({label: cate.name, value: cate.statCateId + '-' + cate.name, children: copyCateChildren(cate.children, cate.statCateId)})
             } else {
-                result.push({label: cate.name, value: cate.statCateId, children: [{label: '全部', value: cate.statCateId}]})
+                result.push({label: cate.name, value: cate.statCateId + '-' + cate.name, children: [{label: '全部', value: cate.statCateId + '- '}]})
             }
         })
         return result;
@@ -263,7 +263,7 @@ export function getDefaultTimeLocationCondition () {
     }
 };
 
-export function getFilterCondition(pickerCondition) {
+export function getRequestTimeLocationCondition(pickerCondition, cateEntCondition) {
     const condition = {location: pickerCondition.location && pickerCondition.location.id};
     if (pickerCondition.timeByAttr === 'quarter') {
         const quarter = pickerCondition.quarter;
@@ -288,8 +288,18 @@ export function getFilterCondition(pickerCondition) {
         }
     }
 
-
     condition.pbBeginDate = null;
     condition.pbEndDate = null;
     return condition;
+}
+
+export function getRequestCateEntCondition(condition) {
+    const result = {};
+    if (condition && condition.ent) {
+        result.entId = condition.ent.entId
+    }
+    if (condition && condition.cate) {
+        result.cateId = condition.cate[1]
+    }
+    return result
 }

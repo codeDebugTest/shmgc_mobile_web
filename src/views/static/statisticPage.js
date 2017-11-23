@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
+import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -66,7 +66,7 @@ class StatisticView extends React.Component{
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            filterCondition: getFilterCondition(this.pickerCondition)
+            filterCondition: getRequestTimeLocationCondition(this.pickerCondition)
         });
     };
 

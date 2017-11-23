@@ -25,9 +25,11 @@ export default class CateEntPicker extends React.Component {
 
     onEntViewConfirmed = (ent)=> {
         this.picker.ent = ent;
+        this.props.confirmCallback(this.picker);
     }
     onCateViewConfirmed = (cate)=> {
         this.picker.cate = cate;
+        this.props.confirmCallback(this.picker);
     }
 
     renderEntView = () => {

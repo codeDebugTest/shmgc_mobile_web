@@ -7,7 +7,7 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './entStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getRequestTimeLocationCondition, getDefaultTimeLocationCondition, getRequestCateEntCondition} from '../../utils/fiterConditionConfig'
 
 
 class EntStaticPage extends React.Component {
@@ -15,6 +15,10 @@ class EntStaticPage extends React.Component {
         super(props);
         this.ent = this.props.storeData.ent;
         this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.cateEntCondition ={};
+        this.timeLocationCondition = getDefaultTimeLocationCondition();
+        this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
+        this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }
 
     renderStaticOverview = () => {
@@ -24,19 +28,34 @@ class EntStaticPage extends React.Component {
         return null;
     }
 
-    loadStaticData = (pickerCondition) => {
-        this.pickerCondition = {...pickerCondition};
+    loadStaticData = () => {
+        const filterCondition = {
+            ...getRequestTimeLocationCondition(this.timeLocationCondition),
+            ...getRequestCateEntCondition(this.cateEntCondition)
+        };
+        if(filterCondition.entId) {
+            this.ent.name = this.cateEntCondition.ent.shortName
+        } else {
+            filterCondition.entId = this.ent.entId;
+        }
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            filterCondition: {
-                entId: this.ent.entId,
-                ...getFilterCondition(this.pickerCondition)}
+            filterCondition: {...filterCondition}
         });
     };
 
+    onCateEntPickedCallback =(condition) => {
+        this.cateEntCondition = condition;
+        this.loadStaticData();
+    };
+    onTimeLocationPickedCallback = (condition) => {
+        this.timeLocationCondition = condition;
+        this.loadStaticData();
+    };
+
     componentWillMount() {
-        this.loadStaticData(getDefaultTimeLocationCondition())
+        this.loadStaticData()
     }
 
     render() {
@@ -48,12 +67,14 @@ class EntStaticPage extends React.Component {
 
                     <CateEntPicker marginTop="41px"
                                    categories={this.props.commonData.filterCategories}
-                                   ents={this.props.commonData.subEnts}/>
+                                   ents={this.props.commonData.subEnts}
+                                   cateEntCondition ={this.cateEntCondition}
+                                   confirmCallback={this.onCateEntPickedCallback}/>
 
                     <TimeLocationPicker marginTop="75px"
                                         locations={this.filterLocations}
-                                        confirmCallback={this.loadStaticData}
-                                        pickerCondition={this.pickerCondition}/>
+                                        confirmCallback={this.onTimeLocationPickedCallback}
+                                        pickerCondition={this.timeLocationCondition}/>
 
                     <WhiteSpace/>
 
