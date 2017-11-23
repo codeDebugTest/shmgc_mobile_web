@@ -39,37 +39,7 @@ const otherTime =[
         {label: '12月', value:'12'},
     ]
 ]
-const locations =[
-    {
-        id: '10',
-        value: '上海',
-        type: '1'
-    },{
-        id: '11',
-        value: '南京',
-        type: '1'
-    },{
-        id: '12',
-        value: '苏州',
-        type: '1'
-    },{
-        id: '13',
-        value: '杭州',
-        type: '1'
-    },{
-        id: '14',
-        value: '济南',
-        type: '1'
-    },{
-        id: '15',
-        value: '武汉',
-        type: '1'
-    },{
-        id: '16',
-        value: '厦门',
-        type: '1'
-    }
-]
+
 export default class  TimeLocationPicker extends React.Component {
     constructor(props) {
         super(props);
@@ -140,7 +110,7 @@ export default class  TimeLocationPicker extends React.Component {
     renderLocationView = ()=> {
         if (this.state.showLocationView) {
             return <LocationPickerView marginTop={this.props.marginTop}
-                                       data={locations}
+                                       data={this.props.locations}
                                        value={this.picker.location}
                                        onViewCanceled={()=>this.setState({showLocationView: false})}
                                        onViewConfirmed={this.onLocationViewConfirm}/>

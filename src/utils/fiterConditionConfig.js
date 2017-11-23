@@ -31,6 +31,55 @@ export function getThreeCateForBtn(source) {
     return cates;
 }
 
-export function getLocationByLength(source, length) {
-    return source.slice(0, (length < source.length ? source.length : length));
+export function getFilterLoactions (source) {
+    if (source && source.locations) {
+        return source.locations.slice(0, filterLocationLength);
+    } else {
+        return testFilterLocations;
+    }
 }
+
+export const  filterLocationLength = 12;
+
+export const testFilterBtns = [
+    {name: '城建物资', icon: placeholderImg, type: 'ent'},
+    {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
+    {name: '住总住博', icon: placeholderImg, type: 'ent'},
+    {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
+
+    {name: '混凝土', icon: placeholderImg, type: 'cate'},
+    {name: '水泥', icon: placeholderImg, type: 'cate'},
+    {name: '钢材', icon: placeholderImg, type: 'cate'},
+    {name: '全部', icon: '', type: 'all'},
+]
+export const testFilterLocations =[
+    {
+        id: '10',
+        value: '上海',
+        type: '1'
+    },{
+        id: '11',
+        value: '南京',
+        type: '1'
+    },{
+        id: '12',
+        value: '苏州',
+        type: '1'
+    },{
+        id: '13',
+        value: '杭州',
+        type: '1'
+    },{
+        id: '14',
+        value: '济南',
+        type: '1'
+    },{
+        id: '15',
+        value: '武汉',
+        type: '1'
+    },{
+        id: '16',
+        value: '厦门',
+        type: '1'
+    }
+]

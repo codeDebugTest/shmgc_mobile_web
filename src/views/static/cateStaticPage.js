@@ -6,12 +6,13 @@ import CateEntPicker from '../../components/cateEntPicker'
 import TopNavBar from "../../components/topNavBar";
 import {doLoadingDataAction} from './entStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-
+import { getFilterLoactions} from '../../utils/fiterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.cate = this.props.storeData.cate;
+        this.filterLocations = getFilterLoactions();
     }
 
     render() {
@@ -21,7 +22,7 @@ class CateStaticPage extends React.Component {
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"/>
-                    <TimeLocationPicker marginTop="77px"/>
+                    <TimeLocationPicker marginTop="77px" locations={this.filterLocations}/>
 
                 </div>
             </div>

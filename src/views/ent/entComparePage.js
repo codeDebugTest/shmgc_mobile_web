@@ -7,6 +7,7 @@ import CateEntPicker from '../../components/cateEntPicker'
 import './entComparePage.css'
 import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
+import { getFilterLoactions} from '../../utils/fiterConditionConfig'
 
 class EntCompareView extends Component{
     constructor(props) {
@@ -14,6 +15,7 @@ class EntCompareView extends Component{
         this.state = {
             updateSign: true
         };
+        this.filterLocations = getFilterLoactions();
     }
 
     removeCompareEnt =(arrayIndex) => {
@@ -117,10 +119,9 @@ class EntCompareView extends Component{
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"/>
-                    <TimeLocationPicker marginTop="75px"/>
+                    <TimeLocationPicker marginTop="75px" locations={this.filterLocations}/>
 
                     {this.renderEntPanel()}
-
                     {this.renderTable()}
                 </div>
             </div>

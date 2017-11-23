@@ -11,13 +11,14 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getLocationByLength, getThreeCateForBtn} from '../../utils/fiterConditionConfig'
+import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns} from '../../utils/fiterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
     constructor(props) {
         super(props);
         this.btnItemList = this.getBtnItemList();
+        this.filterLocations = getFilterLoactions(this.props.commonData);
         this.onGridClick = this.onGridClick.bind(this);
     }
 
@@ -32,19 +33,10 @@ class StatisticView extends React.Component{
             return ents.concat(cates);
         } else {
             //for test
-            return [
-                {name: '城建物资', icon: placeholderImg, type: 'ent'},
-                {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
-                {name: '住总住博', icon: placeholderImg, type: 'ent'},
-                {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
-
-                {name: '混凝土', icon: placeholderImg, type: 'cate'},
-                {name: '水泥', icon: placeholderImg, type: 'cate'},
-                {name: '钢材', icon: placeholderImg, type: 'cate'},
-                {name: '全部', icon: '', type: 'all'},
-            ];
+            return testFilterBtns;
         }
     }
+
     onGridClick = (item, index) =>{
         if(item.type === 'ent') {
             this.props.initEntStatic(item);
@@ -88,7 +80,7 @@ class StatisticView extends React.Component{
                     />
 
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="222px"/>
+                    <TimeLocationPicker marginTop="222px" locations={this.filterLocations}/>
                     <WhiteSpace/>
 
                     <p className="half-margin-p">截止十月数据统计总览</p>

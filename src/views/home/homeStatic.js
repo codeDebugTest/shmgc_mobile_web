@@ -6,10 +6,12 @@ import TimeLocationPicker from '../../components/timeLocationPicker'
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './homeStatic.redux'
 import {ChangeRoute} from '../../utils/router'
+import { getFilterLoactions} from '../../utils/fiterConditionConfig'
 
 class HomeStatic extends React.Component {
     constructor(props) {
         super(props);
+        this.filterLocations = getFilterLoactions();
     }
 
     renderStaticOverview = () => {
@@ -27,7 +29,7 @@ class HomeStatic extends React.Component {
                 <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="41px"/>
+                    <TimeLocationPicker marginTop="41px" locations={this.filterLocations}/>
                     <p>截止上月数据统计概览</p>
 
                     {this.renderStaticOverview()}
