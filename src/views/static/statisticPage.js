@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getFilterCondition} from '../../utils/fiterConditionConfig'
+import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -21,13 +21,6 @@ class StatisticView extends React.Component{
         this.filterLocations = getFilterLoactions(this.props.commonData);
         this.onGridClick = this.onGridClick.bind(this);
         this.loadStaticData = this.loadStaticData.bind(this);
-        this.pickerCondition = {
-            cutoffTime: '10',
-            otherTime: null,
-            quarter: null,
-            location: null,
-            timeByAttr: 'cutoffTime'
-        };
     }
 
     getBtnItemList = () => {
@@ -78,7 +71,7 @@ class StatisticView extends React.Component{
     };
 
     componentWillMount() {
-        this.props.loadData({loginName: 'zhougang', password: '123456'});
+        this.loadStaticData(getDefaultTimeLocationCondition());
     }
 
     render () {
@@ -104,7 +97,7 @@ class StatisticView extends React.Component{
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
 
-                    <p className="half-margin-p">截止十月数据统计总览</p>
+                    <p className="half-margin-p">数据统计总览</p>
 
                     {this.renderStaticOverview()}
                 </div>

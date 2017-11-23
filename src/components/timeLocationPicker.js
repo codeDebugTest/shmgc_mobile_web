@@ -148,7 +148,7 @@ export default class  TimeLocationPicker extends React.Component {
 
     getCutoffTabName = () => {
         const index = Number(this.picker.cutoffTime);
-        return '截止' + cutoffTimes[0][index -1].label;
+        return cutoffTimes[0][index -1].label;
     }
     render() {
         const locationValue = this.picker.location && this.picker.location.value;

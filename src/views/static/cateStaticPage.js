@@ -7,20 +7,13 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getFilterCondition} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.cate = this.props.storeData.cate;
         this.filterLocations = getFilterLoactions(this.props.commonData);
-        this.pickerCondition = {
-            cutoffTime: '10',
-            otherTime: null,
-            quarter: null,
-            location: null,
-            timeByAttr: 'cutoffTime'
-        };
     }
 
     renderStaticOverview = () => {
@@ -42,13 +35,7 @@ class CateStaticPage extends React.Component {
     };
 
     componentWillMount() {
-        this.props.loadData({
-            loginName: 'zhougang',
-            password: '123456',
-            filterCondition: {
-                cateId: this.cate.cateId,
-            }
-        })
+        this.loadStaticData(getDefaultTimeLocationCondition())
     }
     render() {
         return (

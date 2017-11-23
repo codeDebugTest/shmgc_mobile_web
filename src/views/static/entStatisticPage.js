@@ -7,20 +7,14 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './entStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getFilterCondition} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getFilterCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
+
 
 class EntStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.ent = this.props.storeData.ent;
         this.filterLocations = getFilterLoactions(this.props.commonData);
-        this.pickerCondition = {
-            cutoffTime: '10',
-            otherTime: null,
-            quarter: null,
-            location: null,
-            timeByAttr: 'cutoffTime'
-        };
     }
 
     renderStaticOverview = () => {
@@ -42,13 +36,7 @@ class EntStaticPage extends React.Component {
     };
 
     componentWillMount() {
-        this.props.loadData({
-            loginName: 'zhougang',
-            password: '123456',
-            filterCondition: {
-                entId: this.ent.entId,
-            }
-        })
+        this.loadStaticData(getDefaultTimeLocationCondition())
     }
 
     render() {

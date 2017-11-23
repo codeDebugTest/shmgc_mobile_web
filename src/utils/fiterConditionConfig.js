@@ -85,6 +85,16 @@ export const testFilterLocations =[
 ];
 
 
+export function getDefaultTimeLocationCondition () {
+    return {
+        cutoffTime: '10',
+        otherTime: null,
+        quarter: null,
+        location: null,
+        timeByAttr: null
+    }
+};
+
 export function getFilterCondition(pickerCondition) {
     const condition = {location: pickerCondition.location && pickerCondition.location.id};
     if (pickerCondition.timeByAttr === 'quarter') {
@@ -104,7 +114,7 @@ export function getFilterCondition(pickerCondition) {
     } else if (pickerCondition.timeByAttr === 'cutoffTime') {
         const cutoffTime = pickerCondition.cutoffTime;
         if (cutoffTime) {
-            condition.pbBeginDate = '2017-1';
+            condition.pbBeginDate = '2017-' + cutoffTime;
             condition.pbEndDate = '2017-' + cutoffTime;
             return condition;
         }

@@ -32,11 +32,11 @@ export default class CutoffTimePickerView extends React.Component {
     render() {
         return(
             <DropDownView onCancel={this.onViewCanceled} onOk={this.onViewConfirmed} top={this.props.marginTop}>
-               <Picker data={this.props.sourceTime} title="截止时间"  cascade={false} extra="请选择"
+               <Picker data={this.props.sourceTime} title="统计月份"  cascade={false} extra="请选择"
                    value={this.state.cutoffArray}
                    onChange={v=>this.setState({cutoffArray: v})} onOk={v=>this.setState({cutoffArray: v})}
                >
-                   <List.Item arrow="horizontal">截止时间</List.Item>
+                   <List.Item arrow="horizontal">统计月份</List.Item>
                </Picker>
             </DropDownView>
         )
