@@ -52,8 +52,11 @@ export class G2Config {
         }
         this.chart.scale(field, defaultCfg)
     }
-    setChartInterval(nameX, nameY) {
-        this.chart.interval().position(nameX + '*' + nameY).color(nameX).tooltip( nameY);
+    purchaseTooltipCallback = (value) => {
+        return {name: '采购金额', value: (value/10000).toFixed(2) + '万'}
+    }
+    setChartInterval(nameX, nameY, isPurchase) {
+        this.chart.interval().position(nameX + '*' + nameY).color(nameX).tooltip(nameY, (isPurchase?this.purchaseTooltipCallback: null));
     }
     setChartLine(nameX, nameY) {
         this.chart.line().position(nameX + '*' + nameY).shape('smooth');

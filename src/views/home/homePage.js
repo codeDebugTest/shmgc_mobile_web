@@ -40,7 +40,7 @@ class Home extends React.Component{
         chartCfg.setChartAxis('entName');
         chartCfg.setChartAxis('purchaseAmount', '采购金额', formatter, true);
         chartCfg.setChartAxis('piCount', '项目数');
-        chartCfg.setChartInterval('entName', 'purchaseAmount');
+        chartCfg.setChartInterval('entName', 'purchaseAmount', true);
         chartCfg.setChartLine('entName', 'piCount');
         chartCfg.setChartTooltip();
         this.entChart.render();

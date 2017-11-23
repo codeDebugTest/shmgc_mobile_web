@@ -40,7 +40,7 @@ export default class StaticView extends React.Component {
         }
     }
 
-    renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight, unit) {
+    renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight, unit, isPurchase) {
         const firstItem =chartData[0];
         if ( firstItem[fieldLeftY] >= 0 && firstItem[filedRightY] >= 0) {
             const formatter = this.formatterFactory(unit || {value: 100000000, name: '亿元'});
@@ -50,7 +50,7 @@ export default class StaticView extends React.Component {
             chartCfg.setChartAxis(fieldX);
             chartCfg.setChartAxis(fieldLeftY, aliasLeft, formatter, true);
             chartCfg.setChartAxis(filedRightY, aliasRight);
-            chartCfg.setChartInterval(fieldX, fieldLeftY);
+            chartCfg.setChartInterval(fieldX, fieldLeftY, isPurchase);
             chartCfg.setChartLine(fieldX, filedRightY);
             chartCfg.setChartTooltip();
             this[chartId].render();
@@ -61,7 +61,7 @@ export default class StaticView extends React.Component {
 
     rendEntChart(chartData, chartVisible) {
         if (chartData && chartData.length > 1) {
-            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
+            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量', null, true);
             chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData,'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价', {value: 10000, name: '万'});
         }else {
             chartVisible.entAverageChart = false;
@@ -70,7 +70,7 @@ export default class StaticView extends React.Component {
     }
     rendCateChart(chartData, chartVisible) {
         if (chartData && chartData.length > 1) {
-            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量');
+            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量', null, true);
             chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价',{value: 10000, name: '万'});
         } else {
             chartVisible.cateCountChart = false;
@@ -79,7 +79,7 @@ export default class StaticView extends React.Component {
     }
     rendTimeChart(chartData, chartVisible) {
         if (chartData && chartData.length > 1) {
-            chartVisible.timeChart = this.renderChart('timeChart', chartData, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量');
+            chartVisible.timeChart = this.renderChart('timeChart', chartData, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量', null, true);
         } else {
             chartVisible.timeChart = false;
         }
