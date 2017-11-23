@@ -33,11 +33,11 @@ export function entComparePageReducer(state={}, action) {
         case INIT_ENT_COMPARE_PAGE: 
             return Object.assign({}, state, {entCompareList: action.compareList});
         case FETCH_ENT_COMPARE_DATA:
-            return Object.assign({}, state, {loading: true});
+            return Object.assign({}, state, {loading: true, loadingSuccess: false});
         case FETCH_ENT_COMPARE_DATA_SUCCESS:
             return Object.assign({}, state, {loading: false, loadingSuccess: true, ...action.response});
         case FETCH_ENT_COMPARE_DATA_FAILED:
-            return Object.assign({}, state, {loading: false, error: action.error});
+            return Object.assign({}, state, {loading: false, loadingSuccess: false, error: action.error});
         default:
             return state;
     }

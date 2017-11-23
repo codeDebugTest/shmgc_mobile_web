@@ -7,7 +7,7 @@ import CateEntPicker from '../../components/cateEntPicker'
 import './entComparePage.css'
 import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
-import { getFilterLoactions} from '../../utils/filterConditionConfig'
+import { getFilterLoactions, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
 
 class EntCompareView extends Component{
     constructor(props) {
@@ -15,7 +15,11 @@ class EntCompareView extends Component{
         this.state = {
             updateSign: true
         };
-        this.filterLocations = getFilterLoactions();
+        this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.cateEntCondition ={};
+        this.timeLocationCondition = {};
+        this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
+        this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }
 
     removeCompareEnt =(arrayIndex) => {
@@ -99,12 +103,31 @@ class EntCompareView extends Component{
         }
     };
 
-    componentWillMount() {
+    loadStaticData = () => {
+        const filterCondition = {
+            ...getRequestTimeLocationCondition(this.timeLocationCondition),
+            ...getRequestCateEntCondition(this.cateEntCondition)
+        };
+        filterCondition.entId = null;
+
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            selectedEntList: this.props.storeData.entCompareList
+            selectedEntList: this.props.storeData.entCompareList,
+            filterCondition: {...filterCondition}
         });
+    };
+    onCateEntPickedCallback =(condition) => {
+        this.cateEntCondition = condition;
+        this.loadStaticData();
+    };
+    onTimeLocationPickedCallback = (condition) => {
+        this.timeLocationCondition = condition;
+        this.loadStaticData();
+    };
+
+    componentWillMount() {
+        this.loadStaticData();
     }
     render () {
         return (
@@ -114,9 +137,14 @@ class EntCompareView extends Component{
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
                                    categories={this.props.commonData.filterCategories}
-                                   ents={this.props.commonData.subEnts}/>
+                                   ents={this.props.commonData.subEnts}
+                                   cateEntCondition ={this.cateEntCondition}
+                                   confirmCallback={this.onCateEntPickedCallback}/>
 
-                    <TimeLocationPicker marginTop="75px" locations={this.filterLocations}/>
+                    <TimeLocationPicker marginTop="75px"
+                                        locations={this.filterLocations}
+                                        confirmCallback={this.onTimeLocationPickedCallback}
+                                        pickerCondition={this.timeLocationCondition}/>
 
                     {this.renderEntPanel()}
                     {this.renderTable()}
