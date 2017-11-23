@@ -263,7 +263,7 @@ export function getDefaultTimeLocationCondition () {
     }
 };
 
-export function getRequestTimeLocationCondition(pickerCondition, cateEntCondition) {
+export function getRequestTimeLocationCondition(pickerCondition) {
     const condition = {location: pickerCondition.location && pickerCondition.location.id};
     if (pickerCondition.timeByAttr === 'quarter') {
         const quarter = pickerCondition.quarter;

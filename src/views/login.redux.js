@@ -1,5 +1,5 @@
 import {loginRequest} from '../utils/restApi'
-import { getFilterCategories, testFilerEnts} from '../utils/fiterConditionConfig'
+import { getFilterCategories, testFilerEnts} from '../utils/filterConditionConfig'
 
 export const USER_LOGIN = 'user_login';
 export const USER_LOGIN_SUCCESS = 'user_login_success';

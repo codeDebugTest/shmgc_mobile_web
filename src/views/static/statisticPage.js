@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, getDefaultTimeLocationCondition} from '../../utils/fiterConditionConfig'
+import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -19,6 +19,7 @@ class StatisticView extends React.Component{
         super(props);
         this.btnItemList = this.getBtnItemList();
         this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.pickerCondition = {};
         this.onGridClick = this.onGridClick.bind(this);
         this.loadStaticData = this.loadStaticData.bind(this);
     }
@@ -71,7 +72,7 @@ class StatisticView extends React.Component{
     };
 
     componentWillMount() {
-        this.loadStaticData(getDefaultTimeLocationCondition());
+        this.loadStaticData({});
     }
 
     render () {

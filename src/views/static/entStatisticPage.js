@@ -7,7 +7,7 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './entStaticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getRequestTimeLocationCondition, getDefaultTimeLocationCondition, getRequestCateEntCondition} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
 
 
 class EntStaticPage extends React.Component {
@@ -16,7 +16,7 @@ class EntStaticPage extends React.Component {
         this.ent = this.props.storeData.ent;
         this.filterLocations = getFilterLoactions(this.props.commonData);
         this.cateEntCondition ={};
-        this.timeLocationCondition = getDefaultTimeLocationCondition();
+        this.timeLocationCondition = {};
         this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
         this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }

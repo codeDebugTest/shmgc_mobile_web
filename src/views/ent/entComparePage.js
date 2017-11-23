@@ -7,7 +7,7 @@ import CateEntPicker from '../../components/cateEntPicker'
 import './entComparePage.css'
 import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
-import { getFilterLoactions} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions} from '../../utils/filterConditionConfig'
 
 class EntCompareView extends Component{
     constructor(props) {

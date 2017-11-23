@@ -5,7 +5,7 @@ import TimeLocationPicker from '../../components/timeLocationPicker'
 import TopNavBar from "../../components/topNavBar";
 import {doLoadingDataAction} from './chjwzConcreteStatic.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions} from '../../utils/fiterConditionConfig'
+import { getFilterLoactions} from '../../utils/filterConditionConfig'
 
 class ChJWZConcreteStaticPage extends React.Component {
     constructor(props) {
