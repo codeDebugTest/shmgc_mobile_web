@@ -158,15 +158,42 @@ export default class  TimeLocationPicker extends React.Component {
             return this.picker.quarter.label;
         }
         return '季度'
-    }
+    };
+    getCutoffTabClassName = () => {
+        if (this.state.showCutoffView) {
+            return 'active'
+        }
+        if (this.picker.timeByAttr === 'cutoffTime' && !this.state.showQuarterView && !this.state.showOtherTimeView) {
+            return 'active';
+        }
+        return ''
+    };
+    getQuarterTabClassName = () => {
+        if (this.state.showQuarterView) {
+            return 'active'
+        }
+        if (this.picker.timeByAttr === 'quarter' && !this.state.showCutoffView && !this.state.showOtherTimeView) {
+            return 'active';
+        }
+        return ''
+    };
+    getOtherTimeTabClassName = () => {
+        if (this.state.showOtherTimeView) {
+            return 'active'
+        }
+        if (this.picker.timeByAttr === 'otherTime' && !this.state.showCutoffView && !this.state.showQuarterView) {
+            return 'active';
+        }
+        return ''
+    };
     render() {
         const locationValue = this.picker.location && this.picker.location.value;
         return (
             <div>
                 <SegmentedTabs>
-                    <div onClick={()=>this.showMenu('showCutoffView')} className={this.state.showCutoffView ? 'active':''}>{this.getCutoffTabName()}</div>
-                    <div onClick={()=>this.showMenu('showQuarterView')} className={this.state.showQuarterView ? 'active':''}>{this.getQuarterTabName()}</div>
-                    <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.state.showOtherTimeView ? 'active':''}>其他时间</div>
+                    <div onClick={()=>this.showMenu('showCutoffView')} className={this.getCutoffTabClassName()}>{this.getCutoffTabName()}</div>
+                    <div onClick={()=>this.showMenu('showQuarterView')} className={this.getQuarterTabClassName()}>{this.getQuarterTabName()}</div>
+                    <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.getOtherTimeTabClassName()}>其他时间</div>
                     <div onClick={()=>this.showMenu('showLocationView')}
                          className={this.state.showLocationView ? 'active':''}>{locationValue || '全国'}</div>
                 </SegmentedTabs>
