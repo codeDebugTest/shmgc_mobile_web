@@ -83,6 +83,27 @@ export const testFilterLocations =[
         type: '1'
     }
 ];
+export const testFilerEnts = [
+    {
+        entId: '11',
+        shortName: '城建物资',
+    },{
+        entId: '12',
+        shortName: '公路桥梁',
+    },{
+        entId: '13',
+        shortName: '住总住博',
+    },{
+        entId: '14',
+        shortName: '隧道工程',
+    },{
+        entId: '15',
+        shortName: '水务建设',
+    },{
+        entId: '16',
+        shortName: '自来水管线',
+    }
+]
 const testCategories = [
     {
         value: '1',
@@ -207,6 +228,7 @@ const testCategories = [
         ],
     },
 ];
+
 const copyCateChildren = (children, parentId) => {
     const result = [{label: '全部', value: parentId}];
     children.map((cate) => {

@@ -3,27 +3,6 @@ import SegmentedTabs from './segmentedTabs'
 import EntPickerView from './entPickerView'
 import CatePickerView from "./catePickerView";
 
-const entList = [
-    {
-        entId: '11',
-        entName: '城建物资',
-    },{
-        entId: '12',
-        entName: '公路桥梁',
-    },{
-        entId: '13',
-        entName: '住总住博',
-    },{
-        entId: '14',
-        entName: '隧道工程',
-    },{
-        entId: '15',
-        entName: '水务建设',
-    },{
-        entId: '16',
-        entName: '自来水管线',
-    }
-]
 export default class CateEntPicker extends React.Component {
     constructor(props) {
         super(props)
@@ -56,7 +35,7 @@ export default class CateEntPicker extends React.Component {
             return <EntPickerView onViewCanceled={()=> this.setState({showEntView: false})}
                                   onViewConfirmed={this.onEntViewConfirmed}
                                   value ={this.picker.ent}
-                                  data={entList}
+                                  data={this.props.ents}
                                   marginTop={this.props.marginTop}/>
         }
         return null;

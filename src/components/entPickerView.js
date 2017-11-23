@@ -39,10 +39,10 @@ export default class EntPickerView extends React.Component {
                     <Flex wrap="wrap">
                         {this.props.data.map((ent) => {
                             return (
-                                <Tag key={ent.id} style={tagStyle}
+                                <Tag key={ent.entId} style={tagStyle}
                                      selected={ent.entId === (pickedEnt && pickedEnt.entId)}
                                      onChange={(selected) => this.onPickedChanged(selected, ent)}
-                                >{ent.entName}</Tag>
+                                >{ent.shortName}</Tag>
                             )
                         })}
                     </Flex>

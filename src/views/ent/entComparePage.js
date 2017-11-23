@@ -112,7 +112,10 @@ class EntCompareView extends Component{
                 <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <CateEntPicker marginTop="41px" categories={this.props.commonData.filterCategories}/>
+                    <CateEntPicker marginTop="41px"
+                                   categories={this.props.commonData.filterCategories}
+                                   ents={this.props.commonData.subEnts}/>
+
                     <TimeLocationPicker marginTop="75px" locations={this.filterLocations}/>
 
                     {this.renderEntPanel()}
