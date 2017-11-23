@@ -150,9 +150,14 @@ export default class  TimeLocationPicker extends React.Component {
         if (this.picker.cutoffTime) {
             const index = Number(this.picker.cutoffTime);
             return cutoffTimes[0][index -1].label;
-        } else {
-            return '月份';
         }
+        return '月份';
+    };
+    getQuarterTabName = () => {
+        if (this.picker.quarter) {
+            return this.picker.quarter.label;
+        }
+        return '季度'
     }
     render() {
         const locationValue = this.picker.location && this.picker.location.value;
@@ -160,7 +165,7 @@ export default class  TimeLocationPicker extends React.Component {
             <div>
                 <SegmentedTabs>
                     <div onClick={()=>this.showMenu('showCutoffView')} className={this.state.showCutoffView ? 'active':''}>{this.getCutoffTabName()}</div>
-                    <div onClick={()=>this.showMenu('showQuarterView')} className={this.state.showQuarterView ? 'active':''}>季度</div>
+                    <div onClick={()=>this.showMenu('showQuarterView')} className={this.state.showQuarterView ? 'active':''}>{this.getQuarterTabName()}</div>
                     <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.state.showOtherTimeView ? 'active':''}>其他时间</div>
                     <div onClick={()=>this.showMenu('showLocationView')}
                          className={this.state.showLocationView ? 'active':''}>{locationValue || '全国'}</div>

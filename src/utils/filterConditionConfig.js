@@ -268,8 +268,8 @@ export function getRequestTimeLocationCondition(pickerCondition) {
     if (pickerCondition.timeByAttr === 'quarter') {
         const quarter = pickerCondition.quarter;
         if (quarter) {
-            condition.pbBeginDate = '2017-' + ((quarter -1) * 3 + 1);
-            condition.pbEndDate = '2017-' + ((quarter -1) * 3 + 3);
+            condition.pbBeginDate = '2017-' + ((quarter.value -1) * 3 + 1);
+            condition.pbEndDate = '2017-' + ((quarter.value -1) * 3 + 3);
             return condition;
         }
     } else if(pickerCondition.timeByAttr === 'otherTime') {
