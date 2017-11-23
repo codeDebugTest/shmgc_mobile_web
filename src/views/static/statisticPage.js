@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns} from '../../utils/fiterConditionConfig'
+import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getFilterCondition} from '../../utils/fiterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -68,42 +68,12 @@ class StatisticView extends React.Component{
         return null;
     }
 
-    getFilterCondition = () => {
-        const condition = {location: this.pickerCondition.location && this.pickerCondition.location.id};
-        if (this.pickerCondition.timeByAttr === 'quarter') {
-            const quarter = this.pickerCondition.quarter;
-            if (quarter) {
-                condition.pbBeginDate = '2017-' + ((quarter -1) * 3 + 1);
-                condition.pbEndDate = '2017-' + ((quarter -1) * 3 + 3);
-                return condition;
-            }
-        } else if(this.pickerCondition.timeByAttr === 'otherTime') {
-            const otherTime = this.pickerCondition.otherTime;
-            if (otherTime) {
-                condition.pbBeginDate = otherTime.startTime;
-                condition.pbEndDate = otherTime.endTime;
-                return condition;
-            }
-        } else if (this.pickerCondition.timeByAttr === 'cutoffTime') {
-            const cutoffTime = this.pickerCondition.cutoffTime;
-            if (cutoffTime) {
-                condition.pbBeginDate = '2017-1';
-                condition.pbEndDate = '2017-' + cutoffTime;
-                return condition;
-            }
-        }
-
-
-        condition.pbBeginDate = null;
-        condition.pbEndDate = null;
-        return condition;
-    }
     loadStaticData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
         this.props.loadData({
             loginName: 'zhougang',
             password: '123456',
-            filterCondition: this.getFilterCondition()
+            filterCondition: getFilterCondition(this.pickerCondition)
         });
     };
 

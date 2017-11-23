@@ -31,6 +31,7 @@ export function getThreeCateForBtn(source) {
     return cates;
 }
 
+const  filterLocationLength = 12;
 export function getFilterLoactions (source) {
     if (source && source.locations) {
         return source.locations.slice(0, filterLocationLength);
@@ -39,7 +40,6 @@ export function getFilterLoactions (source) {
     }
 }
 
-export const  filterLocationLength = 12;
 
 export const testFilterBtns = [
     {name: '城建物资', icon: placeholderImg, type: 'ent'},
@@ -82,4 +82,36 @@ export const testFilterLocations =[
         value: '厦门',
         type: '1'
     }
-]
+];
+
+
+export function getFilterCondition(pickerCondition) {
+    const condition = {location: pickerCondition.location && pickerCondition.location.id};
+    if (pickerCondition.timeByAttr === 'quarter') {
+        const quarter = pickerCondition.quarter;
+        if (quarter) {
+            condition.pbBeginDate = '2017-' + ((quarter -1) * 3 + 1);
+            condition.pbEndDate = '2017-' + ((quarter -1) * 3 + 3);
+            return condition;
+        }
+    } else if(pickerCondition.timeByAttr === 'otherTime') {
+        const otherTime = pickerCondition.otherTime;
+        if (otherTime) {
+            condition.pbBeginDate = otherTime.startTime;
+            condition.pbEndDate = otherTime.endTime;
+            return condition;
+        }
+    } else if (pickerCondition.timeByAttr === 'cutoffTime') {
+        const cutoffTime = pickerCondition.cutoffTime;
+        if (cutoffTime) {
+            condition.pbBeginDate = '2017-1';
+            condition.pbEndDate = '2017-' + cutoffTime;
+            return condition;
+        }
+    }
+
+
+    condition.pbBeginDate = null;
+    condition.pbEndDate = null;
+    return condition;
+}
