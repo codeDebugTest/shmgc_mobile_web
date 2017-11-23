@@ -14,6 +14,7 @@ class CateStaticPage extends React.Component {
         super(props);
         this.cate = this.props.storeData.cate;
         this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.filterCategories = this.props.commonData.filterCategories;
     }
 
     renderStaticOverview = () => {
@@ -30,7 +31,8 @@ class CateStaticPage extends React.Component {
             password: '123456',
             filterCondition: {
                 cateId: this.cate.cateId,
-                ...getFilterCondition(this.pickerCondition)}
+                ...getFilterCondition(this.pickerCondition)
+            }
         });
     };
 
@@ -43,7 +45,7 @@ class CateStaticPage extends React.Component {
                 <TopNavBar title={this.cate && this.cate.name} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <CateEntPicker marginTop="41px"/>
+                    <CateEntPicker marginTop="41px" categories={this.filterCategories} />
                     <TimeLocationPicker marginTop="77px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}

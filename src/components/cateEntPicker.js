@@ -64,6 +64,7 @@ export default class CateEntPicker extends React.Component {
     renderCateView = () => {
         if (this.state.showCateView) {
             return <CatePickerView marginTop={this.props.marginTop}
+                                   data = {this.props.categories}
                                    value ={this.picker.cate}
                                    onViewCanceled={()=> this.setState({showCateView: false})}
                                    onViewConfirmed={this.onCateViewConfirmed}

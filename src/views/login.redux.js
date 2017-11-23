@@ -1,4 +1,5 @@
 import {loginRequest} from '../utils/restApi'
+import { getFilterLoactions, getFilterCondition, getDefaultTimeLocationCondition, getFilterCategories} from '../utils/fiterConditionConfig'
 
 export const USER_LOGIN = 'user_login';
 export const USER_LOGIN_SUCCESS = 'user_login_success';
@@ -25,12 +26,13 @@ export function doLoginAction(params) {
     }
 }
 
-export function loginReducer(state={}, action) {
+export function loginReducer(state={filterCategories: getFilterCategories()}, action) {
     switch (action.type) {
         case USER_LOGIN:
             return Object.assign({}, state, {loading: true});
         case USER_LOGIN_SUCCESS:
-            return Object.assign({}, state, {loading: false, loginSuccess: true, ...action.response});
+            const categories = getFilterCategories(action.response);
+            return Object.assign({}, state, {loading: false, loginSuccess: true, filterCategories: categories, ...action.response});
         case USER_LOGIN_FAILED:
             return Object.assign({}, state, {loading: false, loginSuccess: false, error: action.error});
         default:
