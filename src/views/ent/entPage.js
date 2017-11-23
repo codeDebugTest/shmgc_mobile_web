@@ -18,25 +18,15 @@ class EntView extends React.Component{
             currentState: 'normal',                //对比选择时为false
             selectedEnts: []
         };
-        this.btnItemList =[
-            {name: '城建物资', icon: placeholderImg},
-            {name: '隧道工程', icon: placeholderImg},
-            {name: '公路桥梁', icon: placeholderImg},
-            {name: '住总住博', icon: placeholderImg},
-            {name: '水务建设', icon: placeholderImg},
-            {name: '隧道物资', icon: placeholderImg},
-            {name: '城建物资', icon: placeholderImg},
-            {name: '全部', icon: ''},
-        ];
         this.onGridClick = this.onGridClick.bind(this);
         this.onEntCardClick = this.onEntCardClick.bind(this);
         this.onSetSelectStateBtnClick = this.onSetSelectStateBtnClick.bind(this);
         this.onCancelBtnClick = this.onCancelBtnClick.bind(this);
         this.onCompareBtnClick = this.onCompareBtnClick.bind(this);
     }
-    onGridClick = (item, index) =>{
-        console.log(item.name);
-        console.log(item.icon);
+    onGridClick = (ent) =>{
+        this.props.initEntComparePage([ ent.entId]);
+        ChangeRoute.goEntComparePage();
     };
     onSetSelectStateBtnClick = () => {
         this.setState({currentState: 'select'})
@@ -114,11 +104,11 @@ class EntView extends React.Component{
             <div>
                 <TopNavBar title="企业" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
                 <div className="main-section">
-                    <GridBox column="4" data={this.btnItemList}
+                    <GridBox column="4" data={this.props.commonData.subEnts}
                       renderItem={item=>(
                           <div style={{paddingTop: '10px'}}>
-                              <img src={item.icon} style={imgStyle}/>
-                              <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
+                              {item.entId ? <img src={placeholderImg} style={imgStyle}/>: <div style={imgStyle}/>}
+                              <p style={{fontSize:'13px'}} className="half-margin-p">{item.shortName}</p>
                           </div>
                       )}
                       onItemClick={this.onGridClick}
@@ -144,7 +134,8 @@ class EntView extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-        storeData: state.entPage
+        storeData: state.entPage,
+        commonData: state.login
     }
 };
 const mapDispatchToProps = (dispatch) => {
