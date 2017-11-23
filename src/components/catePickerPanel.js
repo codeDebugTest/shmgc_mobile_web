@@ -6,20 +6,20 @@ export default class CatePickerPanel extends React.Component{
     constructor(props) {
         super(props);
     }
-    onCateSelect =(statCateId) => {
-        this.props.onClick(statCateId);
+    onCateSelect =(cate) => {
+        this.props.onClick(cate);
     }
 
     renderChild = (cateChildren) => {
-        const btnStyle = {margin: '5px 8px 8px', border: '0', backgroundColor: '#fff',  color: '#008ae6'};
+        const btnStyle = {margin: '5px 8px 8px', border: '0', backgroundColor: '#fff',  color: '#008ae6', fontSize: '13px'};
         if (cateChildren && cateChildren.length) {
             return (
                 <Flex wrap="wrap" style={{marginLeft: '10px', fontSize: '14px'}}>
                     {
                         cateChildren.map((childCate) => {
-                            return <button style={btnStyle} key={childCate.statCateId}
-                                           onClick={()=> this.onCateSelect(childCate.statCateId)}
-                            >{childCate.name}</button>
+                            return <button style={btnStyle} key={childCate.value}
+                                           onClick={()=> this.onCateSelect(childCate)}
+                            >{childCate.label}</button>
                         })
                     }
                 </Flex>
@@ -32,9 +32,9 @@ export default class CatePickerPanel extends React.Component{
         const cate = this.props.cate;
         return (
             <div style={{display: 'flex',alignItems: 'center', padding: '5px 0', borderBottom: '1px solid #ddd'}}>
-                <div onClick={() => this.onCateSelect(cate.statCateId)}>
+                <div onClick={() => this.onCateSelect(cate)}>
                     <img src={placeholderImg} style={itemIconStyle}/>
-                    <p style={{fontSize:'14px'}} className="half-margin-p">{cate.name}</p>
+                    <p style={{fontSize:'13px'}} className="half-margin-p">{cate.label}</p>
                 </div>
 
                 {this.renderChild(cate.children)}

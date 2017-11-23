@@ -244,7 +244,7 @@ export function getFilterCategories (source) {
             if (cate.children && cate.children.length > 0) {
                 result.push({label: cate.name, value: cate.statCateId + '-' + cate.name, children: copyCateChildren(cate.children, cate.statCateId)})
             } else {
-                result.push({label: cate.name, value: cate.statCateId + '-' + cate.name, children: [{label: '全部', value: cate.statCateId + '- '}]})
+                result.push({label: cate.name,  value: cate.statCateId + '-' + cate.name, children: [{label: '全部', value: cate.statCateId + '- '}]})
             }
         })
         return result;
@@ -252,16 +252,6 @@ export function getFilterCategories (source) {
         return testCategories;
     }
 }
-
-export function getDefaultTimeLocationCondition () {
-    return {
-        cutoffTime: '10',
-        otherTime: null,
-        quarter: null,
-        location: null,
-        timeByAttr: null
-    }
-};
 
 export function getRequestTimeLocationCondition(pickerCondition) {
     const condition = {location: pickerCondition.location && pickerCondition.location.id};
