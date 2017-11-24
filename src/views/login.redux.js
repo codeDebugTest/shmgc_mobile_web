@@ -7,7 +7,7 @@ export const USER_LOGIN_FAILED = 'user_login_failed';
 
 export function doLoginAction(params) {
     return dispatch => {
-        dispatch({type: USER_LOGIN});
+        dispatch({type: USER_LOGIN, data: params});
 
         return loginRequest(params).then(
             response => {
@@ -29,7 +29,7 @@ export function doLoginAction(params) {
 export function loginReducer(state={filterCategories: getFilterCategories(), subEnts: testFilerEnts}, action) {
     switch (action.type) {
         case USER_LOGIN:
-            return Object.assign({}, state, {loading: true});
+            return Object.assign({}, state, {loading: true, userInfo: action.data});
         case USER_LOGIN_SUCCESS:
             const categories = getFilterCategories(action.response);
             return Object.assign({}, state, {loading: false, loginSuccess: true, filterCategories: categories, ...action.response});

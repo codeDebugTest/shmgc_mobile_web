@@ -25,8 +25,7 @@ class HomeStatic extends React.Component {
     loadStaticData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
         this.props.loadData({
-            loginName: 'zhougang',
-            password: '123456',
+            ...this.props.commonData.userInfo,
             filterCondition: getRequestTimeLocationCondition(this.pickerCondition)
         });
     };

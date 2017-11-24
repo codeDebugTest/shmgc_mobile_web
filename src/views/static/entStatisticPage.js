@@ -39,8 +39,7 @@ class EntStaticPage extends React.Component {
             filterCondition.entId = this.ent.entId;
         }
         this.props.loadData({
-            loginName: 'zhougang',
-            password: '123456',
+            ...this.props.commonData.userInfo,
             filterCondition: {...filterCondition}
         });
     };

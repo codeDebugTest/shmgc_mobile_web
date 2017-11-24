@@ -111,8 +111,7 @@ class EntCompareView extends Component{
         filterCondition.entId = null;
 
         this.props.loadData({
-            loginName: 'zhougang',
-            password: '123456',
+            ...this.props.commonData.userInfo,
             selectedEntList: this.props.storeData.entCompareList,
             filterCondition: {...filterCondition}
         });

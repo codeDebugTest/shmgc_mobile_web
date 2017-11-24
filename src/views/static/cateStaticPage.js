@@ -39,8 +39,7 @@ class CateStaticPage extends React.Component {
             filterCondition.cateId = this.cate.cateId;
         }
         this.props.loadData({
-            loginName: 'zhougang',
-            password: '123456',
+            ...this.props.commonData.userInfo,
             filterCondition: { ...filterCondition}
         });
     };

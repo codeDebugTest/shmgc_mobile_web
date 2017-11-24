@@ -96,7 +96,7 @@ class EntView extends React.Component{
         )
     }
     componentWillMount() {
-        this.props.loadData({loginName: 'zhougang', password: '123456'});
+        this.props.loadData({...this.props.commonData.userInfo});
     }
 
     render () {

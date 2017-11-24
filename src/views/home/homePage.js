@@ -103,8 +103,7 @@ class Home extends React.Component{
     }
 
     componentWillUnmount() {
-        //todo clear g2 chart
-        console.log('home componentWillUnmount');
+        this.entChart.destroy();
     }
     render () {
         const homeData = this.props.storeData;
