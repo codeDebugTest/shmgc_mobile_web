@@ -80,7 +80,7 @@
   z-index: 89;
 }
 
-
+/*导航*/
 .top-nav-bar {
   position: relative;
   background-color: #008AE6;
@@ -95,4 +95,77 @@
   width: 11px;
   height: 20px;
   background: url(./asset/icon/back.png) center center /  11px 20px no-repeat
+}
+
+/*企业*/
+.cjwz-logo{
+  height: 40px;
+  background: url(asset/logo/ent/cjwz.png) center center /  40px 40px no-repeat
+}
+.lqjt-logo{
+  height: 40px;
+  background: url(./asset/logo/ent/lqjt.png) center center /  40px 40px no-repeat
+}
+.swjs-logo{
+  height: 40px;
+  background: url(asset/logo/ent/swjs.png) center center /  40px 40px no-repeat
+}
+.zlsgx-logo{
+  height: 40px;
+  background: url(asset/logo/ent/zlsgx.png) center center /  40px 40px no-repeat
+}
+.sdgf-logo{
+  height: 40px;
+  background: url(asset/logo/ent/sdgf.png) center center /  40px 40px no-repeat
+}
+.sdgc-logo{
+  height: 40px;
+  background: url(asset/logo/ent/sdgc.png) center center /  40px 40px no-repeat
+}
+.szgc-logo{
+  height: 40px;
+  background: url(asset/logo/ent/szgc.png) center center /  40px 40px no-repeat
+}
+
+/*三大主材logo*/
+.concrete-logo{
+  height: 40px;
+  background: url(asset/logo/cate/concrete.png) center center /  40px 40px no-repeat
+}
+.cement-logo{
+  height: 40px;
+  background: url(asset/logo/cate/cement.png) center center /  40px 40px no-repeat
+}
+.steel-logo{
+  height: 40px;
+  background: url(asset/logo/cate/steel.png) center center /  40px 40px no-repeat
+}
+.jsgc-logo{
+  height: 40px;
+  background: url(asset/logo/cate/jsgc.png) center center /  40px 40px no-repeat
+}
+.blggc-logo{
+  height: 40px;
+  background: url(asset/logo/cate/blggc.png) center center /  40px 40px no-repeat
+}
+.yzgj-logo{
+  height: 40px;
+  background: url(asset/logo/cate/yzgj.png) center center /  40px 40px no-repeat
+}
+.fsfccl-logo{
+  height: 40px;
+  background: url(asset/logo/cate/fsfccl.png) center center /  40px 40px no-repeat
+}
+
+.shtong-logo{
+  height: 40px;
+  background: url(./asset/logo/shtong.png) center center /  40px 40px no-repeat
+}
+.other-logo{
+  height: 40px;
+  background: url(./asset/logo/other.png) center center /  40px 40px no-repeat
+}
+.img-all-logo{
+  height: 40px;
+  background: url(./asset/logo/all.png) center center  no-repeat
 }

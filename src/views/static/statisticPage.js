@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
+import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList} from '../../utils/filterConditionConfig'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
@@ -82,9 +82,9 @@ class StatisticView extends React.Component{
 
                 <div className="main-section">
                     <GridBox column="4" data={this.btnItemList}
-                         renderItem={item=>(
+                         renderItem={(item)=>(
                              <div style={{paddingTop: '10px'}}>
-                                 <img src={item.icon} style={{width:'50px', height: '50px'}}/>
+                                 <div className={logoClassList[item.name] ? logoClassList[item.name] : logoClassList['other']}/>
                                  <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
                              </div>
                          )}

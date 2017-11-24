@@ -8,6 +8,7 @@ import EntCard from './entCard'
 import {ChangeRoute} from '../../utils/router'
 import {doLoadingDataAction} from './entPage.redux'
 import {INIT_ENT_COMPARE_PAGE} from './entComparePage.redux'
+import {logoClassList} from '../../utils/filterConditionConfig'
 import './entPage.css'
 
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
@@ -110,7 +111,7 @@ class EntView extends React.Component{
                     <GridBox column="4" data={this.props.commonData.subEnts}
                       renderItem={item=>(
                           <div style={{paddingTop: '10px'}}>
-                              {item.entId ? <img src={placeholderImg} style={imgStyle}/>: <div style={imgStyle}/>}
+                              {item.entId ? <div className={logoClassList[item.shortName] ? logoClassList[item.shortName] : logoClassList['other']}/>: <div style={imgStyle}/>}
                               <p style={{fontSize:'13px'}} className="half-margin-p">{item.shortName}</p>
                           </div>
                       )}

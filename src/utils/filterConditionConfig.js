@@ -1,4 +1,29 @@
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
+export const logoList = [
+    'cjwz-logo','sdgc-logo','lqjt-logo','shtong-logo',
+    'concrete-logo','cement-logo','steel-logo','img-all-logo'
+];
+export const logoClassList ={
+    '城建物资': 'cjwz-logo',
+    '路桥集团': 'lqjt-logo',
+    '水务建设': 'swjs-logo',
+    '自来水管线': 'zlsgx-logo',
+    '隧道股份': 'sdgf-logo',
+    '隧道工程': 'sdgc-logo',
+    '市政工程': 'szgc-logo',
+
+    '混凝土': 'concrete-logo',
+    '水泥': 'cement-logo',
+    '钢材': 'steel-logo',
+    '金属管材': 'jsgc-logo',
+    '玻璃钢管材': 'blggc-logo',
+    '预制构件': 'yzgj-logo',
+    '防水防潮材料': 'fsfccl-logo',
+
+    '上海砼': 'shtong-logo',
+    '全部': 'img-all-logo',
+    'other': 'other-logo'
+}
 export function getThreeEntForBtn(source) {
     const ents = [];
     source.forEach((ent)=> {

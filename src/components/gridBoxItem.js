@@ -25,7 +25,8 @@ export default class GridBoxItem extends React.Component{
     render () {
         const itemClass = this.state.onClick ? 'item active': 'item';
         return (
-            <div className={itemClass} onMouseUp={()=>this.onMouseUp()} onMouseDown={this.onMouseDown}>
+            <div className={itemClass} onMouseUp={()=>this.onMouseUp()}
+                 onMouseDown={this.onMouseDown} style={{flexShrink: 0, flexGrow:0, width:'25%'}}>
                 {this.props.renderItem(this.item)}
             </div>
         )
