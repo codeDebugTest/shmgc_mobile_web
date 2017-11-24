@@ -10,17 +10,17 @@ export const ROUTE_PATH = {
     HOME_STATIC: '/home/static',
     HOME_ITEM: '/home/item',
 
-    STATIC: '/statistic',
-    STATIC_ENT: '/statistic/ent',
-    STATIC_CATE: '/statistic/cate',
-    STATIC_CHJWZ_CONCRETE: '/statistic/chjwz-concrete',
-    STATIC_ENT_CATE_FILTER: '/static/ent_cate_filter',
+    STATIC: 'statistic',
+    STATIC_ENT: 'statistic/ent',
+    STATIC_CATE: 'statistic/cate',
+    STATIC_CHJWZ_CONCRETE: 'statistic/chjwz-concrete',
+    STATIC_ENT_CATE_FILTER: 'static/ent_cate_filter',
 
-    ENT: '/ent',
-    ENT_COMPARE: '/ent/compare',
+    ENT: 'ent',
+    ENT_COMPARE: 'ent/compare',
 
-    PURCHASE_ITEM: '/purchase-item',
-    PURCHASE_ITEM_DETAIL: '/purchase-item/detail'
+    PURCHASE_ITEM: 'purchase-item',
+    PURCHASE_ITEM_DETAIL: 'purchase-item/detail'
 };
 
 export const ChangeRoute = function () {
