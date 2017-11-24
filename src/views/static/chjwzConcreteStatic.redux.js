@@ -30,11 +30,11 @@ export function chJWZConcreteStaticReducer(state={}, action) {
         case INIT_CHJWZ_CONCRETE_STATIC_PAGE:
             return Object.assign({}, state, {item: action.item});
         case FETCH_CHJWZ_CONCRETE_STATIC_DATA:
-            return Object.assign({}, state, {loading: true});
+            return Object.assign({}, state, {loading: true, loadingSuccess:false});
         case FETCH_CHJWZ_CONCRETE_STATIC_DATA_SUCCESS:
-            return Object.assign({}, state, {loading: false, loadingSuccess:true, ...action.response});
+            return Object.assign({}, state, {loading: false, loadingSuccess:true, staticData: action.response});
         case FETCH_CHJWZ_CONCRETE_STATIC_DATA_FAILED:
-            return Object.assign({}, state, {loading: false, error: action.error});
+            return Object.assign({}, state, {loading: false, loadingSuccess:false, error: action.error});
         default:
             return state
     }

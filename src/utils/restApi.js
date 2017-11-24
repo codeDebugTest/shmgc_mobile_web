@@ -8,6 +8,7 @@ const RequestType = {
     statistic: 'STATIC_OVERVIEW',
     entList: 'ENT_LIST_OVERVIEW',
     entCompare: 'ENT_COMPARISION',
+    shangHaiTong: 'CJWZ_CONCRETE_STATIC_OVERVIEW'
 };
 
 const restUrl = SERVER_HOST + NAME_SPACE;
@@ -235,13 +236,8 @@ export function fetchStaticOverviewData(params) {
     })*/
 }
 
-export function fetchSupplierStaticData() {
-    return new Promise((resolve, reject)=> {
-        setTimeout(()=> resolve({
-            return_code: 0,
-            result: []
-        }), 1000);
-    })
+export function fetchSupplierStaticData(params) {
+    return http.post(restUrl, {requestType: RequestType.shangHaiTong, ...params});
 }
 
 export function fetchEntOverviewData(params) {
