@@ -1,7 +1,7 @@
 import React from 'react'
 import {WingBlank} from 'antd-mobile'
 import G2 from '@antv/g2'
-import {G2Config, chartContainerCfg, ChartMargin, getAxisRange, setIntervalPosition, setLinePosition, setAxis} from '../utils/chartConfig'
+import {G2Config, chartContainerCfg} from '../utils/chartConfig'
 
 const chartIdList = [
     {id: 'entCountChart', comment: '企业项目数采购金额'},

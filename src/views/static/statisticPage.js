@@ -92,7 +92,7 @@ class StatisticView extends React.Component{
                     />
 
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="222px"
+                    <TimeLocationPicker marginTop="198px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>

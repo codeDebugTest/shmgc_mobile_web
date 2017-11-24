@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {WhiteSpace, WingBlank, Card,Flex} from 'antd-mobile'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import TopNavBar from "../../components/topNavBar";
+import PieChartCard from '../../components/pieChartCard'
 import {doLoadingDataAction} from './chjwzConcreteStatic.redux'
 import {ChangeRoute} from '../../utils/router'
 import { getFilterLoactions, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
@@ -19,7 +20,7 @@ class ChJWZConcreteStaticPage extends React.Component {
         const pBigStyle = {fontSize:'12px', textAlign: 'left', width: '65%'};
         const pSmallStyle = {fontSize:'12px', textAlign: 'left', width: '35%'};
         return (
-            <Card style={{paddingBottom: 0}}>
+            <Card style={{paddingBottom: 0, backgroundColor: '#e9f1ea'}}>
                 <Card.Header title={<div style={titleStyle}>{title}</div>}/>
                 <Card.Body style={{paddingTop: '5px'}}>
                     <Flex>
@@ -34,30 +35,7 @@ class ChJWZConcreteStaticPage extends React.Component {
             </Card>
         )
     }
-    renderChartCard = (item)=> {
-        return (
-            <Card>
 
-            </Card>
-        )
-    };
-
-    renderItemByEnt = (item) => {
-        const parentEntname = item.parentEnt.shortName;
-        const selfCardTitle = '城建物资承接' + parentEntname  + '统计';
-        return (
-            <WingBlank>
-                {this.renderOverviewCard(parentEntname, item.parent)}
-                <WhiteSpace/>
-
-                {this.renderOverviewCard(selfCardTitle, item.self)}
-                <WhiteSpace/>
-
-                {this.renderChartCard(item.percentage)}
-                <WhiteSpace/>
-            </WingBlank>
-        )
-    };
 
     renderStaticData = () => {
         const staticData = this.props.storeData.staticData;
@@ -74,7 +52,7 @@ class ChJWZConcreteStaticPage extends React.Component {
                             {this.renderOverviewCard(selfCardTitle, item.self)}
                             <WhiteSpace/>
 
-                            {this.renderChartCard(item.percentage)}
+                            <PieChartCard staticData={item.percentage} id={item.parentEnt.entId}/>
                             <WhiteSpace/>
                         </WingBlank>
                     )
@@ -101,7 +79,8 @@ class ChJWZConcreteStaticPage extends React.Component {
                 <TopNavBar title='上海城建物资混凝土' leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="41px" locations={this.filterLocations}
+                    <TimeLocationPicker marginTop="41px"
+                                        locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
