@@ -17,9 +17,21 @@ class Home extends React.Component{
         super(props);
         this.cardOnClickHandler = this.cardOnClickHandler.bind(this);
         this.onGridItemClick = this.onGridItemClick.bind(this);
-        this.entChart = null;
+        this.getUserInfo();
     }
-
+    getUserInfo = () => {
+        this.userInfo ={loginName: 'zhougang', password: '123456'};
+        const query = this.props.location.query;
+        if (query && query.loginName){
+            this.userInfo.loginName = query.loginName
+        }
+        if (query && query.password){
+            this.userInfo.password = query.password
+        }
+        if (query && query.token){
+            this.userInfo.token = query.token
+        }
+    }
     onGridItemClick = (gridItem) => {
         this.props.initHomeItemPage(gridItem.type);
         ChangeRoute.goHomeItemPage();
@@ -68,9 +80,10 @@ class Home extends React.Component{
     }
 
     componentWillMount() {
-        //todo get loginName from login store
-        this.props.userLogin({loginName: 'zhougang', password: '123456'});
-        this.props.loadData({loginName: 'zhougang', password: '123456'});
+        if (!this.props.commonData.loginSuccess) {
+            this.props.userLogin(this.userInfo);
+        }
+        this.props.loadData(this.userInfo);
     }
 
     componentDidMount() {
@@ -87,6 +100,10 @@ class Home extends React.Component{
         }
     }
 
+    componentWillUnmount() {
+        //todo clear g2 chart
+        console.log('home componentWillUnmount');
+    }
     render () {
         const homeData = this.props.storeData;
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#d00d0d'};
@@ -131,7 +148,8 @@ class Home extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-        storeData: state.homePage
+        storeData: state.homePage,
+        commonData: state.login
     }
 };
 const mapDispatchToProps = (dispatch) => {
