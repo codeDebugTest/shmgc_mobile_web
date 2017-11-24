@@ -3,3 +3,46 @@
     position: fixed;
     width: 100%;
 }
+.home-normal-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/homeNav.png) center center /  21px 21px no-repeat
+}
+.home-active-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/homeNavActive.png) center center /  21px 21px no-repeat
+}
+
+.item-normal-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/itemNav.png) center center /  21px 21px no-repeat
+}
+.item-active-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/itemNavActive.png) center center /  21px 21px no-repeat
+}
+
+.ent-normal-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/entNav.png) center center /  21px 21px no-repeat
+}
+.ent-active-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/entNavActive.png) center center /  21px 21px no-repeat
+}
+
+.static-normal-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/staticNav.png) center center /  21px 21px no-repeat
+}
+.static-active-icon{
+    width: 22px;
+    height: 22px;
+    background: url(../asset/icon/staticNavActive.png) center center /  21px 21px no-repeat
+}
