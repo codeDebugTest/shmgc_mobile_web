@@ -8,9 +8,8 @@ import {ChangeRoute} from '../../utils/router'
 import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
+import {logoClassList} from '../../utils/filterConditionConfig'
 import './entCateFilter.css'
-
-const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 
 class EntCateFilter extends React.Component {
     constructor(props) {
@@ -31,6 +30,7 @@ class EntCateFilter extends React.Component {
     render() {
         const cardStyle ={padding: '5px 10px', borderTop: '1px solid #ddd', color: '#008ae6'};
         const itemIconStyle = {width:'50px', height: '50px'};
+        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
         return (
             <div>
                 <TopNavBar title="全部" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
@@ -41,7 +41,7 @@ class EntCateFilter extends React.Component {
                             <GridBox column="4" data={this.props.commonData.subEnts}
                                      renderItem={ent=>(
                                          <div style={{paddingTop: '10px', width: '100%'}}>
-                                             {ent.entId ? <img src={placeholderImg} style={itemIconStyle}/>: <div style={itemIconStyle}/>}
+                                             {ent.entId ? entLogo(ent.shortName): <div style={itemIconStyle}/>}
 
                                              <p style={{fontSize:'13px'}} className="half-margin-p">{ent.shortName}</p>
                                          </div>

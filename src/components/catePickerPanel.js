@@ -1,7 +1,7 @@
 import React from 'react'
 import {Flex} from 'antd-mobile'
+import {logoClassList} from '../utils/filterConditionConfig'
 
-const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 export default class CatePickerPanel extends React.Component{
     constructor(props) {
         super(props);
@@ -31,12 +31,11 @@ export default class CatePickerPanel extends React.Component{
         return null;
     }
     render() {
-        const itemIconStyle = {width:'50px', height: '50px'};
         const cate = this.props.cate;
         return (
             <div style={{display: 'flex', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid #ddd'}}>
                 <div onClick={() => this.onCateSelect(cate)} style={{flexGrow: 0, flexBasis:'60px', flexShrink: 0}}>
-                    <img src={placeholderImg} style={itemIconStyle}/>
+                    <div className={logoClassList[cate.label] ? logoClassList[cate.label] : logoClassList['other']}/>
                     <p style={{fontSize:'13px'}} className="half-margin-p">{cate.label}</p>
                 </div>
 

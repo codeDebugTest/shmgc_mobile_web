@@ -11,7 +11,6 @@ import {INIT_ENT_COMPARE_PAGE} from './entComparePage.redux'
 import {logoClassList} from '../../utils/filterConditionConfig'
 import './entPage.css'
 
-const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class EntView extends React.Component{
     constructor(props) {
         super(props);
@@ -104,6 +103,7 @@ class EntView extends React.Component{
         const titleStyle = {display: 'inline', lineHeight: '26px'};
         const imgStyle = {width:'50px', height: '50px'};
         const setCompareBtnStyle = {display: 'inline', float: 'right', height: '25px', lineHeight: '25px', borderRadius: 0};
+        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
         return (
             <div>
                 <TopNavBar title="企业" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
@@ -111,7 +111,7 @@ class EntView extends React.Component{
                     <GridBox column="4" data={this.props.commonData.subEnts}
                       renderItem={item=>(
                           <div style={{paddingTop: '10px'}}>
-                              {item.entId ? <div className={logoClassList[item.shortName] ? logoClassList[item.shortName] : logoClassList['other']}/>: <div style={imgStyle}/>}
+                              {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
                               <p style={{fontSize:'13px'}} className="half-margin-p">{item.shortName}</p>
                           </div>
                       )}

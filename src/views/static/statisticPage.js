@@ -13,7 +13,6 @@ import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
 import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList} from '../../utils/filterConditionConfig'
 
-const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 class StatisticView extends React.Component{
     constructor(props) {
         super(props);
@@ -28,9 +27,9 @@ class StatisticView extends React.Component{
         const commonData = this.props.commonData;
         if (commonData && commonData.subEnts && commonData.statCategories) {
             const ents = getThreeEntForBtn(commonData.subEnts);
-            ents.push({name: '上海砼', icon: placeholderImg, type: 'ent_cate'});
+            ents.push({name: '上海砼', type: 'ent_cate'});
             const cates = getThreeCateForBtn(commonData.statCategories);
-            cates.push({name: '全部', icon: placeholderImg, type: 'all'});
+            cates.push({name: '全部', type: 'all'});
 
             return ents.concat(cates);
         } else {
