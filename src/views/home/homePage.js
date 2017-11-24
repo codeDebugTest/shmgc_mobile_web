@@ -22,6 +22,7 @@ class Home extends React.Component{
     getUserInfo = () => {
         this.userInfo ={loginName: 'zhougang', password: '123456'};
         const query = this.props.location.query;
+        console.log('props: ', this.props);
         if (query && query.loginName){
             this.userInfo.loginName = query.loginName
         }
@@ -31,6 +32,7 @@ class Home extends React.Component{
         if (query && query.token){
             this.userInfo.token = query.token
         }
+        console.log('userInfo:', this.userInfo);
     }
     onGridItemClick = (gridItem) => {
         this.props.initHomeItemPage(gridItem.type);
