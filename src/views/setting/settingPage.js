@@ -8,7 +8,7 @@ class Setting extends React.Component {
     render () {
         return (
             <div>
-                <TopNavBar title="设置" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title="设置" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <h1>系统设置页面</h1>
                 </div>

@@ -17,7 +17,7 @@ class ChJWZConcreteStaticPage extends React.Component {
     render() {
         return (
             <div>
-                <TopNavBar title={this.item && this.item.name} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title={this.item && this.item.name} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="41px" locations={this.filterLocations}/>

@@ -111,7 +111,7 @@ class Home extends React.Component{
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#d00d0d'};
         return (
             <div>
-                <TopNavBar title={this.props.commonData.entName} leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                <TopNavBar title={this.props.commonData.entName} leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
                 <div className="main-section">
                     <SectionBar sectionName="项目数据概览" backgroundColor={'#55ace8'}/>
                     <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false}

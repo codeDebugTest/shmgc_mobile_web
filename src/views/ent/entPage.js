@@ -105,7 +105,7 @@ class EntView extends React.Component{
         const setCompareBtnStyle = {display: 'inline', float: 'right', height: '25px', lineHeight: '25px', borderRadius: 0};
         return (
             <div>
-                <TopNavBar title="企业" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                <TopNavBar title="企业" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
                 <div className="main-section">
                     <GridBox column="4" data={this.props.commonData.subEnts}
                       renderItem={item=>(

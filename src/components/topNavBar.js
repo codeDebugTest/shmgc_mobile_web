@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavBar} from 'antd-mobile'
-import './topNavBar.css'
 
 export default class TopNavBar extends React.Component {
     constructor(props) {

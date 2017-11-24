@@ -61,7 +61,7 @@ class EntStaticPage extends React.Component {
     render() {
         return (
             <div>
-                <TopNavBar title={this.ent && this.ent.name} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title={this.ent && this.ent.name} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
 

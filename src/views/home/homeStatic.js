@@ -37,7 +37,7 @@ class HomeStatic extends React.Component {
     render() {
         return (
             <div>
-                <TopNavBar title="企业数据总览" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title="企业数据总览" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="41px" locations={this.filterLocations}

@@ -132,7 +132,7 @@ class EntCompareView extends Component{
     render () {
         return (
             <div>
-                <TopNavBar title="企业对比" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title="企业对比" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"

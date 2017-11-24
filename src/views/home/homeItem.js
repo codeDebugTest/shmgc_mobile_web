@@ -28,7 +28,7 @@ class HomeItemPage extends React.Component {
     render() {
         return (
             <div style={{backgroundColor: 'blue'}}>
-                <TopNavBar title={this.props.storeData.itemTypeName} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title={this.props.storeData.itemTypeName} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
 

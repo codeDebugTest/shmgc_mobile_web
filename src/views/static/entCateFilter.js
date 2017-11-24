@@ -31,10 +31,9 @@ class EntCateFilter extends React.Component {
     render() {
         const cardStyle ={padding: '5px 10px', borderTop: '1px solid #ddd', color: '#008ae6'};
         const itemIconStyle = {width:'50px', height: '50px'};
-        const btnStyle = {margin: '5px 8px', border: '0', backgroundColor: '#fff',  color: '#008ae6'};
         return (
             <div>
-                <TopNavBar title="全部" leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title="全部" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom" style={{color: 'blue'}}>
                     <Card>
                         <Card.Header title="企业" className="ent-cate-card"/>

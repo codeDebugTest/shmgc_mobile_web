@@ -78,7 +78,7 @@ class StatisticView extends React.Component{
     render () {
         return (
             <div>
-                <TopNavBar title="统计" leftContent="设置" onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                <TopNavBar title="统计" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className="main-section">
                     <GridBox column="4" data={this.btnItemList}

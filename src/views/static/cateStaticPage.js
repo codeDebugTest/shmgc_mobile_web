@@ -60,7 +60,7 @@ class CateStaticPage extends React.Component {
     render() {
         return (
             <div>
-                <TopNavBar title={this.cate && this.cate.name} leftContent="返回" onLeftBtnClick={ChangeRoute.goBack}/>
+                <TopNavBar title={this.cate && this.cate.name} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
