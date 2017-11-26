@@ -45,7 +45,7 @@ class EntCompareView extends Component{
     };
     renderTableLine = (data) => {
         const width = this.calculateWith(data.length);
-        const containerStyle = {display: 'flex', flexDirection: 'row', height: '40px', borderBottom: '1px solid #3a9ee4',paddingRight: '2px'};
+        const containerStyle = {display: 'flex', flexDirection: 'row', height: '40px', borderBottom: '1px solid #ddd',paddingRight: '2px'};
         return <div style={containerStyle}>
                 {
                     data.map((item, key) => {
