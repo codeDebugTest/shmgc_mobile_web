@@ -90,14 +90,14 @@ class StatisticView extends React.Component{
                     />
 
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="198px"
+                    <TimeLocationPicker marginTop="230px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
 
-                    <p className="half-margin-p">数据统计总览</p>
-
+                    <p className="half-margin-p" style={{color: '#757575'}}>数据统计总览</p>
+                    <WhiteSpace/>
                     {this.renderStaticOverview()}
                 </div>
                 <BottomTabBar selectedTab='statistic'/>

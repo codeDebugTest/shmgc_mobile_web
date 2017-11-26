@@ -75,7 +75,7 @@ class EntStaticPage extends React.Component {
                                         confirmCallback={this.onTimeLocationPickedCallback}
                                         pickerCondition={this.timeLocationCondition}/>
 
-                    <WhiteSpace/>
+                    <WhiteSpace/><WhiteSpace/>
 
                     {this.renderStaticOverview()}
                 </div>

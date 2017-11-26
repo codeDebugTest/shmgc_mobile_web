@@ -1,5 +1,5 @@
 import React from 'react'
-import {WingBlank} from 'antd-mobile'
+import {WingBlank, WhiteSpace} from 'antd-mobile'
 import G2 from '@antv/g2'
 import {G2Config, chartContainerCfg} from '../utils/chartConfig'
 
@@ -106,19 +106,22 @@ export default class StaticView extends React.Component {
         const overview = this.props.staticData && this.props.staticData.overview;
         const chartVisible = this.state.chartVisible;
         const flexLayout = {display: 'flex'};
-        const pBigStyle = {fontSize:'12px', textAlign: 'left', width: '60%'};
-        const pSmallStyle = {fontSize:'12px', textAlign: 'left', width: '40%'};
+        const labelStyle = {fontSize:'12px', textAlign: 'left', color: '#757575'};
+        const valueStyle = {fontSize:'13px', color: '#03a3d9'};
+
         return (
             <div>
                 <WingBlank>
                     <div style={flexLayout}>
-                        <p style={pBigStyle}>采购金额：{this.formattedValue(overview && overview.purchaseAmountStr)}</p>
-                        <p style={pSmallStyle}>项目总数：{this.formattedValue(overview && overview.piCountStr)}</p>
+                        <div style={{width: '58%', ...labelStyle}}>采购金额：<label style={valueStyle}>{this.formattedValue(overview && overview.purchaseAmountStr)}</label></div>
+                        <div style={{width: '42%', ...labelStyle}}>项目总数：<label style={valueStyle}>{this.formattedValue(overview && overview.piCountStr)}</label></div>
                     </div>
+                    <WhiteSpace/>
                     <div style={flexLayout}>
-                        <p style={pBigStyle}>采购数量：{this.formattedValue(overview && overview.purchaseQuantityStr)}</p>
-                        <p style={pSmallStyle}>采购均价：{this.formattedValue(overview && overview.averagePriceStr)}</p>
+                        <div style={{width: '58%', ...labelStyle}}>采购数量：<label style={valueStyle}>{this.formattedValue(overview && overview.purchaseQuantityStr)}</label></div>
+                        <div style={{width: '42%', ...labelStyle}}>采购均价：<label style={valueStyle}>{this.formattedValue(overview && overview.averagePriceStr)}</label></div>
                     </div>
+                    <WhiteSpace/>
                 </WingBlank>
 
                 {

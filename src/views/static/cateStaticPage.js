@@ -72,7 +72,7 @@ class CateStaticPage extends React.Component {
                                         locations={this.filterLocations}
                                         confirmCallback={this.onTimeLocationPickedCallback}
                                         pickerCondition={this.timeLocationCondition}/>
-                    <WhiteSpace/>
+                    <WhiteSpace/><WhiteSpace/>
                     {this.renderStaticOverview()}
                 </div>
             </div>
