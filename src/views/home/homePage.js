@@ -35,7 +35,7 @@ class Home extends React.Component{
         console.log('userInfo:', this.userInfo);
     }
     onGridItemClick = (gridItem) => {
-        this.props.initHomeItemPage(gridItem.type);
+        this.props.initHomeItemPage(gridItem.display);
         ChangeRoute.goHomeItemPage();
     };
     cardOnClickHandler = ()=>{

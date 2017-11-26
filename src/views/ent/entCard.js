@@ -32,14 +32,26 @@ export default class EntCard extends React.Component{
         } else {
             return this.ent.projectStat
         }
+    };
+    getItemStyle = (display) => {
+        switch (display) {
+            case '项目总数':
+                return {fontSize: '15px', color: '#03a3d9'};
+            case '进行中':
+                return {fontSize: '15px', color: '#eff305'};
+            case '已结束':
+                return {fontSize: '15px', color: '#8b8b8c'};
+            default:
+                return {fontSize: '15px'};
+        }
     }
     renderProjectStatic = () => {
         const projectStatic = this.getEntProjectStatic();
         return (
             projectStatic.map((staticItem, key) => {
                 return <div style={{flexGrow: 2}} key={key}>
-                    <p className="half-margin-p" style={{fontSize: '14px'}}>{staticItem.display}</p>
-                    <p className="half-margin-p" style={{fontSize: '14px'}}>{staticItem.countStr}</p>
+                    <p className="half-margin-p" style={this.getItemStyle(staticItem.display)}>{staticItem.countStr}</p>
+                    <p className="half-margin-p" style={{fontSize: '13px',paddingTop: '5px', color: '#8b8b8c'}}>{staticItem.display}</p>
                 </div>
             })
         )
@@ -56,7 +68,7 @@ export default class EntCard extends React.Component{
         return null;
     }
     renderCardBody = () => {
-        return <Card.Body style={{padding:'0 10px'}}>
+        return <Card.Body style={{padding:'0 10px 5px'}}>
             <div style={{display:'flex', flexDirection: 'row'}}>
                 {this.renderProjectStatic()}
                 {this.renderCheckBox()}
@@ -64,7 +76,7 @@ export default class EntCard extends React.Component{
         </Card.Body>
     }
     renderCardHeader = () => {
-        const title= <div style={{fontSize: '14px'}}>{this.ent.entName}</div>;
+        const title= <div style={{fontSize: '16px', color: '#03a3d9'}}>{this.ent.entName}</div>;
         return <Card.Header title={title} extra={<Icon type="right"/>}/>
     };
     render() {
@@ -73,7 +85,7 @@ export default class EntCard extends React.Component{
             <div>
                 <WhiteSpace/>
                 <WingBlank>
-                    <div style={{border:'1px solid #3a9ee4'}}>
+                    <div style={{borderRadius: '6px'}}>
                         <Card onClick={isNormal?()=>this.onCardClick():null} style={{paddingBottom: 0}}>
                             {this.renderCardHeader()}
                             {this.renderCardBody()}
