@@ -110,9 +110,9 @@ class EntView extends React.Component{
                 <div className="main-section">
                     <GridBox column="4" data={this.props.commonData.subEnts}
                       renderItem={item=>(
-                          <div style={{paddingTop: '10px'}}>
+                          <div style={{paddingTop: '15px'}}>
                               {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
-                              <p style={{fontSize:'13px'}} className="half-margin-p">{item.shortName}</p>
+                              <p style={{fontSize:'12px', color: '#fff'}}>{item.shortName}</p>
                           </div>
                       )}
                       onItemClick={this.onGridClick}

@@ -8,7 +8,9 @@ class SectionBar extends React.Component {
     render () {
         const style = {
             backgroundColor: this.props.backgroundColor || '#c6c6ce',
-            lineHeight: '30px'
+            lineHeight: '30px',
+            paddingTop: '8px',
+            color: '#fff'
         };
        return (
            <div style={style}>{this.props.sectionName}</div>

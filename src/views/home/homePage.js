@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import G2 from '@antv/g2'
 import {doLoadingAction} from './homePage.redux'
-import {Grid, Card, Icon, WingBlank, Flex} from 'antd-mobile'
+import {Grid, Card, Icon, WingBlank, Flex, WhiteSpace} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
@@ -70,7 +70,7 @@ class Home extends React.Component{
                         return (
                             <div className="category-div" key={key}>
                                 <p style={{fontSize: '14px'}}>{item.cateName}</p>
-                                <p style={{fontSize: '14px'}}>{item.amountStr}</p>
+                                <p style={{fontSize: '14px', color: '#009be8'}}>{item.amountStr}</p>
                             </div>
                         )
                     })
@@ -81,6 +81,21 @@ class Home extends React.Component{
         return ''
     }
 
+    getProjectItemColor = (display) => {
+        switch (display) {
+            case '进行中':
+                return 'small-margin-p running-project';
+
+            case '项目总数':
+                return 'small-margin-p total-project';
+
+            case '已结束':
+                return 'small-margin-p finished-project';
+
+            default:
+                return 'small-margin-p type-project';
+        }
+    }
     componentWillMount() {
         if (!this.props.commonData.loginSuccess) {
             this.props.userLogin(this.userInfo);
@@ -117,8 +132,9 @@ class Home extends React.Component{
                           renderItem={
                             dataItem => (
                                 <div>
-                                    <p className="small-margin-p" style={{fontSize: '26px', color: '#eff305'}}>{dataItem.countStr}</p>
-                                    <p className="small-margin-p" style={{fontSize: '14px', color: '#e7eaec'}}>{dataItem.display}</p>
+                                    <p className={this.getProjectItemColor(dataItem.display)}
+                                       style={{fontSize: '26px'}}>{dataItem.countStr}</p>
+                                    <p className="small-margin-p" style={{paddingBottom: '5px', fontSize: '12px', color: '#bffbf6'}}>{dataItem.display}</p>
                                 </div>
                             )
                           }
@@ -133,10 +149,7 @@ class Home extends React.Component{
                         <Card.Footer content="采购总金额"/>
                     </Card>
 
-                    <WingBlank size="sm">
-                        {/*<canvas id="entChart" className="canvas-chart"/>*/}
-                        <div id="entChart"></div>
-                    </WingBlank>
+                    <div id="entChart"/>
 
                     {this.renderCateStat()}
                 </div>

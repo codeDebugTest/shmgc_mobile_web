@@ -169,3 +169,7 @@
   height: 40px;
   background: url(./asset/logo/all.png) center center  no-repeat
 }
+
+.grid-back-ground {
+  background-image: url(./asset/img/staticBtnBackGround.png);
+}

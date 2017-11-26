@@ -81,9 +81,9 @@ class StatisticView extends React.Component{
                 <div className="main-section">
                     <GridBox column="4" data={this.btnItemList}
                          renderItem={(item)=>(
-                             <div style={{paddingTop: '10px'}}>
+                             <div style={{paddingTop: '15px'}}>
                                  <div className={logoClassList[item.name] ? logoClassList[item.name] : logoClassList['other']}/>
-                                 <p style={{fontSize:'13px'}} className="half-margin-p">{item.name}</p>
+                                 <p style={{fontSize:'12px', color: '#fff'}} >{item.name}</p>
                              </div>
                          )}
                          onItemClick={this.onGridClick}

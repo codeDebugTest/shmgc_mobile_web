@@ -6,13 +6,29 @@
     height: 0 !important;
 }
 .category-div {
-    border: 1px solid #cdcfd0;
+    /*border: 1px solid #cdcfd0;*/
     border-left: 0;
     flex: 1;
     background-color: #fff;
 }
 .category-div >p {
     text-align: center;
-    -webkit-margin-before: 0.3em;
-    -webkit-margin-after: 0.3em;
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+}
+
+.am-grid-item-content .running-project {
+    color: #eff305
+}
+
+.am-grid-item-content .total-project {
+    color: #07f5ec
+}
+
+.am-grid-item-content .finished-project {
+    color: blue
+}
+
+.am-grid-item-content .type-project {
+    color: #fff
 }
