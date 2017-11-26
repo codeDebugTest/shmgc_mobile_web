@@ -65,8 +65,8 @@ export default class CateEntPicker extends React.Component {
         return (
             <div>
                 <SegmentedTabs style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
-                    <div onClick={()=>this.showMenu('showCateView')}>{this.getPickedCate() || '材料'}</div>
-                    {this.props.hideEntTab ? null : <div onClick={()=>this.showMenu('showEntView')}>{entName || '公司'}</div>}
+                    <div onClick={()=>this.showMenu('showCateView')} className={this.state.showCateView ? 'active': ''}>{this.getPickedCate() || '材料'}</div>
+                    {this.props.hideEntTab ? null : <div onClick={()=>this.showMenu('showEntView')} className={this.state.showEntView ? 'active': ''}>{entName || '公司'}</div>}
                 </SegmentedTabs>
 
                 {this.renderCateView()}
