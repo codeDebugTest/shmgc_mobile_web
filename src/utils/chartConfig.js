@@ -21,7 +21,7 @@ export class G2Config {
         return {name: '采购金额', value: (value/10000).toFixed(2) + '万'}
     }
     setChartInterval(nameX, nameY, isPurchase) {
-        this.chart.interval().position(nameX + '*' + nameY).color(nameX).tooltip(nameY, (isPurchase?this.purchaseTooltipCallback: null));
+        this.chart.interval().position(nameX + '*' + nameY).color(nameX, ['#019fe8', '#01cfe7', '#00e9c0', '#5dcf53']).tooltip(nameY, (isPurchase?this.purchaseTooltipCallback: null));
     }
     setChartLine(nameX, nameY) {
         this.chart.line().position(nameX + '*' + nameY).shape('smooth');
@@ -98,6 +98,40 @@ export class G2Config {
         }
 
         this.chart.axis(field, cfg);
+    }
+
+    customChartlegend(type) {
+        if (type === 'total') {
+            this.chart.legend({
+                custom: true,
+                items: [
+                    {
+                        value: '柱形图-采购金额', // 图例项的文本内容
+                        fill: '#3182bd',  // 该图例项 marker 的填充颜色
+                        marker: 'circle'  // 该图例项 marker 的形状，参见 marker 参数的说明
+                    }, {
+                        value: '曲线图-项目数',
+                        fill: '#fdae6b',
+                        marker: 'square'
+                    }
+                ]
+            })
+        } else if (type === 'average') {
+            this.chart.legend({
+                custom: true,
+                items: [
+                    {
+                        value: '柱形图-采购数量', // 图例项的文本内容
+                        fill: '#3182bd',  // 该图例项 marker 的填充颜色
+                        marker: 'circle'  // 该图例项 marker 的形状，参见 marker 参数的说明
+                    }, {
+                        value: '曲线图-采购均价',
+                        fill: '#fdae6b',
+                        marker: 'square'
+                    }
+                ]
+            })
+        }
     }
 }
 
