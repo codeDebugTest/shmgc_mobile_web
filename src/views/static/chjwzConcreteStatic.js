@@ -12,7 +12,6 @@ class ChJWZConcreteStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.item = this.props.storeData.item;
-        this.filterLocations = getFilterLoactions(this.props.commonData);
     }
 
     renderOverviewCard = (title, item) => {
@@ -79,7 +78,7 @@ class ChJWZConcreteStaticPage extends React.Component {
                 <div className="main-section-no-bottom">
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="41px"
-                                        locations={this.filterLocations}
+                                        noLocation={true}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>

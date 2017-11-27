@@ -194,8 +194,13 @@ export default class  TimeLocationPicker extends React.Component {
                     <div onClick={()=>this.showMenu('showCutoffView')} className={this.getCutoffTabClassName()}>{this.getCutoffTabName()}</div>
                     <div onClick={()=>this.showMenu('showQuarterView')} className={this.getQuarterTabClassName()}>{this.getQuarterTabName()}</div>
                     <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.getOtherTimeTabClassName()}>其他时间</div>
-                    <div onClick={()=>this.showMenu('showLocationView')}
-                         className={this.state.showLocationView ? 'active':''}>{locationValue || '全国'}</div>
+
+                    {
+                        this.props.noLocation ? null
+                            : <div onClick={()=>this.showMenu('showLocationView')}
+                                                         className={this.state.showLocationView ? 'active':''}>{locationValue || '全国'}</div>
+                    }
+
                 </SegmentedTabs>
 
                 {this.renderCutoffView()}
