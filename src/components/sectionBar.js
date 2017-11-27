@@ -9,8 +9,8 @@ class SectionBar extends React.Component {
         const style = {
             backgroundColor: this.props.backgroundColor || '#c6c6ce',
             lineHeight: '30px',
-            paddingTop: '8px',
-            color: '#fff',
+            padding: '10px 0',
+            color: '#ddfafd',
             fontSize: '15px'
         };
        return (
