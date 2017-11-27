@@ -141,19 +141,22 @@ class Home extends React.Component{
             <div>
                 <TopNavBar title={this.props.commonData.entName} leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
                 <div className="main-section">
-                    <SectionBar sectionName="项目数据概览" backgroundColor={'#55ace8'}/>
-                    <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false}
-                          renderItem={
-                            dataItem => (
-                                <div>
-                                    <p className={this.getProjectItemColor(dataItem.display)}
-                                       style={{fontSize: '26px'}}>{dataItem.countStr}</p>
-                                    <p className="small-margin-p" style={{paddingBottom: '5px', fontSize: '12px', color: '#bffbf6'}}>{dataItem.display}</p>
-                                </div>
-                            )
-                          }
-                          onClick ={this.onGridItemClick}
-                    />
+                    <div className="grid-back-ground">
+                        <SectionBar sectionName="项目数据概览" backgroundColor='inherit'/>
+                        <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false} className="no-back-ground"
+                              renderItem={
+                                  dataItem => (
+                                      <div>
+                                          <p className="small-margin-p" style={{paddingBottom: '5px', fontSize: '12px', color: '#90e3fa'}}>{dataItem.display}</p>
+
+                                          <p className={this.getProjectItemColor(dataItem.display)}
+                                             style={{fontSize: '26px'}}>{dataItem.countStr}</p>
+                                      </div>
+                                  )
+                              }
+                              onClick ={this.onGridItemClick}
+                        />
+                    </div>
 
                     <Card onClick={this.cardOnClickHandler}>
                         <Card.Header title={(<div style={{fontSize:'16px'}}>企业概览数据</div>)} extra={(<Icon type="right"/>)}/>

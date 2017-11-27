@@ -1,6 +1,8 @@
-.am-grid .am-flexbox .am-flexbox-item .am-grid-item-content {
+.am-grid.no-back-ground .am-flexbox{
+    background-color: inherit;
+}
+.am-grid.no-back-ground .am-flexbox .am-flexbox-item .am-grid-item-content {
     padding: 5px 0 !important;
-    background-color: #55ace8;
 }
 .am-card-body::before {
     height: 0 !important;
@@ -22,7 +24,7 @@
 }
 
 .am-grid-item-content .total-project {
-    color: #07f5ec
+    color: #7df3ad
 }
 
 .am-grid-item-content .finished-project {
@@ -30,5 +32,5 @@
 }
 
 .am-grid-item-content .type-project {
-    color: #fff
+    color: #f1fdfd
 }
