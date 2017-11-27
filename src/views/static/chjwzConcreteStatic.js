@@ -73,11 +73,13 @@ class ChJWZConcreteStaticPage extends React.Component {
     }
     render() {
         return (
-            <div>
-                <TopNavBar title='上海城建物资混凝土' leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom">
+            <div className="cjwz-concrete-background">
+                <TopNavBar title='上海城建物资混凝土' style={{backgroundColor: 'inherit'}}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}/>
+                <div className="main-section-no-bottom" style={{backgroundColor: 'inherit', position: 'inherit'}}>
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="41px"
+                    <TimeLocationPicker marginTop="87px" tabStyle="white-style"
                                         noLocation={true}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>

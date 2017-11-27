@@ -10,7 +10,7 @@ export default class SegmentedTabs extends React.Component {
     render() {
         return (
             <WingBlank>
-                <div className="segmented-tabs">
+                <div className={"segmented-tabs " + (this.props.backgroundStyle || '')}>
                     { React.Children.map(this.props.children, (tab)=>{
                         if (tab) {
                             return <div className="tab" style={this.props.style}>{tab}</div>

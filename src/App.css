@@ -169,13 +169,7 @@
   background: url(./asset/logo/all.png) center center  no-repeat
 }
 
-.grid-back-ground {
-  background-image: url(./asset/img/staticBtnBackGround.png);
-}
-.grid-no-back-ground {
-  background-color: #fff;
-}
-
+/*home 小图标*/
 .concrete-img{
   height: 16px;
   content: url(asset/logo/cate/concrete-small.png)
@@ -187,4 +181,16 @@
 .steel-img{
   height: 16px;
   content: url(asset/logo/cate/steel-small.png)
+}
+
+/*上海砼background*/
+.cjwz-concrete-background {
+  background-image: url(asset/img/cjwz-concrete-background.png);
+}
+/*grid box background*/
+.grid-back-ground {
+  background-image: url(./asset/img/staticBtnBackGround.png);
+}
+.grid-no-back-ground {
+  background-color: #fff;
 }

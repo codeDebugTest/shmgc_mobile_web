@@ -25,3 +25,15 @@
     background-color: #088ce8;
     color: #fff;
 }
+
+.segmented-tabs.white-style .tab {
+    color: #fff;
+    border-color: #fff;
+}
+.segmented-tabs.white-style .tab:first-child {
+    border-color: #fff;
+}
+.segmented-tabs.white-style .tab .active {
+    background-color: #fff;
+    color: #088ce8;
+}
