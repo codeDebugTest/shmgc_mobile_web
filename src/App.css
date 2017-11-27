@@ -176,3 +176,16 @@
 .grid-no-back-ground {
   background-color: #fff;
 }
+
+.concrete-img{
+  height: 16px;
+  content: url(asset/logo/cate/concrete-small.png)
+}
+.cement-logo{
+  height: 16px;
+  content: url(asset/logo/cate/cement-small.png)
+}
+.steel-logo{
+  height: 16px;
+  content: url(asset/logo/cate/steel-small.png)
+}

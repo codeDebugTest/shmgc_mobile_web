@@ -60,6 +60,17 @@ class Home extends React.Component{
         this.entChart.render();
     }
 
+    getCateImg = (cateName) => {
+        switch (cateName){
+            case '混凝土':
+                return 'concrete-img';
+            case '水泥':
+                return 'cement-logo';
+            case '钢材':
+                return 'steel-logo'
+        }
+    }
+
     renderCateStat() {
         const cateData = this.props.storeData && this.props.storeData.amountOfCate;
         if (cateData && cateData.length > 0) {
@@ -69,8 +80,11 @@ class Home extends React.Component{
                     cateData.map((item, key) => {
                         return (
                             <div className="category-div" key={key}>
-                                <div><img src="../../asset/img/logo/cate/concrete.png"/><p style={{fontSize: '14px'}}>{item.cateName}</p></div>
-                                <p style={{fontSize: '14px', color: '#009be8'}}>{item.amountStr}</p>
+                                <div style={{display: 'flex', justifyContent: 'center', marginTop: '12px'}}>
+                                    <img className={this.getCateImg(item.cateName)}/>
+                                    <label style={{fontSize: '15px', marginLeft: '5px'}}>{item.cateName}</label>
+                                </div>
+                                <p style={{fontSize: '15px', color: '#009be8'}}>{item.amountStr}</p>
                             </div>
                         )
                     })
