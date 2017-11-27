@@ -66,12 +66,11 @@ class Home extends React.Component{
             case '混凝土':
                 return 'concrete-img';
             case '水泥':
-                return 'cement-logo';
+                return 'cement-img';
             case '钢材':
-                return 'steel-logo'
+                return 'steel-img'
         }
-    }
-
+    };
     renderCateStat() {
         const cateData = this.props.storeData && this.props.storeData.amountOfCate;
         if (cateData && cateData.length > 0) {
@@ -81,7 +80,7 @@ class Home extends React.Component{
                     cateData.map((item, key) => {
                         return (
                             <div className="category-div" key={key}>
-                                <div style={{display: 'flex', justifyContent: 'center', marginTop: '12px'}}>
+                                <div style={{display: 'flex', justifyContent: 'center', margin: '12px 0 10px'}}>
                                     <img className={this.getCateImg(item.cateName)}/>
                                     <label style={{fontSize: '15px', marginLeft: '5px'}}>{item.cateName}</label>
                                 </div>
