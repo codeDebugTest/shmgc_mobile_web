@@ -6,7 +6,7 @@ export class G2Config {
     setChartScale(field, alias, rangCfg) {
         const defaultCfg = {
             type: 'linear',
-            tickCount: 5,
+            tickCount: 4,
         };
         if (rangCfg) {
             defaultCfg.minLimit = rangCfg[field].min;
@@ -64,7 +64,7 @@ export class G2Config {
             lineStyle: {
                 stroke: '#d9d9d9', // 网格线的颜色
                 lineWidth: 1, // 网格线的粗细
-                lineDash: [4, 4 ] // 网格线的虚线配置，第一个参数描述虚线的实部占多少像素，第二个参数描述虚线的虚部占多少像素
+                lineDash: [4, 4] // 网格线的虚线配置，第一个参数描述虚线的实部占多少像素，第二个参数描述虚线的虚部占多少像素
             }
         };
         const cfg = {
@@ -103,7 +103,7 @@ export class G2Config {
 
 export const chartContainerCfg = {
     forceFit: true,
-    height: 200,
+    height: 150,
     width: '100%',
-    padding: [20, 45, 45, 55],
+    padding: [20, 45, 40, 52],
 }

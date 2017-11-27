@@ -69,7 +69,7 @@ class Home extends React.Component{
                     cateData.map((item, key) => {
                         return (
                             <div className="category-div" key={key}>
-                                <p style={{fontSize: '14px'}}>{item.cateName}</p>
+                                <div><img src="../../asset/img/logo/cate/concrete.png"/><p style={{fontSize: '14px'}}>{item.cateName}</p></div>
                                 <p style={{fontSize: '14px', color: '#009be8'}}>{item.amountStr}</p>
                             </div>
                         )
