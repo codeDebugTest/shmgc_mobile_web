@@ -35,7 +35,9 @@ export default class OtherTimePickerView extends React.Component {
         this.onViewCanceled();
         const value = {
             startTime: this.state.startTimeArray.join('-'),
-            endTime: this.state.endTimeArray.join('-')
+            endTime: this.state.endTimeArray.join('-'),
+            startTimeKey: Number(this.state.startTimeArray.join('')),
+            endTimeKey: Number(this.state.endTimeArray.join(''))
         };
         this.props.onViewConfirmed(value);
     }

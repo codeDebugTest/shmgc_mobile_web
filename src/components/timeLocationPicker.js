@@ -25,18 +25,18 @@ const cutoffTimes =[
 const otherTime =[
     [{label: '2017', value: '2017'}],
     [
-        {label: '1月', value:'1'},
-        {label: '2月', value:'2'},
-        {label: '3月', value:'3'},
-        {label: '4月', value:'4'},
-        {label: '5月', value:'5'},
-        {label: '6月', value:'6'},
-        {label: '7月', value:'7'},
-        {label: '8月', value:'8'},
-        {label: '9月', value:'9'},
-        {label: '10月', value:'10'},
-        {label: '11月', value:'11'},
-        {label: '12月', value:'12'},
+        {label: '一月', value:'1'},
+        {label: '二月', value:'2'},
+        {label: '三月', value:'3'},
+        {label: '四月', value:'4'},
+        {label: '五月', value:'5'},
+        {label: '六月', value:'6'},
+        {label: '七月', value:'7'},
+        {label: '八月', value:'8'},
+        {label: '九月', value:'9'},
+        {label: '十月', value:'10'},
+        {label: '十一月', value:'11'},
+        {label: '十二月', value:'12'},
     ]
 ]
 
@@ -92,7 +92,7 @@ export default class  TimeLocationPicker extends React.Component {
     };
 
     onOtherTimeViewConfirm = (value) => {
-        if (value.endTime <= value.startTime) {
+        if (value.endTimeKey <= value.startTimeKey) {
             Modal.alert('', '结束时间必须大于起始时间！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
         } else {
             this.picker.otherTime =value;
