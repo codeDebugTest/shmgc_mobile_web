@@ -6,14 +6,14 @@
     flex-grow: 1;
     height: 30px;
     line-height: 30px;
-    color: #108ee9;
-    border: 1px solid  #108ee9;
+    color: #13a0e7;
+    border: 1px solid  #13a0e7;
     text-align: center;
     border-left: 0;
     font-size: 14px;
 }
 .segmented-tabs .tab:first-child {
-    border-left: 1px solid  #3a9ee4;
+    border-left: 1px solid  #13a0e7;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
@@ -22,7 +22,7 @@
     border-bottom-right-radius: 3px;
 }
 .segmented-tabs .tab .active {
-    background-color: #088ce8;
+    background-color: #13a0e7;
     color: #fff;
 }
 

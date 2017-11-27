@@ -102,7 +102,6 @@ class StatisticView extends React.Component{
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
 
-                    <p className="half-margin-p" style={{color: '#757575'}}>数据统计总览</p>
                     <WhiteSpace/>
                     {this.renderStaticOverview()}
                 </div>

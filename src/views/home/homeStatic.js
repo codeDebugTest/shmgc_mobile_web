@@ -43,8 +43,6 @@ class HomeStatic extends React.Component {
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
 
-                    <p>数据统计概览</p>
-
                     {this.renderStaticOverview()}
                 </div>
             </div>

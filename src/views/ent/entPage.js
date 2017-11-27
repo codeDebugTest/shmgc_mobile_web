@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Button, WhiteSpace, WingBlank, Modal} from 'antd-mobile'
+import {Button, WhiteSpace, WingBlank, Modal,Flex} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
@@ -100,14 +100,14 @@ class EntView extends React.Component{
 
     render () {
         const isSelectState = this.state.currentState !== 'normal';
-        const titleStyle = {display: 'inline', lineHeight: '26px'};
+        const titleStyle = {display: 'inline', lineHeight: '26px', color: '#868585'};
         const imgStyle = {width:'50px', height: '50px'};
         const setCompareBtnStyle = {display: 'inline', float: 'right', height: '25px', lineHeight: '25px', borderRadius: 0};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
         return (
             <div>
                 <TopNavBar title="企业" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
-                <div className="main-section">
+                <div className="main-section" style={{backgroundColor: '#f5f5f9'}}>
                     <GridBox column="4" data={this.props.commonData.subEnts}
                       renderItem={item=>(
                           <div style={{paddingTop: '15px'}}>
@@ -120,11 +120,11 @@ class EntView extends React.Component{
 
                     <WhiteSpace/>
                     <WingBlank>
-                        <div>
-                            <p style={titleStyle}>企业列表</p>
+                        <Flex style={{justifyContent: 'space-between'}}>
+                            <p className="half-margin-p" style={titleStyle}>企业列表</p>
                             <Button type="primary" size="small" style={setCompareBtnStyle} disabled={isSelectState}
                                     onClick={this.onSetSelectStateBtnClick}>对比</Button>
-                        </div>
+                        </Flex>
                     </WingBlank>
 
                     { this.renderEntDetail()}

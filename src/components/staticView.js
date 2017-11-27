@@ -4,11 +4,11 @@ import G2 from '@antv/g2'
 import {G2Config, chartContainerCfg} from '../utils/chartConfig'
 
 const chartIdList = [
-    {id: 'entCountChart', comment: '企业项目数采购金额'},
+    {id: 'entCountChart', comment: '企业采购金额，项目数'},
     {id: 'entAverageChart',comment: '企业采购数量，采购均价'},
-    {id: 'cateCountChart', comment: '材料项目数，采购金额'},
+    {id: 'cateCountChart', comment: '材料采购金额，项目数'},
     {id: 'cateAverageChart', comment: '材料采购数量，采购均价'},
-    {id: 'timeChart',   comment: '时间项目数，采购金额'},
+    {id: 'timeChart',   comment: '时间采购金额，项目数'},
 ];
 
 export default class StaticView extends React.Component {
@@ -107,11 +107,12 @@ export default class StaticView extends React.Component {
         const overview = this.props.staticData && this.props.staticData.overview;
         const chartVisible = this.state.chartVisible;
         const flexLayout = {display: 'flex'};
-        const labelStyle = {fontSize:'12px', textAlign: 'left', color: '#757575'};
+        const labelStyle = {fontSize:'12px', textAlign: 'left', color: '#868585'};
         const valueStyle = {fontSize:'13px', color: '#03a3d9'};
 
         return (
             <div>
+                <p style={{color: '#868585'}}>数据统计概览</p>
                 <WingBlank>
                     <div style={flexLayout}>
                         <div style={{width: '58%', ...labelStyle}}>采购金额：<label style={valueStyle}>{this.formattedValue(overview && overview.purchaseAmountStr)}</label></div>
@@ -130,8 +131,8 @@ export default class StaticView extends React.Component {
                         return (
                             chartVisible[chart.id] ?
                                 <WingBlank size="sm" key={key}>
-                                    <p style={{fontSize:'12px',marginBottom:0}}>{chart.comment}</p>
-                                    <div id={chart.id}></div>
+                                    <p style={{fontSize:'12px',marginBottom:0, color: '#868585'}}>{chart.comment}</p>
+                                    <div id={chart.id}/>
                                 </WingBlank>
                                 : null
                         )
