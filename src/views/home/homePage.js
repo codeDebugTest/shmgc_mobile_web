@@ -82,9 +82,9 @@ class Home extends React.Component{
                             <div className="category-div" key={key}>
                                 <div style={{display: 'flex', justifyContent: 'center', margin: '12px 0 10px'}}>
                                     <img className={this.getCateImg(item.cateName)}/>
-                                    <label style={{fontSize: '15px', marginLeft: '5px'}}>{item.cateName}</label>
+                                    <label style={{fontSize: '15px', marginLeft: '5px',color:'#888'}}>{item.cateName}</label>
                                 </div>
-                                <p style={{fontSize: '15px', color: '#009be8'}}>{item.amountStr}</p>
+                                <p style={{fontSize: '15px', color: '#0c99db'}}>{item.amountStr}</p>
                             </div>
                         )
                     })
@@ -164,7 +164,7 @@ class Home extends React.Component{
                     </Card>
 
                     <div id="entChart"/>
-
+                    <WhiteSpace/>
                     {this.renderCateStat()}
                 </div>
                 <BottomTabBar selectedTab='home'/>
