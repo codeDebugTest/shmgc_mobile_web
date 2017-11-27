@@ -48,8 +48,8 @@ export default class StaticView extends React.Component {
             chartCfg.setChartScale(fieldLeftY, aliasLeft);
             chartCfg.setChartScale(filedRightY, aliasRight);
             chartCfg.setChartAxis(fieldX);
-            chartCfg.setChartAxis(fieldLeftY, aliasLeft, formatter, true);
-            chartCfg.setChartAxis(filedRightY, aliasRight);
+            chartCfg.setChartAxis(fieldLeftY, null, formatter, true);
+            chartCfg.setChartAxis(filedRightY, null);
             chartCfg.setChartInterval(fieldX, fieldLeftY, isPurchase);
             chartCfg.setChartLine(fieldX, filedRightY);
             chartCfg.setChartTooltip();

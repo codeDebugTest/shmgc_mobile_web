@@ -105,5 +105,5 @@ export const chartContainerCfg = {
     forceFit: true,
     height: 200,
     width: '100%',
-    padding: [20, 40, 45, 50],
+    padding: [20, 45, 45, 55],
 }

@@ -52,8 +52,8 @@ class Home extends React.Component{
         chartCfg.setChartScale('purchaseAmount', '采购金额');
         chartCfg.setChartScale( 'piCount', '项目数');
         chartCfg.setChartAxis('entName');
-        chartCfg.setChartAxis('purchaseAmount', '采购金额', formatter, true);
-        chartCfg.setChartAxis('piCount', '项目数');
+        chartCfg.setChartAxis('purchaseAmount', null, formatter, true);
+        chartCfg.setChartAxis('piCount', null);
         chartCfg.setChartInterval('entName', 'purchaseAmount', true);
         chartCfg.setChartLine('entName', 'piCount');
         chartCfg.setChartTooltip();
@@ -122,7 +122,7 @@ class Home extends React.Component{
     }
     render () {
         const homeData = this.props.storeData;
-        const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#d00d0d'};
+        const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#f7663b', fontWeight: 'bold'};
         return (
             <div>
                 <TopNavBar title={this.props.commonData.entName} leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
