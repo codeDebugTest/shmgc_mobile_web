@@ -173,3 +173,6 @@
 .grid-back-ground {
   background-image: url(./asset/img/staticBtnBackGround.png);
 }
+.grid-no-back-ground {
+  background-color: #fff;
+}

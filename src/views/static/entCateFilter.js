@@ -38,7 +38,7 @@ class EntCateFilter extends React.Component {
                     <Card>
                         <Card.Header title="企业" className="ent-cate-card"/>
                         <Card.Body style={cardStyle}>
-                            <GridBox column="4" data={this.props.commonData.subEnts}
+                            <GridBox column="4" data={this.props.commonData.subEnts} noBackGround={true}
                                      renderItem={ent=>(
                                          <div style={{paddingTop: '10px', width: '100%'}}>
                                              {ent.entId ? entLogo(ent.shortName): <div style={itemIconStyle}/>}
