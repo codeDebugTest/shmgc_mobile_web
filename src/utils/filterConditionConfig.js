@@ -24,10 +24,11 @@ export const logoClassList ={
     '全部': 'img-all-logo',
     'other': 'other-logo'
 }
-export function getThreeEntForBtn(source) {
+
+export function getEntByName(source, nameList) {
     const ents = [];
     source.forEach((ent)=> {
-        if (ent.shortName === '城建物资' || ent.shortName === '隧道工程' || ent.shortName === '路桥集团') {
+        if (nameList.indexOf(ent.shortName) !== -1) {
             ents.push({
                 type: 'ent',
                 icon: placeholderImg,
@@ -36,7 +37,6 @@ export function getThreeEntForBtn(source) {
             });
         }
     })
-
     return ents;
 }
 

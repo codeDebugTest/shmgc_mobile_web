@@ -12,7 +12,7 @@ class ItemView extends React.Component{
                 <TopNavBar title="项目" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className="main-section">
-                    <SearchBar placeholder="项目名称"/>
+                    {/*<SearchBar placeholder="项目名称"/>*/}
                 </div>
 
                 <BottomTabBar selectedTab='purchaseItem'/>

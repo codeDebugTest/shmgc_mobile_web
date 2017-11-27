@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList} from '../../utils/filterConditionConfig'
+import {getThreeEntForBtn,getEntByName, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList} from '../../utils/filterConditionConfig'
 
 class StatisticView extends React.Component{
     constructor(props) {
@@ -26,7 +26,7 @@ class StatisticView extends React.Component{
     getBtnItemList = () => {
         const commonData = this.props.commonData;
         if (commonData && commonData.subEnts && commonData.statCategories) {
-            const ents = getThreeEntForBtn(commonData.subEnts);
+            const ents = getEntByName(commonData.subEnts, ['城建物资', '隧道工程', '路桥集团']);
             ents.push({name: '上海砼', type: 'ent_cate'});
             const cates = getThreeCateForBtn(commonData.statCategories);
             cates.push({name: '全部', type: 'all'});
