@@ -160,11 +160,11 @@ class Home extends React.Component{
                         <Card.Body>
                             <div style={amountStyle}>￥{homeData.totalAmountStr}</div>
                         </Card.Body>
-                        <Card.Footer content="采购总金额"/>
+                        <Card.Footer content={'采购总金额'}/>
                     </Card>
 
                     <div id="entChart"/>
-                    <WhiteSpace/>
+                    <WhiteSpace className="gap"/>
                     {this.renderCateStat()}
                 </div>
                 <BottomTabBar selectedTab='home'/>

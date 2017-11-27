@@ -58,7 +58,7 @@ class EntCateFilter extends React.Component {
                         </Card.Body>
                     </Card>
 
-                    <WhiteSpace/>
+                    <WhiteSpace className="gap"/>
 
                     <Card>
                         <Card.Header title="材料" className="ent-cate-card"/>
