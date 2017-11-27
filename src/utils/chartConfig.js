@@ -137,8 +137,8 @@ export class G2Config {
 
 export const chartContainerCfg = {
     forceFit: true,
-    height: 150,
+    height: 160,
     width: '100%',
-    padding: [20, 45, 45, 52],
+    padding: [25, 45, 45, 52],
     background: {fill: '#fff'}
 }
