@@ -55,7 +55,9 @@ export default class CateEntPicker extends React.Component {
 
     getPickedCate = ()=> {
         if (this.picker.cate) {
-            return this.picker.cate[0].split('-')[1] + '-' + this.picker.cate[1].split('-')[1];
+            const parent = this.picker.cate[0].split('-')[1];
+            const child =  this.picker.cate[1].split('-')[1];
+            return  parent + (child === '全部' ? '' : '-' + child);
         }
         return null
     }

@@ -14,12 +14,15 @@ class CateStaticPage extends React.Component {
         super(props);
         this.cate = this.props.storeData.cate;
         this.filterLocations = getFilterLoactions(this.props.commonData);
-        this.cateEntCondition ={};
+        this.cateEntCondition = {...this.initCateCondition()};
         this.timeLocationCondition = {};
         this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
         this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }
-
+    initCateCondition = () => {
+        const paths =this.cate.catePaths;
+        return {cate: [paths[0].cateId + '-' + paths[0].name, paths[1].cateId + '-' + paths[1].name]}
+    }
     renderStaticOverview = () => {
         if (this.props.storeData.loadingSuccess) {
             return <StaticView staticData={this.props.storeData}/>
@@ -34,7 +37,9 @@ class CateStaticPage extends React.Component {
         };
         if (filterCondition.cateId) {
             const cateArray = this.cateEntCondition.cate;
-            this.cate.name = cateArray[0].split('-')[1] + '-' + cateArray[1].split('-')[1];
+            const parent = cateArray[0].split('-')[1];
+            const child =  cateArray[1].split('-')[1];
+            this.cate.name = parent + (child === '全部' ? '' : '-' + child);
         } else {
             filterCondition.cateId = this.cate.cateId;
         }

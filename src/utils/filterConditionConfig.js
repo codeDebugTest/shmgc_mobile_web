@@ -255,7 +255,7 @@ const testCategories = [
 ];
 
 const copyCateChildren = (children, parentId) => {
-    const result = [{label: '全部', value: parentId + '- '}];
+    const result = [{label: '全部', value: parentId + '-全部'}];
     children.map((cate) => {
         result.push({label: cate.name, value: cate.statCateId + '-' + cate.name});
     })
@@ -269,7 +269,7 @@ export function getFilterCategories (source) {
             if (cate.children && cate.children.length > 0) {
                 result.push({label: cate.name, value: cate.statCateId + '-' + cate.name, children: copyCateChildren(cate.children, cate.statCateId)})
             } else {
-                result.push({label: cate.name,  value: cate.statCateId + '-' + cate.name, children: [{label: '全部', value: cate.statCateId + '- '}]})
+                result.push({label: cate.name,  value: cate.statCateId + '-' + cate.name, children: [{label: '全部', value: cate.statCateId + '-全部'}]})
             }
         })
         return result;

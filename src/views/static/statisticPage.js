@@ -43,7 +43,13 @@ class StatisticView extends React.Component{
             this.props.initEntStatic(item);
             ChangeRoute.goStaticEntPage();
         } else if (item.type === 'cate') {
-            this.props.initCateStatic(item);
+            this.props.initCateStatic({
+                ...item,
+                catePaths: [
+                    {cateId:item.cateId, name: item.name},
+                    {cateId:item.cateId, name: '全部'}
+                ]
+            });
             ChangeRoute.goStaticCatePage();
         } else if (item.type === 'ent_cate'){
             this.props.initChjwzConcreteStatic({name: '上海城建物资混凝土'});

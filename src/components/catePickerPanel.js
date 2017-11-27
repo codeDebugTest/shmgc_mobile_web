@@ -7,7 +7,7 @@ export default class CatePickerPanel extends React.Component{
         super(props);
     }
     onCateSelect =(cate) => {
-        this.props.onClick(cate);
+        this.props.onClick(this.props.cate, cate);
     }
 
     renderChild = (cateChildren) => {

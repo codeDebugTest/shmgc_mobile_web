@@ -22,8 +22,15 @@ class EntCateFilter extends React.Component {
         this.props.initEntStatic({name: ent.shortName, entId: ent.entId});
         ChangeRoute.goStaticEntPage();
     };
-    onCateItemClick = (cate) => {
-        this.props.initCateStatic({name: cate.label, cateId: cate.value.split('-')[0]});
+    onCateItemClick = (parent, cate) => {
+        this.props.initCateStatic({
+            name: cate.label,
+            cateId: cate.value.split('-')[0],
+            catePaths:[
+                {cateId: parent.value.split('-')[0], name: parent.value.split('-')[1]},
+                {cateId: cate.value.split('-')[0], name: cate.value.split('-')[1]},
+            ]
+        });
         ChangeRoute.goStaticCatePage();
     };
 
