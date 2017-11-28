@@ -43,8 +43,7 @@ const otherTime =[
 export default class  TimeLocationPicker extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={};
-        this.picker = this.initPicker();
+        this.state ={picker: this.initPicker()};
 
         this.onCutoffViewConfirm = this.onCutoffViewConfirm.bind(this);
         this.onQuarterViewConfirm = this.onQuarterViewConfirm.bind(this);
@@ -69,55 +68,65 @@ export default class  TimeLocationPicker extends React.Component {
             showCutoffView: false,
             showQuarterView: false,
             showLocationView: false,
-            showOtherTimeView: false
+            showOtherTimeView: false,
+            showView: true
         };
         newState[menuName] = true;
         this.setState(newState);
     }
 
+    setPickedValue = (picker) => {
+        this.setState({picker: picker});
+        this.props.confirmCallback(picker);
+    }
+
     onCutoffViewConfirm = (value) => {
-        this.picker.cutoffTime = value;
-        this.picker.timeByAttr = 'cutoffTime';
-        this.props.confirmCallback(this.picker);
+        this.setPickedValue({
+            cutoffTime: value,
+            timeByAttr: 'cutoffTime',
+            location: this.state.picker.location
+        });
     }
     onQuarterViewConfirm =(value) => {
-        this.picker.quarter = value;
-        this.picker.timeByAttr = 'quarter';
-        this.props.confirmCallback(this.picker);
+        this.setPickedValue({
+            quarter: value,
+            timeByAttr: 'quarter',
+            location: this.state.picker.location
+        });
     }
-
     onLocationViewConfirm = (value) => {
-        this.picker.location = value;
-        this.props.confirmCallback(this.picker);
+        const picker = {...this.state.picker};
+        picker.location = value;
+        this.setPickedValue(picker);
     };
-
     onOtherTimeViewConfirm = (value) => {
         if (value.endTimeKey <= value.startTimeKey) {
             Modal.alert('', '结束时间必须大于起始时间！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
         } else {
-            this.picker.otherTime =value;
-            this.picker.timeByAttr = 'otherTime';
-            this.props.confirmCallback(this.picker);
+            this.setPickedValue({
+                otherTime: value,
+                timeByAttr: 'otherTime',
+                location: this.state.picker.location
+            });
         }
-    }
+    };
 
     renderCutoffView = ()=> {
         if (this.state.showCutoffView) {
             return <CutoffTimePickerView marginTop={this.props.marginTop}
                                          sourceTime={cutoffTimes}
-                                         value={this.picker.cutoffTime}
-                                         onViewCanceled={()=>this.setState({showCutoffView: false})}
+                                         value={this.state.picker.cutoffTime}
+                                         onViewCanceled={()=>this.setState({showCutoffView: false, showView: false})}
                                          onViewConfirmed={this.onCutoffViewConfirm}
             />
         }
         return null;
     };
-
     renderQuarterView = ()=> {
         if (this.state.showQuarterView) {
             return <QuarterPickerView marginTop={this.props.marginTop}
-                                      value={this.picker.quarter}
-                                      onViewCanceled={()=>this.setState({showQuarterView: false})}
+                                      value={this.state.picker.quarter}
+                                      onViewCanceled={()=>this.setState({showQuarterView: false, showView: false})}
                                       onViewConfirmed={this.onQuarterViewConfirm}
             />
         }
@@ -127,49 +136,49 @@ export default class  TimeLocationPicker extends React.Component {
         if (this.state.showLocationView) {
             return <LocationPickerView marginTop={this.props.marginTop}
                                        data={this.props.locations}
-                                       value={this.picker.location}
-                                       onViewCanceled={()=>this.setState({showLocationView: false})}
+                                       value={this.state.picker.location}
+                                       onViewCanceled={()=>this.setState({showLocationView: false, showView: false})}
                                        onViewConfirmed={this.onLocationViewConfirm}/>
         }
         return null;
     };
-
     renderOtherTimeView = () => {
         if (this.state.showOtherTimeView) {
             return <OtherTimePickerView marginTop={this.props.marginTop}
                                         sourceTime={otherTime}
-                                        value={this.picker.otherTime}
-                                        onViewCanceled={()=>this.setState({showOtherTimeView: false})}
+                                        value={this.state.picker.otherTime}
+                                        onViewCanceled={()=>this.setState({showOtherTimeView: false, showView: false})}
                                         onViewConfirmed={this.onOtherTimeViewConfirm}
                 />
         }
         return null
     };
 
-    getCutoffTabName = () => {
-        if (this.picker.cutoffTime) {
-            const index = Number(this.picker.cutoffTime);
+    getCutoffTabName = (cutoffTime) => {
+        if (cutoffTime) {
+            const index = Number(cutoffTime);
             return cutoffTimes[0][index -1].label;
         }
         return '月份';
     };
-    getQuarterTabName = () => {
-        if (this.picker.quarter) {
-            return this.picker.quarter.label;
+    getQuarterTabName = (quarter) => {
+        if (quarter) {
+            return quarter.label;
         }
         return '季度'
     };
-    getOtherTimeTabName = () => {
-        if (this.picker.otherTime && this.picker.otherTime.startTime) {
-            return this.picker.otherTime.startTime.replace('-', '.').substring(2) + '-' +this.picker.otherTime.endTime.replace('-', '.').substring(2)
+    getOtherTimeTabName = (otherTime) => {
+        if (otherTime) {
+            return otherTime.startTime.replace('-', '.').substring(2) + '-' + otherTime.endTime.replace('-', '.').substring(2)
         }
         return '其他时间'
     }
+
     getCutoffTabClassName = () => {
         if (this.state.showCutoffView) {
             return 'active'
         }
-        if (this.picker.timeByAttr === 'cutoffTime' && !this.state.showQuarterView && !this.state.showOtherTimeView) {
+        if (this.state.picker.cutoffTime && !this.state.showView) {
             return 'active';
         }
         return ''
@@ -178,7 +187,7 @@ export default class  TimeLocationPicker extends React.Component {
         if (this.state.showQuarterView) {
             return 'active'
         }
-        if (this.picker.timeByAttr === 'quarter' && !this.state.showCutoffView && !this.state.showOtherTimeView) {
+        if (this.state.picker.quarter && !this.state.showView) {
             return 'active';
         }
         return ''
@@ -187,26 +196,34 @@ export default class  TimeLocationPicker extends React.Component {
         if (this.state.showOtherTimeView) {
             return 'active'
         }
-        if (this.picker.timeByAttr === 'otherTime' && !this.state.showCutoffView && !this.state.showQuarterView) {
+        if (this.state.picker.otherTime && !this.state.showView) {
             return 'active';
         }
         return ''
     };
     render() {
-        const locationValue = this.picker.location && this.picker.location.value;
+        const locationValue = this.state.picker.location && this.state.picker.location.value;
         return (
             <div>
                 <SegmentedTabs backgroundStyle={this.props.tabStyle}>
-                    <div onClick={()=>this.showMenu('showCutoffView')} className={this.getCutoffTabClassName()}>{this.getCutoffTabName()}</div>
-                    <div onClick={()=>this.showMenu('showQuarterView')} className={this.getQuarterTabClassName()}>{this.getQuarterTabName()}</div>
-                    <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.getOtherTimeTabClassName()}>{this.getOtherTimeTabName()}</div>
+                    <div onClick={()=>this.showMenu('showCutoffView')}
+                         className={this.getCutoffTabClassName()}>
+                        {this.getCutoffTabName(this.state.picker.cutoffTime)}
+                    </div>
+                    <div onClick={()=>this.showMenu('showQuarterView')}
+                         className={this.getQuarterTabClassName()}>
+                        {this.getQuarterTabName(this.state.picker.quarter)}
+                    </div>
+                    <div onClick={()=> this.showMenu('showOtherTimeView')}
+                         className={this.getOtherTimeTabClassName()}>
+                        {this.getOtherTimeTabName(this.state.picker.otherTime)}
+                    </div>
 
                     {
                         this.props.noLocation ? null
                             : <div onClick={()=>this.showMenu('showLocationView')}
                                                          className={this.state.showLocationView ? 'active':''}>{locationValue || '全国'}</div>
                     }
-
                 </SegmentedTabs>
 
                 {this.renderCutoffView()}
