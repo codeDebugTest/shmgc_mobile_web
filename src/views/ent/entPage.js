@@ -32,7 +32,7 @@ class EntView extends React.Component{
         this.setState({currentState: 'select'})
     };
     onCancelBtnClick = ()=> {
-        this.setState({currentState: 'normal'})
+        this.setState({currentState: 'normal', selectedEnts: []})
     };
 
     onCompareBtnClick =()=> {
