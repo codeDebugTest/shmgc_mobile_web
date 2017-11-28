@@ -2,3 +2,29 @@
 .no-list-line.am-list-item .am-list-line {
     padding-right: 0;
 }
+
+/*card 头部名字过长显示不下*/
+.am-card-header.ent-card-header {
+    justify-content: space-between;
+}
+.am-card-header.ent-card-header .am-card-header-content {
+    flex: auto;
+}
+
+/*对比选择button*/
+.am-button.compare-select-btn {
+    display: inline;
+    float: right;
+    height: 30px;
+    line-height: 20px;
+    padding: 5px 15px;
+    border: 1px solid #03a2d9 !important;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #03a2d9;
+}
+.am-button.compare-select-btn.am-button-disabled {
+    color: rgba(0, 0, 0, 0.3);
+    border: none !important;
+    opacity: 0.6
+}

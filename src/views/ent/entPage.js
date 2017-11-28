@@ -80,7 +80,7 @@ class EntView extends React.Component{
     renderCompareBtn =() => {
         const length = this.state.selectedEnts.length;
         const commonStyle = {flexGrow:1, lineHeight: '40px'};
-        const confirmStyle = { backgroundColor: '#108ee9', color: '#fff'};
+        const confirmStyle = { backgroundColor: '#ff9c1b', color: '#fff'};
 
         const disabledBtn = <a style={{...commonStyle, ...confirmStyle, opacity: 0.4}}>对比（{length}）</a>;
         const activeBtn = <a style={{...commonStyle, ...confirmStyle}} onClick={this.onCompareBtnClick}>对比（{length}）</a>;
@@ -97,12 +97,10 @@ class EntView extends React.Component{
     componentWillMount() {
         this.props.loadData({...this.props.commonData.userInfo});
     }
-
     render () {
         const isSelectState = this.state.currentState !== 'normal';
         const titleStyle = {display: 'inline', lineHeight: '26px', color: '#868585'};
         const imgStyle = {width:'50px', height: '50px'};
-        const setCompareBtnStyle = {display: 'inline', float: 'right', height: '25px', lineHeight: '25px', borderRadius: 0};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
         return (
             <div>
@@ -122,7 +120,7 @@ class EntView extends React.Component{
                     <WingBlank>
                         <Flex style={{justifyContent: 'space-between'}}>
                             <p className="half-margin-p" style={titleStyle}>企业列表</p>
-                            <Button type="primary" size="small" style={setCompareBtnStyle} disabled={isSelectState}
+                            <Button className="compare-select-btn" disabled={isSelectState}
                                     onClick={this.onSetSelectStateBtnClick}>对比</Button>
                         </Flex>
                     </WingBlank>

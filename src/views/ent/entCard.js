@@ -47,7 +47,7 @@ export default class EntCard extends React.Component{
     }
     renderProjectStatic = () => {
         const projectStatic = this.getEntProjectStatic();
-        const typeStyle = {fontSize: '13px',paddingTop: '5px', color: '#868585'}
+        const typeStyle = {fontSize: '13px',paddingTop: '5px', color: '#868585'};
         return (
             projectStatic.map((staticItem, key) => {
                 return <div style={{flexGrow: 2}} key={key}>
@@ -78,7 +78,7 @@ export default class EntCard extends React.Component{
     }
     renderCardHeader = () => {
         const title= <div style={{fontSize: '16px', color: '#03a3d9'}}>{this.ent.entName}</div>;
-        return <Card.Header title={title} extra={<Icon type="right"/>}/>
+        return <Card.Header title={title} extra={<Icon type="right"/>} className="ent-card-header"/>
     };
     render() {
         const isNormal =  this.props.currentState === 'normal'
