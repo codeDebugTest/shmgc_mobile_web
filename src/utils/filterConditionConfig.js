@@ -280,21 +280,21 @@ export function getFilterCategories (source) {
 
 export function getRequestTimeLocationCondition(pickerCondition) {
     const condition = {location: pickerCondition.location && pickerCondition.location.id};
-    if (pickerCondition.timeByAttr === 'quarter') {
+    if (pickerCondition.quarter) {
         const quarter = pickerCondition.quarter;
         if (quarter) {
             condition.pbBeginDate = '2017-' + ((quarter.value -1) * 3 + 1);
             condition.pbEndDate = '2017-' + ((quarter.value -1) * 3 + 3);
             return condition;
         }
-    } else if(pickerCondition.timeByAttr === 'otherTime') {
+    } else if(pickerCondition.otherTime) {
         const otherTime = pickerCondition.otherTime;
         if (otherTime) {
             condition.pbBeginDate = otherTime.startTime;
             condition.pbEndDate = otherTime.endTime;
             return condition;
         }
-    } else if (pickerCondition.timeByAttr === 'cutoffTime') {
+    } else if (pickerCondition.cutoffTime) {
         const cutoffTime = pickerCondition.cutoffTime;
         if (cutoffTime) {
             condition.pbBeginDate = '2017-' + cutoffTime;
@@ -317,4 +317,28 @@ export function getRequestCateEntCondition(condition) {
         result.cateId = condition.cate[1]
     }
     return result
+}
+
+export function getTimeLocationTitleByConditon(condition) {
+    let title = '';
+    let city = '';
+    if (condition.cutoffTime) {
+        title = '17年' + condition.cutoffTime + '月';
+    } else if(condition.quarter) {
+        const quarter = condition.quarter;
+        title = '17年' + ((quarter.value -1) * 3 + 1) + '月-' + ((quarter.value -1) * 3 + 3) + '月';
+    } else if (condition.otherTime) {
+        const otherTime = condition.otherTime;
+        title = '17年' + otherTime.startTime.split('-')[1] + '月-' + otherTime.endTime.split('-')[1] + '月';
+    } else {
+        const date = new Date();
+        title = '17年1月-' + date.getMonth() + '月';
+    }
+
+    if (condition.location && condition.location.id) {
+        city = condition.location.value ;
+    } else {
+        city = '全国';
+    }
+    return title + ' ' + city + ' ';
 }

@@ -112,7 +112,7 @@ export default class StaticView extends React.Component {
 
         return (
             <div>
-                <p style={{color: '#868585'}}>数据统计概览</p>
+                <p style={{color: '#868585'}}>{(this.props.title || '') + '统计概览'}</p>
                 <WingBlank>
                     <div style={flexLayout}>
                         <div style={{width: '58%', ...labelStyle}}>

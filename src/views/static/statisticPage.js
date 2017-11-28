@@ -11,7 +11,7 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute} from '../../utils/router'
-import {getThreeEntForBtn,getEntByName, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList} from '../../utils/filterConditionConfig'
+import {getEntByName, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList, getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
 
 class StatisticView extends React.Component{
     constructor(props) {
@@ -62,7 +62,9 @@ class StatisticView extends React.Component{
 
     renderStaticOverview = () => {
         if (this.props.storeData.loadingSuccess) {
-            return <StaticView staticData={this.props.storeData}/>
+            const title = getTimeLocationTitleByConditon(this.pickerCondition);
+
+            return <StaticView staticData={this.props.storeData} title={title}/>
         }
         return null;
     }
@@ -82,7 +84,7 @@ class StatisticView extends React.Component{
     render () {
         return (
             <div>
-                <TopNavBar title="统计" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                <TopNavBar title={this.props.commonData.entName} leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className="main-section">
                     <GridBox column="4" data={this.btnItemList}
@@ -100,7 +102,6 @@ class StatisticView extends React.Component{
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
-                    <WhiteSpace/>
 
                     <WhiteSpace/>
                     {this.renderStaticOverview()}
