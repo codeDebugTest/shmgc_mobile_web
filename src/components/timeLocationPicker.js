@@ -159,6 +159,12 @@ export default class  TimeLocationPicker extends React.Component {
         }
         return '季度'
     };
+    getOtherTimeTabName = () => {
+        if (this.picker.otherTime && this.picker.otherTime.startTime) {
+            return this.picker.otherTime.startTime.replace('-', '.').substring(2) + '-' +this.picker.otherTime.endTime.replace('-', '.').substring(2)
+        }
+        return '其他时间'
+    }
     getCutoffTabClassName = () => {
         if (this.state.showCutoffView) {
             return 'active'
@@ -193,7 +199,7 @@ export default class  TimeLocationPicker extends React.Component {
                 <SegmentedTabs backgroundStyle={this.props.tabStyle}>
                     <div onClick={()=>this.showMenu('showCutoffView')} className={this.getCutoffTabClassName()}>{this.getCutoffTabName()}</div>
                     <div onClick={()=>this.showMenu('showQuarterView')} className={this.getQuarterTabClassName()}>{this.getQuarterTabName()}</div>
-                    <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.getOtherTimeTabClassName()}>其他时间</div>
+                    <div onClick={()=> this.showMenu('showOtherTimeView')} className={this.getOtherTimeTabClassName()}>{this.getOtherTimeTabName()}</div>
 
                     {
                         this.props.noLocation ? null
