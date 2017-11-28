@@ -12,7 +12,7 @@ export default class TopNavBar extends React.Component {
                 <NavBar mode="dark"
                         leftContent={this.props.leftContent}
                         onLeftClick={this.props.onLeftBtnClick}
-                        rightContent={this.props.rightContent}
+                        // rightContent={this.props.rightContent}
                         className="top-nav-bar"
                         style={this.props.style}>
                     {this.props.title}

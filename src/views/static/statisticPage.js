@@ -26,7 +26,7 @@ class StatisticView extends React.Component{
     getBtnItemList = () => {
         const commonData = this.props.commonData;
         if (commonData && commonData.subEnts && commonData.statCategories) {
-            const ents = getEntByName(commonData.subEnts, ['城建物资', '隧道工程', '路桥集团']);
+            const ents = getEntByName(commonData.subEnts, [ '隧道工程', '路桥集团', '城建物资']);
             ents.push({name: '上海砼', type: 'ent_cate'});
             const cates = getThreeCateForBtn(commonData.statCategories);
             cates.push({name: '全部', type: 'all'});

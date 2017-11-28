@@ -2,11 +2,11 @@
     padding: 0 20px;
     height: 27px;
     line-height: 27px;
-    color: #fff;
-    background-color: #108ee9;
+    color: #9e9d9d;
+    background-color: #f5f5f9;
 }
 .ent-tag.am-tag .am-tag-close {
     left: inherit;
     right: -8px;
-    color: red;
+    color: #009fe9;
 }

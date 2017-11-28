@@ -45,7 +45,13 @@ class EntCompareView extends Component{
     };
     renderTableLine = (data) => {
         const width = this.calculateWith(data.length);
-        const containerStyle = {display: 'flex', flexDirection: 'row', height: '40px', borderBottom: '1px solid #ddd',paddingRight: '2px'};
+        const isLast = data[0] === '已结束';
+        const containerStyle = {
+            display: 'flex',
+            flexDirection: 'row',
+            height: '40px',
+            borderBottom: isLast ? '' : '1px solid #ddd',
+        };
         return <div style={containerStyle}>
                 {
                     data.map((item, key) => {
@@ -66,15 +72,15 @@ class EntCompareView extends Component{
     renderTable = () => {
         const tableData = this.props.storeData;
         if (tableData && tableData.loadingSuccess) {
-            return <WingBlank>
-                {this.renderTableLine([''].concat(tableData.entList))}
-                {this.renderTableLine(['采购金额'].concat(tableData.totalAmountStrList))}
-                {this.renderTableLine(['采购数量'].concat(tableData.quantityStrList))}
-                {this.renderTableLine(['平均单价'].concat(tableData.averagePriceStrList))}
-                {this.renderTableLine(['项目总数'].concat(tableData.totalPiCountStrList))}
-                {this.renderTableLine(['进行中'].concat(tableData.runningPiCountStrList))}
-                {this.renderTableLine(['已结束'].concat(tableData.finishedPiCountStrList))}
-            </WingBlank>
+            return <div style={{padding: '0 5px', borderRadius:'3px', backgroundColor:'#fff'}}>
+                    {this.renderTableLine([''].concat(tableData.entList))}
+                    {this.renderTableLine(['采购金额'].concat(tableData.totalAmountStrList))}
+                    {this.renderTableLine(['采购数量'].concat(tableData.quantityStrList))}
+                    {this.renderTableLine(['平均单价'].concat(tableData.averagePriceStrList))}
+                    {this.renderTableLine(['项目总数'].concat(tableData.totalPiCountStrList))}
+                    {this.renderTableLine(['进行中'].concat(tableData.runningPiCountStrList))}
+                    {this.renderTableLine(['已结束'].concat(tableData.finishedPiCountStrList))}
+                </div>
         }
         return null;
     };
@@ -84,8 +90,7 @@ class EntCompareView extends Component{
         if (entList && entList.length) {
             const lineStyle = {display: 'flex', flexWrap: 'wrap', padding: '10px 0'};
             return (
-                <div style={{paddingTop: '10px'}}>
-                    <p className="half-margin-p">已选择企业</p>
+                <div style={{paddingTop: '10px', borderRadius:'3px', backgroundColor: '#fff'}}>
                     <div style={lineStyle}>
                         {
                             entList.map((entName) => {
@@ -132,7 +137,7 @@ class EntCompareView extends Component{
         return (
             <div>
                 <TopNavBar title="企业对比" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom">
+                <div className="main-section-no-bottom" style={{backgroundColor: '#f5f5f9'}}>
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
                                    hideEntTab={true}
@@ -146,8 +151,12 @@ class EntCompareView extends Component{
                                         confirmCallback={this.onTimeLocationPickedCallback}
                                         pickerCondition={this.timeLocationCondition}/>
 
-                    {this.renderEntPanel()}
-                    {this.renderTable()}
+                    <WingBlank>
+                        <WhiteSpace/>
+                        {this.renderEntPanel()}
+                        <WhiteSpace/>
+                        {this.renderTable()}
+                    </WingBlank>
                 </div>
             </div>
         )
