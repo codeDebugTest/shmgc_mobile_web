@@ -85,6 +85,15 @@
   background-color: #008AE6;
   color: #FFF;
 }
+.top-nav-bar.am-navbar{
+  justify-content: space-between;
+}
+.top-nav-bar.am-navbar .am-navbar-left,
+.top-nav-bar.am-navbar .am-navbar-right,
+.top-nav-bar.am-navbar .am-navbar-title{
+  flex: none;
+}
+
 .setting-icon{
   width: 22px;
   height: 22px;
