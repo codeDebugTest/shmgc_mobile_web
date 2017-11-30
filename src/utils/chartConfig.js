@@ -24,7 +24,7 @@ export class G2Config {
         this.chart.interval().position(nameX + '*' + nameY).color(nameX, ['#019fe8', '#01cfe7', '#00e9c0', '#5dcf53']).tooltip(nameY, (isPurchase?this.purchaseTooltipCallback: null));
     }
     setChartLine(nameX, nameY) {
-        this.chart.line().position(nameX + '*' + nameY).shape('smooth');
+        this.chart.line().position(nameX + '*' + nameY);
         this.chart.point().position(nameX + '*' + nameY).size(4).shape('circle').style({
             stroke: '#fff',
             lineWidth: 1

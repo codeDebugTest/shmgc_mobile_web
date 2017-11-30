@@ -9,7 +9,7 @@ import BottomTabBar from '../../components/bottomTabBar'
 import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
 import {ChangeRoute} from '../../utils/router'
 import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
-import {doLoginAction} from '../login.redux'
+import {doLoginAction, SET_TOKEN} from '../login.redux'
 import  './homePage.css'
 
 class Home extends React.Component{
@@ -20,19 +20,13 @@ class Home extends React.Component{
         this.getUserInfo();
     }
     getUserInfo = () => {
-        this.userInfo ={loginName: 'zhougang', password: '123456'};
         const query = this.props.location.query;
-        console.log('props: ', this.props);
-        if (query && query.loginName){
-            this.userInfo.loginName = query.loginName
+        if (query && query.token) {
+            this.props.setUserToken(query.token);
+        } else {
+
         }
-        if (query && query.password){
-            this.userInfo.password = query.password
-        }
-        if (query && query.token){
-            this.userInfo.token = query.token
-        }
-        console.log('userInfo:', this.userInfo);
+
     }
     onGridItemClick = (gridItem) => {
         this.props.initHomeItemPage(gridItem.display);
@@ -112,9 +106,11 @@ class Home extends React.Component{
     }
     componentWillMount() {
         if (!this.props.commonData.loginSuccess) {
-            this.props.userLogin(this.userInfo);
+            const loginInfo = {loginName: 'zhougang', password: '123456'};
+            this.props.userLogin(loginInfo, ()=> this.props.loadData(this.props.commonData.userInfo));
+        } else {
+            this.props.loadData(this.props.commonData.userInfo);
         }
-        this.props.loadData(this.userInfo);
     }
 
     componentDidMount() {
@@ -191,8 +187,11 @@ const mapDispatchToProps = (dispatch) => {
         initHomeItemPage: (params) => {
             dispatch({type: INIT_HOME_ITEM_PAGE, itemTypeName: params})
         },
-        userLogin: (params) => {
-            dispatch(doLoginAction(params));
+        userLogin: (params, callback) => {
+            dispatch(doLoginAction(params, callback));
+        },
+        setUserToken: (token) => {
+            dispatch({type:SET_TOKEN, data: token});
         }
     }
 };
