@@ -51,3 +51,6 @@ export const ChangeRoute = function () {
     }
 }();
 
+export function sendMsgToRN(msg) {
+    window.postMessage(JSON.stringify(msg), '*');
+}

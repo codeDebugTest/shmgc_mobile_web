@@ -6,7 +6,7 @@ import CateEntPicker from '../../components/cateEntPicker'
 import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './entStaticPage.redux'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import { getFilterLoactions, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
 
 
@@ -42,6 +42,8 @@ class EntStaticPage extends React.Component {
             ...this.props.commonData.userInfo,
             filterCondition: {...filterCondition}
         });
+
+        sendMsgToRN({title: this.ent.name});
     };
 
     onCateEntPickedCallback =(condition) => {

@@ -6,7 +6,7 @@ import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './itemPageRedux'
 import {logoClassList, getFilterLoactions, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
 
@@ -56,6 +56,7 @@ class ItemView extends React.Component{
 
     componentWillMount() {
         this.loadStaticData({});
+        sendMsgToRN({title: '项目'});
     }
 
     onEndReached = () => {

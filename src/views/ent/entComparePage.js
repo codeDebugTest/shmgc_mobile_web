@@ -5,7 +5,7 @@ import TopNavBar from '../../components/topNavBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import CateEntPicker from '../../components/cateEntPicker'
 import './entComparePage.css'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
 import { getFilterLoactions, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
 
@@ -132,6 +132,7 @@ class EntCompareView extends Component{
 
     componentWillMount() {
         this.loadStaticData();
+        sendMsgToRN({title: '企业对比'});
     }
     render () {
         return (

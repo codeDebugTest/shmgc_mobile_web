@@ -10,7 +10,7 @@ import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {getEntByName, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, logoClassList, getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
 
 class StatisticView extends React.Component{
@@ -79,6 +79,7 @@ class StatisticView extends React.Component{
 
     componentWillMount() {
         this.loadStaticData({});
+        sendMsgToRN({title: this.props.commonData.entName});
     }
 
     render () {

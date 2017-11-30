@@ -5,7 +5,7 @@ import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
 import EntCard from './entCard'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './entPage.redux'
 import {INIT_ENT_COMPARE_PAGE} from './entComparePage.redux'
 import {logoClassList} from '../../utils/filterConditionConfig'
@@ -96,6 +96,7 @@ class EntView extends React.Component{
     }
     componentWillMount() {
         this.props.loadData({...this.props.commonData.userInfo});
+        sendMsgToRN({title: '企业'});
     }
     render () {
         const isSelectState = this.state.currentState !== 'normal';
