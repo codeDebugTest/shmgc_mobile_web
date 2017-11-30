@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Button, WhiteSpace, WingBlank, ListView} from 'antd-mobile'
+import { WhiteSpace, WingBlank, ListView} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
@@ -8,6 +8,7 @@ import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './itemPageRedux'
+import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
 import {logoClassList, getFilterLoactions, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
 
 class ItemView extends React.Component{
@@ -24,33 +25,51 @@ class ItemView extends React.Component{
         });
 
         this.state = {
+            data: [],
             dataSource,
             isLoading: true,
             hasMore: true
         };
         this.updateListView = this.updateListView.bind(this);
+        this.onItemClick = this.onItemClick.bind(this);
     }
-    onGridClick = (ent) =>{
+    onGridClick = () =>{
         // todo 跳转页面
     };
-
-    updateListView = () => {
+    onItemClick = (piId) =>{
+        // todo 跳转页面
+        this.props.initItemDetail(piId);
+        ChangeRoute.goPurchaseItemDetailPage();
+    };
+    updateListView = (reset) => {
         if (this.props.storeData.purchaseItems.length < this.pageConfig.pageSize) {
             this.setState({isLoading: false, hasMore: false});
         } else {
-            this.setState({
-                isLoading: false,
-                dataSource: this.state.dataSource.cloneWithRows(this.props.storeData.purchaseItems)
-            })
+            if (reset) {
+                this.setState({
+                    isLoading: false,
+                    data: this.props.storeData.purchaseItems,
+                    dataSource: this.state.dataSource.cloneWithRows(...this.props.storeData.purchaseItems)
+                })
+            } else {
+                const newData = [...this.state.data, ...this.props.storeData.purchaseItems];
+                this.setState({
+                    isLoading: false,
+                    data: newData,
+                    dataSource: this.state.dataSource.cloneWithRows(newData)
+                })
+            }
         }
     };
 
     loadStaticData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
         this.props.loadData({
-            ... this.pageConfig,
             ...this.props.commonData.userInfo,
-            filterCondition: getRequestTimeLocationCondition(this.pickerCondition)
+            filterCondition: {
+                ...getRequestTimeLocationCondition(this.pickerCondition),
+                ... this.pageConfig,
+            }
         }, this.updateListView);
     };
 
@@ -71,7 +90,7 @@ class ItemView extends React.Component{
     renderItem = (row, sectionId, rowId) => {
         return (
             <div key={row.piId} >
-                <PurchaseItemCard item={row}/>
+                <PurchaseItemCard item={row} onClick={this.onItemClick}/>
 
                 <WhiteSpace/>
             </div>
@@ -85,7 +104,7 @@ class ItemView extends React.Component{
             <div>
                 <TopNavBar title="项目" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
-                <div className="main-section grid-back-ground">
+                <div className="main-section item-back-ground">
                     <GridBox column="4" data={this.props.commonData.subEnts}
                              renderItem={item=>(
                                  <div style={{paddingTop: '15px'}}>
@@ -104,12 +123,12 @@ class ItemView extends React.Component{
                     <WhiteSpace/>
                     <WingBlank>
                         <ListView
-                            style={{ height: '400px'}}
+                            style={{ height: '450px'}}
                             className="item-list"
                             dataSource={this.state.dataSource}
-                            renderFooter={() => (<div style={{ padding:'10px', textAlign: 'center', backgroundColor: '#ddd' }}>
+/*                            renderFooter={() => (<div style={{ padding:'10px', textAlign: 'center', backgroundColor: '#ddd' }}>
                                 {this.state.isLoading ? '-- 疯狂加载中 --' : '-- 我是有底线的 --'}
-                            </div>)}
+                            </div>)}*/
                             onScroll={()=>console.log('scroll')}
                             renderRow={this.renderItem}
                             pageSize={this.pageConfig.pageSize}
@@ -137,6 +156,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadData: (params, callback) => {
             dispatch(doLoadingDataAction(params, callback));
+        },
+        initItemDetail: (params) => {
+            dispatch({type: INIT_ITEM_DETAIL_PAGE, data: params})
         }
     }
 }

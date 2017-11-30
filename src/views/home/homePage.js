@@ -7,7 +7,7 @@ import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
 import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
 import {doLoginAction, SET_TOKEN} from '../login.redux'
 import  './homePage.css'
@@ -23,10 +23,7 @@ class Home extends React.Component{
         const query = this.props.location.query;
         if (query && query.token) {
             this.props.setUserToken(query.token);
-        } else {
-
         }
-
     }
     onGridItemClick = (gridItem) => {
         this.props.initHomeItemPage(gridItem.display);
@@ -110,6 +107,7 @@ class Home extends React.Component{
             this.props.userLogin(loginInfo, ()=> this.props.loadData(this.props.commonData.userInfo));
         } else {
             this.props.loadData(this.props.commonData.userInfo);
+            sendMsgToRN({title: this.props.commonData.entName});
         }
     }
 

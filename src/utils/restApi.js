@@ -5,6 +5,7 @@ const RequestType = {
     userLogin: 'USER_LOGIN',
     homeOverView: 'HOME_OVERVIEW',
     purchaseItems: 'PURCHASE_ITEM_LIST',
+    purchaseItemDetail: 'PURCHASE_ITEM_DETAIL',
     statistic: 'STATIC_OVERVIEW',
     entList: 'ENT_LIST_OVERVIEW',
     entCompare: 'ENT_COMPARISION',
@@ -171,6 +172,10 @@ export function fetchPurchaseItems(params) {
             ]
         }), 1000);
     })*/
+}
+
+export function fetchPurchaseItemDetail(params) {
+    return http.post(restUrl, {requestType: RequestType.purchaseItemDetail, ...params});
 }
 
 export function fetchStaticOverviewData(params) {

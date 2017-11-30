@@ -208,6 +208,19 @@
   width: 40px;
   background: url(./asset/logo/itemType/agreement.png) center center / 40px 40px no-repeat;
 }
+/*项目详情*/
+.pi-purchase-ent-icon{
+  height: 18px;
+  content: url(asset/img/piPurchaseEnt.png)
+}
+.pi-type-icon {
+  height: 20px;
+  content: url(asset/img/piTitle.png);
+}
+.pi-radio-icon {
+  height: 16px;
+  content: url(asset/img/piRadio.png);
+}
 
 /*上海砼background*/
 .cjwz-concrete-background {
@@ -219,4 +232,18 @@
 }
 .grid-no-back-ground {
   background-color: #fff;
+}
+
+.item-back-ground {
+  background-image: url(./asset/img/item-backgroud.png);
+}
+
+.item-section.am-accordion .am-accordion-item .am-accordion-header{
+  height: 40px;
+  line-height: 40px;
+  color: #1aa6eb;
+  font-size: 15px;
+}
+.item-section.am-accordion .am-accordion-item .am-accordion-content-box{
+  padding: 8px 10px;
 }

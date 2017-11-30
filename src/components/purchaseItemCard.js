@@ -54,7 +54,7 @@ export default class PurchaseItemCard extends React.Component {
     render () {
         const item = this.props.item;
         return (
-            <div className="item-card">
+            <div className="item-card" onClick={()=>this.props.onClick(this.props.item.piId)}>
                 <div className="item-type-logo">
                     <div className={this.getPiLogo(item.piType)}/>
                     <p style={{...this.getTitleColor(item.piType)}}>{item.piType}</p>

@@ -138,7 +138,7 @@ class EntCompareView extends Component{
         return (
             <div>
                 <TopNavBar title="企业对比" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom" style={{backgroundColor: '#f5f5f9'}}>
+                <div className="main-section-no-bottom gap">
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
                                    hideEntTab={true}
