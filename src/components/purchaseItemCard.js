@@ -40,16 +40,26 @@ export default class PurchaseItemCard extends React.Component {
 
     getPiTitle = (title) => {
         return title.substring(0, 9)
+    };
+
+    getPiLogo = (piType) => {
+        if (piType === '比价') {
+            return 'compare-logo'
+        } else if (piType === '招标') {
+            return 'invite-logo'
+        } else if (piType === '协议') {
+            return 'agreement-logo'
+        }
     }
 
+
     render () {
-        const itemIconStyle = {width:'40px', height: '40px'};
         const item = this.props.item;
         return (
             <div className="item-card">
                 <div className="item-type-logo">
-                    <img src={placeholderImg} style={itemIconStyle}/>
-                    <p style={{fontSize:'12px', marginTop:'5px', ...this.getTitleColor(item.piType)}} className="no-margin-p">{item.piType}</p>
+                    <div className={this.getPiLogo(item.piType)}/>
+                    <p style={{...this.getTitleColor(item.piType)}}>{item.piType}</p>
                 </div>
                 <div className="body">
                     <div className="content">

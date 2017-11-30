@@ -46,7 +46,10 @@
      justify-content: center;
      align-items: center;
  }
-
+.item-card .item-type-logo > p {
+    -webkit-margin-after: 0;
+    font-size: 12px;
+}
 .item-card .hand-sign {
     width: 6%;
     flex-grow: 1;

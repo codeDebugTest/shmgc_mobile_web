@@ -192,6 +192,23 @@
   content: url(asset/logo/cate/steel-small.png)
 }
 
+/*项目类型*/
+.compare-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/itemType/compare.png) center center / 40px 40px no-repeat;
+}
+.invite-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/itemType/invite.png) center center / 40px 40px no-repeat;
+}
+.agreement-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/itemType/agreement.png) center center / 40px 40px no-repeat;
+}
+
 /*上海砼background*/
 .cjwz-concrete-background {
   background-image: url(asset/img/cjwz-concrete-background.png);
