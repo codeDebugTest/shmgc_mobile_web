@@ -59,3 +59,7 @@
 .item-list .am-list-body {
     background-color: inherit;
 }
+.item-list .am-list-footer {
+    padding: 0;
+    padding-bottom: 1px;
+}

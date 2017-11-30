@@ -2,7 +2,6 @@ import React from 'react'
 import {Icon} from 'antd-mobile'
 import './purchaseItemCard.css'
 
-const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
 const runningStatus = {
     border: '2px solid #debb04',
     color: '#debb04'
@@ -52,7 +51,6 @@ export default class PurchaseItemCard extends React.Component {
         }
     }
 
-
     render () {
         const item = this.props.item;
         return (
@@ -61,6 +59,7 @@ export default class PurchaseItemCard extends React.Component {
                     <div className={this.getPiLogo(item.piType)}/>
                     <p style={{...this.getTitleColor(item.piType)}}>{item.piType}</p>
                 </div>
+
                 <div className="body">
                     <div className="content">
                         <label className="title" style={this.getTitleColor(item.piType)}>{this.getPiTitle(item.piTitle)} ...</label>
@@ -73,6 +72,7 @@ export default class PurchaseItemCard extends React.Component {
                         <label>{item.cutoffTimeStr}</label>
                     </div>
                 </div>
+
                 <div className="hand-sign">
                     <Icon type="right"/>
                 </div>

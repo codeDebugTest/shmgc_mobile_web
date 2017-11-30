@@ -36,10 +36,10 @@ class ItemView extends React.Component{
 
     updateListView = () => {
         if (this.props.storeData.purchaseItems.length < this.pageConfig.pageSize) {
-            this.setState({hasMore: false});
+            this.setState({isLoading: false, hasMore: false});
         } else {
             this.setState({
-                loading: false,
+                isLoading: false,
                 dataSource: this.state.dataSource.cloneWithRows(this.props.storeData.purchaseItems)
             })
         }
@@ -103,13 +103,17 @@ class ItemView extends React.Component{
                     <WhiteSpace/>
                     <WingBlank>
                         <ListView
-                            style={{overflow: 'inherit'}}
+                            style={{ height: '400px'}}
                             className="item-list"
                             dataSource={this.state.dataSource}
+                            renderFooter={() => (<div style={{ padding:'10px', textAlign: 'center', backgroundColor: '#ddd' }}>
+                                {this.state.isLoading ? '-- 疯狂加载中 --' : '-- 我是有底线的 --'}
+                            </div>)}
+                            onScroll={()=>console.log('scroll')}
                             renderRow={this.renderItem}
                             pageSize={this.pageConfig.pageSize}
-                            scrollRenderAheadDistance={100}
-                            onEndReached={this.onEndReached}
+                            scrollRenderAheadDistance={90}
+                            onEndReached={()=>this.onEndReached()}
                             onEndReachedThreshold={10}
                         />
                     </WingBlank>
