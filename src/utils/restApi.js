@@ -82,7 +82,8 @@ export function fetchHomePageData(params) {
 }
 
 export function fetchPurchaseItems(params) {
-    return new Promise((resolve, reject) => {
+    return http.post(restUrl, {requestType: RequestType.purchaseItems, ...params});
+    /*return new Promise((resolve, reject) => {
         setTimeout(()=> resolve({
             return_code: 0,
             result: [
@@ -169,7 +170,7 @@ export function fetchPurchaseItems(params) {
                 }
             ]
         }), 1000);
-    })
+    })*/
 }
 
 export function fetchStaticOverviewData(params) {

@@ -1,22 +1,22 @@
 .item-card {
     display: flex;
     justify-content: space-between;
-    margin: 5px;
-    padding:10px 8px;
-    border-radius: 6px;
+    padding:10px 5px;
+    border-radius: 5px;
     background-color: #fff;
 }
 .item-card .body {
-    width: 74%;
+    width: 77%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 .item-card .body .content {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    margin-bottom: 15px;
     font-size: 15px;
 }
 .item-card .body .content .title {
@@ -35,10 +35,24 @@
     justify-content: space-between;
     color: #6d6c6c;
     font-size: 12px;
-}
+}.item-card .body .basic >* {
+    width: 31%;
+ }
+
+ .item-card .item-type-logo {
+     width: 17%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
 
 .item-card .hand-sign {
-    width: 9%;
+    width: 6%;
     flex-grow: 1;
     align-self: center;
+}
+/*去除 am list -body background color*/
+.item-list .am-list-body {
+    background-color: inherit;
 }

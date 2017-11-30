@@ -39,7 +39,7 @@ export default class PurchaseItemCard extends React.Component {
     };
 
     getPiTitle = (title) => {
-        return title.substring(0, 6)
+        return title.substring(0, 9)
     }
 
     render () {
@@ -47,20 +47,19 @@ export default class PurchaseItemCard extends React.Component {
         const item = this.props.item;
         return (
             <div className="item-card">
-                <div style={{width: '17%'}}>
+                <div className="item-type-logo">
                     <img src={placeholderImg} style={itemIconStyle}/>
                     <p style={{fontSize:'12px', marginTop:'5px', ...this.getTitleColor(item.piType)}} className="no-margin-p">{item.piType}</p>
                 </div>
                 <div className="body">
                     <div className="content">
-                        <label className="title" style={this.getTitleColor(item.piType)}>{this.getPiTitle(item.piTitle)}......</label>
+                        <label className="title" style={this.getTitleColor(item.piType)}>{this.getPiTitle(item.piTitle)} ...</label>
                         <button className="status" style={this.getStatusStyle(item.pitStatus)}>{item.pitStatus}</button>
                     </div>
 
                     <div className="basic">
                         <label>{item.entName}</label>
                         <label>{item.piProdDesc}</label>
-                        <label>{item.city}</label>
                         <label>{item.cutoffTimeStr}</label>
                     </div>
                 </div>
