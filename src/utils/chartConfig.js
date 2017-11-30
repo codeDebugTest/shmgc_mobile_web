@@ -6,7 +6,7 @@ export class G2Config {
     setChartScale(field, alias, rangCfg) {
         const defaultCfg = {
             type: 'linear',
-            tickCount: 4,
+            tickCount: 5,
         };
         if (rangCfg) {
             defaultCfg.minLimit = rangCfg[field].min;
