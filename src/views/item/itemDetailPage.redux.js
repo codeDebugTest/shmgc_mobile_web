@@ -38,7 +38,7 @@ export function itemDetailPageReducer(state={}, action) {
         case FETCH_PURCHASE_ITEM_DETAIL_SUCCESS:
             return Object.assign({}, state, {loading: false, loadingSuccess:true, purchaseItem: action.response});
         case FETCH_PURCHASE_ITEM_DETAIL_FAILED:
-            return Object.assign({}, state, {loading: false, error: action.error});
+            return Object.assign({}, state, {loading: false, loadingSuccess:false, error: action.error});
         default:
             return state
     }
