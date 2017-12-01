@@ -19,7 +19,7 @@ class ChJWZConcreteStaticPage extends React.Component {
         const pBigStyle = {fontSize:'12px', textAlign: 'left', width: '65%'};
         const pSmallStyle = {fontSize:'12px', textAlign: 'left', width: '35%'};
         return (
-            <Card style={{paddingBottom: 0, backgroundColor: '#e9f1ea'}}>
+            <Card style={{paddingBottom: 0, backgroundColor: '#e9f1ea', borderRadius: 0}}>
                 <Card.Header title={<div style={titleStyle}>{title}</div>}/>
                 <Card.Body style={{paddingTop: '5px'}}>
                     <Flex>
@@ -43,16 +43,18 @@ class ChJWZConcreteStaticPage extends React.Component {
                     const parentEntname = item.parentEnt.shortName;
                     const selfCardTitle = '城建物资承接' + parentEntname  + '统计';
                     return (
-                        <WingBlank key={key}>
-                            {this.renderOverviewCard(parentEntname, item.parent)}
-                            <WhiteSpace/>
+                        <div key={key}>
+                            <div style={{border: '2px solid #ddd'}}>
+                                {this.renderOverviewCard(parentEntname, item.parent)}
+                                <WhiteSpace/>
 
-                            {this.renderOverviewCard(selfCardTitle, item.self)}
-                            <WhiteSpace/>
+                                {this.renderOverviewCard(selfCardTitle, item.self)}
 
-                            <PieChartCard staticData={item.percentage} id={item.parentEnt.entId}/>
+                                <PieChartCard staticData={item.percentage} id={item.parentEnt.entId}/>
+                            </div>
                             <WhiteSpace/>
-                        </WingBlank>
+                            <WhiteSpace/>
+                        </div>
                     )
                 })
             )
@@ -84,7 +86,10 @@ class ChJWZConcreteStaticPage extends React.Component {
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
                     <WhiteSpace/>
-                    {this.renderStaticData()}
+
+                    <WingBlank >
+                        {this.renderStaticData()}
+                    </WingBlank>
                 </div>
             </div>
         )

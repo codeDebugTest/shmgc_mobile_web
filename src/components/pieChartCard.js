@@ -1,5 +1,5 @@
 import React from 'react'
-import {Flex} from 'antd-mobile'
+import {Flex, WhiteSpace} from 'antd-mobile'
 import G2 from '@antv/g2'
 import {G2Config} from '../utils/chartConfig'
 
@@ -59,6 +59,8 @@ export default class PieChartCard extends React.Component {
     render () {
         const chartVisible = this.state.chartVisible;
         return (
+        <div>
+            { chartVisible.amountChart ? <WhiteSpace/> : ''}
             <Flex style={{backgroundColor: '#e9f1ea'}}>
                 {chartList.map((chartId, key) => {
                     return (
@@ -71,6 +73,8 @@ export default class PieChartCard extends React.Component {
                     )
                 })}
             </Flex>
+        </div>
+
         )
     }
 }
