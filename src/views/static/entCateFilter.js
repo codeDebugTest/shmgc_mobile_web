@@ -4,7 +4,7 @@ import {Card, WhiteSpace} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
 import CatePickerPanel from '../../components/catePickerPanel'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
@@ -34,14 +34,24 @@ class EntCateFilter extends React.Component {
         ChangeRoute.goStaticCatePage();
     };
 
+    componentWillMount() {
+        sendMsgToRN({title: "全部", backBtnEnabled: true});
+    }
+
     render() {
         const cardStyle ={padding: '5px 10px', borderTop: '1px solid #ddd', color: '#008ae6'};
         const itemIconStyle = {width:'50px', height: '50px'};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
-                <TopNavBar title="全部" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom" style={{color: 'blue'}}>
+                <TopNavBar title="全部"
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')} style={{color: 'blue'}}>
                     <Card>
                         <Card.Header title="企业" className="ent-cate-card"/>
                         <Card.Body style={cardStyle}>
