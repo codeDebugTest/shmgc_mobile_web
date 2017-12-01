@@ -17,14 +17,8 @@ class Home extends React.Component{
         super(props);
         this.cardOnClickHandler = this.cardOnClickHandler.bind(this);
         this.onGridItemClick = this.onGridItemClick.bind(this);
-        this.getUserInfo();
     }
-    getUserInfo = () => {
-        const query = this.props.location.query;
-        if (query && query.token) {
-            this.props.setUserToken(query.token);
-        }
-    }
+
     onGridItemClick = (gridItem) => {
         this.props.initHomeItemPage(gridItem.display);
         ChangeRoute.goHomeItemPage();
@@ -102,11 +96,16 @@ class Home extends React.Component{
         }
     }
     componentWillMount() {
-        if (!this.props.commonData.loginSuccess) {
+        const query = this.props.location.query;
+        if (!this.props.commonData.loginSuccess && !query.token) {
             const loginInfo = {loginName: 'zhougang', password: '123456'};
             this.props.userLogin(loginInfo, ()=> this.props.loadData(this.props.commonData.userInfo));
-        } else {
+        } else if (this.props.commonData.loginSuccess){
             this.props.loadData(this.props.commonData.userInfo);
+            sendMsgToRN({title: this.props.commonData.entName});
+        } else if (query.token){
+            this.props.setUserToken(query.token);
+            this.props.loadData({token: query.token});
             sendMsgToRN({title: this.props.commonData.entName});
         }
     }
