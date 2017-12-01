@@ -4,6 +4,7 @@ import G2 from '@antv/g2'
 import {G2Config} from '../utils/chartConfig'
 
 const chartList = ['amountChart', 'quantityChart', 'piCountChart'];
+const chartNameList = ['采购金额', '采购数量', '项目数'];
 export default class PieChartCard extends React.Component {
     constructor(props) {
         super(props);
@@ -33,7 +34,6 @@ export default class PieChartCard extends React.Component {
         }
         return false;
     }
-
     createChart = () => {
         chartList.forEach((chartId) => {
             this[chartId] = new G2.Chart({
@@ -41,7 +41,7 @@ export default class PieChartCard extends React.Component {
                 forceFit: true,
                 height: 100,
                 width: '100%',
-                padding: [10, 10,10,10]
+                padding: [5, 10,10,10]
             })
         });
     };
@@ -61,7 +61,14 @@ export default class PieChartCard extends React.Component {
         return (
             <Flex style={{backgroundColor: '#e9f1ea'}}>
                 {chartList.map((chartId, key) => {
-                    return (chartVisible[chartId] ? <div id={this.props.id + chartId} key={key} style={{width: '33.3%'}}/> : null)
+                    return (
+                        chartVisible[chartId]
+                            ? <div style={{width: '33.3%'}}>
+                                <p style={{fontSize: '12px', textAlign:'center'}} className="half-margin-p">{chartNameList[key]}</p>
+                                <div id={this.props.id + chartId} key={key} />
+                              </div>
+                            : null
+                    )
                 })}
             </Flex>
         )

@@ -35,7 +35,6 @@ class ChJWZConcreteStaticPage extends React.Component {
         )
     }
 
-
     renderStaticData = () => {
         const staticData = this.props.storeData.staticData;
         if (this.props.storeData.loadingSuccess && staticData) {
