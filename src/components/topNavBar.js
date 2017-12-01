@@ -6,17 +6,19 @@ export default class TopNavBar extends React.Component {
         super(props);
     }
 
-    render() {
 
+    render() {
         return (
-                <NavBar mode="dark"
+            this.props.hideHeader
+                ? null
+                : <NavBar mode="dark"
                         leftContent={this.props.leftContent}
                         onLeftClick={this.props.onLeftBtnClick}
                         // rightContent={this.props.rightContent}
                         className="top-nav-bar"
                         style={this.props.style}>
                     {this.props.title}
-                </NavBar>
+                 </NavBar>
         )
     }
 }

@@ -59,6 +59,10 @@
 .main-section-no-bottom{
   bottom: 0;
 }
+.main-section.no-top,
+.main-section-no-bottom.no-top{
+  top: 0;
+}
 .gap {
   background-color: #f5f5f9;
 }

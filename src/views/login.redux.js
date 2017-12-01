@@ -45,7 +45,7 @@ export function loginReducer(state={filterCategories: getFilterCategories(), sub
         case USER_LOGIN_FAILED:
             return Object.assign({}, state, {loading: false, loginSuccess: false, error: action.error});
         case SET_TOKEN:
-            return Object.assign({}, state, {loginSuccess: true, userInfo: {token: action.data}});
+            return Object.assign({}, state, {loginSuccess: true, userInfo: action.data});
         default:
             return state;
     }

@@ -4,7 +4,7 @@ import TopNavBar from "../../components/topNavBar"
 import PurchaseItemCard from '../../components/purchaseItemCard'
 import {WhiteSpace} from 'antd-mobile'
 import {doLoadingDataAction} from './homeItem.redux'
-import {ChangeRoute} from '../../utils/router'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 
 class HomeItemPage extends React.Component {
     constructor(props) {
@@ -24,12 +24,18 @@ class HomeItemPage extends React.Component {
     };
     componentWillMount() {
         this.props.loadData();
+        sendMsgToRN({title: this.props.storeData.itemTypeName, backBtnEnabled: true});
     }
     render() {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div style={{backgroundColor: 'blue'}}>
-                <TopNavBar title={this.props.storeData.itemTypeName} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom">
+                <TopNavBar title={this.props.storeData.itemTypeName}
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')}>
                     <WhiteSpace/>
 
                     {this.renderItems()}
@@ -40,7 +46,8 @@ class HomeItemPage extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        storeData: state.homeItem
+        storeData: state.homeItem,
+        commonData: state.login
     }
 };
 const mapDispatchToProps = (dispatch) => {

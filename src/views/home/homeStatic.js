@@ -34,13 +34,17 @@ class HomeStatic extends React.Component {
 
     componentWillMount() {
         this.loadStaticData({...getDefaultTimeCondition()});
-        sendMsgToRN({title: this.props.commonData.entName});
+        sendMsgToRN({title: this.props.commonData.entName, backBtnEnabled: true});
     }
     render() {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title={this.props.commonData.entName} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom">
+                <TopNavBar title={this.props.commonData.entName}
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}/>
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')}>
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="41px" locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}

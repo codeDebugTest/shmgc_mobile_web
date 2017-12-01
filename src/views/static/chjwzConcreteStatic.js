@@ -5,8 +5,8 @@ import TimeLocationPicker from '../../components/timeLocationPicker'
 import TopNavBar from "../../components/topNavBar";
 import PieChartCard from '../../components/pieChartCard'
 import {doLoadingDataAction} from './chjwzConcreteStatic.redux'
-import {ChangeRoute} from '../../utils/router'
-import { getFilterLocations, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
+import {ChangeRoute, sendMsgToRN} from '../../utils/router'
+import { getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
 
 class ChJWZConcreteStaticPage extends React.Component {
     constructor(props) {
@@ -71,14 +71,18 @@ class ChJWZConcreteStaticPage extends React.Component {
     }
     componentWillMount() {
         this.loadStaticData({});
+        sendMsgToRN({title: '上海城建物资混凝土', backBtnEnabled: true});
     }
     render() {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div className="cjwz-concrete-background">
                 <TopNavBar title='上海城建物资混凝土' style={{backgroundColor: 'inherit'}}
+                           hideHeader={hideHeader}
                            leftContent={<div className="back-icon"/>}
-                           onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom" style={{backgroundColor: 'inherit', position: 'inherit'}}>
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')} style={{backgroundColor: 'inherit', position: 'inherit'}}>
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="87px" tabStyle="white-style"
                                         noLocation={true}

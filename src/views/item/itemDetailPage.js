@@ -107,10 +107,15 @@ class ItemDetailView extends React.Component{
     }
     render () {
         const purchaseItem = this.props.storeData.purchaseItem;
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title="项目详情" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom gap">
+                <TopNavBar title="项目详情"
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top gap': 'gap')}>
                     {this.renderItemHeader(purchaseItem)}
                     <WhiteSpace/>
 

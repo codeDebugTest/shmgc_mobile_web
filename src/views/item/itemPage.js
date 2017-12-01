@@ -99,12 +99,15 @@ class ItemView extends React.Component{
     render () {
         const imgStyle = {width:'50px', height: '50px'};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
-
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title="项目" leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                <TopNavBar title="项目"
+                           hideHeader={hideHeader}
+                           leftContent={<div className="setting-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
-                <div className="main-section item-back-ground">
+                <div className={"main-section " + (hideHeader ? 'no-top item-back-ground': 'item-back-ground')}>
                     <GridBox column="4" data={this.props.commonData.subEnts}
                              renderItem={item=>(
                                  <div style={{paddingTop: '15px'}}>

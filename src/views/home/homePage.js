@@ -98,13 +98,16 @@ class Home extends React.Component{
     componentWillMount() {
         const query = this.props.location.query;
         if (!this.props.commonData.loginSuccess && !query.token) {
+            /*网页第一打开*/
             const loginInfo = {loginName: 'zhougang', password: '123456'};
             this.props.userLogin(loginInfo, ()=> this.props.loadData(this.props.commonData.userInfo));
         } else if (this.props.commonData.loginSuccess){
+            /*页面切换*/
             this.props.loadData(this.props.commonData.userInfo);
             sendMsgToRN({title: this.props.commonData.entName});
         } else if (query.token){
-            this.props.setUserToken(query.token);
+            /*RN 调用 web*/
+            this.props.setUserInfo({token: query.token, hideHeader: query.hideHeader});
             this.props.loadData({token: query.token});
             sendMsgToRN({title: this.props.commonData.entName});
         }
@@ -130,10 +133,15 @@ class Home extends React.Component{
     render () {
         const homeData = this.props.storeData;
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#f7663b', fontWeight: 'bold'};
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title={this.props.commonData.entName} leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
-                <div className="main-section">
+                <TopNavBar title={this.props.commonData.entName}
+                           hideHeader={hideHeader}
+                           leftContent={<div className="setting-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goSettingPage}
+                />
+                <div className={"main-section " + (hideHeader ? 'no-top': '')}>
                     <div className="grid-back-ground">
                         <SectionBar sectionName="项目数据概览" backgroundColor='inherit'/>
                         <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false} className="no-back-ground"
@@ -187,8 +195,8 @@ const mapDispatchToProps = (dispatch) => {
         userLogin: (params, callback) => {
             dispatch(doLoginAction(params, callback));
         },
-        setUserToken: (token) => {
-            dispatch({type:SET_TOKEN, data: token});
+        setUserInfo: (info) => {
+            dispatch({type:SET_TOKEN, data: info});
         }
     }
 };

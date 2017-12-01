@@ -50,7 +50,7 @@ class CateStaticPage extends React.Component {
             ...this.props.commonData.userInfo,
             filterCondition: { ...filterCondition}
         });
-        sendMsgToRN({title: this.cate.name});
+        sendMsgToRN({title: this.cate.name, backBtnEnabled: true});
     };
 
     onCateEntPickedCallback =(condition) => {
@@ -66,10 +66,15 @@ class CateStaticPage extends React.Component {
         this.loadStaticData();
     }
     render() {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title={this.cate && this.cate.name} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom">
+                <TopNavBar title={this.cate && this.cate.name}
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')}>
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
                                    categories={this.props.commonData.filterCategories}

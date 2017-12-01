@@ -137,13 +137,18 @@ class EntCompareView extends Component{
 
     componentWillMount() {
         this.loadStaticData();
-        sendMsgToRN({title: '企业对比'});
+        sendMsgToRN({title: '企业对比', backBtnEnabled: true});
     }
     render () {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title="企业对比" leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom gap">
+                <TopNavBar title="企业对比"
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top gap': 'gap')}>
                     <WhiteSpace/>
                     <CateEntPicker marginTop="41px"
                                    hideEntTab={true}

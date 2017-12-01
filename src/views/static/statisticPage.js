@@ -84,11 +84,16 @@ class StatisticView extends React.Component{
     }
 
     render () {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title={this.props.commonData.entName} leftContent={<div className="setting-icon"/>} onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                <TopNavBar title={this.props.commonData.entName}
+                           hideHeader={hideHeader}
+                           leftContent={<div className="setting-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goSettingPage}
+                />
 
-                <div className="main-section">
+                <div className={"main-section " + (hideHeader ? 'no-top': '')}>
                     <GridBox column="4" data={this.btnItemList}
                          renderItem={(item)=>(
                              <div style={{paddingTop: '15px'}}>

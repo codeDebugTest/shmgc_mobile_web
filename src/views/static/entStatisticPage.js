@@ -46,7 +46,7 @@ class EntStaticPage extends React.Component {
             filterCondition: {...filterCondition}
         });
 
-        sendMsgToRN({title: this.ent.name});
+        sendMsgToRN({title: this.ent.name, backBtnEnabled: true});
     };
 
     onCateEntPickedCallback =(condition) => {
@@ -63,10 +63,15 @@ class EntStaticPage extends React.Component {
     }
 
     render() {
+        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
         return (
             <div>
-                <TopNavBar title={this.ent && this.ent.name} leftContent={<div className="back-icon"/>} onLeftBtnClick={ChangeRoute.goBack}/>
-                <div className="main-section-no-bottom">
+                <TopNavBar title={this.ent && this.ent.name}
+                           hideHeader={hideHeader}
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}
+                />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')}>
                     <WhiteSpace/>
 
                     <CateEntPicker marginTop="41px"
