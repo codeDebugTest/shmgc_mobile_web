@@ -103,6 +103,12 @@ export default class StaticView extends React.Component {
         this.setState({ chartVisible: chartVisible})
     }
 
+    componentWillUnmount() {
+        chartIdList.map((chart) => {
+            this[chart.id].destroy();
+        });
+    }
+
     render() {
         const overview = this.props.staticData && this.props.staticData.overview;
         const chartVisible = this.state.chartVisible;
