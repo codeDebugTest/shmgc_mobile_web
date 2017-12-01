@@ -84,7 +84,7 @@ class StatisticView extends React.Component{
     }
 
     render () {
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title={this.props.commonData.entName}

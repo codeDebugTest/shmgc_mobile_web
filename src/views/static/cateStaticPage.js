@@ -66,7 +66,7 @@ class CateStaticPage extends React.Component {
         this.loadStaticData();
     }
     render() {
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title={this.cate && this.cate.name}

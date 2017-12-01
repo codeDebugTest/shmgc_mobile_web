@@ -27,7 +27,7 @@ class HomeItemPage extends React.Component {
         sendMsgToRN({title: this.props.storeData.itemTypeName, backBtnEnabled: true});
     }
     render() {
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div style={{backgroundColor: 'blue'}}>
                 <TopNavBar title={this.props.storeData.itemTypeName}

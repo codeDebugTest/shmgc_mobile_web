@@ -74,7 +74,7 @@ class ChJWZConcreteStaticPage extends React.Component {
         sendMsgToRN({title: '上海城建物资混凝土', backBtnEnabled: true});
     }
     render() {
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div className="cjwz-concrete-background">
                 <TopNavBar title='上海城建物资混凝土' style={{backgroundColor: 'inherit'}}

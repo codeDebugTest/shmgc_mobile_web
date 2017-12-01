@@ -107,7 +107,7 @@ class ItemDetailView extends React.Component{
     }
     render () {
         const purchaseItem = this.props.storeData.purchaseItem;
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title="项目详情"

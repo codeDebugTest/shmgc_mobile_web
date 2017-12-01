@@ -107,9 +107,11 @@ class Home extends React.Component{
             sendMsgToRN({title: this.props.commonData.entName});
         } else if (query.token){
             /*RN 调用 web*/
-            this.props.setUserInfo({token: query.token, hideHeader: query.hideHeader});
-            this.props.loadData({token: query.token});
-            sendMsgToRN({title: this.props.commonData.entName});
+            this.props.setUserInfo({hideHeader: query.hideHeader});
+            this.props.userLogin({token: query.token}, ()=> {
+                this.props.loadData(this.props.commonData.userInfo);
+                sendMsgToRN({title: this.props.commonData.entName});
+            });
         }
     }
 

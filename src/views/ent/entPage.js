@@ -103,7 +103,7 @@ class EntView extends React.Component{
         const titleStyle = {display: 'inline', lineHeight: '26px', color: '#868585'};
         const imgStyle = {width:'50px', height: '50px'};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title="企业"

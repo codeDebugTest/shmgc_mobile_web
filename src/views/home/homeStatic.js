@@ -37,7 +37,7 @@ class HomeStatic extends React.Component {
         sendMsgToRN({title: this.props.commonData.entName, backBtnEnabled: true});
     }
     render() {
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title={this.props.commonData.entName}

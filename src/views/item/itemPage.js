@@ -99,7 +99,7 @@ class ItemView extends React.Component{
     render () {
         const imgStyle = {width:'50px', height: '50px'};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title="项目"

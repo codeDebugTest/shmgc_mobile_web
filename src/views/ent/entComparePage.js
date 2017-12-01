@@ -140,7 +140,7 @@ class EntCompareView extends Component{
         sendMsgToRN({title: '企业对比', backBtnEnabled: true});
     }
     render () {
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title="企业对比"
