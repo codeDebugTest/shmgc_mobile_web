@@ -7,13 +7,13 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
-import { getFilterLoactions, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
+import { getFilterLocations, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
         super(props);
         this.cate = this.props.storeData.cate;
-        this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.filterLocations = getFilterLocations(this.props.commonData);
         this.cateEntCondition = {...this.initCateCondition()};
         this.timeLocationCondition = {};
         this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);

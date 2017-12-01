@@ -1,134 +1,4 @@
 const placeholderImg = 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png';
-export const logoList = [
-    'cjwz-logo','sdgc-logo','lqjt-logo','shtong-logo',
-    'concrete-logo','cement-logo','steel-logo','img-all-logo'
-];
-export const logoClassList ={
-    '城建物资': 'cjwz-logo',
-    '路桥集团': 'lqjt-logo',
-    '水务建设': 'swjs-logo',
-    '自来水管线': 'zlsgx-logo',
-    '隧道股份': 'sdgf-logo',
-    '隧道工程': 'sdgc-logo',
-    '市政工程': 'szgc-logo',
-
-    '混凝土': 'concrete-logo',
-    '水泥': 'cement-logo',
-    '钢材': 'steel-logo',
-    '金属管材': 'jsgc-logo',
-    '玻璃钢管材': 'blggc-logo',
-    '预制构件': 'yzgj-logo',
-    '防水防潮材料': 'fsfccl-logo',
-
-    '上海砼': 'shtong-logo',
-    '全部': 'img-all-logo',
-    'other': 'other-logo'
-}
-
-export function getEntByName(source, nameList) {
-    const ents = [];
-    source.forEach((ent)=> {
-        if (nameList.indexOf(ent.shortName) !== -1) {
-            ents.push({
-                type: 'ent',
-                icon: placeholderImg,
-                name: ent.shortName,
-                entId: ent.entId
-            });
-        }
-    })
-    return ents;
-}
-
-export function getThreeCateForBtn(source) {
-    //三大主材：钢材，混凝土，水泥
-    const cates = [];
-    source.forEach((cate)=> {
-        if (cate.name === '混凝土' || cate.name === '水泥' || cate.name === '钢材') {
-            cates.push({
-                type: 'cate',
-                icon: placeholderImg,
-                name: cate.name,
-                cateId: cate.statCateId
-            });
-        }
-    })
-    return cates;
-}
-
-const  filterLocationLength = 12;
-export function getFilterLoactions (source) {
-    if (source && source.locations) {
-        return source.locations.slice(0, filterLocationLength);
-    } else {
-        return testFilterLocations;
-    }
-}
-
-
-export const testFilterBtns = [
-    {name: '城建物资', icon: placeholderImg, type: 'ent'},
-    {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
-    {name: '住总住博', icon: placeholderImg, type: 'ent'},
-    {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
-
-    {name: '混凝土', icon: placeholderImg, type: 'cate'},
-    {name: '水泥', icon: placeholderImg, type: 'cate'},
-    {name: '钢材', icon: placeholderImg, type: 'cate'},
-    {name: '全部', icon: '', type: 'all'},
-]
-export const testFilterLocations =[
-    {
-        id: '10',
-        value: '上海',
-        type: '1'
-    },{
-        id: '11',
-        value: '南京',
-        type: '1'
-    },{
-        id: '12',
-        value: '苏州',
-        type: '1'
-    },{
-        id: '13',
-        value: '杭州',
-        type: '1'
-    },{
-        id: '14',
-        value: '济南',
-        type: '1'
-    },{
-        id: '15',
-        value: '武汉',
-        type: '1'
-    },{
-        id: '16',
-        value: '厦门',
-        type: '1'
-    }
-];
-export const testFilerEnts = [
-    {
-        entId: '11',
-        shortName: '城建物资',
-    },{
-        entId: '12',
-        shortName: '公路桥梁',
-    },{
-        entId: '13',
-        shortName: '住总住博',
-    },{
-        entId: '14',
-        shortName: '隧道工程',
-    },{
-        entId: '15',
-        shortName: '水务建设',
-    },{
-        entId: '16',
-        shortName: '自来水管线',
-    }
-]
 const testCategories = [
     {
         value: '1',
@@ -254,6 +124,133 @@ const testCategories = [
     },
 ];
 
+export const logoClassList ={
+    '城建物资': 'cjwz-logo',
+    '路桥集团': 'lqjt-logo',
+    '水务建设': 'swjs-logo',
+    '自来水管线': 'zlsgx-logo',
+    '隧道股份': 'sdgf-logo',
+    '隧道工程': 'sdgc-logo',
+    '市政工程': 'szgc-logo',
+
+    '混凝土': 'concrete-logo',
+    '水泥': 'cement-logo',
+    '钢材': 'steel-logo',
+    '金属管材': 'jsgc-logo',
+    '玻璃钢管材': 'blggc-logo',
+    '预制构件': 'yzgj-logo',
+    '防水防潮材料': 'fsfccl-logo',
+
+    '上海砼': 'shtong-logo',
+    '全部': 'img-all-logo',
+    'other': 'other-logo'
+}
+
+export function getEntByName(source, nameList) {
+    const ents = [];
+    source.forEach((ent)=> {
+        if (nameList.indexOf(ent.shortName) !== -1) {
+            ents.push({
+                type: 'ent',
+                icon: placeholderImg,
+                name: ent.shortName,
+                entId: ent.entId
+            });
+        }
+    })
+    return ents;
+}
+
+export function getThreeCateForBtn(source) {
+    //三大主材：钢材，混凝土，水泥
+    const cates = [];
+    source.forEach((cate)=> {
+        if (cate.name === '混凝土' || cate.name === '水泥' || cate.name === '钢材') {
+            cates.push({
+                type: 'cate',
+                icon: placeholderImg,
+                name: cate.name,
+                cateId: cate.statCateId
+            });
+        }
+    })
+    return cates;
+}
+
+const  filterLocationLength = 12;
+export function getFilterLocations (source) {
+    if (source && source.locations) {
+        return source.locations.slice(0, filterLocationLength);
+    } else {
+        return testFilterLocations;
+    }
+}
+
+
+export const testFilterBtns = [
+    {name: '城建物资', icon: placeholderImg, type: 'ent'},
+    {name: '公路桥梁', icon: placeholderImg, type: 'ent'},
+    {name: '住总住博', icon: placeholderImg, type: 'ent'},
+    {name: '上海砼', icon: placeholderImg, type: 'ent_cate'},
+
+    {name: '混凝土', icon: placeholderImg, type: 'cate'},
+    {name: '水泥', icon: placeholderImg, type: 'cate'},
+    {name: '钢材', icon: placeholderImg, type: 'cate'},
+    {name: '全部', icon: '', type: 'all'},
+]
+export const testFilterLocations =[
+    {
+        id: '10',
+        value: '上海',
+        type: '1'
+    },{
+        id: '11',
+        value: '南京',
+        type: '1'
+    },{
+        id: '12',
+        value: '苏州',
+        type: '1'
+    },{
+        id: '13',
+        value: '杭州',
+        type: '1'
+    },{
+        id: '14',
+        value: '济南',
+        type: '1'
+    },{
+        id: '15',
+        value: '武汉',
+        type: '1'
+    },{
+        id: '16',
+        value: '厦门',
+        type: '1'
+    }
+];
+export const testFilerEnts = [
+    {
+        entId: '11',
+        shortName: '城建物资',
+    },{
+        entId: '12',
+        shortName: '公路桥梁',
+    },{
+        entId: '13',
+        shortName: '住总住博',
+    },{
+        entId: '14',
+        shortName: '隧道工程',
+    },{
+        entId: '15',
+        shortName: '水务建设',
+    },{
+        entId: '16',
+        shortName: '自来水管线',
+    }
+]
+
 const copyCateChildren = (children, parentId) => {
     const result = [{label: '全部', value: parentId + '-全部'}];
     children.map((cate) => {
@@ -342,7 +339,12 @@ export function getTimeLocationTitleByConditon(condition) {
     }
     return title + ' ' + city + ' ';
 }
-export function getCurrentDateStr() {
+export function getDefaultTimeCondition() {
     const date = new Date();
-    return date.getFullYear() + '-' + date.getMonth();
+    return {
+        otherTime: {
+            startTime: '2017-1',
+            endTime: date.getFullYear() + '-' + date.getMonth()
+        }
+    }
 }

@@ -7,7 +7,7 @@ import CateEntPicker from '../../components/cateEntPicker'
 import './entComparePage.css'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './entComparePage.redux'
-import { getFilterLoactions, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
+import { getFilterLocations, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
 
 class EntCompareView extends Component{
     constructor(props) {
@@ -15,7 +15,7 @@ class EntCompareView extends Component{
         this.state = {
             updateSign: true
         };
-        this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.filterLocations = getFilterLocations(this.props.commonData);
         this.cateEntCondition ={};
         this.timeLocationCondition = {};
         this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);

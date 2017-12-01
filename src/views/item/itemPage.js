@@ -9,12 +9,12 @@ import PurchaseItemCard from '../../components/purchaseItemCard'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './itemPageRedux'
 import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
-import {logoClassList, getFilterLoactions, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
+import {logoClassList, getFilterLocations, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
 
 class ItemView extends React.Component{
     constructor(props) {
         super(props);
-        this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.filterLocations = getFilterLocations(this.props.commonData);
         this.pickerCondition = {};
         this.pageConfig = {
             pageSize: 5,

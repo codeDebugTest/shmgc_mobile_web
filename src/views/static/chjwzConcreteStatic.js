@@ -6,7 +6,7 @@ import TopNavBar from "../../components/topNavBar";
 import PieChartCard from '../../components/pieChartCard'
 import {doLoadingDataAction} from './chjwzConcreteStatic.redux'
 import {ChangeRoute} from '../../utils/router'
-import { getFilterLoactions, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
+import { getFilterLocations, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
 
 class ChJWZConcreteStaticPage extends React.Component {
     constructor(props) {

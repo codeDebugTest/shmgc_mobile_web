@@ -6,18 +6,20 @@ import TimeLocationPicker from '../../components/timeLocationPicker'
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './homeStatic.redux'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
-import { getFilterLoactions, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
+import { getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition, getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
 
 class HomeStatic extends React.Component {
     constructor(props) {
         super(props);
-        this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.filterLocations = getFilterLocations(this.props.commonData);
         this.pickerCondition = {};
     }
 
     renderStaticOverview = () => {
         if (this.props.storeData.loadingSuccess) {
-            return <StaticView staticData={this.props.storeData}/>
+            const title = getTimeLocationTitleByConditon(this.pickerCondition);
+
+            return <StaticView staticData={this.props.storeData} title={title}/>
         }
         return null;
     }
@@ -31,7 +33,7 @@ class HomeStatic extends React.Component {
     };
 
     componentWillMount() {
-        this.loadStaticData({});
+        this.loadStaticData({...getDefaultTimeCondition()});
         sendMsgToRN({title: this.props.commonData.entName});
     }
     render() {

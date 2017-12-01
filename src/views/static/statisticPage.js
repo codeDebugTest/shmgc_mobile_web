@@ -11,14 +11,14 @@ import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
-import {getEntByName, getThreeCateForBtn, getFilterLoactions, testFilterBtns, getRequestTimeLocationCondition, getCurrentDateStr,
+import {getEntByName, getThreeCateForBtn, getFilterLocations, testFilterBtns, getRequestTimeLocationCondition, getDefaultTimeCondition,
     logoClassList, getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
 
 class StatisticView extends React.Component{
     constructor(props) {
         super(props);
         this.btnItemList = this.getBtnItemList();
-        this.filterLocations = getFilterLoactions(this.props.commonData);
+        this.filterLocations = getFilterLocations(this.props.commonData);
         this.pickerCondition = {};
         this.onGridClick = this.onGridClick.bind(this);
         this.loadStaticData = this.loadStaticData.bind(this);
@@ -79,7 +79,7 @@ class StatisticView extends React.Component{
     };
 
     componentWillMount() {
-        this.loadStaticData({otherTime: {startTime: '2017-1', endTime: getCurrentDateStr()}});
+        this.loadStaticData({...getDefaultTimeCondition()});
         sendMsgToRN({title: this.props.commonData.entName});
     }
 
