@@ -62,7 +62,12 @@ class EntCompareView extends Component{
                             paddingLeft: (key ? null : '2px'),
                             textAlign: (key ? 'right' : 'left'),
                             fontSize: '12px',
-                            lineHeight: '40px'
+                            lineHeight: '40px',
+                        }
+                        if(key) {
+                            style.fontSize = '13px';
+                        } else {
+                            style.color = '#9e9d9d';
                         }
                         return <p style={style} key={key} className="no-margin-p">{item}</p>
                     })
@@ -73,13 +78,13 @@ class EntCompareView extends Component{
         const tableData = this.props.storeData;
         if (tableData && tableData.loadingSuccess) {
             return <div style={{padding: '0 5px', borderRadius:'3px', backgroundColor:'#fff'}}>
-                    {this.renderTableLine([''].concat(tableData.entList))}
-                    {this.renderTableLine(['采购金额'].concat(tableData.totalAmountStrList))}
-                    {this.renderTableLine(['采购数量'].concat(tableData.quantityStrList))}
-                    {this.renderTableLine(['平均单价'].concat(tableData.averagePriceStrList))}
-                    {this.renderTableLine(['项目总数'].concat(tableData.totalPiCountStrList))}
-                    {this.renderTableLine(['进行中'].concat(tableData.runningPiCountStrList))}
-                    {this.renderTableLine(['已结束'].concat(tableData.finishedPiCountStrList))}
+                    {this.renderTableLine(['', ...tableData.entList])}
+                    {this.renderTableLine(['采购金额', ...tableData.totalAmountStrList])}
+                    {this.renderTableLine(['采购数量', ...tableData.quantityStrList])}
+                    {this.renderTableLine(['平均单价', ...tableData.averagePriceStrList])}
+                    {this.renderTableLine(['项目总数', ...tableData.totalPiCountStrList])}
+                    {this.renderTableLine(['进行中', ...tableData.runningPiCountStrList])}
+                    {this.renderTableLine(['已结束', ...tableData.finishedPiCountStrList])}
                 </div>
         }
         return null;
