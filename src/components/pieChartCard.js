@@ -56,6 +56,12 @@ export default class PieChartCard extends React.Component {
 
         this.setState({chartVisible: visible});
     }
+
+    componentWillUnmount() {
+        chartList.map((chartId) => {
+            this[chartId].destroy();
+        });
+    }
     render () {
         const chartVisible = this.state.chartVisible;
         return (
@@ -65,7 +71,7 @@ export default class PieChartCard extends React.Component {
                 {chartList.map((chartId, key) => {
                     return (
                         chartVisible[chartId]
-                            ? <div style={{width: '33.3%'}}>
+                            ? <div style={{width: '33.3%'}} key={key}>
                                 <p style={{fontSize: '12px', textAlign:'center'}} className="half-margin-p">{chartNameList[key]}</p>
                                 <div id={this.props.id + chartId} key={key} />
                               </div>
