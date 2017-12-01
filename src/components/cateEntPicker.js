@@ -2,6 +2,7 @@ import React from 'react'
 import SegmentedTabs from './segmentedTabs'
 import EntPickerView from './entPickerView'
 import CatePickerView from "./catePickerView";
+import {getCateTitleByCondition} from '../utils/filterConditionConfig'
 
 export default class CateEntPicker extends React.Component {
     constructor(props) {
@@ -54,12 +55,7 @@ export default class CateEntPicker extends React.Component {
     }
 
     getPickedCate = ()=> {
-        if (this.picker.cate) {
-            const parent = this.picker.cate[0].split('-')[1];
-            const child =  this.picker.cate[1].split('-')[1];
-            return  parent + (child === '全部' ? '' : '-' + child);
-        }
-        return null
+        return getCateTitleByCondition(this.picker.cate);
     }
 
     render() {

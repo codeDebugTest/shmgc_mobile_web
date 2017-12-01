@@ -7,7 +7,8 @@ import TopNavBar from "../../components/topNavBar";
 import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
-import { getFilterLocations, getRequestTimeLocationCondition, getRequestCateEntCondition} from '../../utils/filterConditionConfig'
+import { getFilterLocations, getRequestTimeLocationCondition, getRequestCateEntCondition,
+    getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
@@ -25,7 +26,9 @@ class CateStaticPage extends React.Component {
     }
     renderStaticOverview = () => {
         if (this.props.storeData.loadingSuccess) {
-            return <StaticView staticData={this.props.storeData}/>
+            const timeTitle = getTimeLocationTitleByConditon(this.timeLocationCondition);
+            const entName = (this.cateEntCondition.ent && this.cateEntCondition.ent.shortName) || '';
+            return <StaticView staticData={this.props.storeData} title={entName + ' ' + timeTitle}/>
         }
         return null;
     }
