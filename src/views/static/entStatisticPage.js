@@ -17,7 +17,7 @@ class EntStaticPage extends React.Component {
         this.ent = this.props.storeData.ent;
         this.filterLocations = getFilterLocations(this.props.commonData);
         this.cateEntCondition ={ent: {shortName: this.ent&&this.ent.name, entId: this.ent&&this.ent.entId}};
-        this.timeLocationCondition = {};
+        this.timeLocationCondition = {...getDefaultTimeCondition()};
         this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
         this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }
@@ -59,7 +59,7 @@ class EntStaticPage extends React.Component {
     };
 
     componentWillMount() {
-        this.loadStaticData({...getDefaultTimeCondition()})
+        this.loadStaticData()
     }
 
     render() {

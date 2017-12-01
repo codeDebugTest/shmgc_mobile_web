@@ -8,7 +8,7 @@ import StaticView from '../../components/staticView'
 import {doLoadingDataAction} from './cateStaticPage.redux'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import { getFilterLocations, getRequestTimeLocationCondition, getRequestCateEntCondition,
-    getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
+    getTimeLocationTitleByConditon, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
 
 class CateStaticPage extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class CateStaticPage extends React.Component {
         this.cate = this.props.storeData.cate;
         this.filterLocations = getFilterLocations(this.props.commonData);
         this.cateEntCondition = {...this.initCateCondition()};
-        this.timeLocationCondition = {};
+        this.timeLocationCondition = {...getDefaultTimeCondition()};
         this.onCateEntPickedCallback = this.onCateEntPickedCallback.bind(this);
         this.onTimeLocationPickedCallback = this.onTimeLocationPickedCallback.bind(this);
     }
