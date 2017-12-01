@@ -17,14 +17,14 @@ export default class PieChartCard extends React.Component {
     }
 
     renderChart =(chart, attr, title, color) => {
-        const value = Number(this.props.staticData[attr].toFixed(2));
+        const value = Number((this.props.staticData[attr] * 100).toFixed(2));
 
         if (value > 0) {
             const chartData = [
                 {ent:'城建物资', count: value},
-                {ent:'其他', count: 1-value}
+                {ent:'其他', count: 100 - value}
             ];
-            const chartCfg = new G2Config(chart, chartData, {count: {formatter: value => value * 100 + '%'}});
+            const chartCfg = new G2Config(chart, chartData, {count: {formatter: value => value + '%'}});
             chart.coord('theta')
             chartCfg.setIntervalStack('ent', 'count', title, color);
 

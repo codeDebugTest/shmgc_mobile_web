@@ -47,7 +47,7 @@ export class G2Config {
                 return {
                     title: title,
                     name: item,
-                    value: percent * 100 + '%'
+                    value: percent + '%'
                 };
             })
             .style({
