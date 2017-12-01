@@ -135,7 +135,7 @@ class Home extends React.Component{
     render () {
         const homeData = this.props.storeData;
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#f7663b', fontWeight: 'bold'};
-        const hideHeader = this.props.commonData.userInfo && this.props.commonData.userInfo.hideHeader;
+        const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
                 <TopNavBar title={this.props.commonData.entName}
