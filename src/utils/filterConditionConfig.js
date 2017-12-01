@@ -323,16 +323,16 @@ export function getTimeLocationTitleByConditon(condition) {
     let title = '';
     let city = '';
     if (condition.cutoffTime) {
-        title = '17年' + condition.cutoffTime + '月';
+        title = '2017年' + condition.cutoffTime + '月';
     } else if(condition.quarter) {
         const quarter = condition.quarter;
-        title = '17年' + ((quarter.value -1) * 3 + 1) + '月-' + ((quarter.value -1) * 3 + 3) + '月';
+        title = '2017年' + ((quarter.value -1) * 3 + 1) + '月-' + ((quarter.value -1) * 3 + 3) + '月';
     } else if (condition.otherTime) {
         const otherTime = condition.otherTime;
-        title = '17年' + otherTime.startTime.split('-')[1] + '月-' + otherTime.endTime.split('-')[1] + '月';
+        title = '2017年' + otherTime.startTime.split('-')[1] + '月-' + otherTime.endTime.split('-')[1] + '月';
     } else {
         const date = new Date();
-        title = '17年1月-' + date.getMonth() + '月';
+        title = '2017年1月-' + date.getMonth() + '月';
     }
 
     if (condition.location && condition.location.id) {
@@ -341,4 +341,8 @@ export function getTimeLocationTitleByConditon(condition) {
         city = '全国';
     }
     return title + ' ' + city + ' ';
+}
+export function getCurrentDateStr() {
+    const date = new Date();
+    return date.getFullYear() + '-' + date.getMonth();
 }

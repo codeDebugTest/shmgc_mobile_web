@@ -23,7 +23,7 @@ const cutoffTimes =[
     ]
 ]
 const otherTime =[
-    [{label: '2017', value: '2017'}],
+    [{label: '2017', value: '2017'},{label: '2018', value: '2018'}],
     [
         {label: '1月', value:'1'},
         {label: '2月', value:'2'},

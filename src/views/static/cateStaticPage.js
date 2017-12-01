@@ -47,7 +47,7 @@ class CateStaticPage extends React.Component {
             ...this.props.commonData.userInfo,
             filterCondition: { ...filterCondition}
         });
-        sendMsgToRN({title: this.ent.name});
+        sendMsgToRN({title: this.cate.name});
     };
 
     onCateEntPickedCallback =(condition) => {
