@@ -50,7 +50,7 @@ export default class StaticView extends React.Component {
             chartCfg.setChartAxis(fieldX);
             chartCfg.setChartAxis(fieldLeftY, null, formatter, true);
             chartCfg.setChartAxis(filedRightY, null);
-            chartCfg.setChartInterval(fieldX, fieldLeftY, isPurchase);
+            chartCfg.setChartInterval(fieldX, fieldLeftY);
             chartCfg.setChartLine(fieldX, filedRightY);
             chartCfg.setChartTooltip();
             // chartCfg.customChartlegend(isPurchase ? 'total': 'average');

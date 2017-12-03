@@ -39,7 +39,7 @@ class Home extends React.Component{
         chartCfg.setChartAxis('entName');
         chartCfg.setChartAxis('purchaseAmount', null, formatter, true);
         chartCfg.setChartAxis('piCount', null);
-        chartCfg.setChartInterval('entName', 'purchaseAmount', true);
+        chartCfg.setChartInterval('entName', 'purchaseAmount');
         chartCfg.setChartLine('entName', 'piCount');
         chartCfg.setChartTooltip();
         // chartCfg.customChartlegend('total');

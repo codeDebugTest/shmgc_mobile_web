@@ -19,16 +19,33 @@ export class G2Config {
     }
     purchaseTooltipCallback = (value) => {
         return {name: '采购金额', value: (value/10000).toFixed(2) + '万'}
+    };
+    purchaseAmountTooltip = (value) => {
+        return {name: '采购数量', value: Number(value.toFixed(2)).toLocaleString()};
+    };
+    averagePriceTooltip = (value) => {
+        return {name: '平均单价', value: value.toFixed(2)}
     }
-    setChartInterval(nameX, nameY, isPurchase) {
-        this.chart.interval().position(nameX + '*' + nameY).color(nameX, ['#019fe8', '#01cfe7', '#00e9c0', '#5dcf53']).tooltip(nameY, (isPurchase?this.purchaseTooltipCallback: null));
+    getTooltipCallbackFuc = function (nameY) {
+        if (nameY === 'purchaseAmount') {
+            return this.purchaseTooltipCallback;
+        } else if (nameY === 'purchaseQuantity') {
+            return this.purchaseAmountTooltip;
+        } else if (nameY === 'averagePrice' ){
+            return this.averagePriceTooltip;
+        } else {
+            return null;
+        }
+    }
+    setChartInterval(nameX, nameY) {
+        this.chart.interval().position(nameX + '*' + nameY).color(nameX, ['#019fe8', '#01cfe7', '#00e9c0', '#5dcf53']).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
     }
     setChartLine(nameX, nameY) {
-        this.chart.line().position(nameX + '*' + nameY);
+        this.chart.line().position(nameX + '*' + nameY).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
         this.chart.point().position(nameX + '*' + nameY).size(4).shape('circle').style({
             stroke: '#fff',
             lineWidth: 1
-        });
+        }).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
     }
     setIntervalStack(fieldX, fieldY, title, color) {
         this.chart.intervalStack()
