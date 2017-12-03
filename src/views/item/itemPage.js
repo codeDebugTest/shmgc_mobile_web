@@ -108,17 +108,18 @@ class ItemView extends React.Component{
                            onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className={"main-section " + (hideHeader ? 'no-top item-back-ground': 'item-back-ground')}>
-                    <GridBox column="4" data={this.props.commonData.subEnts}
+                    <GridBox column="4" style={{background: 'inherit'}} noBackGround={true}
+                             data={this.props.commonData.subEnts}
                              renderItem={item=>(
                                  <div style={{paddingTop: '15px'}}>
                                      {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
-                                     <p style={{fontSize:'12px', color: '#008ae6'}}>{item.shortName}</p>
+                                     <p style={{fontSize:'12px', color: '#fff'}}>{item.shortName}</p>
                                  </div>
                              )}
                              onItemClick={this.onGridClick}
                     />
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="230px" tabStyle="white-style"
+                    <TimeLocationPicker marginTop="316px" tabStyle="white-style"
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>

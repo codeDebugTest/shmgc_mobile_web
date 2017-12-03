@@ -42,7 +42,7 @@ export default class GridBox extends React.Component{
     render() {
         const gridLines = this.sliceArray();
         return (
-            <div className={this.props.noBackGround ? 'grid-no-back-ground': 'grid-back-ground' }>
+            <div className={this.props.noBackGround ? 'grid-no-back-ground': 'grid-back-ground' } style={this.props.style}>
                 {
                     gridLines.map((line, key) => {
                         return this.renderGridLine(line, key)
