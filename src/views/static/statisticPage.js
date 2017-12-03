@@ -97,7 +97,7 @@ class StatisticView extends React.Component{
                     <GridBox column="4" data={this.btnItemList} noBackGround={true}
                          renderItem={(item)=>(
                              <div style={{paddingTop: '15px'}}>
-                                 <div className={logoClassList[item.name] ? logoClassList[item.name] : logoClassList['other']}/>
+                                 {item.name ? <div className={logoClassList[item.name] ? logoClassList[item.name] : logoClassList['other']}/> : <div />}
                                  <p style={{fontSize:'12px', color: '#008ae6'}} >{item.name}</p>
                              </div>
                          )}
