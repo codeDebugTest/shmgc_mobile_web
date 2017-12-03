@@ -23,7 +23,7 @@ export default class PieChartCard extends React.Component {
         if (value > 0) {
             const chartData = [
                 {ent:'城建物资', count: value},
-                {ent:'其他', count: 100 - value}
+                {ent:'其他', count: Number((100 - value).toFixed(2))}
             ];
             const chartCfg = new G2Config(chart, chartData, {count: {formatter: value => value + '%'}});
             chart.coord('theta')
