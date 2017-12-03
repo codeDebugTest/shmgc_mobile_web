@@ -98,7 +98,7 @@ class ItemView extends React.Component{
     };
     render () {
         const imgStyle = {width:'50px', height: '50px'};
-        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
+        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['default']}/>;
         const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
@@ -112,7 +112,7 @@ class ItemView extends React.Component{
                              renderItem={item=>(
                                  <div style={{paddingTop: '15px'}}>
                                      {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
-                                     <p style={{fontSize:'12px', color: '#fff'}}>{item.shortName}</p>
+                                     <p style={{fontSize:'12px', color: '#008ae6'}}>{item.shortName}</p>
                                  </div>
                              )}
                              onItemClick={this.onGridClick}

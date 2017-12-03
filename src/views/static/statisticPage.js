@@ -94,18 +94,19 @@ class StatisticView extends React.Component{
                 />
 
                 <div className={"main-section " + (hideHeader ? 'no-top': '')}>
-                    <GridBox column="4" data={this.btnItemList}
+                    <GridBox column="4" data={this.btnItemList} noBackGround={true}
                          renderItem={(item)=>(
                              <div style={{paddingTop: '15px'}}>
                                  <div className={logoClassList[item.name] ? logoClassList[item.name] : logoClassList['other']}/>
-                                 <p style={{fontSize:'12px', color: '#fff'}} >{item.name}</p>
+                                 <p style={{fontSize:'12px', color: '#008ae6'}} >{item.name}</p>
                              </div>
                          )}
                          onItemClick={this.onGridClick}
                     />
 
+                    <WhiteSpace className="gap"/>
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="230px"
+                    <TimeLocationPicker marginTop="240px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>

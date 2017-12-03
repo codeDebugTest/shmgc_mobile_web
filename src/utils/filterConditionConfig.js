@@ -127,8 +127,10 @@ const testCategories = [
 export const logoClassList ={
     '城建物资': 'cjwz-logo',
     '路桥集团': 'lqjt-logo',
+    '路桥采购': 'lqjt-logo',
     '水务建设': 'swjs-logo',
     '自来水管线': 'zlsgx-logo',
+    '上水管线': 'zlsgx-logo',
     '隧道股份': 'sdgf-logo',
     '隧道工程': 'sdgc-logo',
     '市政工程': 'szgc-logo',
@@ -143,7 +145,8 @@ export const logoClassList ={
 
     '上海砼': 'shtong-logo',
     '全部': 'img-all-logo',
-    'other': 'other-logo'
+    'other': 'other-logo',
+    'default': 'default-logo'
 }
 
 export function getEntByName(source, nameList) {

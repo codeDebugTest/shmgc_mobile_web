@@ -102,7 +102,7 @@ class EntView extends React.Component{
         const isSelectState = this.state.currentState !== 'normal';
         const titleStyle = {display: 'inline', lineHeight: '26px', color: '#868585'};
         const imgStyle = {width:'50px', height: '50px'};
-        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['other']}/>;
+        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['default']}/>;
         const hideHeader = this.props.commonData.hideHeader;
         return (
             <div>
@@ -112,11 +112,11 @@ class EntView extends React.Component{
                            onLeftBtnClick={ChangeRoute.goSettingPage}
                 />
                 <div className={"main-section " + (hideHeader ? 'no-top gap': 'gap')}>
-                    <GridBox column="4" data={this.props.commonData.subEnts}
+                    <GridBox column="4" data={this.props.commonData.subEnts} noBackGround={true}
                       renderItem={item=>(
                           <div style={{paddingTop: '15px'}}>
                               {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
-                              <p style={{fontSize:'12px', color: '#fff'}}>{item.shortName}</p>
+                              <p style={{fontSize:'12px', color: '#008ae6'}}>{item.shortName}</p>
                           </div>
                       )}
                       onItemClick={this.onGridClick}
