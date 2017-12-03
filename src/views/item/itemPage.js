@@ -9,17 +9,19 @@ import PurchaseItemCard from '../../components/purchaseItemCard'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './itemPageRedux'
 import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
-import {logoClassList, getFilterLocations, getRequestTimeLocationCondition} from '../../utils/filterConditionConfig'
+import {logoClassList, getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
 
+
+const PageConfig = {
+    pageSize: 5,
+    pageNumber: 1
+}
 class ItemView extends React.Component{
     constructor(props) {
         super(props);
         this.filterLocations = getFilterLocations(this.props.commonData);
         this.pickerCondition = {};
-        this.pageConfig = {
-            pageSize: 5,
-            pageNumber: 1
-        }
+        this.pageConfig = {...PageConfig};
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1.piId !== row2.piId,
         });
@@ -42,28 +44,39 @@ class ItemView extends React.Component{
         ChangeRoute.goPurchaseItemDetailPage();
     };
     updateListView = (reset) => {
-        if (this.props.storeData.purchaseItems.length < this.pageConfig.pageSize) {
-            this.setState({isLoading: false, hasMore: false});
+        if (reset) {
+            // const newData = [ ...this.props.storeData.purchaseItems];
+            this.setState({
+                isLoading: false,
+                hasMore: this.props.storeData.purchaseItems.length >= this.pageConfig.pageSize,
+                data: this.props.storeData.purchaseItems,
+                dataSource: this.state.dataSource.cloneWithRows(this.props.storeData.purchaseItems)
+            })
         } else {
-            if (reset) {
-                this.setState({
-                    isLoading: false,
-                    data: this.props.storeData.purchaseItems,
-                    dataSource: this.state.dataSource.cloneWithRows(...this.props.storeData.purchaseItems)
-                })
-            } else {
-                const newData = [...this.state.data, ...this.props.storeData.purchaseItems];
-                this.setState({
-                    isLoading: false,
-                    data: newData,
-                    dataSource: this.state.dataSource.cloneWithRows(newData)
-                })
-            }
+            const newData = [...this.state.data, ...this.props.storeData.purchaseItems];
+            this.setState({
+                isLoading: false,
+                hasMore: this.props.storeData.purchaseItems.length >= this.pageConfig.pageSize,
+                data: newData,
+                dataSource: this.state.dataSource.cloneWithRows(newData)
+            })
         }
+
     };
 
-    loadStaticData = (pickerCondition) => {
+    reloadData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
+        this.pageConfig = {...PageConfig};
+        this.props.loadData({
+            ...this.props.commonData.userInfo,
+            filterCondition: {
+                ...getRequestTimeLocationCondition(this.pickerCondition),
+                ... this.pageConfig,
+            }
+        }, () => this.updateListView(true));
+    };
+
+    loadData = () => {
         this.props.loadData({
             ...this.props.commonData.userInfo,
             filterCondition: {
@@ -71,10 +84,11 @@ class ItemView extends React.Component{
                 ... this.pageConfig,
             }
         }, this.updateListView);
-    };
+    }
 
     componentWillMount() {
-        this.loadStaticData({});
+        this.pickerCondition = {...getDefaultTimeCondition()};
+        this.loadData();
         sendMsgToRN({title: '项目'});
     }
 
@@ -85,7 +99,7 @@ class ItemView extends React.Component{
         }
         this.pageConfig.pageNumber++;
         this.setState({loading: true});
-        this.loadStaticData({})
+        this.loadData()
     }
     renderItem = (row, sectionId, rowId) => {
         return (
@@ -121,7 +135,7 @@ class ItemView extends React.Component{
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="316px" tabStyle="white-style"
                                         locations={this.filterLocations}
-                                        confirmCallback={this.loadStaticData}
+                                        confirmCallback={this.reloadData}
                                         pickerCondition={this.pickerCondition}/>
 
                     <WhiteSpace/>
