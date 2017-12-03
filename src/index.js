@@ -13,6 +13,7 @@ import ConnectedHomeStaticView from './views/home/homeStatic'
 import ConnectedEntView from './views/ent/entPage'
 import ConnectedEntCompareView from './views/ent/entComparePage'
 import ConnectedItemView from './views/item/itemPage'
+import ConnectedItemFilterView from './views/item/itemFilterPage'
 import ConnectedItemDetailView from './views/item/itemDetailPage'
 import ConnectedStatisticView from './views/static/statisticPage'
 import ConnectedEntStaticView from './views/static/entStatisticPage'
@@ -37,6 +38,7 @@ ReactDOM.render(
                 <Route exact path={ROUTE_PATH.ENT} component={ConnectedEntView}/>
                 <Route exact path={ROUTE_PATH.ENT_COMPARE} component={ConnectedEntCompareView}/>
                 <Route exact path={ROUTE_PATH.PURCHASE_ITEM} component={ConnectedItemView}/>
+                <Route exact path={ROUTE_PATH.PURCHASE_ITEM_FILTER} component={ConnectedItemFilterView}/>
                 <Route exact path={ROUTE_PATH.PURCHASE_ITEM_DETAIL} component={ConnectedItemDetailView}/>
                 <Route path={ROUTE_PATH.STATIC} component={ConnectedStatisticView}/>
                 <Route path={ROUTE_PATH.STATIC_ENT} component={ConnectedEntStaticView}/>

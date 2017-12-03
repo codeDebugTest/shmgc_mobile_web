@@ -255,3 +255,17 @@
 .item-section.am-accordion .am-accordion-item .am-accordion-content-box{
   padding: 8px 10px;
 }
+
+/*item page background*/
+.running-item-background {
+  background-image: url(./asset/img/runnig-item-background.png);
+}
+.finished-item-background {
+  background-image: url(./asset/img/finished-item-background.png);
+}
+.ent-item-background {
+  background-image: url(./asset/img/ent-item-background.png);
+}
+.all-item-background {
+  background-image: url(./asset/img/all-item-background.png);
+}

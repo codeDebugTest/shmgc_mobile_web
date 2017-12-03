@@ -20,6 +20,7 @@ export const ROUTE_PATH = {
     ENT_COMPARE: 'ent/compare',
 
     PURCHASE_ITEM: 'purchase-item',
+    PURCHASE_ITEM_FILTER: 'purchase-item/filter',
     PURCHASE_ITEM_DETAIL: 'purchase-item/detail'
 };
 
@@ -46,6 +47,7 @@ export const ChangeRoute = function () {
         goEntPage: () => _move(ROUTE_PATH.ENT),
         goEntComparePage: () => _move(ROUTE_PATH.ENT_COMPARE),
         goPurchaseItemPage: () => _move(ROUTE_PATH.PURCHASE_ITEM),
+        goPurchaseItemFilterPage: () => _move(ROUTE_PATH.PURCHASE_ITEM_FILTER),
         goPurchaseItemDetailPage: () => _move(ROUTE_PATH.PURCHASE_ITEM_DETAIL),
         goBack: () => _back(),
     }

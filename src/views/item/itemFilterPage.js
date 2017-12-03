@@ -2,23 +2,21 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { WhiteSpace, WingBlank, ListView} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
-import GridBox from '../../components/gridBox'
-import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction} from './itemPageRedux'
 import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
-import {logoClassList, getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
-
+import {getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
 
 const PageConfig = {
     pageSize: 5,
     pageNumber: 1
 }
-class ItemView extends React.Component{
+class ItemFilterPage extends React.Component {
     constructor(props) {
         super(props);
+        this.piFilterCondition = this.props.storeData.piFilterCondition;
         this.filterLocations = getFilterLocations(this.props.commonData);
         this.pickerCondition = {};
         this.pageConfig = {...PageConfig};
@@ -35,9 +33,6 @@ class ItemView extends React.Component{
         this.updateListView = this.updateListView.bind(this);
         this.onItemClick = this.onItemClick.bind(this);
     }
-    onGridClick = () =>{
-        // todo 跳转页面
-    };
     onItemClick = (piId) =>{
         // todo 跳转页面
         this.props.initItemDetail(piId);
@@ -80,6 +75,7 @@ class ItemView extends React.Component{
         this.props.loadData({
             ...this.props.commonData.userInfo,
             filterCondition: {
+                ...this.piFilterCondition,
                 ...getRequestTimeLocationCondition(this.pickerCondition),
                 ... this.pageConfig,
             }
@@ -89,7 +85,7 @@ class ItemView extends React.Component{
     componentWillMount() {
         this.pickerCondition = {...getDefaultTimeCondition()};
         this.loadData();
-        sendMsgToRN({title: '项目'});
+        sendMsgToRN({title: this.props.title, backBtnEnabled: true});
     }
 
     onEndReached = () => {
@@ -110,30 +106,20 @@ class ItemView extends React.Component{
             </div>
         )
     };
-    render () {
-        const imgStyle = {width:'50px', height: '50px'};
-        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['default']}/>;
+    render() {
         const hideHeader = this.props.commonData.hideHeader;
+        const height =  document.documentElement.clientHeight - 90;
         return (
-            <div>
-                <TopNavBar title="项目"
+            <div className={this.piFilterCondition.pageBackGround}>
+                <TopNavBar title={this.piFilterCondition.title}
+                           style={{backgroundColor: 'inherit'}}
                            hideHeader={hideHeader}
-                           leftContent={<div className="setting-icon"/>}
-                           onLeftBtnClick={ChangeRoute.goSettingPage}/>
+                           leftContent={<div className="back-icon"/>}
+                           onLeftBtnClick={ChangeRoute.goBack}/>
 
-                <div className={"main-section " + (hideHeader ? 'no-top item-back-ground': 'item-back-ground')}>
-                    <GridBox column="4" style={{background: 'inherit'}} noBackGround={true}
-                             data={this.props.commonData.subEnts}
-                             renderItem={item=>(
-                                 <div style={{paddingTop: '15px'}}>
-                                     {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
-                                     <p style={{fontSize:'12px', color: '#fff'}}>{item.shortName}</p>
-                                 </div>
-                             )}
-                             onItemClick={this.onGridClick}
-                    />
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top'+ this.piFilterCondition.pageBackGround : this.piFilterCondition.pageBackGround)}>
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="316px" tabStyle="white-style"
+                    <TimeLocationPicker marginTop="41px" tabStyle="white-style"
                                         locations={this.filterLocations}
                                         confirmCallback={this.reloadData}
                                         pickerCondition={this.pickerCondition}/>
@@ -141,28 +127,25 @@ class ItemView extends React.Component{
                     <WhiteSpace/>
                     <WingBlank>
                         <ListView
-                            style={{ height: '450px'}}
+                            style={{ height: height +'px'}}
                             className="item-list"
                             dataSource={this.state.dataSource}
-/*                            renderFooter={() => (<div style={{ padding:'10px', textAlign: 'center', backgroundColor: '#ddd' }}>
-                                {this.state.isLoading ? '-- 疯狂加载中 --' : '-- 我是有底线的 --'}
-                            </div>)}*/
+                            /*                            renderFooter={() => (<div style={{ padding:'10px', textAlign: 'center', backgroundColor: '#ddd' }}>
+                             {this.state.isLoading ? '-- 疯狂加载中 --' : '-- 我是有底线的 --'}
+                             </div>)}*/
                             onScroll={()=>console.log('scroll')}
                             renderRow={this.renderItem}
                             pageSize={this.pageConfig.pageSize}
-                            scrollRenderAheadDistance={90}
+                            scrollRenderAheadDistance={100}
                             onEndReached={()=>this.onEndReached()}
                             onEndReachedThreshold={10}
                         />
                     </WingBlank>
                 </div>
-
-                <BottomTabBar selectedTab='purchaseItem'/>
             </div>
         )
     }
 }
-
 const mapStateToProps = (state) =>{
     return {
         storeData: state.itemPage,
@@ -180,5 +163,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const ConnectedItemView = connect(mapStateToProps, mapDispatchToProps)(ItemView);
-export default ConnectedItemView;
+const ConnectedItemFilterView = connect(mapStateToProps, mapDispatchToProps)(ItemFilterPage);
+export default ConnectedItemFilterView;

@@ -8,7 +8,7 @@ import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
 import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
-import {INIT_HOME_ITEM_PAGE} from './homeItem.redux'
+import {INIT_ITEM_PAGE} from '../item/itemPageRedux'
 import {doLoginAction, SET_TOKEN} from '../login.redux'
 import  './homePage.css'
 
@@ -19,9 +19,25 @@ class Home extends React.Component{
         this.onGridItemClick = this.onGridItemClick.bind(this);
     }
 
+    getItemCondition = (display) => {
+        switch (display) {
+            case '进行中':
+                return {piStatus: '进行中', title: '进行中项目', pageBackGround: 'running-item-background'};
+            case '已结束':
+                return {piStatus: '已结束', title: '已结束项目', pageBackGround: 'finished-item-background'};
+            case '比价项目':
+                return {piType: '2', title: '比价项目', pageBackGround: 'ent-item-background'};
+            case '招标项目':
+                return {piType: '4', title: '招标项目', pageBackGround: 'ent-item-background'};
+            case '协议项目':
+                return {piType: '5', title: '协议项目', pageBackGround: 'ent-item-background'};
+            default:
+                return { title: '项目', pageBackGround: 'all-item-background'};
+        }
+    }
     onGridItemClick = (gridItem) => {
-        this.props.initHomeItemPage(gridItem.display);
-        ChangeRoute.goHomeItemPage();
+        this.props.initHomeItemPage(this.getItemCondition(gridItem.display));
+        ChangeRoute.goPurchaseItemFilterPage();
     };
     cardOnClickHandler = ()=>{
         // todo 路由跳转
@@ -192,7 +208,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(doLoadingAction(params))
         },
         initHomeItemPage: (params) => {
-            dispatch({type: INIT_HOME_ITEM_PAGE, itemTypeName: params})
+            dispatch({type: INIT_ITEM_PAGE, data: params})
         },
         userLogin: (params, callback) => {
             dispatch(doLoginAction(params, callback));

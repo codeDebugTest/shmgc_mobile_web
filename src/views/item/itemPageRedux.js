@@ -32,10 +32,10 @@ export function doLoadingDataAction(params, callback) {
     }
 }
 
-export function itemPageReducer(state={}, action) {
+export function itemPageReducer(state={piFilterCondition: {}}, action) {
     switch (action.type) {
         case INIT_ITEM_PAGE:
-            return Object.assign({}, state);
+            return Object.assign({}, state, {piFilterCondition: action.data});
         case FETCH_PURCHASE_ITEMS:
             return Object.assign({}, state, {loading: true});
         case FETCH_PURCHASE_ITEMS_SUCCESS:
