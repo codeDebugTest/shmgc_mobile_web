@@ -36,7 +36,7 @@ class Home extends React.Component{
         }
     }
     onGridItemClick = (gridItem) => {
-        this.props.initHomeItemPage(this.getItemCondition(gridItem.display));
+        this.props.initItemPage(this.getItemCondition(gridItem.display));
         ChangeRoute.goPurchaseItemFilterPage();
     };
     cardOnClickHandler = ()=>{
@@ -207,7 +207,7 @@ const mapDispatchToProps = (dispatch) => {
         loadData: (params) => {
             dispatch(doLoadingAction(params))
         },
-        initHomeItemPage: (params) => {
+        initItemPage: (params) => {
             dispatch({type: INIT_ITEM_PAGE, data: params})
         },
         userLogin: (params, callback) => {

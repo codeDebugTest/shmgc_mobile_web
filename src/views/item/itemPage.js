@@ -7,7 +7,7 @@ import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
 import {ChangeRoute, sendMsgToRN} from '../../utils/router'
-import {doLoadingDataAction} from './itemPageRedux'
+import {doLoadingDataAction, INIT_ITEM_PAGE} from './itemPageRedux'
 import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
 import {logoClassList, getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
 
@@ -35,8 +35,13 @@ class ItemView extends React.Component{
         this.updateListView = this.updateListView.bind(this);
         this.onItemClick = this.onItemClick.bind(this);
     }
-    onGridClick = () =>{
-        // todo 跳转页面
+    onGridClick = (ent) =>{
+        this.props.initItemPage({
+            entId: ent.entId,
+            title: ent.shortName,
+            pageBackGround: 'ent-item-background'
+        });
+        ChangeRoute.goPurchaseItemFilterPage();
     };
     onItemClick = (piId) =>{
         // todo 跳转页面
@@ -173,6 +178,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadData: (params, callback) => {
             dispatch(doLoadingDataAction(params, callback));
+        },
+        initItemPage: (params) => {
+            dispatch({type: INIT_ITEM_PAGE, data: params})
         },
         initItemDetail: (params) => {
             dispatch({type: INIT_ITEM_DETAIL_PAGE, data: params})
