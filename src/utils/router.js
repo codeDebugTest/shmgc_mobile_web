@@ -21,7 +21,11 @@ export const ROUTE_PATH = {
 
     PURCHASE_ITEM: 'purchase-item',
     PURCHASE_ITEM_FILTER: 'purchase-item/filter',
-    PURCHASE_ITEM_DETAIL: 'purchase-item/detail'
+    PURCHASE_ITEM_DETAIL: 'purchase-item/detail',
+
+    DISCOVERY: 'discovery',
+    DISCOVERY_DETAIL: 'discovery/detail',
+    DISCOVERY_SCENE: 'discovery/scene',
 };
 
 export const ChangeRoute = function () {
@@ -49,6 +53,9 @@ export const ChangeRoute = function () {
         goPurchaseItemPage: () => _move(ROUTE_PATH.PURCHASE_ITEM),
         goPurchaseItemFilterPage: () => _move(ROUTE_PATH.PURCHASE_ITEM_FILTER),
         goPurchaseItemDetailPage: () => _move(ROUTE_PATH.PURCHASE_ITEM_DETAIL),
+        goDiscoveryPage: ()=> _move(ROUTE_PATH.DISCOVERY),
+        goDiscoveryDetailPage: ()=> _move(ROUTE_PATH.DISCOVERY_DETAIL),
+        goDiscoveryScenePage: ()=> _move(ROUTE_PATH.DISCOVERY_SCENE),
         goBack: () => _back(),
     }
 }();

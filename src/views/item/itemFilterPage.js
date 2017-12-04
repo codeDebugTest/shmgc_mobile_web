@@ -10,7 +10,7 @@ import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
 import {getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
 
 const PageConfig = {
-    pageSize: 5,
+    pageSize: 8,
     pageNumber: 1
 }
 class ItemFilterPage extends React.Component {
@@ -65,6 +65,7 @@ class ItemFilterPage extends React.Component {
         this.props.loadData({
             ...this.props.commonData.userInfo,
             filterCondition: {
+                ...this.piFilterCondition,
                 ...getRequestTimeLocationCondition(this.pickerCondition),
                 ... this.pageConfig,
             }
@@ -85,7 +86,7 @@ class ItemFilterPage extends React.Component {
     componentWillMount() {
         this.pickerCondition = {...getDefaultTimeCondition()};
         this.loadData();
-        sendMsgToRN({title: this.props.title, backBtnEnabled: true});
+        sendMsgToRN({title: this.piFilterCondition.title, backBtnEnabled: true});
     }
 
     onEndReached = () => {

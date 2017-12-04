@@ -21,9 +21,8 @@ export default class BottomTabBar extends React.Component {
                     selectedIcon={<div className="home-active-icon"/>}
                     selected={this.props.selectedTab === 'home'}
                     onPress={ChangeRoute.goHomePage}
-                >
+                />
 
-                </TabBar.Item>
                 <TabBar.Item
                     title="项目"
                     key="Item"
@@ -31,8 +30,7 @@ export default class BottomTabBar extends React.Component {
                     selectedIcon={<div className="item-active-icon"/>}
                     selected={this.props.selectedTab === 'purchaseItem'}
                     onPress={ChangeRoute.goPurchaseItemPage}
-                >
-                </TabBar.Item>
+                />
                 <TabBar.Item
                     title="企业"
                     key="Ent"
@@ -40,8 +38,7 @@ export default class BottomTabBar extends React.Component {
                     selectedIcon={<div className="ent-active-icon"/>}
                     selected={this.props.selectedTab === 'ent'}
                     onPress={ChangeRoute.goEntPage}
-                >
-                </TabBar.Item>
+                />
                 <TabBar.Item
                     title="统计"
                     key="statistic"
@@ -49,8 +46,7 @@ export default class BottomTabBar extends React.Component {
                     selectedIcon={<div className="static-active-icon"/>}
                     selected={this.props.selectedTab === 'statistic'}
                     onPress={ChangeRoute.goStaticPage}
-                >
-                </TabBar.Item>
+                />
             </TabBar>
         </div>
         )

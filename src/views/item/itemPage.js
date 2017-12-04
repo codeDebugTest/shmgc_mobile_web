@@ -13,7 +13,7 @@ import {logoClassList, getFilterLocations, getRequestTimeLocationCondition, getD
 
 
 const PageConfig = {
-    pageSize: 5,
+    pageSize: 8,
     pageNumber: 1
 }
 class ItemView extends React.Component{
