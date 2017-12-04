@@ -81,6 +81,14 @@ class ItemDetailView extends React.Component{
                     <label style={titleColor}>付款周期：</label>
                     <label>{purchaseItem && purchaseItem.paymentCycle}</label>
                 </div>
+                <div style={{...titleLine}}>
+                    <div style={imgContainer}>
+                        <img className="pi-radio-icon"/>
+                    </div>
+                    <label style={titleColor}>送货地址：</label>
+                    <label>{purchaseItem && purchaseItem.deliverAddress}</label>
+                </div>
+
             </Accordion.Panel>
         )
     }
