@@ -108,7 +108,7 @@ class ItemFilterPage extends React.Component {
     };
     render() {
         const hideHeader = this.props.commonData.hideHeader;
-        const height =  document.documentElement.clientHeight - 90;
+        const height =  document.documentElement.clientHeight - 50;
         return (
             <div className={this.piFilterCondition.pageBackGround}>
                 <TopNavBar title={this.piFilterCondition.title}
@@ -117,7 +117,7 @@ class ItemFilterPage extends React.Component {
                            leftContent={<div className="back-icon"/>}
                            onLeftBtnClick={ChangeRoute.goBack}/>
 
-                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top'+ this.piFilterCondition.pageBackGround : this.piFilterCondition.pageBackGround)}>
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')} style={{backgroundColor: 'inherit', position: 'inherit'}}>
                     <WhiteSpace/>
                     <TimeLocationPicker marginTop="41px" tabStyle="white-style"
                                         locations={this.filterLocations}

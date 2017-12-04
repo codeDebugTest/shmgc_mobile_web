@@ -119,6 +119,7 @@ class ItemView extends React.Component{
         const imgStyle = {width:'50px', height: '50px'};
         const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['default']}/>;
         const hideHeader = this.props.commonData.hideHeader;
+        const height =  document.documentElement.clientHeight - 100;
         return (
             <div>
                 <TopNavBar title="项目"
@@ -146,7 +147,7 @@ class ItemView extends React.Component{
                     <WhiteSpace/>
                     <WingBlank>
                         <ListView
-                            style={{ height: '450px'}}
+                            style={{ height: height + 'px'}}
                             className="item-list"
                             dataSource={this.state.dataSource}
 /*                            renderFooter={() => (<div style={{ padding:'10px', textAlign: 'center', backgroundColor: '#ddd' }}>
