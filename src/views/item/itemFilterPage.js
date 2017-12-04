@@ -59,29 +59,23 @@ class ItemFilterPage extends React.Component {
 
     };
 
+    loadData = (reset) => {
+        this.props.loadData({
+            ...this.props.commonData.userInfo,
+            filterCondition: {
+                ...this.piFilterCondition,
+                ...getRequestTimeLocationCondition(this.pickerCondition),
+                ... this.pageConfig,
+            }
+        }, () => this.updateListView(reset));
+    }
+
     reloadData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
         this.pageConfig = {...PageConfig};
-        this.props.loadData({
-            ...this.props.commonData.userInfo,
-            filterCondition: {
-                ...this.piFilterCondition,
-                ...getRequestTimeLocationCondition(this.pickerCondition),
-                ... this.pageConfig,
-            }
-        }, () => this.updateListView(true));
+        this.loadData(true);
     };
 
-    loadData = () => {
-        this.props.loadData({
-            ...this.props.commonData.userInfo,
-            filterCondition: {
-                ...this.piFilterCondition,
-                ...getRequestTimeLocationCondition(this.pickerCondition),
-                ... this.pageConfig,
-            }
-        }, this.updateListView);
-    }
 
     componentWillMount() {
         this.pickerCondition = {...getDefaultTimeCondition()};

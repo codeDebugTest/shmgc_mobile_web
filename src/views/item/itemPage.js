@@ -72,23 +72,17 @@ class ItemView extends React.Component{
     reloadData = (pickerCondition) => {
         this.pickerCondition = {...pickerCondition};
         this.pageConfig = {...PageConfig};
-        this.props.loadData({
-            ...this.props.commonData.userInfo,
-            filterCondition: {
-                ...getRequestTimeLocationCondition(this.pickerCondition),
-                ... this.pageConfig,
-            }
-        }, () => this.updateListView(true));
+        this.loadData(true)
     };
 
-    loadData = () => {
+    loadData = (reset) => {
         this.props.loadData({
             ...this.props.commonData.userInfo,
             filterCondition: {
                 ...getRequestTimeLocationCondition(this.pickerCondition),
                 ... this.pageConfig,
             }
-        }, this.updateListView);
+        }, () => this.updateListView(reset));
     }
 
     componentWillMount() {
