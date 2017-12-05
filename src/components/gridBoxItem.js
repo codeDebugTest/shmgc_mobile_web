@@ -11,9 +11,6 @@ export default class GridBoxItem extends React.Component{
         this.onMouseUp = this.onMouseUp.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
     }
-    clickOver =()=> {
-        setTimeout(()=> this.setState({onClick: false}), 100)
-    };
     onMouseDown = ()=> {
         // this.setState({onClick: true});
     };
@@ -21,12 +18,15 @@ export default class GridBoxItem extends React.Component{
         this.props.onClick(this.item);
         // this.clickOver();
     };
+    onClickHandler = ()=> {
+        this.props.onItemClick(this.item);
+    };
 
     render () {
         const itemClass = this.state.onClick ? 'item active': 'item';
         return (
-            <div className={itemClass} onMouseUp={()=>this.onMouseUp()}
-                 onMouseDown={this.onMouseDown} style={{flexShrink: 0, flexGrow:0, width:'25%'}}>
+            <div className={itemClass} onClick={()=>this.onClickHandler()}
+                 style={{flexShrink: 0, flexGrow:0, width:'25%'}}>
                 {this.props.renderItem(this.item)}
             </div>
         )

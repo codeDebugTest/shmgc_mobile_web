@@ -32,7 +32,7 @@ export default class GridBox extends React.Component{
                 {
                     data.map((item, key) => {
                         return <GridBoxItem item={item} key={lineKey*this.column +key}
-                                            renderItem={this.props.renderItem} onClick={()=>this.props.onItemClick(item)}/>
+                                            renderItem={this.props.renderItem} onItemClick={()=>this.props.onItemClick(item)}/>
                     })
                 }
             </div>
