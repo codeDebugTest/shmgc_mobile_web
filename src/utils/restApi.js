@@ -9,7 +9,8 @@ const RequestType = {
     statistic: 'STATIC_OVERVIEW',
     entList: 'ENT_LIST_OVERVIEW',
     entCompare: 'ENT_COMPARISION',
-    shangHaiTong: 'CJWZ_CONCRETE_STATIC_OVERVIEW'
+    shangHaiTong: 'CJWZ_CONCRETE_STATIC_OVERVIEW',
+    cate_price_trend: 'CATE_PRICE_TREND'
 };
 
 const restUrl = SERVER_HOST + NAME_SPACE;
@@ -350,4 +351,8 @@ export function fetchEntCompareData(params) {
             }
         }), 1000);
     })*/
+}
+
+export function fetchPriceTrendData(params) {
+    return http.post(restUrl, {requestType: RequestType.cate_price_trend, ...params})
 }

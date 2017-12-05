@@ -18,6 +18,7 @@ import ConnectedItemDetailView from './views/item/itemDetailPage'
 import ConnectedStatisticView from './views/static/statisticPage'
 import ConnectedEntStaticView from './views/static/entStatisticPage'
 import ConnectedCateStaticView from './views/static/cateStaticPage'
+import ConnectedDiscoveryView from './views/discovery/discoveryPage'
 import ConnectedChJWZConcreteView from './views/static/chjwzConcreteStatic'
 import ConnectedEntCateFilterView from './views/static/entCateFilter'
 import ConnectedSettingView from './views/setting/settingPage'
@@ -40,6 +41,7 @@ ReactDOM.render(
                 <Route exact path={ROUTE_PATH.PURCHASE_ITEM} component={ConnectedItemView}/>
                 <Route exact path={ROUTE_PATH.PURCHASE_ITEM_FILTER} component={ConnectedItemFilterView}/>
                 <Route exact path={ROUTE_PATH.PURCHASE_ITEM_DETAIL} component={ConnectedItemDetailView}/>
+                <Route exact path={ROUTE_PATH.DISCOVERY} component={ConnectedDiscoveryView}/>
                 <Route path={ROUTE_PATH.STATIC} component={ConnectedStatisticView}/>
                 <Route path={ROUTE_PATH.STATIC_ENT} component={ConnectedEntStaticView}/>
                 <Route path={ROUTE_PATH.STATIC_CATE} component={ConnectedCateStaticView}/>

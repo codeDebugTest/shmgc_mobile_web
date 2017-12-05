@@ -11,6 +11,7 @@ import {statisticReducer} from '../views/static/statisticPage.redux'
 import {entStatisticReducer} from '../views/static/entStaticPage.redux'
 import {cateStatisticReducer} from '../views/static/cateStaticPage.redux'
 import {chJWZConcreteStaticReducer} from '../views/static/chjwzConcreteStatic.redux'
+import {discoveryPageReducer} from '../views/discovery/discoveryPage.redux'
 import {appRouterReducer} from '../AppRedux'
 
 const appReducer = combineReducers({
@@ -27,6 +28,7 @@ const appReducer = combineReducers({
     entStatic: entStatisticReducer,
     cateStatic: cateStatisticReducer,
     chJWZConcreteStatic: chJWZConcreteStaticReducer,
+    discovery: discoveryPageReducer,
 });
 
 export default appReducer;

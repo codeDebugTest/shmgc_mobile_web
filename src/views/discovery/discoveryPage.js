@@ -21,4 +21,6 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
     return {}
-}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoveryView);
