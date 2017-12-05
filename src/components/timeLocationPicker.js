@@ -3,7 +3,7 @@ import {Modal} from 'antd-mobile'
 import SegmentedTabs from './segmentedTabs'
 import QuarterPickerView from './quarterPickerView'
 import OtherTimePickerView from './otherTimePickerView'
-import LocationPickerView from './locationPickerView'
+import TagPickerView from './tagPickerView'
 import CutoffTimePickerView from './cutoffTimePickerView'
 import {otherTimeList} from '../utils/filterConditionConfig'
 
@@ -122,7 +122,7 @@ export default class  TimeLocationPicker extends React.Component {
     }
     renderLocationView = ()=> {
         if (this.state.showView === 'location') {
-            return <LocationPickerView marginTop={this.props.marginTop}
+            return <TagPickerView marginTop={this.props.marginTop}
                                        data={this.props.locations}
                                        value={this.state.picker.location}
                                        onViewCanceled={()=>this.setState({showView: null})}

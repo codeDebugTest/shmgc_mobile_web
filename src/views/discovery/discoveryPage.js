@@ -67,7 +67,8 @@ class DiscoveryView extends React.Component {
                     <div style={{padding: '10px 0', backgroundColor: '#fff'}}>
                         <TrendConditionPicker marginTop="240px"
                                               locations={this.filterLocations}
-                                              pickerCondition={this.pickerCondition}/>
+                                              pickerCondition={this.pickerCondition}
+                                              confirmCallback={this.loadData}/>
                     </div>
                 </div>
 

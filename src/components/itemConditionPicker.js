@@ -3,7 +3,7 @@ import {Modal} from 'antd-mobile'
 import SegmentedTabs from './segmentedTabs'
 import OtherTimePickerView from './otherTimePickerView'
 import TagPickerView from './tagPickerView'
-import CatePickerView from "./catePickerView";
+import EntPickerView from "./entPickerView";
 import {otherTimeList, getCateTitleByCondition} from '../utils/filterConditionConfig'
 
 export default class TrendConditionPicker extends React.Component {
@@ -15,38 +15,34 @@ export default class TrendConditionPicker extends React.Component {
     }
     showMenu = (menuName) => {
         const newState = {
-            showCateView: false,
-            showTimeView: false,
-            showLocationView: false,
+            showStatusView: false,
+            showTypeView: false,
+            showEntView: false,
         };
         newState[menuName] = true;
         this.setState(newState);
     }
 
-    onTimeViewConfirmed = (value)=> {
-        if (value.endTimeKey <= value.startTimeKey) {
-            Modal.alert('', '结束时间必须大于起始时间！', [{text: '确定', style: {height: '40px', lineHeight: '40px'}}]);
-        } else {
-            this.picker.otherTime = value;
-            this.props.confirmCallback(this.picker);
-        }
+    onEntViewConfirmed = (ent) => {
+        this.picker.ent = ent;
+        this.setPickedValue(this.picker)
     }
-    onCateViewConfirmed = (cate)=> {
-        this.picker.cate = cate;
-        this.props.confirmCallback(this.picker);
+    onStatusViewConfirmed = (value) => {
+        this.picker.itemStatus = value;
+        this.setPickedValue(this.picker)
     }
-    onLocationViewConfirmed = (value) => {
-        this.picker.location = value;
-        this.props.confirmCallback(this.picker);
+    onTypeViewConfirmed = (value) => {
+        this.picker.itemType = value;
+        this.setPickedValue(this.picker)
     }
 
-    renderLocationView = ()=> {
-        if (this.state.showLocationView) {
-            return <TagPickerView marginTop={this.props.marginTop}
-                                       data={this.props.locations}
-                                       value={this.picker.location}
-                                       onViewCanceled={()=>this.setState({showLocationView: false})}
-                                       onViewConfirmed={this.onLocationViewConfirmed}/>
+    renderEntView = ()=> {
+        if (this.state.showEntView) {
+            return <EntPickerView marginTop={this.props.marginTop}
+                                       data={this.props.ents}
+                                       value={this.picker.ent}
+                                       onViewCanceled={()=>this.setState({showEntView: false})}
+                                       onViewConfirmed={this.onEntViewConfirmed}/>
         }
         return null;
     };
