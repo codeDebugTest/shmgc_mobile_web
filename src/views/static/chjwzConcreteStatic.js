@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {WhiteSpace, WingBlank, Card,Flex} from 'antd-mobile'
+import {WhiteSpace, WingBlank, Card,Flex, Accordion} from 'antd-mobile'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import TopNavBar from "../../components/topNavBar";
 import PieChartCard from '../../components/pieChartCard'
@@ -14,14 +14,13 @@ class ChJWZConcreteStaticPage extends React.Component {
         this.item = this.props.storeData.item;
     }
 
-    renderOverviewCard = (title, item) => {
-        const titleStyle = {width: '100%', paddingTop: '5px', textAlign: 'center', fontSize:'15px',};
+    renderOverviewCard = (title, item, hideTitle) => {
         const pBigStyle = {fontSize:'12px', textAlign: 'left', width: '65%'};
         const pSmallStyle = {fontSize:'12px', textAlign: 'left', width: '35%'};
         return (
-            <Card style={{paddingBottom: 0, backgroundColor: '#e9f1ea', borderRadius: 0}}>
-                <Card.Header title={<div style={titleStyle}>{title}</div>}/>
-                <Card.Body style={{paddingTop: '5px'}}>
+            <div style={{paddingTop: '10px'}}>
+                {hideTitle ? null : <p className="half-margin-p">{title}</p>}
+                <WingBlank>
                     <Flex>
                         <p style={pBigStyle}>采购金额：{item.purchaseAmountStr}</p>
                         <p style={pSmallStyle}>项目总数：{item.piCountStr}</p>
@@ -30,8 +29,8 @@ class ChJWZConcreteStaticPage extends React.Component {
                     <Flex>
                         <p style={pBigStyle}>采购数量：{item.purchaseQuantityStr}</p>
                     </Flex>
-                </Card.Body>
-            </Card>
+                </WingBlank>
+            </div>
         )
     }
 
@@ -40,18 +39,19 @@ class ChJWZConcreteStaticPage extends React.Component {
         if (this.props.storeData.loadingSuccess && staticData) {
             return (
                 staticData.map((item, key) => {
-                    const parentEntname = item.parentEnt.shortName;
-                    const selfCardTitle = '城建物资承接' + parentEntname  + '统计';
+                    const parentEntName = item.parentEnt.shortName;
+                    const selfCardTitle = '城建物资承接' + parentEntName  + '统计';
                     return (
-                        <div key={key}>
-                            <div style={{border: '2px solid #ddd'}}>
-                                {this.renderOverviewCard(parentEntname, item.parent)}
-                                <WhiteSpace/>
+                        <div>
+                            <Accordion key={key}>
+                                <Accordion.Panel header={parentEntName}>
+                                    {this.renderOverviewCard(parentEntName, item.parent, true)}
 
-                                {this.renderOverviewCard(selfCardTitle, item.self)}
+                                    {this.renderOverviewCard(selfCardTitle, item.self)}
 
-                                <PieChartCard staticData={item.percentage} id={item.parentEnt.entId}/>
-                            </div>
+                                    <PieChartCard staticData={item.percentage} id={item.parentEnt.entId}/>
+                                </Accordion.Panel>
+                            </Accordion>
                             <WhiteSpace/>
                             <WhiteSpace/>
                         </div>
@@ -76,24 +76,22 @@ class ChJWZConcreteStaticPage extends React.Component {
     render() {
         const hideHeader = this.props.commonData.hideHeader;
         return (
-            <div className="cjwz-concrete-background">
-                <TopNavBar title='上海城建物资混凝土' style={{backgroundColor: 'inherit'}}
+            <div>
+                <TopNavBar title='上海城建物资混凝土'
                            hideHeader={hideHeader}
                            leftContent={<div className="back-icon"/>}
                            onLeftBtnClick={ChangeRoute.goBack}
                 />
-                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top': '')} style={{backgroundColor: 'inherit', position: 'inherit'}}>
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top gap': 'gap')} >
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="87px" tabStyle="white-style"
+                    <TimeLocationPicker marginTop="87px"
                                         noLocation={true}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
                     <WhiteSpace/>
                     <WhiteSpace/>
 
-                    <WingBlank >
-                        {this.renderStaticData()}
-                    </WingBlank>
+                    {this.renderStaticData()}
                 </div>
             </div>
         )

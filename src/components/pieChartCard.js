@@ -67,7 +67,7 @@ export default class PieChartCard extends React.Component {
         return (
         <div>
             { chartVisible.amountChart ? <WhiteSpace/> : ''}
-            <Flex style={{backgroundColor: '#e9f1ea'}}>
+            <Flex>
                 {chartList.map((chartId, key) => {
                     return (
                         chartVisible[chartId]
