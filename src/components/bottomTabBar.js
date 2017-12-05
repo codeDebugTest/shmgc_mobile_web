@@ -1,6 +1,6 @@
 import React from 'react'
 import { TabBar } from 'antd-mobile';
-import {ChangeRoute} from '../utils/router'
+import {ChangeRoute, ROUTE_PATH} from '../utils/router'
 import './bottomTabBar.css'
 
 export default class BottomTabBar extends React.Component {
@@ -19,7 +19,7 @@ export default class BottomTabBar extends React.Component {
                     key="Home"
                     icon={<div className="home-normal-icon"/>}
                     selectedIcon={<div className="home-active-icon"/>}
-                    selected={this.props.selectedTab === 'home'}
+                    selected={this.props.selectedTab === ROUTE_PATH.HOME}
                     onPress={ChangeRoute.goHomePage}
                 />
 
@@ -28,7 +28,7 @@ export default class BottomTabBar extends React.Component {
                     key="Item"
                     icon={<div className="item-normal-icon"/>}
                     selectedIcon={<div className="item-active-icon"/>}
-                    selected={this.props.selectedTab === 'purchaseItem'}
+                    selected={this.props.selectedTab === ROUTE_PATH.PURCHASE_ITEM}
                     onPress={ChangeRoute.goPurchaseItemPage}
                 />
 
@@ -37,7 +37,7 @@ export default class BottomTabBar extends React.Component {
                     key="discovery"
                     icon={<div className="discovery-normal-icon"/>}
                     selectedIcon={<div className="discovery-active-icon"/>}
-                    selected={this.props.selectedTab === 'discovery'}
+                    selected={this.props.selectedTab === ROUTE_PATH.DISCOVERY}
                     onPress={ChangeRoute.goDiscoveryPage}
                 />
 
@@ -46,7 +46,7 @@ export default class BottomTabBar extends React.Component {
                     key="Ent"
                     icon={<div className="ent-normal-icon"/>}
                     selectedIcon={<div className="ent-active-icon"/>}
-                    selected={this.props.selectedTab === 'ent'}
+                    selected={this.props.selectedTab === ROUTE_PATH.ENT}
                     onPress={ChangeRoute.goEntPage}
                 />
                 <TabBar.Item
@@ -54,7 +54,7 @@ export default class BottomTabBar extends React.Component {
                     key="statistic"
                     icon={<div className="static-normal-icon"/>}
                     selectedIcon={<div className="static-active-icon"/>}
-                    selected={this.props.selectedTab === 'statistic'}
+                    selected={this.props.selectedTab === ROUTE_PATH.STATIC}
                     onPress={ChangeRoute.goStaticPage}
                 />
             </TabBar>

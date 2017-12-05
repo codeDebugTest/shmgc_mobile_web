@@ -10,7 +10,7 @@ import {INIT_ENT_STATIC_PAGE} from './entStaticPage.redux'
 import {INIT_CATE_STATIC_PAGE} from './cateStaticPage.redux'
 import {INIT_CHJWZ_CONCRETE_STATIC_PAGE} from './chjwzConcreteStatic.redux'
 import {doLoadingDataAction} from './statisticPage.redux'
-import {ChangeRoute, sendMsgToRN} from '../../utils/router'
+import {ChangeRoute, ROUTE_PATH, sendMsgToRN} from '../../utils/router'
 import {getEntByName, getThreeCateForBtn, getFilterLocations, testFilterBtns, getRequestTimeLocationCondition, getDefaultTimeCondition,
     logoClassList, getTimeLocationTitleByConditon} from '../../utils/filterConditionConfig'
 
@@ -114,7 +114,7 @@ class StatisticView extends React.Component{
                     <WhiteSpace/>
                     {this.renderStaticOverview()}
                 </div>
-                <BottomTabBar selectedTab='statistic'/>
+                <BottomTabBar selectedTab={ROUTE_PATH.STATIC}/>
             </div>
         )
     }

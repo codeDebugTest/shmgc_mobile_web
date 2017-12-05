@@ -42,8 +42,8 @@ class ChJWZConcreteStaticPage extends React.Component {
                     const parentEntName = item.parentEnt.shortName;
                     const selfCardTitle = '城建物资承接' + parentEntName  + '统计';
                     return (
-                        <div>
-                            <Accordion key={key}>
+                        <div key={key}>
+                            <Accordion >
                                 <Accordion.Panel header={parentEntName}>
                                     {this.renderOverviewCard(parentEntName, item.parent, true)}
 
@@ -52,7 +52,6 @@ class ChJWZConcreteStaticPage extends React.Component {
                                     <PieChartCard staticData={item.percentage} id={item.parentEnt.entId}/>
                                 </Accordion.Panel>
                             </Accordion>
-                            <WhiteSpace/>
                             <WhiteSpace/>
                         </div>
                     )

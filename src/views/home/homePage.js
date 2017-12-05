@@ -7,7 +7,7 @@ import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
 import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
-import {ChangeRoute, sendMsgToRN} from '../../utils/router'
+import {ChangeRoute, ROUTE_PATH, sendMsgToRN} from '../../utils/router'
 import {INIT_ITEM_PAGE} from '../item/itemPageRedux'
 import {doLoginAction, SET_TOKEN} from '../login.redux'
 import  './homePage.css'
@@ -189,7 +189,7 @@ class Home extends React.Component{
                     <WhiteSpace className="gap"/>
                     {this.renderCateStat()}
                 </div>
-                <BottomTabBar selectedTab='home'/>
+                <BottomTabBar selectedTab={ROUTE_PATH.HOME}/>
             </div>
 
         )

@@ -6,7 +6,7 @@ import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
-import {ChangeRoute, sendMsgToRN} from '../../utils/router'
+import {ChangeRoute, ROUTE_PATH, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction, INIT_ITEM_PAGE} from './itemPageRedux'
 import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
 import {logoClassList, getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
@@ -157,7 +157,7 @@ class ItemView extends React.Component{
                     </WingBlank>
                 </div>
 
-                <BottomTabBar selectedTab='purchaseItem'/>
+                <BottomTabBar selectedTab={ROUTE_PATH.PURCHASE_ITEM}/>
             </div>
         )
     }
