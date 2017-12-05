@@ -143,6 +143,14 @@ export const logoClassList ={
     '预制构件': 'yzgj-logo',
     '防水防潮材料': 'fsfccl-logo',
 
+    '道路桥梁': 'road-bridge-logo',
+    '地下工程': 'under-engineer-logo',
+    '海绵城市': 'sponge-city-logo',
+    '健康建筑': 'health-building-logo',
+    '绿色建筑': 'green-building-logo',
+    '绿色生产': 'green-produce-logo',
+    '清洁能源': 'clean-energy-logo',
+
     '上海砼': 'shtong-logo',
     '全部': 'img-all-logo',
     'other': 'other-logo',

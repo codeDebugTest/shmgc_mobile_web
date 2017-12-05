@@ -230,6 +230,43 @@
   content: url(asset/img/piRadio.png);
 }
 
+/*发现*/
+.road-bridge-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/road-bridge.png) center center / 40px 40px no-repeat;
+}
+.under-engineer-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/under-engineer.png) center center / 40px 40px no-repeat;
+}
+.sponge-city-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/sponge-city.png) center center / 40px 40px no-repeat;
+}
+.health-building-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/health-building.png) center center / 40px 40px no-repeat;
+}
+.green-building-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/green-building.png) center center / 40px 40px no-repeat;
+}
+.green-produce-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/green-produce.png) center center / 40px 40px no-repeat;
+}
+.clean-energy-logo {
+  height: 40px;
+  width: 40px;
+  background: url(./asset/logo/clean-energy.png) center center / 40px 40px no-repeat;
+}
+
 /*上海砼background*/
 .cjwz-concrete-background {
   background-image: url(asset/img/cjwz-concrete-background.png);
