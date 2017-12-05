@@ -5,6 +5,7 @@ import QuarterPickerView from './quarterPickerView'
 import OtherTimePickerView from './otherTimePickerView'
 import LocationPickerView from './locationPickerView'
 import CutoffTimePickerView from './cutoffTimePickerView'
+import {otherTimeList} from '../utils/filterConditionConfig'
 
 const cutoffTimes =[
     [
@@ -132,7 +133,7 @@ export default class  TimeLocationPicker extends React.Component {
     renderOtherTimeView = () => {
         if (this.state.showView === 'otherTime') {
             return <OtherTimePickerView marginTop={this.props.marginTop}
-                                        sourceTime={otherTime}
+                                        sourceTime={otherTimeList}
                                         value={this.state.picker.otherTime}
                                         onViewCanceled={()=>this.setState({showView: null})}
                                         onViewConfirmed={this.onOtherTimeViewConfirm}
