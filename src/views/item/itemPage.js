@@ -6,10 +6,12 @@ import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
+import ItemConditionPicker from '../../components/itemConditionPicker'
 import {ChangeRoute, ROUTE_PATH, sendMsgToRN} from '../../utils/router'
 import {doLoadingDataAction, INIT_ITEM_PAGE} from './itemPageRedux'
 import {INIT_ITEM_DETAIL_PAGE} from './itemDetailPage.redux'
-import {logoClassList, getFilterLocations, getRequestTimeLocationCondition, getDefaultTimeCondition} from '../../utils/filterConditionConfig'
+import {logoClassList, getFilterLocations, getRequestTimeLocationCondition,
+    getDefaultTimeCondition, getDefaultItemCondition, getRequestItemCondition} from '../../utils/filterConditionConfig'
 
 
 const PageConfig = {
@@ -20,7 +22,8 @@ class ItemView extends React.Component{
     constructor(props) {
         super(props);
         this.filterLocations = getFilterLocations(this.props.commonData);
-        this.pickerCondition = {};
+        this.pickedTimeLocation = {};
+        this.pickedItemLocation = {};
         this.pageConfig = {...PageConfig};
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1.piId !== row2.piId,
@@ -69,24 +72,31 @@ class ItemView extends React.Component{
 
     };
 
-    reloadData = (pickerCondition) => {
-        this.pickerCondition = {...pickerCondition};
+    timeChanged = (pickerCondition) => {
+        this.pickedTimeLocation = {...pickerCondition};
         this.pageConfig = {...PageConfig};
         this.loadData(true)
     };
+    itemChanged = (pickerCondition) => {
+        this.pickedItemLocation = {...pickerCondition};
+        this.pageConfig = {...PageConfig};
+        this.loadData(true)
+    }
 
     loadData = (reset) => {
         this.props.loadData({
             ...this.props.commonData.userInfo,
             filterCondition: {
-                ...getRequestTimeLocationCondition(this.pickerCondition),
+                ...getRequestItemCondition(this.pickedItemLocation),
+                ...getRequestTimeLocationCondition(this.pickedTimeLocation),
                 ... this.pageConfig,
             }
         }, () => this.updateListView(reset));
     }
 
     componentWillMount() {
-        this.pickerCondition = {...getDefaultTimeCondition()};
+        this.pickedTimeLocation = {...getDefaultTimeCondition()};
+        this.pickedItemLocation = {...getDefaultItemCondition()}
         this.loadData();
         sendMsgToRN({title: '项目'});
     }
@@ -133,10 +143,16 @@ class ItemView extends React.Component{
                              onItemClick={this.onGridClick}
                     />
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="316px" tabStyle="white-style"
+
+                    <ItemConditionPicker marginTop="316px" tabStyle="white-style"
+                                         ents={this.props.commonData.subEnts}
+                                         pickedCondition={this.pickedItemLocation}
+                                         confirmCallback={this.itemChanged}/>
+
+                    <TimeLocationPicker marginTop="356px" tabStyle="white-style"
                                         locations={this.filterLocations}
-                                        confirmCallback={this.reloadData}
-                                        pickerCondition={this.pickerCondition}/>
+                                        confirmCallback={this.timeChanged}
+                                        pickerCondition={this.pickedTimeLocation}/>
 
                     <WhiteSpace/>
                     <WingBlank>

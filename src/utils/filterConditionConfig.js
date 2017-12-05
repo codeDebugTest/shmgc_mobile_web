@@ -333,6 +333,22 @@ export function getRequestTimeLocationCondition(pickerCondition) {
     return condition;
 }
 
+export function getRequestItemCondition(pickerCondition) {
+    const result = {};
+    if (pickerCondition.itemStatus) {
+        result['piStatus'] = pickerCondition.itemStatus.value;
+    }
+
+    if (pickerCondition.itemType) {
+        result['piType'] = pickerCondition.itemType.id;
+    }
+
+    if (pickerCondition.ent) {
+        result['ent'] = pickerCondition.ent.entId;
+    }
+    return result;
+}
+
 export function getRequestCateEntCondition(condition) {
     const result = {};
     if (condition && condition.ent) {
@@ -374,6 +390,13 @@ export function getDefaultTimeCondition() {
             startTime: '2017-1',
             endTime: date.getFullYear() + '-' + date.getMonth()
         }
+    }
+}
+export function getDefaultItemCondition() {
+    return {
+        itemStatus: {id: 1, value: '进行中'},
+        itemType: {id: 2, value: '比价'},
+
     }
 }
 export function getCateTitleByCondition(cate) {

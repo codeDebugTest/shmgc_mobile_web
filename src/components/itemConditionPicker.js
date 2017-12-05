@@ -1,16 +1,24 @@
 import React from 'react'
-import {Modal} from 'antd-mobile'
 import SegmentedTabs from './segmentedTabs'
-import OtherTimePickerView from './otherTimePickerView'
 import TagPickerView from './tagPickerView'
 import EntPickerView from "./entPickerView";
-import {otherTimeList, getCateTitleByCondition} from '../utils/filterConditionConfig'
 
-export default class TrendConditionPicker extends React.Component {
+const typeList =[
+    {id: 0, value: '全部'},
+    {id: 2, value: '比价'},
+    {id: 4, value: '招标'},
+    {id: 5, value: '协议'},
+];
+const statusList =[
+    {id: 0, value: '全部'},
+    {id: 1, value: '进行中'},
+    {id: 2, value: '已结束'},
+];
+export default class ItemConditionPicker extends React.Component {
     constructor(props) {
         super(props)
         this.state ={};
-        this.picker = this.props.pickedCondition ||{}
+        this.picker = this.props.pickedCondition ||{};
         this.showMenu = this.showMenu.bind(this)
     }
     showMenu = (menuName) => {
@@ -25,15 +33,15 @@ export default class TrendConditionPicker extends React.Component {
 
     onEntViewConfirmed = (ent) => {
         this.picker.ent = ent;
-        this.setPickedValue(this.picker)
+        this.props.confirmCallback(this.picker);
     }
     onStatusViewConfirmed = (value) => {
         this.picker.itemStatus = value;
-        this.setPickedValue(this.picker)
+        this.props.confirmCallback(this.picker);
     }
     onTypeViewConfirmed = (value) => {
         this.picker.itemType = value;
-        this.setPickedValue(this.picker)
+        this.props.confirmCallback(this.picker);
     }
 
     renderEntView = ()=> {
@@ -46,62 +54,53 @@ export default class TrendConditionPicker extends React.Component {
         }
         return null;
     };
-    renderOtherTimeView = () => {
-        if (this.state.showTimeView) {
-            return <OtherTimePickerView marginTop={this.props.marginTop}
-                                        sourceTime={otherTimeList}
-                                        value={this.picker.otherTime}
-                                        onViewCanceled={()=>this.setState({showTimeView: false})}
-                                        onViewConfirmed={this.onTimeViewConfirmed}
+    renderTypeView = () => {
+        if (this.state.showTypeView) {
+            return <TagPickerView marginTop={this.props.marginTop}
+                                        data = {typeList}
+                                        value={this.picker.itemType}
+                                        onViewCanceled={()=>this.setState({showTypeView: false})}
+                                        onViewConfirmed={this.onTypeViewConfirmed}
             />
         }
         return null
     };
-    renderCateView = () => {
-        if (this.state.showCateView) {
-            return <CatePickerView marginTop={this.props.marginTop}
-                                   data = {this.props.categories}
-                                   value ={this.picker.cate}
-                                   onViewCanceled={()=> this.setState({showCateView: false})}
-                                   onViewConfirmed={this.onCateViewConfirmed}
+    renderStatusView = () => {
+        if (this.state.showStatusView) {
+            return <TagPickerView marginTop={this.props.marginTop}
+                                   data = {statusList}
+                                   value ={this.picker.itemStatus}
+                                   onViewCanceled={()=> this.setState({showStatusView: false})}
+                                   onViewConfirmed={this.onStatusViewConfirmed}
             />
         }
         return null
     }
 
-    getPickedCate = ()=> {
-        return getCateTitleByCondition(this.picker.cate);
-    }
-    getOtherTimeTabName = () => {
-        if (this.picker.otherTime) {
-            return this.picker.otherTime.startTime.replace('-', '.').substring(2) + '-' + this.picker.otherTime.endTime.replace('-', '.').substring(2)
-        }
-        return '其他时间'
-    }
     render() {
-        const locationValue = this.picker.location && this.picker.location.value;
+        const pickedStatus = this.picker.itemStatus && this.picker.itemStatus.value;
+        const pickedType = this.picker.itemType && this.picker.itemType.value;
+        const entName = this.picker.ent && this.picker.ent.shortName;
         return (
             <div>
-                <SegmentedTabs >
-                    <div onClick={()=>this.showMenu('showLocationView')}
-                         className={this.state.showLocationView ? 'active': ''}>
-                        {locationValue || '全国'}
+                <SegmentedTabs backgroundStyle={this.props.tabStyle}>
+                    <div onClick={()=>this.showMenu('showStatusView')}
+                         className={this.state.showStatusView ? 'active': ''}>
+                        {pickedStatus || '全部'}
                     </div>
-
-                    <div onClick={()=> this.showMenu('showTimeView')}
-                         className={this.state.showTimeView ? 'active': ''}>
-                        {this.getOtherTimeTabName()}
+                    <div onClick={()=>this.showMenu('showTypeView')}
+                         className={this.state.showTypeView ? 'active': ''}>
+                        {pickedType || '全部'}
                     </div>
-
-                    <div onClick={()=>this.showMenu('showCateView')}
-                         className={this.state.showCateView ? 'active': ''}
-                    >
-                        {this.getPickedCate() || '材料'}
+                    <div onClick={()=>this.showMenu('showEntView')}
+                         className={this.state.showEntView ? 'active': ''}>
+                        {entName || '公司'}
                     </div>
                 </SegmentedTabs>
-                {this.renderCateView()}
-                {this.renderLocationView()}
-                {this.renderOtherTimeView()}
+
+                {this.renderEntView()}
+                {this.renderTypeView()}
+                {this.renderStatusView()}
             </div>
         )
     }
