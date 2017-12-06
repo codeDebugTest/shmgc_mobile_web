@@ -307,3 +307,11 @@
 .all-item-background {
   background-image: url(./asset/img/all-item-background.png);
 }
+
+
+.white-label.am-search .am-search-cancel {
+  color: #fff;
+}
+.am-search .am-search-input {
+  border-radius: 28px;
+}

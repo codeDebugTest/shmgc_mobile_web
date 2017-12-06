@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { WhiteSpace, WingBlank, ListView} from 'antd-mobile'
+import { WhiteSpace, WingBlank, ListView, SearchBar} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
 import BottomTabBar from '../../components/bottomTabBar'
@@ -33,7 +33,8 @@ class ItemView extends React.Component{
             data: [],
             dataSource,
             isLoading: true,
-            hasMore: true
+            hasMore: true,
+            searchKey: ''
         };
         this.updateListView = this.updateListView.bind(this);
         this.onItemClick = this.onItemClick.bind(this);
@@ -72,21 +73,30 @@ class ItemView extends React.Component{
 
     };
 
-    timeChanged = (pickerCondition) => {
+    timeConditionChanged = (pickerCondition) => {
         this.pickedTimeLocation = {...pickerCondition};
         this.pageConfig = {...PageConfig};
-        this.loadData(true)
+        this.loadData(true, this.state.searchKey)
     };
-    itemChanged = (pickerCondition) => {
+    itemConditionChanged = (pickerCondition) => {
         this.pickedItemLocation = {...pickerCondition};
         this.pageConfig = {...PageConfig};
-        this.loadData(true)
+        this.loadData(true, this.state.searchKey)
+    };
+
+    onSearchSubmit = () => {
+        this.loadData(true, this.state.searchKey)
+    }
+    onClearSearchKey = () => {
+        this.setState({searchKey: ''});
+        this.loadData(true);
     }
 
-    loadData = (reset) => {
+    loadData = (reset, searchKey) => {
         this.props.loadData({
             ...this.props.commonData.userInfo,
             filterCondition: {
+                searchKey: searchKey,
                 ...getRequestItemCondition(this.pickedItemLocation),
                 ...getRequestTimeLocationCondition(this.pickedTimeLocation),
                 ... this.pageConfig,
@@ -132,7 +142,7 @@ class ItemView extends React.Component{
                            onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className={"main-section " + (hideHeader ? 'no-top item-back-ground': 'item-back-ground')}>
-                    <GridBox column="4" style={{background: 'inherit'}} noBackGround={true}
+{/*                    <GridBox column="4" style={{background: 'inherit'}} noBackGround={true}
                              data={this.props.commonData.subEnts}
                              renderItem={item=>(
                                  <div style={{paddingTop: '15px'}}>
@@ -141,17 +151,31 @@ class ItemView extends React.Component{
                                  </div>
                              )}
                              onItemClick={this.onGridClick}
-                    />
+                    />*/}
                     <WhiteSpace/>
 
+                    <WingBlank>
+                        <SearchBar style={{padding: 0, background: 'inherit'}} className="white-label"
+                                   placeholder="Search"
+                                   cancelText="搜索"
+                                   maxLength={16}
+                                   value={this.state.searchKey}
+                                   onChange={value => this.setState({searchKey: value})}
+                                   onSubmit={value => this.onSearchSubmit(value)}
+                                   onCancel={value => this.onSearchSubmit(value)}
+                                   onClear={value => this.onClearSearchKey()}
+                        />
+                    </WingBlank>
+
+                    <WhiteSpace/>
                     <ItemConditionPicker marginTop="316px" tabStyle="white-style"
                                          ents={this.props.commonData.subEnts}
                                          pickedCondition={this.pickedItemLocation}
-                                         confirmCallback={this.itemChanged}/>
+                                         confirmCallback={this.itemConditionChanged}/>
 
                     <TimeLocationPicker marginTop="356px" tabStyle="white-style"
                                         locations={this.filterLocations}
-                                        confirmCallback={this.timeChanged}
+                                        confirmCallback={this.timeConditionChanged}
                                         pickerCondition={this.pickedTimeLocation}/>
 
                     <WhiteSpace/>
