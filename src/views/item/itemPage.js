@@ -169,6 +169,7 @@ class ItemView extends React.Component{
 
                     <WhiteSpace/>
                     <ItemConditionPicker marginTop="316px" tabStyle="white-style"
+                                         style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                                          ents={this.props.commonData.subEnts}
                                          pickedCondition={this.pickedItemLocation}
                                          confirmCallback={this.itemConditionChanged}/>

@@ -83,7 +83,7 @@ export default class ItemConditionPicker extends React.Component {
         const entName = this.picker.ent && this.picker.ent.shortName;
         return (
             <div>
-                <SegmentedTabs backgroundStyle={this.props.tabStyle}>
+                <SegmentedTabs backgroundStyle={this.props.tabStyle} style={this.props.style}>
                     <div onClick={()=>this.showMenu('showStatusView')}
                          className={this.state.showStatusView ? 'active': ''}>
                         {pickedStatus || '全部'}
