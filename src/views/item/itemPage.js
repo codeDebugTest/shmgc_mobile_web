@@ -141,7 +141,7 @@ class ItemView extends React.Component{
                            leftContent={<div className="setting-icon"/>}
                            onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
-                <div className={"main-section " + (hideHeader ? 'no-top item-back-ground': 'item-back-ground')}>
+                <div className={"main-section " + (hideHeader ? 'no-top gap': 'gap')}>
 {/*                    <GridBox column="4" style={{background: 'inherit'}} noBackGround={true}
                              data={this.props.commonData.subEnts}
                              renderItem={item=>(
@@ -155,7 +155,7 @@ class ItemView extends React.Component{
                     <WhiteSpace/>
 
                     <WingBlank>
-                        <SearchBar style={{padding: 0, background: 'inherit'}} className="white-label"
+                        <SearchBar style={{padding: 0, background: 'inherit'}}
                                    placeholder="Search"
                                    cancelText="搜索"
                                    maxLength={16}
@@ -168,13 +168,13 @@ class ItemView extends React.Component{
                     </WingBlank>
 
                     <WhiteSpace/>
-                    <ItemConditionPicker marginTop="316px" tabStyle="white-style"
+                    <ItemConditionPicker marginTop="316px"
                                          style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                                          ents={this.props.commonData.subEnts}
                                          pickedCondition={this.pickedItemLocation}
                                          confirmCallback={this.itemConditionChanged}/>
 
-                    <TimeLocationPicker marginTop="356px" tabStyle="white-style"
+                    <TimeLocationPicker marginTop="356px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.timeConditionChanged}
                                         pickerCondition={this.pickedTimeLocation}/>
