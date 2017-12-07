@@ -4,3 +4,5 @@
 /build
 *.tar
 *.zip
+yarn.lock
+yarn-error.log
