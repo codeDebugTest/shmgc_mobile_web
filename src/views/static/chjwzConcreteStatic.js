@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {WhiteSpace, WingBlank, Card,Flex, Accordion} from 'antd-mobile'
+import {WhiteSpace, WingBlank, Flex, Accordion} from 'antd-mobile'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import TopNavBar from "../../components/topNavBar";
 import PieChartCard from '../../components/pieChartCard'
@@ -42,7 +42,7 @@ class ChJWZConcreteStaticPage extends React.Component {
                     const parentEntName = item.parentEnt.shortName;
                     const selfCardTitle = '城建物资承接' + parentEntName  + '统计';
                     return (
-                        <div key={key}>
+                        <WingBlank key={key}>
                             <Accordion >
                                 <Accordion.Panel header={parentEntName}>
                                     {this.renderOverviewCard(parentEntName, item.parent, true)}
@@ -53,7 +53,7 @@ class ChJWZConcreteStaticPage extends React.Component {
                                 </Accordion.Panel>
                             </Accordion>
                             <WhiteSpace/>
-                        </div>
+                        </WingBlank>
                     )
                 })
             )
@@ -81,9 +81,9 @@ class ChJWZConcreteStaticPage extends React.Component {
                            leftContent={<div className="back-icon"/>}
                            onLeftBtnClick={ChangeRoute.goBack}
                 />
-                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top gap': 'gap')} >
+                <div className={"main-section-no-bottom " + (hideHeader ? 'no-top cjwz-concrete-background': 'cjwz-concrete-background')} >
                     <WhiteSpace/>
-                    <TimeLocationPicker marginTop="87px"
+                    <TimeLocationPicker marginTop="42px" tabStyle="white-style"
                                         noLocation={true}
                                         confirmCallback={this.loadStaticData}
                                         pickerCondition={this.pickerCondition}/>
