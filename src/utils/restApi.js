@@ -7,6 +7,7 @@ const RequestType = {
     purchaseItems: 'PURCHASE_ITEM_LIST',
     purchaseItemDetail: 'PURCHASE_ITEM_DETAIL',
     statistic: 'STATIC_OVERVIEW',
+    statisticByTime: 'STATIC_OVERVIEW_GROUP_BY_TIME',
     entList: 'ENT_LIST_OVERVIEW',
     entCompare: 'ENT_COMPARISION',
     shangHaiTong: 'CJWZ_CONCRETE_STATIC_OVERVIEW',
@@ -355,4 +356,8 @@ export function fetchEntCompareData(params) {
 
 export function fetchPriceTrendData(params) {
     return http.post(restUrl, {requestType: RequestType.cate_price_trend, ...params})
+}
+
+export function fetchStatisticDataByTime(params) {
+    return http.post(restUrl, {requestType: RequestType.statisticByTime, ...params});
 }

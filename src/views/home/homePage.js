@@ -1,12 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import G2 from '@antv/g2'
-import {doLoadingAction} from './homePage.redux'
+import {doLoadingAction, updateChartAction} from './homePage.redux'
 import {Grid, Card, Icon, Flex, WhiteSpace} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
-import {G2Config, chartContainerCfg} from '../../utils/chartConfig'
+import TimeTrendChart from '../../components/timeTrendChart'
 import {ChangeRoute, ROUTE_PATH, sendMsgToRN} from '../../utils/router'
 import {INIT_ITEM_PAGE} from '../item/itemPageRedux'
 import {doLoginAction, SET_TOKEN} from '../login.redux'
@@ -45,23 +44,6 @@ class Home extends React.Component{
         console.log('card on click')
     };
 
-    renderEntChart(entChartData) {
-        const formatter = (val) => {
-            return (val/100000000).toFixed(1) + '亿元'
-        };
-        const chartCfg = new G2Config(this.entChart, entChartData);
-        chartCfg.setChartScale('purchaseAmount', '采购金额');
-        chartCfg.setChartScale( 'piCount', '采购项目数');
-        chartCfg.setChartAxis('month');
-        chartCfg.setChartAxis('purchaseAmount', null, formatter, true);
-        chartCfg.setChartAxis('piCount', null);
-        chartCfg.setChartInterval('month', 'purchaseAmount');
-        chartCfg.setChartLine('month', 'piCount');
-        chartCfg.setChartTooltip();
-        // chartCfg.customChartlegend('total');
-        this.entChart.render();
-    }
-
     getCateImg = (cateName) => {
         switch (cateName){
             case '混凝土':
@@ -72,6 +54,25 @@ class Home extends React.Component{
                 return 'steel-img'
         }
     };
+
+    updateChart = (cateName) => {
+        const mainCateIds = {
+            '混凝土': 1,
+            '水泥': 2,
+            '钢材': 3,
+            '其他': 99,
+        }
+        const commonData = this.props.commonData;
+
+        this.props.updateChart({
+            ...commonData.userInfo,
+            filterCondition: {
+                ...commonData.yearConfig.filterCondition,
+                mainCateId: mainCateIds[cateName]
+            }
+        });
+    }
+
     renderCateStat() {
         const cateData = this.props.storeData && this.props.storeData.amountOfCate;
         if (cateData && cateData.length > 0) {
@@ -80,7 +81,7 @@ class Home extends React.Component{
                 {
                     cateData.map((item, key) => {
                         return (
-                            <div className="category-div" key={key}>
+                            <div className="category-div" key={key} onClick={()=>this.updateChart(item.cateName)}>
                                 <div style={{display: 'flex', justifyContent: 'center', margin: '12px 0 10px'}}>
                                     <img className={this.getCateImg(item.cateName)}/>
                                     <label style={{fontSize: '15px', marginLeft: '5px',color:'#888'}}>{item.cateName}</label>
@@ -131,23 +132,6 @@ class Home extends React.Component{
         }
     }
 
-    componentDidMount() {
-        this.entChart = new G2.Chart({
-            container: 'entChart',
-            ...chartContainerCfg,
-        })
-    }
-
-    componentDidUpdate() {
-        const chartData = this.props.storeData && this.props.storeData.groupByTime;
-        if (chartData && chartData.length > 0) {
-            this.renderEntChart(chartData, this.props.storeData.axisRange)
-        }
-    }
-
-    componentWillUnmount() {
-        this.entChart.destroy();
-    }
     render () {
         const homeData = this.props.storeData;
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#f7663b', fontWeight: 'bold'};
@@ -184,7 +168,8 @@ class Home extends React.Component{
                         </Card.Body>
                     </Card>
 
-                    <div id="entChart"/>
+                    {this.props.storeData.loading ? null:  <TimeTrendChart charData={this.props.storeData.groupByTime}/>}
+
                     <WhiteSpace className="gap"/>
                     {this.renderCateStat()}
                 </div>
@@ -214,6 +199,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setUserInfo: (info) => {
             dispatch({type:SET_TOKEN, data: info});
+        },
+        updateChart: (params) => {
+            dispatch(updateChartAction(params));
         }
     }
 };
