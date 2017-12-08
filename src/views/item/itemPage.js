@@ -141,11 +141,12 @@ class ItemView extends React.Component{
                            leftContent={<div className="setting-icon"/>}
                            onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
-                <div className={"main-section " + (hideHeader ? 'no-top gap': 'gap')}>
+                <div className={"main-section " + (hideHeader ? 'no-top item-back-ground': 'item-back-ground')}>
                     <WhiteSpace/>
 
                     <WingBlank>
                         <SearchBar style={{padding: 0, background: 'inherit'}}
+                                   className="white-label"
                                    placeholder="Search"
                                    cancelText="搜索"
                                    maxLength={16}
@@ -158,19 +159,20 @@ class ItemView extends React.Component{
                     </WingBlank>
 
                     <WhiteSpace/>
-                    <CateEntPicker marginTop="95px"
+                    <CateEntPicker marginTop="95px" tabStyle="white-style"
+                                   style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                                    hideEntTab={true}
                                    categories={this.props.commonData.filterCategories}
                                    cateEntCondition ={this.cateEntCondition}
                                    confirmCallback={this.onCateEntPickedCallback}/>
 
-                    <ItemConditionPicker marginTop="125px"
+                    <ItemConditionPicker marginTop="126px" tabStyle="white-style"
                                          style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                                          ents={this.props.commonData.subEnts}
                                          pickedCondition={this.pickedItemLocation}
                                          confirmCallback={this.itemConditionChanged}/>
 
-                    <TimeLocationPicker marginTop="160px"
+                    <TimeLocationPicker marginTop="156px" tabStyle="white-style"
                                         locations={this.filterLocations}
                                         confirmCallback={this.timeConditionChanged}
                                         pickerCondition={this.pickedTimeLocation}/>
