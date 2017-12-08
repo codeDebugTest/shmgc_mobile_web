@@ -31,7 +31,7 @@ class ItemDetailView extends React.Component{
                         <div style={{...titleLine, justifyContent:'space-between'}} key={key}>
                             <div style={{display: 'flex'}}>
                                 <div style={imgContainer}>
-                                    <img className="pi-radio-icon"/>
+                                    <img className="pi-radio-icon" alt=""/>
                                 </div>
                                 <label >{supplier.supplierEntName}</label>
                             </div>
@@ -51,7 +51,7 @@ class ItemDetailView extends React.Component{
                         <div style={{...titleLine, justifyContent:'space-between'}} key={key}>
                             <div style={{display: 'flex'}}>
                                 <div style={imgContainer}>
-                                    <img className="pi-radio-icon"/>
+                                    <img className="pi-radio-icon" alt=""/>
                                 </div>
                                 <label style={{valueStyle}}>{product.name}</label>
                             </div>
@@ -69,21 +69,21 @@ class ItemDetailView extends React.Component{
             <Accordion.Panel header="采购详情" style={titleColor}>
                 <div style={{...titleLine}}>
                     <div style={imgContainer}>
-                        <img className="pi-radio-icon"/>
+                        <img className="pi-radio-icon" alt=""/>
                     </div>
                     <label style={titleColor}>报价类型：</label>
                     <label>{purchaseItem && purchaseItem.quoteType}</label>
                 </div>
                 <div style={{...titleLine}}>
                     <div style={imgContainer}>
-                        <img className="pi-radio-icon"/>
+                        <img className="pi-radio-icon" alt=""/>
                     </div>
                     <label style={titleColor}>付款周期：</label>
                     <label>{purchaseItem && purchaseItem.paymentCycle}</label>
                 </div>
                 <div style={{...titleLine}}>
                     <div style={imgContainer}>
-                        <img className="pi-radio-icon"/>
+                        <img className="pi-radio-icon" alt=""/>
                     </div>
                     <label style={titleColor}>送货地址：</label>
                     <label>{purchaseItem && purchaseItem.deliverAddress}</label>
@@ -98,14 +98,14 @@ class ItemDetailView extends React.Component{
             <div style={whiteStyle}>
                 <div style={{display: 'flex', flexDirection: 'column', padding:'10px 10px'}}>
                     <div style={titleLine}>
-                        <div style={imgContainer}><img className="pi-purchase-ent-icon"/></div>
+                        <div style={imgContainer}><img className="pi-purchase-ent-icon" alt=""/></div>
                         <label style={{...titleColor, flexShrink: 0}}>项目标题：</label>
                         <div>
                             <label>{purchaseItem && purchaseItem.piTitle}</label>
                         </div>
                     </div>
                     <div style={titleLine} >
-                        <div style={imgContainer}><img className="pi-type-icon"/></div>
+                        <div style={imgContainer}><img className="pi-type-icon" alt=""/></div>
                         <label style={{...titleColor, flexShrink: 0}}>采购企业：</label>
                         <label>{purchaseItem && purchaseItem.piEnt}</label>
                     </div>

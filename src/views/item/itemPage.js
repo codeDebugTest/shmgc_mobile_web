@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { WhiteSpace, WingBlank, ListView, SearchBar} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
-import GridBox from '../../components/gridBox'
 import CateEntPicker from '../../components/cateEntPicker'
 import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
@@ -134,8 +133,6 @@ class ItemView extends React.Component{
         )
     };
     render () {
-        const imgStyle = {width:'50px', height: '50px'};
-        const entLogo = (shortName) => <div className={logoClassList[shortName] ? logoClassList[shortName] : logoClassList['default']}/>;
         const hideHeader = this.props.commonData.hideHeader;
         const height =  document.documentElement.clientHeight - 100;
         return (
@@ -146,16 +143,6 @@ class ItemView extends React.Component{
                            onLeftBtnClick={ChangeRoute.goSettingPage}/>
 
                 <div className={"main-section " + (hideHeader ? 'no-top gap': 'gap')}>
-{/*                    <GridBox column="4" style={{background: 'inherit'}} noBackGround={true}
-                             data={this.props.commonData.subEnts}
-                             renderItem={item=>(
-                                 <div style={{paddingTop: '15px'}}>
-                                     {item.entId ? entLogo(item.shortName): <div style={imgStyle}/>}
-                                     <p style={{fontSize:'12px', color: '#fff'}}>{item.shortName}</p>
-                                 </div>
-                             )}
-                             onItemClick={this.onGridClick}
-                    />*/}
                     <WhiteSpace/>
 
                     <WingBlank>
