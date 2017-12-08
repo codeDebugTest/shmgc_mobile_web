@@ -71,7 +71,6 @@ class ItemView extends React.Component{
                 dataSource: this.state.dataSource.cloneWithRows(newData)
             })
         }
-
     };
 
     timeConditionChanged = (pickerCondition) => {
@@ -159,19 +158,19 @@ class ItemView extends React.Component{
                     </WingBlank>
 
                     <WhiteSpace/>
-                    <CateEntPicker marginTop="41px"
+                    <CateEntPicker marginTop="95px"
                                    hideEntTab={true}
                                    categories={this.props.commonData.filterCategories}
                                    cateEntCondition ={this.cateEntCondition}
                                    confirmCallback={this.onCateEntPickedCallback}/>
 
-                    <ItemConditionPicker marginTop="316px"
+                    <ItemConditionPicker marginTop="125px"
                                          style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                                          ents={this.props.commonData.subEnts}
                                          pickedCondition={this.pickedItemLocation}
                                          confirmCallback={this.itemConditionChanged}/>
 
-                    <TimeLocationPicker marginTop="356px"
+                    <TimeLocationPicker marginTop="160px"
                                         locations={this.filterLocations}
                                         confirmCallback={this.timeConditionChanged}
                                         pickerCondition={this.pickedTimeLocation}/>
