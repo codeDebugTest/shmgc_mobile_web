@@ -116,16 +116,16 @@ class Home extends React.Component{
         if (!this.props.commonData.loginSuccess && !query.token) {
             /*网页第一打开*/
             const loginInfo = {loginName: 'zhougang', password: '123456'};
-            this.props.userLogin(loginInfo, ()=> this.props.loadData(this.props.commonData.userInfo));
+            this.props.userLogin(loginInfo, ()=> this.props.loadData(this.props.commonData.userInfo, this.props.commonData.yearConfig));
         } else if (this.props.commonData.loginSuccess){
             /*页面切换*/
-            this.props.loadData(this.props.commonData.userInfo);
+            this.props.loadData(this.props.commonData.userInfo, this.props.commonData.yearConfig);
             sendMsgToRN({title: this.props.commonData.entName});
         } else if (query.token){
             /*RN 调用 web*/
             this.props.setUserInfo({hideHeader: query.hideHeader});
             this.props.userLogin({token: query.token}, ()=> {
-                this.props.loadData(this.props.commonData.userInfo);
+                this.props.loadData(this.props.commonData.userInfo, this.props.commonData.yearConfig);
                 sendMsgToRN({title: this.props.commonData.entName});
             });
         }
@@ -203,8 +203,8 @@ const mapStateToProps = (state) =>{
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadData: (params) => {
-            dispatch(doLoadingAction(params))
+        loadData: (userInfo, yearConfig) => {
+            dispatch(doLoadingAction({...userInfo, filterCondition: yearConfig.filterCondition}))
         },
         initItemPage: (params) => {
             dispatch({type: INIT_ITEM_PAGE, data: params})
