@@ -32,14 +32,14 @@ export default class BottomTabBar extends React.Component {
                     onPress={ChangeRoute.goPurchaseItemPage}
                 />
 
-                <TabBar.Item
+{/*                <TabBar.Item
                     title="发现"
                     key="discovery"
                     icon={<div className="discovery-normal-icon"/>}
                     selectedIcon={<div className="discovery-active-icon"/>}
                     selected={this.props.selectedTab === ROUTE_PATH.DISCOVERY}
                     onPress={ChangeRoute.goDiscoveryPage}
-                />
+                />*/}
 
                 <TabBar.Item
                     title="企业"

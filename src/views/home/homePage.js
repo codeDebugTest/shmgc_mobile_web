@@ -14,6 +14,7 @@ import  './homePage.css'
 class Home extends React.Component{
     constructor(props) {
         super(props);
+        this.chooseCate = '';
         this.cardOnClickHandler = this.cardOnClickHandler.bind(this);
         this.onGridItemClick = this.onGridItemClick.bind(this);
     }
@@ -63,7 +64,7 @@ class Home extends React.Component{
             '其他': 99,
         }
         const commonData = this.props.commonData;
-
+        this.chooseCate = cateName + ' ';
         this.props.updateChart({
             ...commonData.userInfo,
             filterCondition: {
@@ -136,6 +137,7 @@ class Home extends React.Component{
         const homeData = this.props.storeData;
         const amountStyle = {textAlign: 'center', fontSize:'26px', color: '#f7663b', fontWeight: 'bold'};
         const hideHeader = this.props.commonData.hideHeader;
+        const yearTitle = this.props.commonData.yearConfig && (this.props.commonData.yearConfig.year + '年 ');
         return (
             <div>
                 <TopNavBar title={this.props.commonData.entName}
@@ -168,6 +170,7 @@ class Home extends React.Component{
                         </Card.Body>
                     </Card>
 
+                    <p style={{fontSize:'12px',marginBottom:0, color: '#868585'}}>{yearTitle + this.chooseCate + '采购金额,采购项目数走势'}</p>
                     {this.props.storeData.loading ? null:  <TimeTrendChart charData={this.props.storeData.groupByTime}/>}
 
                     <WhiteSpace className="gap"/>
