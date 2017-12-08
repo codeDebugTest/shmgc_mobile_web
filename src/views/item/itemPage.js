@@ -87,10 +87,12 @@ class ItemView extends React.Component{
     };
 
     onSearchSubmit = () => {
+        this.pageConfig = {...PageConfig};
         this.loadData(true, this.state.searchKey)
     }
     onClearSearchKey = () => {
         this.setState({searchKey: ''});
+        this.pageConfig = {...PageConfig};
         this.loadData(true);
     }
 
