@@ -51,12 +51,12 @@ class Home extends React.Component{
         };
         const chartCfg = new G2Config(this.entChart, entChartData);
         chartCfg.setChartScale('purchaseAmount', '采购金额');
-        chartCfg.setChartScale( 'piCount', '项目数');
-        chartCfg.setChartAxis('entName');
+        chartCfg.setChartScale( 'piCount', '采购项目数');
+        chartCfg.setChartAxis('month');
         chartCfg.setChartAxis('purchaseAmount', null, formatter, true);
         chartCfg.setChartAxis('piCount', null);
-        chartCfg.setChartInterval('entName', 'purchaseAmount');
-        chartCfg.setChartLine('entName', 'piCount');
+        chartCfg.setChartInterval('month', 'purchaseAmount');
+        chartCfg.setChartLine('month', 'piCount');
         chartCfg.setChartTooltip();
         // chartCfg.customChartlegend('total');
         this.entChart.render();
@@ -139,9 +139,9 @@ class Home extends React.Component{
     }
 
     componentDidUpdate() {
-        const entChartData = this.props.storeData && this.props.storeData.groupByEnt;
-        if (entChartData && entChartData.length > 0) {
-            this.renderEntChart(entChartData, this.props.storeData.axisRange)
+        const chartData = this.props.storeData && this.props.storeData.groupByTime;
+        if (chartData && chartData.length > 0) {
+            this.renderEntChart(chartData, this.props.storeData.axisRange)
         }
     }
 
@@ -161,7 +161,7 @@ class Home extends React.Component{
                 />
                 <div className={"main-section " + (hideHeader ? 'no-top': '')}>
                     <div className="grid-back-ground">
-                        <SectionBar sectionName="项目数据概览" backgroundColor='inherit'/>
+                        <SectionBar sectionName="采购数据概览" backgroundColor='inherit'/>
                         <Grid data={homeData.projectStat} columnNum={3} square={false} hasLine={false} className="no-back-ground"
                               renderItem={
                                   dataItem => (
@@ -178,11 +178,10 @@ class Home extends React.Component{
                     </div>
 
                     <Card onClick={this.cardOnClickHandler}>
-                        <Card.Header title={(<div style={{fontSize:'16px'}}>企业概览数据</div>)} extra={(<Icon type="right"/>)}/>
+                        <Card.Header title={(<div style={{fontSize:'16px'}}>企业采购总金额</div>)} extra={(<Icon type="right"/>)}/>
                         <Card.Body>
                             <div style={amountStyle}>￥{homeData.totalAmountStr}</div>
                         </Card.Body>
-                        <Card.Footer content={'采购总金额'}/>
                     </Card>
 
                     <div id="entChart"/>

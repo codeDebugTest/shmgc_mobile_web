@@ -2,16 +2,13 @@ import React from 'react';
 import './App.css';
 import {connect} from  'react-redux'
 import {browserHistory} from 'react-router'
-import BottomTabBar from './components/bottomTabBar'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.defaultTab = 'storeData';
     }
 
     render() {
-        const currentPath = browserHistory.getCurrentLocation().pathname;
         return (
             <div className="App">
 

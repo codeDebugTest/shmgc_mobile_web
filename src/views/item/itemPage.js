@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { WhiteSpace, WingBlank, ListView, SearchBar} from 'antd-mobile'
 import TopNavBar from '../../components/topNavBar'
 import GridBox from '../../components/gridBox'
+import CateEntPicker from '../../components/cateEntPicker'
 import BottomTabBar from '../../components/bottomTabBar'
 import TimeLocationPicker from '../../components/timeLocationPicker'
 import PurchaseItemCard from '../../components/purchaseItemCard'
@@ -24,6 +25,7 @@ class ItemView extends React.Component{
         this.filterLocations = getFilterLocations(this.props.commonData);
         this.pickedTimeLocation = {};
         this.pickedItemLocation = {};
+        this.cateEntCondition ={};
         this.pageConfig = {...PageConfig};
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1.piId !== row2.piId,
@@ -168,6 +170,12 @@ class ItemView extends React.Component{
                     </WingBlank>
 
                     <WhiteSpace/>
+                    <CateEntPicker marginTop="41px"
+                                   hideEntTab={true}
+                                   categories={this.props.commonData.filterCategories}
+                                   cateEntCondition ={this.cateEntCondition}
+                                   confirmCallback={this.onCateEntPickedCallback}/>
+
                     <ItemConditionPicker marginTop="316px"
                                          style={{borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                                          ents={this.props.commonData.subEnts}
