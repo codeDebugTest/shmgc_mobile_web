@@ -60,7 +60,12 @@ export function homePageReducer(state={}, action) {
         case FETCH_HOME_PAGE_CHART_DATA:
             return Object.assign({}, state, {loading: true});
         case FETCH_HOME_PAGE_CHART_DATA_SUCCESS:
-            return Object.assign({}, state, {loading: false, groupByTime: action.response.groupByTime, totalAmountStr: action.response.totalAmountStr});
+            return Object.assign({}, state, {
+                loading: false,
+                groupByTime: action.response.groupByTime,
+                totalAmountStr: action.response.totalAmountStr,
+                projectStat: action.response.projectStat
+            });
         case FETCH_HOME_PAGE_CHART_DATA_FAILED:
             return Object.assign({}, state, {loading: false, error: action.error});
         default:
