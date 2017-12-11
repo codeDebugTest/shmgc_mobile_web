@@ -169,7 +169,6 @@ class Home extends React.Component{
                             <div style={amountStyle}>￥{homeData.totalAmountStr}</div>
                         </Card.Body>
                     </Card>
-
                     <p style={{fontSize:'12px',marginBottom:0, color: '#868585'}}>{yearTitle + this.chooseCate + '采购金额,采购项目数走势'}</p>
                     {this.props.storeData.loading ? null:  <TimeTrendChart charData={this.props.storeData.groupByTime}/>}
 

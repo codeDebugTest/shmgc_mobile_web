@@ -37,7 +37,7 @@ export function updateChartAction(params) {
                 if(response.return_code == 0) {
                     dispatch({
                         type: FETCH_HOME_PAGE_CHART_DATA_SUCCESS,
-                        response: response.result && response.result[0].groupByTime
+                        response: response.result && response.result[0]
                     });
                 } else {
                     dispatch({type: FETCH_HOME_PAGE_CHART_DATA_FAILED, error: response.return_message});
@@ -60,7 +60,7 @@ export function homePageReducer(state={}, action) {
         case FETCH_HOME_PAGE_CHART_DATA:
             return Object.assign({}, state, {loading: true});
         case FETCH_HOME_PAGE_CHART_DATA_SUCCESS:
-            return Object.assign({}, state, {loading: false, groupByTime: action.response});
+            return Object.assign({}, state, {loading: false, groupByTime: action.response.groupByTime, totalAmountStr: action.response.totalAmountStr});
         case FETCH_HOME_PAGE_CHART_DATA_FAILED:
             return Object.assign({}, state, {loading: false, error: action.error});
         default:
