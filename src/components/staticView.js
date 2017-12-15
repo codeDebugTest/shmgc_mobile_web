@@ -40,6 +40,18 @@ export default class StaticView extends React.Component {
         }
     }
 
+    transformFoldData(data, keyField, foldField, foldFieldName) {
+        const result =[];
+        data.forEach(function (item, index) {
+            let obj = {};
+            obj[keyField] = item[keyField];
+            obj.value = item[foldField];
+            obj.dataTypeName = foldFieldName;
+            result.push(obj)
+        });
+        return result;
+    }
+
     renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight, unit, isPurchase) {
         const firstItem =chartData[0];
         if ( firstItem[fieldLeftY] >= 0 && firstItem[filedRightY] >= 0) {

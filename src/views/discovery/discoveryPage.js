@@ -69,6 +69,10 @@ class DiscoveryView extends React.Component {
                                               locations={this.filterLocations}
                                               pickerCondition={this.pickerCondition}
                                               confirmCallback={this.loadData}/>
+
+                        <WhiteSpace/>
+                        <WhiteSpace/>
+                        <p style={{fontSize: '18px'}}>敬请期待！</p>
                     </div>
                 </div>
 

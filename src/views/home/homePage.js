@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {doLoadingAction, updateChartAction} from './homePage.redux'
-import {Grid, Card, Icon, Flex, WhiteSpace} from 'antd-mobile'
+import {Grid, Card, Icon, Flex, WhiteSpace, Accordion} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
@@ -175,6 +175,14 @@ class Home extends React.Component{
 
                     <WhiteSpace className="gap"/>
                     {this.renderCateStat()}
+
+                    <WhiteSpace className="gap"/>
+                    <Accordion >
+                        <Accordion.Panel header='市场趋势概览'>
+                            <p style={{fontSize: '16px', color: '#0c99db'}}>敬请期待！</p>
+                            <WhiteSpace />
+                        </Accordion.Panel>
+                    </Accordion>
                 </div>
                 <BottomTabBar selectedTab={ROUTE_PATH.HOME}/>
             </div>

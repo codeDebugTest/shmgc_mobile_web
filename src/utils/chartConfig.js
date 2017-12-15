@@ -40,6 +40,9 @@ export class G2Config {
     setChartInterval(nameX, nameY) {
         this.chart.interval().position(nameX + '*' + nameY).color(nameX, ['#019fe8', '#01cfe7', '#00e9c0', '#5dcf53']).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
     }
+    setChartGroupInterval(nameX, nameY, nameGroupName) {
+        this.chart.interval().position(nameX + '*' + nameY).color(nameGroupName).tooltip(nameY, this.getTooltipCallbackFuc(nameY)).adjust('dodge');
+    }
     setChartLine(nameX, nameY) {
         this.chart.line().position(nameX + '*' + nameY).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
         this.chart.point().position(nameX + '*' + nameY).size(4).shape('circle').style({
