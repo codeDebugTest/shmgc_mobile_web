@@ -57,7 +57,11 @@ export default class ChartView extends React.Component {
         chartCfg.setChartAxis(this.chartConfig.fieldLeftY, null, formatter, true);
         chartCfg.setChartAxis(this.chartConfig.filedRightY, null);
         chartCfg.setChartInterval(this.chartConfig.fieldX, this.chartConfig.fieldLeftY);
-        chartCfg.setChartLine(this.chartConfig.fieldX, this.chartConfig.filedRightY);
+        if (this.chartConfig.id === 'timeChart') {
+            chartCfg.setChartLine(this.chartConfig.fieldX, this.chartConfig.filedRightY);
+        } else {
+            chartCfg.setChartPoint(this.chartConfig.fieldX, this.chartConfig.filedRightY);
+        }
         chartCfg.setChartTooltip();
         // chartCfg.customChartlegend(isPurchase ? 'total': 'average');
         this.chart.render();
