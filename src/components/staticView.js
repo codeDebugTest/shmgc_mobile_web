@@ -1,29 +1,10 @@
 import React from 'react'
 import {WingBlank, WhiteSpace} from 'antd-mobile'
-import G2 from '@antv/g2'
-import {G2Config, chartContainerCfg} from '../utils/chartConfig'
-
-const chartIdList = [
-    {id: 'entCountChart', comment: '企业采购金额，项目数'},
-    {id: 'entAverageChart',comment: '企业采购数量，采购均价'},
-    {id: 'cateCountChart', comment: '材料采购金额，项目数'},
-    {id: 'cateAverageChart', comment: '材料采购数量，采购均价'},
-    {id: 'timeChart',   comment: '时间采购金额，项目数'},
-];
+import ChartView from '../components/chartView'
 
 export default class StaticView extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            chartVisible: {
-                entCountChart: true,
-                entAverageChart: true,
-                cateCountChart: true,
-                cateAverageChart: true,
-                timeChart: true,
-            }
-        }
     }
 
     formattedValue = (value) =>{
@@ -51,79 +32,89 @@ export default class StaticView extends React.Component {
         });
         return result;
     }
+    renderEntGroup(chartData) {
+        const chart ={
+            id: 'entCountChart',
+            chartData: chartData,
+            fieldX: 'entName',
+            fieldLeftY: 'purchaseAmount',
+            filedRightY: 'piCount',
+            aliasLeft: '采购金额',
+            aliasRight: '项目数量',
+        }
+        const chart2 = {
+            id: 'entAverageChart',
+            chartData: chartData,
+            fieldX: 'entName',
+            fieldLeftY: 'purchaseQuantity',
+            fieldRightY: 'averagePrice',
+            aliasLeft: '采购数量',
+            aliasRight: '平均单价',
+            unit: {value: 10000, name: '万'}
+        };
 
-    renderChart(chartId, chartData, fieldX, fieldLeftY, filedRightY, aliasLeft, aliasRight, unit, isPurchase) {
-        const firstItem =chartData[0];
-        if ( firstItem[fieldLeftY] >= 0 && firstItem[filedRightY] >= 0) {
-            const formatter = this.formatterFactory(unit || {value: 100000000, name: '亿元'});
-            const chartCfg = new G2Config(this[chartId], chartData);
-            chartCfg.setChartScale(fieldLeftY, aliasLeft);
-            chartCfg.setChartScale(filedRightY, aliasRight);
-            chartCfg.setChartAxis(fieldX);
-            chartCfg.setChartAxis(fieldLeftY, null, formatter, true);
-            chartCfg.setChartAxis(filedRightY, null);
-            chartCfg.setChartInterval(fieldX, fieldLeftY);
-            chartCfg.setChartLine(fieldX, filedRightY);
-            chartCfg.setChartTooltip();
-            // chartCfg.customChartlegend(isPurchase ? 'total': 'average');
-            this[chartId].render();
-            return true;
-        }
-        return false
-    }
-
-    rendEntChart(chartData, chartVisible) {
-        if (chartData && chartData.length > 1) {
-            chartVisible.entCountChart = this.renderChart('entCountChart', chartData, 'entName', 'purchaseAmount', 'piCount','采购金额', '项目数量', null, true);
-            chartVisible.entAverageChart = this.renderChart('entAverageChart', chartData,'entName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价', {value: 10000, name: '万'});
-        }else {
-            chartVisible.entAverageChart = false;
-            chartVisible.entCountChart = false;
-        }
-    }
-    rendCateChart(chartData, chartVisible) {
-        if (chartData && chartData.length > 1) {
-            chartVisible.cateCountChart = this.renderChart('cateCountChart', chartData, 'cateName', 'purchaseAmount', 'piCount','采购金额', '项目数量', null, true);
-            chartVisible.cateAverageChart = this.renderChart('cateAverageChart', chartData, 'cateName', 'purchaseQuantity', 'averagePrice', '采购数量', '平均单价',{value: 10000, name: '万'});
-        } else {
-            chartVisible.cateCountChart = false;
-            chartVisible.cateAverageChart = false;
-        }
-    }
-    rendTimeChart(chartData, chartVisible) {
-        if (chartData && chartData.length > 1) {
-            chartVisible.timeChart = this.renderChart('timeChart', chartData, 'month', 'purchaseAmount', 'piCount', '采购金额', '项目数量', null, true);
-        } else {
-            chartVisible.timeChart = false;
-        }
+        return [
+            <ChartView key={chart.id} chart={chart} title="企业采购金额，采购项目"/>,
+            <ChartView key={chart2.id} chart={chart2} title="企业采购数量，采购均价"/>
+        ];
     }
 
-    componentDidMount() {
-        chartIdList.map((chart) => {
-            this[chart.id] =  new G2.Chart({
-                container: chart.id,
-                ...chartContainerCfg,
-            })
-        });
+    renderCateGroup(chartData) {
+        const chart ={
+            id: 'cateCountChart',
+            chartData: chartData,
+            fieldX: 'cateName',
+            fieldLeftY: 'purchaseAmount',
+            filedRightY: 'piCount',
+            aliasLeft: '采购金额',
+            aliasRight: '项目数量',
+        }
+
+        const chart2 = {
+            id: 'cateAverageChart',
+            chartData: chartData,
+            fieldX: 'cateName',
+            fieldLeftY: 'purchaseQuantity',
+            fieldRightY: 'averagePrice',
+            aliasLeft: '采购数量',
+            aliasRight: '平均单价',
+            unit: {value: 10000, name: '万'}
+        };
+
+        return [
+            <ChartView key={chart.id} chart={chart} title="材料采购金额，采购项目"/>,
+            <ChartView key={chart2.id} chart={chart2} title="材料采购数量，采购均价"/>
+        ];
+    }
+
+    renderTimeGroup(chartData) {
+        const chart ={
+            id: 'timeChart',
+            chartData: chartData,
+            fieldX: 'month',
+            fieldLeftY: 'purchaseAmount',
+            filedRightY: 'piCount',
+            aliasLeft: '采购金额',
+            aliasRight: '项目数量',
+        }
+        return <ChartView chart={chart} title="采购金额，采购项目时间走势"/>
+    }
+    renderChartGroup() {
         const staticData = this.props.staticData;
-        const chartVisible = {};
         if (staticData) {
-            this.rendEntChart(staticData.groupByEnt, chartVisible);
-            this.rendCateChart(staticData.groupByCate, chartVisible);
-            this.rendTimeChart(staticData.groupByTime, chartVisible);
+            return (
+                <div>
+                    { this.renderEntGroup(staticData.groupByEnt)}
+                    { this.renderCateGroup(staticData.groupByCate)}
+                    { this.renderTimeGroup(staticData.groupByTime)}
+                </div>
+            )
         }
-        this.setState({ chartVisible: chartVisible})
-    }
-
-    componentWillUnmount() {
-        chartIdList.map((chart) => {
-            this[chart.id].destroy();
-        });
+        return null;
     }
 
     render() {
         const overview = this.props.staticData && this.props.staticData.overview;
-        const chartVisible = this.state.chartVisible;
         const flexLayout = {display: 'flex'};
         const labelStyle = {fontSize:'12px', textAlign: 'left', color: '#868585'};
         const valueStyle = {fontSize:'14px', color: '#03a3d9',fontWeight: '600'};
@@ -160,18 +151,7 @@ export default class StaticView extends React.Component {
                     <WhiteSpace/>
                 </WingBlank>
 
-                {
-                    chartIdList.map((chart, key) => {
-                        return (
-                            chartVisible[chart.id] ?
-                                <WingBlank size="sm" key={key}>
-                                    <p style={{fontSize:'12px',marginBottom:0, color: '#868585'}}>{chart.comment}</p>
-                                    <div id={chart.id}/>
-                                </WingBlank>
-                                : null
-                        )
-                    })
-                }
+                {this.renderChartGroup()}
             </div>
         );
     }

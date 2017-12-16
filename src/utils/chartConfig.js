@@ -50,6 +50,13 @@ export class G2Config {
             lineWidth: 1
         }).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
     }
+    setChartPoint(nameX, nameY) {
+        this.chart.line().size(0).position(nameX + '*' + nameY).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
+        this.chart.point().position(nameX + '*' + nameY).size(4).shape('circle').style({
+            stroke: '#fff',
+            lineWidth: 1
+        }).tooltip(nameY, this.getTooltipCallbackFuc(nameY));
+    }
     setIntervalStack(fieldX, fieldY, title, color) {
         this.chart.intervalStack()
             .position(fieldY)
@@ -76,7 +83,7 @@ export class G2Config {
             });
     }
     setChartTooltip() {
-        this.chart.tooltip({crosshairs: {type: 'line'}});
+        this.chart.tooltip({crosshairs: {type: 'rect' | 'x' | 'y' | 'cross'}, triggerOn: 'click'});
     }
     setChartAxis(field, alias, formatter, setGrid) {
         const gridStyle ={

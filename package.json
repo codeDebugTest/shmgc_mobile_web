@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@antv/g2": "^3.0.0",
+    "@antv/g2": "^3.0.2",
     "antd-mobile": "^2.0.2",
     "babel-polyfill": "^6.23.0",
     "g2-mobile": "^2.2.0-beta.3",
