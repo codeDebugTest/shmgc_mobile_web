@@ -5,11 +5,11 @@ import {Grid, Card, Icon, Flex, WhiteSpace, Accordion} from 'antd-mobile'
 import SectionBar from '../../components/sectionBar'
 import TopNavBar from '../../components/topNavBar'
 import BottomTabBar from '../../components/bottomTabBar'
-import TimeTrendChart from '../../components/timeTrendChart'
 import {ChangeRoute, ROUTE_PATH, sendMsgToRN} from '../../utils/router'
 import {INIT_ITEM_PAGE} from '../item/itemPageRedux'
 import {doLoginAction, SET_TOKEN} from '../login.redux'
 import  './homePage.css'
+import ChartView from "../../components/chartView";
 
 class Home extends React.Component{
     constructor(props) {
@@ -170,8 +170,19 @@ class Home extends React.Component{
                             <div style={amountStyle}>￥{homeData.totalAmountStr}</div>
                         </Card.Body>
                     </Card>
-                    <p style={{fontSize:'12px',marginBottom:0, color: '#868585'}}>{yearTitle + this.chooseCate + ' 采购金额,采购项目数走势'}</p>
-                    {this.props.storeData.loading ? null:  <TimeTrendChart charData={this.props.storeData.groupByTime}/>}
+                    {this.props.storeData.loading ?
+                        null:
+                        <ChartView chart={{
+                                id: 'timeChart',
+                                chartData: this.props.storeData.groupByTime,
+                                fieldX: 'month',
+                                fieldLeftY: 'purchaseAmount',
+                                filedRightY: 'piCount',
+                                aliasLeft: '采购金额',
+                                aliasRight: '项目数量',
+                            }} title={yearTitle + this.chooseCate + ' 采购金额,采购项目数走势'}
+                        />
+                    }
 
                     <WhiteSpace className="gap"/>
                     {this.renderCateStat()}
